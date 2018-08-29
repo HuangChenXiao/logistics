@@ -1,0 +1,60 @@
+/*Flex是Flexible Box的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。*/
+.flex{display: -webkit-flex;display: flex;}
+
+/*容器的属性*/
+/*flex-direction属性决定主轴的方向（即项目的排列方向）。*/
+.f-d-r{flex-direction: row;}/*主轴为水平方向，起点在左端*/
+.f-d-r-r{flex-direction: row-reverse;}/*主轴为水平方向，起点在右端*/
+.f-d-c{flex-direction: column;}/*主轴为垂直方向，起点在上沿*/
+.f-d-c-r{flex-direction: column-reverse;}/*主轴为垂直方向，起点在下沿*/
+
+/*默认情况下，项目都排在一条线（又称"轴线"）上。flex-wrap属性定义，如果一条轴线排不下，如何换行*/
+.f-w-n{flex-wrap: nowrap;}/*（默认）：不换行*/
+.f-w-w{flex-wrap: wrap;}/*换行，第一行在上方*/
+.f-w-w-r{flex-wrap:wrap-reverse;}/*换行，第一行在下方*/
+
+/*justify-content属性定义了项目在主轴上的对齐方式*/
+.j-c-f-s{justify-content: flex-start;}/*左对齐*/
+.j-c-f-e{justify-content: flex-end;}/*右对齐*/
+.j-c-c{justify-content: center;}/*居中*/
+.j-c-s-b{justify-content: space-between;}/*两端对齐，项目之间的间隔都相等*/
+.j-c-s-a{justify-content: space-between;}/*每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍*/
+
+/*align-items属性定义项目在交叉轴上如何对齐*/
+.a-i-f-s{align-items: flex-start;}/*居顶部对齐(交叉轴的起点对齐)。*/
+.a-i-f-e{align-items: flex-end;}/*居底部对齐（交叉轴的终点对齐。）*/
+.a-i-c{align-items: center;}/*居中心点对齐（交叉轴的中点对齐）*/
+.a-i-b{align-items: baseline;}/*项目的第一行文字的基线对齐*/
+.a-i-s{align-items: stretch;}/*（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度*/
+
+/*项目属性*/
+/*order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。*/
+.o-0{order: 0;}
+.o-1{order: 1;}
+.o-2{order: 2;}
+.o-3{order: 3;}
+.o-4{order: 4;}
+.o-5{order: 5;}
+
+/*flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。*/
+.f-g-0{flex-grow: 0;}
+.f-g-1{flex-grow: 1;}
+.f-g-2{flex-grow: 2;}
+.f-g-3{flex-grow: 3;}
+.f-g-4{flex-grow: 4;}
+.f-g-5{flex-grow: 5;}
+
+/*flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。*/
+.f-s-0{flex-shrink: 0;}
+.f-s-1{flex-shrink: 1;}
+.f-s-2{flex-shrink: 2;}
+.f-s-3{flex-shrink: 3;}
+.f-s-4{flex-shrink: 4;}
+.f-s-5{flex-shrink: 5;}
+
+/*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch*/
+.a-s-a{align-self:auto;}
+.a-s-b{align-self:baseline;}
+.a-s-c{align-self:center;}
+.a-s-s{align-self:flex-start;}
+.a-s-e{align-self:flex-end;}

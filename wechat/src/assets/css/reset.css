@@ -1,0 +1,73 @@
+/**
+ * reset文件，重置页面的样式。
+ *
+ * @author Frome internet.
+ * @date 2014.01.06
+ */
+
+html,body{
+  background: #F7F7F7 !important;
+}
+ body {
+    font: 12px/1.125 Microsoft Yahei,Arial,Helvetica,sans-serif;
+    background: white;
+    line-height: 1.4;
+    color: #2b2b2b;
+  }
+  
+  input, textarea, select {
+    font-size: 100%;
+    font-family: inherit;
+    border: 0;
+    width: 100%;
+    color: #666
+  }
+  
+  html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, form, button, dl, dt, dd, select, input, textarea {
+    margin: 0;
+  }
+  
+  h1 {
+    font-size: 18px;
+  }
+  
+  h2 {
+    font-size: 16px;
+  }
+  
+  h3 {
+    font-size: 14px;
+  }
+  
+  h4, h5, h6 {
+    font-size: 1em;
+  }
+  
+  ul, ol {
+    padding-left: 0;
+    list-style-type: none;
+  }
+  
+  /*image with no-border*/
+  img {
+    border: 0;
+  }
+  
+  a {
+    display: block;
+    text-decoration: none;
+    outline: none;
+    color: #2b2b2b;
+  }
+  a:active,a:visited,
+  a:hover{
+    text-decoration:none !important;
+  }
+  input, textarea {
+    outline: none;
+  }
+  
+  i {
+    font-style: normal;
+  }
+  
