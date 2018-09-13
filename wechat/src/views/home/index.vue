@@ -93,7 +93,7 @@ export default {
       work_status: 2,
       time: null,
       bItem: {
-        start_position: '正在定位。。。'
+        start_position: '厦门市'
       },
       store_query: {
         longitude: this.$store.getters.longitude,
@@ -105,11 +105,11 @@ export default {
   },
   created() {
     let _this = this
-    if (_this.store_query.start_position) {
-      _this.bItem.start_position = _this.store_query.start_position
-    } else {
-      _this.get_address()
-    }
+    // if (_this.store_query.start_position) {
+    //   _this.bItem.start_position = _this.store_query.start_position
+    // } else {
+    //   _this.get_address()
+    // }
     this.set_time()
     setTimeout(() => {
       _this.$vux.alert.show({
