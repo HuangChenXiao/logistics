@@ -1,14 +1,17 @@
 <template>
   <div>
     <u-header :title="title" route="user">
+      <div class="s-where" @click="showWhere=true">
+        查询
+      </div>
     </u-header>
     <div style="height:1.2rem"></div>
     <div>
-      <div v-show="is_order==true">
+      <!-- <div v-show="is_order==true">
         <tab :line-width=2 v-model="w_qeury.status" active-color="#FF8010" bar-active-color="#FF8010">
           <tab-item class="vux-center" :selected="sed_index === index" v-for="(item, index) in list2" @on-item-click="change_tab_index(index)" :key="index">{{item.value}}</tab-item>
         </tab>
-      </div>
+      </div> -->
       <!-- <div style="height:2rem">{{typeof w_qeury.status}}</div> -->
       <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
 
@@ -30,12 +33,24 @@
       </scroller>
     </div>
     <c-bottom v-if="menu_order" route_name="order"></c-bottom>
+    <div class="mask" v-show="showWhere">
+      <div class="mask-content">
+        <div class="title">查询条件</div>
+        <x-input title="订单号" placeholder="请输入订单号"></x-input>
+        <datetime title="开始日期" v-model="time1" value-text-align="right"></datetime>
+        <datetime title="结束日期" v-model="time2" value-text-align="right"></datetime>
+        <div class="wk-btn">
+          <div class="reset-btn" @click="showWhere=false">取消</div>
+          <div class="ok-btn">确定</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // import { getOrderMyList } from '@/api/user.js'
-import { Tab, TabItem } from 'vux'
+import { Tab, TabItem, XDialog, Datetime } from 'vux'
 const list = () => [
   { key: 0, value: '全部' },
   { key: 1, value: '昨日订单' },
@@ -45,10 +60,13 @@ const list = () => [
 export default {
   components: {
     Tab,
-    TabItem
+    TabItem,
+    XDialog,
+    Datetime
   },
   data() {
     return {
+      showWhere: false,
       title: this.$route.query.title,
       index: 0,
       sed_index: 0,
@@ -149,6 +167,42 @@ export default {
       right: 0;
       top: 0.266667rem;
       color: rgb(248, 143, 44);
+    }
+  }
+}
+.s-where {
+  color: #f00;
+}
+.mask-content {
+  padding-bottom: 0.333333rem;
+  font-size: 0.373333rem;
+  .title {
+    text-align: center;
+    height: 1.226667rem;
+    line-height: 1.226667rem;
+    border-bottom: 1px solid #ededed;
+    margin-bottom: -1px;
+    font-size: 0.46rem;
+  }
+  .wk-btn {
+    text-align: center;
+    border-top: 1px solid #ededed;
+    padding-top: 0.266667rem;
+    .reset-btn {
+      color: #f00;
+      border: 1px solid #f00;
+      display: inline-block;
+      padding: 0.053333rem 0.2rem;
+      border-radius: 3px;
+      margin: 0 0.266667rem;
+    }
+    .ok-btn {
+      background: #f00;
+      color: #fff;
+      display: inline-block;
+      padding: 0.053333rem 0.2rem;
+      border-radius: 3px;
+      margin: 0 0.266667rem;
     }
   }
 }

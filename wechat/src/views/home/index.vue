@@ -6,7 +6,7 @@
     <div class="home">
       <div class="address">
         当前位置：{{bItem.start_position}}
-        <i class="ic-ad" onclick="location.reload()"></i>
+        <i class="ico ico-ad" onclick="location.reload()"></i>
       </div>
       <div class="work">
         <div class="work-item sb-item" v-if="work_status==2" @click="change_work(1)">
@@ -44,14 +44,15 @@
         </div>
       </div>
 
-      <div class="task" v-show="task_status">
-        <div class="title">我的任务</div>
+      <div class="task">
+        <div class="title">最新订单</div>
         <div class="item-list">
-          <div class="item">派单开始地址：厦门市软件园二期</div>
-          <div class="item">派单结束地址：厦门市软件园三期</div>
-          <div class="sus-btn" @click="complete_order">
+          <div class="item">订单号：TGF13301111133332</div>
+          <div class="item">开始地址：厦门市软件园二期</div>
+          <div class="item">结束地址：厦门市软件园三期</div>
+          <!-- <div class="sus-btn" @click="complete_order">
             完成订单
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -74,11 +75,14 @@ import { getAdList } from '@/api/home.js'
 import getformattedAddress from '@/map/index.js'
 import { setTimeout } from 'timers'
 import cVehicle from '@/components/cVehicle'
+import workSite from '@/components/workSite'
+import { defaultCoreCipherList } from 'constants';
 export default {
   components: {
     Group,
     XDialog,
-    cVehicle
+    cVehicle,
+    workSite
   },
   data() {
     return {
@@ -119,7 +123,7 @@ export default {
           _this.task_status = true
         }
       })
-    }, 10000)
+    }, 1000000)
   },
   methods: {
     complete_order() {
@@ -238,16 +242,22 @@ export default {
   padding: 0.266667rem;
   border-bottom: 1px solid #efefef;
   padding-right: 1.2rem;
-  .ic-ad {
+  .ico {
     position: absolute;
     top: 0.266667rem;
     right: 0.266667rem;
     width: 0.6rem;
     height: 0.6rem;
+  }
+  .ico-ad {
     background: url(../../assets/img/address.png) no-repeat;
     background-size: 100%;
   }
-  .ic-ad:before {
+  .ico-edit {
+    background: url(../../assets/img/edit.png) no-repeat;
+    background-size: 100%;
+  }
+  .ico:before {
     content: ' ';
     position: absolute;
     left: -0.266667rem;
@@ -308,7 +318,7 @@ export default {
     padding: 0.266667rem 0;
     padding-right: 2.5rem;
     .item {
-      padding: 0.133333rem 0.266667rem;
+      padding: 0.06rem 0.266667rem;
     }
   }
   .sus-btn {

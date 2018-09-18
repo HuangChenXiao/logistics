@@ -3,7 +3,7 @@
     <div class="footer-menu">
       <router-link :to="{name:'home'}" class="item">
         <div class="bg-img od-img" :class="{'od-img-s':route_name=='home'}"></div>
-        <span :class="{'sed':route_name=='home'}">广告</span>
+        <span :class="{'sed':route_name=='home'}">首页</span>
       </router-link>
       <!-- <router-link :to="{name:'order',query:{is_order:false,menu_order:true,title:'确认收款',tradetype:1,status:0}}" class="item">
         <div class="bg-img odr-img" :class="{'odr-img-s':route_name=='order'}"></div>
