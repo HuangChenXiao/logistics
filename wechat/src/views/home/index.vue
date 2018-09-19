@@ -64,7 +64,7 @@
     </div> -->
     <c-bottom route_name="home"></c-bottom>
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
+      <c-vehicle :single_drive="true" @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
     </x-dialog>
   </div>
 </template>
@@ -89,6 +89,14 @@ export default {
       vehicle_list: [
         { id: 1, code: '闽A12345', color: '红色' },
         { id: 2, code: '闽A12345', color: '白色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
         { id: 2, code: '闽A4564', color: '黑色' }
       ],
       showScrollBox: false,

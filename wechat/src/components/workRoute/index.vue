@@ -1,42 +1,34 @@
 <template>
-  <div>
-    <div class="title">当前车辆信息</div>
-    <div class="search">
-      <div class="item">
-        <div class="ico"></div>
-        <div class="ipt">
-          <input type="text" placeholder="请输入要搜索的车辆">
+    <div>
+        <div class="title">选择起始路线</div>
+        <div class="search">
+            <div class="item">
+                <div class="ico"></div>
+                <div class="ipt">
+                    <input type="text" placeholder="请输入要搜索的起始路线">
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="item-list" v-if="list.length>0">
-      <div class="item" v-for="item in list">
-        <div class="code">车牌：{{item.code}}</div>
-        <div class="color">颜色：{{item.color}}</div>
-        <div class="opt-btn" v-if="single_drive">
-          <div class="sed-btn" @click="select_vehicle(item)">
-            选择
-          </div>
+        <div class="item-list" v-if="list.length>0">
+            <div class="item" v-for="item in list">
+                <div class="code">{{item.code}}</div>
+                <!-- <div class="color">颜色：{{item.color}}</div> -->
+                <div class="opt-btn">
+                    <div class="sed-btn" @click="select_vehicle(item)">
+                        选择
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="chk-many-box">
-          <input type="checkbox" class="input_default">
+        <div class="no-data" v-else>
+            暂无可用路线~
         </div>
-      </div>
     </div>
-    <div class="no-data" v-else>
-      暂无可用车辆~
-    </div>
-    <div class="bottom-many-btn" v-if="many_drive">
-      <div class="select-btn" @click="select_many_vehicle">
-        选择车辆
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: ['value', 'single_drive', 'many_drive'],
+  props: ['value'],
   data() {
     return {
       list: null
@@ -48,9 +40,6 @@ export default {
   methods: {
     select_vehicle(item) {
       this.$emit('selectVehicle', item)
-    },
-    select_many_vehicle() {
-      this.$emit('selectVehicle', [])
     }
   }
 }
@@ -81,6 +70,7 @@ export default {
   font-size: 0.373333rem;
   max-height: 10rem;
   overflow: auto;
+  padding-bottom: 0.266667rem;
   .item {
     position: relative;
     padding: 0.266667rem 0.533333rem;
@@ -94,12 +84,12 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.4rem;
+        top: 0.2rem;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;
         border-radius: 5px;
-        padding: 0.133333rem 0.266667rem;
+        padding: 0.05rem 0.266667rem;
       }
     }
   }
@@ -137,29 +127,6 @@ export default {
       border: 0;
       padding-left: 0.266667rem;
     }
-  }
-}
-.chk-many-box {
-  position: absolute;
-  right: 0.266667rem;
-  top: 0.533333rem;
-  input {
-    width: 0.54rem !important;
-    height: 0.54rem !important;
-  }
-}
-.bottom-many-btn {
-  border-top: 1px solid #ededed;
-  padding: 0.266667rem 0;
-  .select-btn {
-    background: #ddd;
-    color: #fff;
-    height: 0.8rem;
-    line-height: 0.8rem;
-    width: 2.133333rem;
-    text-align: center;
-    display: inline-block;
-    border-radius: 3px;
   }
 }
 </style>

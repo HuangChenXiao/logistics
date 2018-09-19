@@ -2,6 +2,7 @@ const _import = require('@/router/_import_' + process.env.NODE_ENV)
 //模块路由
 export default [
     
+  { name: 'admin-user', path: '/admin-user', component: _import('user/admin-user'), meta: { verifylogin: true } },
   { name: 'user', path: '/user', component: _import('user/index'), meta: { verifylogin: true } },
   { name: 'advertisement', path: '/user/advertisement', component: _import('user/advertisement'), meta: { verifylogin: true } },
   { name: 'help', path: '/user/help', component: _import('user/help'), meta: { verifylogin: true } },

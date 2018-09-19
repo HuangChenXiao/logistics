@@ -208,3 +208,17 @@ img{
   .mask-content{
       background: #fff;
   }
+  .btn-success{
+      background: #f00 !important;
+      color: #fff !important;
+  }
+  .primary-btn {
+    background: #ddd;
+    color: #fff;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    padding: 0 .4rem;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3px;
+  }
