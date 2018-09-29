@@ -40,10 +40,10 @@ export default {
   .item {
     float: left;
     width: 50%;
-    margin-top: 0.08rem;
+    margin-top: 0.12rem;
     .bg-img {
-      width: 0.666667rem;
-      height: 0.666667rem;
+      width: 0.6rem;
+      height: 0.6rem;
       margin: 0 auto;
     }
     .od-img {

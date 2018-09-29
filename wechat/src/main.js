@@ -71,28 +71,10 @@ Vue.prototype.baseurl = process.env.BASE_API;
 
 import { AlertModule } from 'vux'
 router.beforeEach((to, from, next) => {
-  if (to.meta.verifylogin) {//是否需要登录
-    // store.dispatch("GetInfo").then(res => {
-    //   next()
-    // }).catch(res => {
-    //   if (res.status_code == 402) {
-    //     next({
-    //       path: "/login"
-    //     })
-    //   }
-    //   else {
-    //     AlertModule.show({
-    //       title: '系统提示',
-    //       content: res.message,
-    //       onHide() {
-    //         next({
-    //           path: "/login"
-    //         })
-    //       }
-    //     })
-    //   }
-    // })
+  var openid=localStorage.getItem("openid");
+  if(!openid){
     next()
+    //  location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfcda61d3ca18d831&redirect_uri=http%3a%2f%2fzhuan.4000000144.com%2foauth%2fWeChatAccredit.aspx&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
   }
   else {
     setTimeout(() => {

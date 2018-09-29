@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-header :title="title" route="user">
+    <u-header :title="title" :route="menu_route">
       <div class="s-where" @click="showWhere=true">
         查询
       </div>
@@ -47,8 +47,18 @@
         <div class="title">查询条件</div>
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
           <x-input title="订单号" placeholder="请输入订单号"></x-input>
-          <selector title="工地" :options="['工艺技术', '其他']" v-model="value2"></selector>
-          <selector title="路线" :options="['高新技术园-软件园', '五缘湾-火车站']" v-model="value2"></selector>
+          <div class="cus-item">
+            <div class="lbl">车辆</div>
+            <div class="set-btn" @click="showScrollBox=true">
+              选择
+            </div>
+          </div>
+          <div class="cus-item">
+            <div class="lbl">路线</div>
+            <div class="set-btn" @click="showWorkRoute=true">
+              选择
+            </div>
+          </div>
           <datetime title="开始日期" v-model="time1" value-text-align="left"></datetime>
           <datetime title="结束日期" v-model="time2" value-text-align="left"></datetime>
           <div class="wk-btn">
@@ -58,12 +68,20 @@
         </group>
       </div>
     </div>
+    <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
+      <c-vehicle title="选择车辆" :single_drive="true" @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
+    </x-dialog>
+    <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
+      <work-route @selectVehicle="select_wordRoute" v-model="route_list"></work-route>
+    </x-dialog>
   </div>
 </template>
 
 <script>
 // import { getOrderMyList } from '@/api/user.js'
 import { Tab, TabItem, XDialog, Datetime } from 'vux'
+import cVehicle from '@/components/cVehicle'
+import workRoute from '@/components/workRoute'
 const list = () => [
   { key: 0, value: '全部' },
   { key: 1, value: '昨日订单' },
@@ -75,10 +93,14 @@ export default {
     Tab,
     TabItem,
     XDialog,
-    Datetime
+    Datetime,
+    workRoute,
+    cVehicle,
   },
   data() {
     return {
+      showScrollBox: false,
+      showWorkRoute: false,
       showWhere: false,
       title: this.$route.query.title,
       index: 0,
@@ -86,6 +108,7 @@ export default {
       list2: list(),
       is_order: this.$route.query.is_order,
       menu_order: this.$route.query.menu_order,
+      menu_route: this.$route.query.menu_route,
       w_qeury: {
         page: 1,
         pagesize: 10,
@@ -94,7 +117,24 @@ export default {
       },
       list: [],
       onFetching: false,
-      noData: false
+      noData: false,
+      vehicle_list: [
+        { id: 1, code: '闽A12345', color: '红色' },
+        { id: 2, code: '闽A12345', color: '白色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' },
+        { id: 2, code: '闽A4564', color: '黑色' }
+      ],
+      route_list: [
+        { id: 1, code: '莲花新城-中美新城' },
+        { id: 2, code: '厦门大学-火车站' }
+      ]
     }
   },
   created() {
@@ -102,6 +142,14 @@ export default {
   },
   mounted() {},
   methods: {
+    select_vehicle(item) {
+      this.showScrollBox = false
+      this.vehicle_info = item.code
+      this.work_status = 1
+    },
+    select_wordRoute(res) {
+      this.showWorkRoute = false
+    },
     init_query() {
       this.list = []
       this.onFetching = false
@@ -254,6 +302,31 @@ export default {
       margin: 0 0.266667rem;
       font-size: 0.426667rem;
     }
+  }
+}
+.bor-t {
+  border-top: 1px solid #d9d9d9;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.cus-item {
+  position: relative;
+  padding: 10px 15px;
+  padding-left: 2.8rem;
+  .lbl {
+    position: absolute;
+    width: 4.5em;
+    text-align: right;
+    margin-right: 2em;
+    left: 15px;
+  }
+  .set-btn {
+    border: 1px solid #f00;
+    color: #f00;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 5px;
   }
 }
 </style>

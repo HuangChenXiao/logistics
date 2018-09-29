@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="item-list">
-      <router-link :to="{name:'order',query:{title:'我的订单'}}" class="item">
+      <router-link :to="{name:'order',query:{title:'我的订单',menu_route:'user'}}" class="item">
         <span>我的订单</span>
         <i class="next"></i>
       </router-link>

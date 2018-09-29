@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="title">当前车辆信息</div>
+    <div class="title">{{title}}</div>
     <div class="search">
       <div class="item">
         <div class="ico"></div>
@@ -18,7 +18,7 @@
             选择
           </div>
         </div>
-        <div class="chk-many-box">
+        <div class="chk-many-box" v-else>
           <input type="checkbox" class="input_default">
         </div>
       </div>
@@ -26,7 +26,7 @@
     <div class="no-data" v-else>
       暂无可用车辆~
     </div>
-    <div class="bottom-many-btn" v-if="many_drive">
+    <div class="bottom-many-btn" v-if="!single_drive">
       <div class="select-btn" @click="select_many_vehicle">
         选择车辆
       </div>
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  props: ['value', 'single_drive', 'many_drive'],
+  props: ['title','value', 'single_drive'],
   data() {
     return {
       list: null

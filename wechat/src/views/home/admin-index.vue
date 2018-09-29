@@ -1,115 +1,117 @@
 <template>
-    <div>
-        <n-header title="首页">
-        </n-header>
-        <div style="height:1.26rem"></div>
-        <div class="home">
-            <div class="address">
-                我的工地：厦门市软件园二期
-                <i class="ico ico-edit" @click="showWorkSite=true"></i>
-            </div>
-            <div class="address">
-                当前位置：{{bItem.start_position}}
-                <i class="ico ico-ad" onclick="location.reload()"></i>
-            </div>
+  <div>
+    <n-header title="首页">
+    </n-header>
+    <div style="height:1.26rem"></div>
+    <div class="home">
+      <div class="address">
+        我的工地：厦门市软件园二期
+        <i class="ico ico-edit" @click="showWorkSite=true"></i>
+      </div>
+      <div class="address">
+        当前位置：{{bItem.start_position}}
+        <i class="ico ico-ad" onclick="location.reload()"></i>
+      </div>
 
-            <div>
-                <tab :line-width=2 active-color='#f00' v-model="index">
-                    <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
-                </tab>
-                <swiper v-model="index" height="200px" :show-dots="false">
-                    <swiper-item v-for="(item, index) in list2" :key="index">
-                        <div class="tab-swiper vux-center" v-if="index==0">
-                            <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-                                <div class="group-item">
-                                    <div class="lbl">合作单位</div>
-                                    <div class="info">
-                                        <div class="btn-select" @click="showCooperation=true">
-                                            选择
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group-item">
-                                    <div class="lbl">车辆</div>
-                                    <div class="info">
-                                        <div class="btn-select" @click="showScrollBox=true">
-                                            选择
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group-item">
-                                    <div class="lbl">路线</div>
-                                    <div class="info">
-                                        <div class="btn-select" @click="showWorkRoute=true">
-                                            选择
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <selector title="合作单位"  v-model="value2"></selector>
+      <div>
+        <tab :line-width=2 active-color='#f00' v-model="index">
+          <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
+        </tab>
+        <swiper v-model="index" height="200px" :show-dots="false">
+          <swiper-item v-for="(item, index) in list2" :key="index">
+            <div class="tab-swiper vux-center" v-if="index==0">
+              <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
+                <div class="group-item">
+                  <div class="lbl">合作单位</div>
+                  <div class="info">
+                    <div class="btn-select" @click="showCooperation=true">
+                      选择
+                    </div>
+                  </div>
+                </div>
+                <div class="group-item">
+                  <div class="lbl">车辆</div>
+                  <div class="info">
+                    <div class="btn-select" @click="showScrollBox=true">
+                      选择
+                    </div>
+                  </div>
+                </div>
+                <div class="group-item">
+                  <div class="lbl">路线</div>
+                  <div class="info">
+                    <div class="btn-select" @click="showWorkRoute=true">
+                      选择
+                    </div>
+                  </div>
+                </div>
+                <!-- <selector title="合作单位"  v-model="value2"></selector>
                                 <selector title="车辆" :options="['闽G123', '其他']" v-model="value2"></selector>
                                 <selector title="路线" :options="['高新技术园-软件园', '五缘湾-火车站']" v-model="value2"></selector> -->
-                                <div class="wk-btn">
-                                    <div class="ok-btn">发布订单</div>
-                                </div>
-                            </group>
-                        </div>
-                        <div class="tab-swiper vux-center" v-if="index==1">
-                            <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-                                <div class="group-item">
-                                    <div class="lbl">合作单位</div>
-                                    <div class="info">
-                                        <div class="btn-select" @click="showCooperation=true">
-                                            选择
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group-item">
-                                    <div class="lbl">车辆</div>
-                                    <div class="info">
-                                        <div class="btn-select" @click="showScrollBox=true">
-                                            选择
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wk-btn">
-                                    <div class="ok-btn">发布订单</div>
-                                </div>
-                            </group>
-                        </div>
-                    </swiper-item>
-                </swiper>
-            </div>
-            <div class="task">
-                <div class="title">最新订单</div>
-                <div class="item-list">
-                    <section v-for="item in 10">
-                        <div class="item">订单号：TGF13301111133332</div>
-                        <div class="item">工地：厦门市</div>
-                        <div class="item">开始地址：厦门市软件园二期</div>
-                        <div class="item">结束地址：厦门市软件园三期</div>
-                    </section>
+                <div class="wk-btn">
+                  <div class="ok-btn">发布订单</div>
                 </div>
+              </group>
             </div>
+            <div class="tab-swiper vux-center" v-if="index==1">
+              <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
+                <div class="group-item">
+                  <div class="lbl">合作单位</div>
+                  <div class="info">
+                    <div class="btn-select" @click="showCooperation=true">
+                      选择
+                    </div>
+                  </div>
+                </div>
+                <div class="group-item">
+                  <div class="lbl">车辆</div>
+                  <div class="info">
+                    <div class="btn-select" @click="showScrollBox=true">
+                      选择
+                    </div>
+                  </div>
+                </div>
+                <div class="wk-btn">
+                  <div class="ok-btn">发布订单</div>
+                </div>
+              </group>
+            </div>
+          </swiper-item>
+        </swiper>
+      </div>
+      <div class="task">
+        <div class="title">最新订单</div>
+        <div class="item-list">
+          <section v-for="item in 10">
+            <div class="item">订单号：TGF13301111133332</div>
+            <div class="item">工地：厦门市</div>
+            <div class="item">开始地址：厦门市软件园二期</div>
+            <div class="item">结束地址：厦门市软件园三期</div>
+          </section>
         </div>
-        <div style="height:1.5rem"></div>
-        <!-- <div style="margin:0">
+      </div>
+    </div>
+    <div style="height:1.5rem"></div>
+    <!-- <div style="margin:0">
       <group label-width="4.5em" label-margin-right="2em" label-align="right">
 
         <x-input title="当前位置" placeholder="定位中..." v-model="bItem.start_position"></x-input>
       </group>
     </div> -->
-        <admin-bottom route_name="admin-index"></admin-bottom>
-        <x-dialog v-model="showCooperation" :hide-on-blur="true" class="dialog-demo">
-            <cooperation @selectVehicle="select_cooperation" v-model="cooperation_list"></cooperation>
-        </x-dialog>
-        <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-            <c-vehicle :many_drive="true" @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
-        </x-dialog>
-        <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
-            <work-route @selectVehicle="select_wordRoute" v-model="route_list"></work-route>
-        </x-dialog>
-        <work-site v-show="showWorkSite" @selectWork="selectWork"></work-site>
-    </div>
+    <admin-bottom route_name="admin-index"></admin-bottom>
+    <x-dialog v-model="showCooperation" :hide-on-blur="true" class="dialog-demo">
+      <cooperation @selectVehicle="select_cooperation" v-model="cooperation_list"></cooperation>
+    </x-dialog>
+    <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
+      <c-vehicle @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
+    </x-dialog>
+    <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
+      <work-route @selectVehicle="select_wordRoute" v-model="route_list"></work-route>
+    </x-dialog>
+    <x-dialog v-model="showWorkSite" class="dialog-demo">
+      <work-site @selectVehicle="selectWork" v-model="work_list"></work-site>
+    </x-dialog>
+  </div>
 </template>
 
 <script>
@@ -186,6 +188,10 @@ export default {
       route_list: [
         { id: 1, code: '莲花新城-中美新城' },
         { id: 2, code: '厦门大学-火车站' }
+      ],
+      work_list: [
+        { id: 1, code: '厦门市集美区软件园一号' },
+        { id: 2, code: '厦门北站' }
       ]
     }
   },
@@ -209,7 +215,7 @@ export default {
   },
   methods: {
     selectWork(val) {
-      this.showWorkSite = val
+      this.showWorkSite = false
     },
     complete_order() {
       this.$vux.confirm.show({
@@ -323,7 +329,7 @@ export default {
 }
 .task {
   background: #fff;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
   .title {
     height: 1.066667rem;
     line-height: 1.066667rem;
@@ -339,7 +345,7 @@ export default {
       padding: 0.266667rem;
     }
     .item {
-      padding: 0.06rem 0.266667rem;
+      padding: 0.06rem 0.266667rem 0.06rem 0;
     }
   }
   .sus-btn {
