@@ -87,17 +87,17 @@ export default {
   data() {
     return {
       vehicle_list: [
-        { id: 1, code: '闽A12345', color: '红色' },
-        { id: 2, code: '闽A12345', color: '白色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' }
+        { id: 1,name:'黄臣晓', code: '闽A12345', color: '红色' },
+        { id: 2,name:'黄臣晓', code: '闽A12345', color: '白色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' }
       ],
       showScrollBox: false,
       vehicle_info: null,

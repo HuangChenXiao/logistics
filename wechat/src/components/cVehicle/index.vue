@@ -11,6 +11,7 @@
     </div>
     <div class="item-list" v-if="list.length>0">
       <div class="item" v-for="item in list">
+        <div class="code">驾驶员：{{item.name}}</div>
         <div class="code">车牌：{{item.code}}</div>
         <div class="color">颜色：{{item.color}}</div>
         <div class="opt-btn" v-if="single_drive">
@@ -94,7 +95,7 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.4rem;
+        top: 0.7rem;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;
@@ -142,7 +143,7 @@ export default {
 .chk-many-box {
   position: absolute;
   right: 0.266667rem;
-  top: 0.533333rem;
+  top: 0.8rem;
   input {
     width: 0.54rem !important;
     height: 0.54rem !important;

@@ -82,11 +82,14 @@
       <div class="task">
         <div class="title">最新订单</div>
         <div class="item-list">
-          <section v-for="item in 10">
-            <div class="item">订单号：TGF13301111133332</div>
-            <div class="item">工地：厦门市</div>
-            <div class="item">开始地址：厦门市软件园二期</div>
-            <div class="item">结束地址：厦门市软件园三期</div>
+          <section v-for="item in order_list">
+            <div class="n1">订单号：{{item.orderno}}</div>
+            <div class="n1">工地：{{item.work}}</div>
+            <div class="n1">工尾：{{item.tail_work}}</div>
+            <div class="n1">车牌：{{item.license_plate}}</div>
+            <div class="n1">驾驶员：{{item.name}}</div>
+            <div class="n1">起运时间：{{item.addtime}}</div>
+            <div class="n1">状态：{{item.status}}</div>
           </section>
         </div>
       </div>
@@ -169,17 +172,17 @@ export default {
         pagesize: 10
       },
       vehicle_list: [
-        { id: 1, code: '闽A12345', color: '红色' },
-        { id: 2, code: '闽A12345', color: '白色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' }
+        { id: 1, name: '黄臣晓', code: '闽A12345', color: '红色' },
+        { id: 2, name: '黄臣晓', code: '闽A12345', color: '白色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' }
       ],
       cooperation_list: [
         { id: 1, code: '阿里巴巴集团' },
@@ -192,6 +195,25 @@ export default {
       work_list: [
         { id: 1, code: '厦门市集美区软件园一号' },
         { id: 2, code: '厦门北站' }
+      ],
+      order_list: [
+        {
+          orderno: 'DX95546346546464161',
+          work: '厦门市软件园二期何厝路口东路',
+          tail_work: '厦门市杏林路杏林湾东二路',
+          license_plate: '闽A123',
+          name: '黄臣晓',
+          addtime: '2018-9-29 10:52:24',
+          status: '未确认'
+        },{
+          orderno: 'DX95546346546464161',
+          work: '厦门市软件园二期何厝路口东路',
+          tail_work: '厦门市杏林路杏林湾东二路',
+          license_plate: '闽A123',
+          name: '黄臣晓',
+          addtime: '2018-9-29 10:52:24',
+          status: '未确认'
+        }
       ]
     }
   },

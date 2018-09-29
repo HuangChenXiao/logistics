@@ -20,8 +20,10 @@
             <section>
               <div class="n1">订单号：{{item.orderno}}</div>
               <div class="n1">工地：{{item.work}}</div>
-              <div class="n1">开始地址：{{item.start_position}}</div>
-              <div class="n1">结束地址：{{item.end_position}}</div>
+              <div class="n1">工尾：{{item.tail_work}}</div>
+              <div class="n1">车牌：{{item.license_plate}}</div>
+              <div class="n1">驾驶员：{{item.name}}</div>
+              <div class="n1">起运时间：{{item.addtime}}</div>
               <div class="n1">状态：{{item.status}}</div>
             </section>
             <div class="op-btn">
@@ -54,7 +56,7 @@
             </div>
           </div>
           <div class="cus-item">
-            <div class="lbl">路线</div>
+            <div class="lbl">驾驶员</div>
             <div class="set-btn" @click="showWorkRoute=true">
               选择
             </div>
@@ -119,17 +121,17 @@ export default {
       onFetching: false,
       noData: false,
       vehicle_list: [
-        { id: 1, code: '闽A12345', color: '红色' },
-        { id: 2, code: '闽A12345', color: '白色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' },
-        { id: 2, code: '闽A4564', color: '黑色' }
+        { id: 1,name:'黄臣晓', code: '闽A12345', color: '红色' },
+        { id: 2,name:'黄臣晓', code: '闽A12345', color: '白色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
+        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' }
       ],
       route_list: [
         { id: 1, code: '莲花新城-中美新城' },
@@ -188,25 +190,13 @@ export default {
         this.list = [
           {
             orderno: 'DX95546346546464161',
-            work: '厦门市',
-            start_position: '厦门市湖里区软件园二期',
-            end_position: '厦门市集美区软件园三期',
+            work: '厦门市软件园二期何厝路口东路',
+            tail_work:'厦门市杏林路杏林湾东二路',
+            license_plate:'闽A123',
+            name:'黄臣晓',
+            addtime: '2018-9-29 10:52:24',
             status: '未确认'
           },
-          {
-            orderno: 'DX95546346546464161',
-            work: '厦门市',
-            start_position: '厦门市湖里区软件园二期',
-            end_position: '厦门市集美区软件园三期',
-            status: '未确认'
-          },
-          {
-            orderno: 'DX95546346546464161',
-            work: '厦门市',
-            start_position: '厦门市湖里区软件园二期',
-            end_position: '厦门市集美区软件园三期',
-            status: '未确认'
-          }
         ]
         // getOrderMyList(this.w_qeury).then(res => {
         //   if (res.data.length) {
