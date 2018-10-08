@@ -12,10 +12,10 @@ service.interceptors.request.use(config => {
   if (getToken()) {
     config.headers['token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
   }
-  if (config.data && !config.upload_type) {//upload_type：为true时，不需要转义，上传图片表单类型
-    config.data = `data=${encodeURIComponent(JSON.stringify(config.data))}`
-  }
-  config.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8";
+  // if (config.data && !config.upload_type) {//upload_type：为true时，不需要转义，上传图片表单类型
+  //   config.data = `data=${encodeURIComponent(JSON.stringify(config.data))}`
+  // }
+  // config.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8";
   return config
 }, error => {
   // Do something with request error

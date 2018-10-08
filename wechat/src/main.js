@@ -73,8 +73,16 @@ import { AlertModule } from 'vux'
 router.beforeEach((to, from, next) => {
   var openid=localStorage.getItem("openid");
   if(!openid){
-    next()
-    //  location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfcda61d3ca18d831&redirect_uri=http%3a%2f%2fzhuan.4000000144.com%2foauth%2fWeChatAccredit.aspx&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+    if(to.name!='audit'){
+      // debugger
+      // next({
+      //   path: "/audit"
+      // })
+      location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+    }
+    else{
+      next()
+    }
   }
   else {
     setTimeout(() => {
