@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EBMSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BangDingJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="dShiJian" Type="datetime" />
+    <Property Name="iBangDingLeiXing" Type="int" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="iDelete" Type="int" />
+    <Property Name="iFangShi" Type="int" />
+  </EntityType>
+  <EntityType Name="BaoXianJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+    <Property Name="cBaoXianGongShi" Type="varchar" MaxLength="60" />
+    <Property Name="cXianZhong" Type="varchar" MaxLength="50" />
+    <Property Name="cBaoXianHao" Type="varchar" MaxLength="30" />
+    <Property Name="iBaoE" Type="money" />
+    <Property Name="dTouBaoRiQi" Type="datetime" />
+    <Property Name="dDaoQiRiQi" Type="datetime" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BaoYangJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cBaoYangLeiXing" Type="varchar" MaxLength="50" />
+    <Property Name="dBaoYangRiQi" Type="datetime" />
+    <Property Name="iBaoYangGongShi" Type="money" />
+    <Property Name="cBaoYangJiLu" Type="varchar" MaxLength="300" />
+    <Property Name="cWeiXiuChang" Type="varchar" MaxLength="100" />
+    <Property Name="iBaoYangJinE" Type="money" />
+    <Property Name="iDanQiangLiCheng" Type="money" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BaseCode">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cVouchType" Type="varchar" MaxLength="20" />
+    <Property Name="iIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="CangKuInfo">
+    <Key>
+      <PropertyRef Name="cCangKuBianMa" />
+    </Key>
+    <Property Name="cCangKuBianMa" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="cCangKuMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cDiZhi" Type="varchar" MaxLength="100" />
+    <Property Name="cLianXiRen" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiDianHua" Type="varchar" MaxLength="60" />
+    <Property Name="cZuoJi" Type="varchar" MaxLength="60" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="CheLiangInfo">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+    <Property Name="cPinPai" Type="varchar" MaxLength="50" />
+    <Property Name="cXingHao" Type="varchar" MaxLength="50" />
+    <Property Name="cCheJiaHao" Type="varchar" MaxLength="30" />
+    <Property Name="cFaDongJiHao" Type="varchar" MaxLength="30" />
+    <Property Name="dGouMaiRiQi" Type="datetime" />
+    <Property Name="dNianShenRiQi" Type="datetime" />
+    <Property Name="iTuFangShu" Type="money" />
+    <Property Name="cCheLiangSuoShu" Type="varchar" MaxLength="30" />
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="cCheLiangLeiBie" Type="varchar" MaxLength="30" />
+    <Property Name="bShiFouBaoFei" Type="bit" />
+    <Property Name="dBaoFeiRiQi" Type="datetime" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="GongChengCheDingDan">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dDanJuRiQi" Type="datetime" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="dQiYunShiJian" Type="datetime" />
+    <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dQueRenShiJian" Type="datetime" />
+    <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="30" />
+    <Property Name="iTWState" Type="int" />
+    <Property Name="cTWState" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="GongDiCheLiang">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="GongDiInfo">
+    <Key>
+      <PropertyRef Name="cGongDiBianMa" />
+    </Key>
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cYeZhuBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cYeZhuMingCheng" Type="varchar" MaxLength="150" />
+    <Property Name="iTuFangShu" Type="money" />
+    <Property Name="iDanJia" Type="money" />
+    <Property Name="iZongJia" Type="money" />
+    <Property Name="cCeHuiRen" Type="varchar" MaxLength="30" />
+    <Property Name="cFuZeRen" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiRen" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiDianHua" Type="varchar" MaxLength="50" />
+    <Property Name="cHeTongBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cHeTongMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="dQianDingRiQi" Type="datetime" />
+    <Property Name="cHeTongNeiRong" Type="varchar" MaxLength="500" />
+    <Property Name="cChengFaNeiRong" Type="varchar" MaxLength="500" />
+    <Property Name="dTingYongRiQi" Type="datetime" />
+    <Property Name="cDiZhi" Type="varchar" MaxLength="200" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="500" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GongDiXianLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="GradeDef">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cItem" Type="varchar" MaxLength="50" />
+    <Property Name="cItemClass" Type="varchar" MaxLength="20" />
+    <Property Name="iValue1" Type="int" />
+    <Property Name="iValue2" Type="int" />
+    <Property Name="iValue3" Type="int" />
+    <Property Name="iValue4" Type="int" />
+    <Property Name="iValue5" Type="int" />
+  </EntityType>
+  <EntityType Name="JiaYouJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dJiaYouJiLu" Type="datetime" />
+    <Property Name="cJiaYouKaHao" Type="varchar" MaxLength="50" />
+    <Property Name="cJiaYouLeiXing" Type="varchar" MaxLength="50" />
+    <Property Name="iYouLiang" Type="money" />
+    <Property Name="iDanJia" Type="money" />
+    <Property Name="iJinE" Type="money" />
+    <Property Name="iDanQiangLiCheng" Type="money" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="KeHuDaLei">
+    <Key>
+      <PropertyRef Name="cDaLeiBianMa" />
+    </Key>
+    <Property Name="cDaLeiBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cDaLeiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="iJiCi" Type="int" />
+    <Property Name="bEnd" Type="bit" />
+  </EntityType>
+  <EntityType Name="KeHuInfo">
+    <Key>
+      <PropertyRef Name="cKeHuBianMa" />
+    </Key>
+    <Property Name="cKeHuBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cDaLeiBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cKeHuMingCheng" Type="varchar" MaxLength="200" />
+    <Property Name="cZhuCeDiZhi" Type="varchar" MaxLength="200" />
+    <Property Name="cBanGongDiZhi" Type="varchar" MaxLength="200" />
+    <Property Name="cZhuCeHao" Type="varchar" MaxLength="50" />
+    <Property Name="cFaRen" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiRen1" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiRenShouJi1" Type="varchar" MaxLength="50" />
+    <Property Name="cLianXiRen2" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiRenShouJi2" Type="varchar" MaxLength="50" />
+    <Property Name="cZuoJi" Type="varchar" MaxLength="50" />
+    <Property Name="cKaiHuMingCheng" Type="varchar" MaxLength="60" />
+    <Property Name="cKaiHuHang" Type="varchar" MaxLength="60" />
+    <Property Name="cYinHangZhengHao" Type="varchar" MaxLength="60" />
+    <Property Name="cNaShuiRenShiBieHao" Type="varchar" MaxLength="60" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="NianJianJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cNianJianLeiXing" Type="varchar" MaxLength="30" />
+    <Property Name="dNianJianRiQi" Type="datetime" />
+    <Property Name="dDaoQiRiQi" Type="datetime" />
+    <Property Name="cNianJianJiLu" Type="varchar" MaxLength="300" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ShangPinChuKu">
+    <Key>
+      <PropertyRef Name="gCKID" />
+    </Key>
+    <Property Name="gCKID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="cChuKuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dChuKuRiQi" Type="datetime" />
+    <Property Name="cCangKuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ShangPinChuKuS">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gCKID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="cShangPinBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cShangPinMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cGuiGeXingHao" Type="varchar" MaxLength="100" />
+    <Property Name="cJiLiangDanWei" Type="varchar" MaxLength="30" />
+    <Property Name="iShuLiang" Type="money" />
+    <Property Name="iDanJia" Type="money" />
+    <Property Name="iJinE" Type="money" />
+  </EntityType>
+  <EntityType Name="ShangPinDaLei">
+    <Key>
+      <PropertyRef Name="cDaLeiBianMa" />
+    </Key>
+    <Property Name="cDaLeiBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cDaLeiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="iJiCi" Type="int" />
+    <Property Name="bEnd" Type="bit" />
+  </EntityType>
+  <EntityType Name="ShangPinInfo">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cDaLeiBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cShangPinBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cShangPinMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cGuiGeXingHao" Type="varchar" MaxLength="100" />
+    <Property Name="cJiLiangDanWei" Type="varchar" MaxLength="30" />
+    <Property Name="iAnQuanKuCun" Type="money" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ShangPinRuKu">
+    <Key>
+      <PropertyRef Name="gRKID" />
+    </Key>
+    <Property Name="gRKID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="cRuKuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dRuKuRiQi" Type="datetime" />
+    <Property Name="cCangKuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ShangPinRuKuS">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gRKID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="cShangPinBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cShangPinMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cGuiGeXingHao" Type="varchar" MaxLength="100" />
+    <Property Name="cJiLiangDanWei" Type="varchar" MaxLength="30" />
+    <Property Name="iShuLiang" Type="money" />
+    <Property Name="iDanJia" Type="money" />
+    <Property Name="iJinE" Type="money" />
+  </EntityType>
+  <EntityType Name="ShiGuJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dShiGuRiQi" Type="datetime" />
+    <Property Name="cZeRenGuiShu" Type="varchar" MaxLength="60" />
+    <Property Name="cFaShengDiDian" Type="varchar" MaxLength="100" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="cDuiFangChePai" Type="varchar" MaxLength="20" />
+    <Property Name="cDuiFangJiaShiYuan" Type="varchar" MaxLength="50" />
+    <Property Name="cDuiFangDianHua" Type="varchar" MaxLength="50" />
+    <Property Name="iPeiFuDuiFangJinE" Type="money" />
+    <Property Name="iDuiFangPeiFuJinE" Type="money" />
+    <Property Name="iGongShiChengDanJinE" Type="money" />
+    <Property Name="iGeRenChengDanJinE" Type="money" />
+    <Property Name="dChuLiRiQi" Type="datetime" />
+    <Property Name="cChuLiQingKuan" Type="varchar" MaxLength="300" />
+    <Property Name="bShiFouChuXian" Type="bit" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Sys_AbleHold">
+    <Key>
+      <PropertyRef Name="cAbleCode" />
+      <PropertyRef Name="cUserCode" />
+    </Key>
+    <Property Name="cAbleCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cAbleName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cUserCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="bEdit" Type="bit" />
+    <Property Name="bPrint" Type="bit" />
+    <Property Name="bAudit" Type="bit" />
+    <Property Name="bUnAudit" Type="bit" />
+    <Property Name="bExport" Type="bit" />
+  </EntityType>
+  <EntityType Name="Sys_AbleList">
+    <Key>
+      <PropertyRef Name="cAbleCode" />
+    </Key>
+    <Property Name="cAbleCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cAbleName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cAbleClass" Type="varchar" MaxLength="20" />
+    <Property Name="iGrade" Type="int" />
+  </EntityType>
+  <EntityType Name="Sys_User">
+    <Key>
+      <PropertyRef Name="cUserCode" />
+    </Key>
+    <Property Name="cUserCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cUserName" Type="varchar" MaxLength="30" />
+    <Property Name="cPassword" Type="varchar" MaxLength="20" />
+    <Property Name="cGroupCode" Type="varchar" MaxLength="20" />
+    <Property Name="bSelf" Type="bit" />
+    <Property Name="bIsAdmin" Type="bit" />
+    <Property Name="bGroup" Type="bit" />
+    <Property Name="bIsStop" Type="bit" />
+  </EntityType>
+  <EntityType Name="SystemSet">
+    <Key>
+      <PropertyRef Name="cItemCode" />
+    </Key>
+    <Property Name="cItemCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cItemName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cItemValue" Type="varchar" MaxLength="40" />
+    <Property Name="iClass" Type="tinyint" Nullable="false" />
+    <Property Name="cItemClass" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TuWeiInfo">
+    <Key>
+      <PropertyRef Name="cTuWeiBianMa" />
+    </Key>
+    <Property Name="cTuWeiBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cTuWeiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cLianXiRen" Type="varchar" MaxLength="50" />
+    <Property Name="cLianXiDianHua" Type="varchar" MaxLength="50" />
+    <Property Name="cShouFeiFangShi" Type="varchar" MaxLength="50" />
+    <Property Name="cTuWeiDiZhi" Type="varchar" MaxLength="100" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="VouchCode">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cVouchType" Type="varchar" MaxLength="20" />
+    <Property Name="cDate" Type="varchar" MaxLength="20" />
+    <Property Name="iIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="WaJueJiDingDan">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dDanJuRiQi" Type="datetime" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="dKaiShiShiJian" Type="datetime" />
+    <Property Name="dJieShuShiJian" Type="datetime" />
+    <Property Name="iXiaoShiShu" Type="money" />
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dQueRenShiJian" Type="datetime" />
+    <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="wechatAccessToken">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="access_token" Type="nvarchar" MaxLength="100" />
+    <Property Name="expires_in" Type="int" />
+    <Property Name="addtime" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="wechatRole">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" />
+    <Property Name="addtime" Type="datetime" />
+    <Property Name="isdefault" Type="bit" />
+  </EntityType>
+  <EntityType Name="wechatTram">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="openid" Type="nvarchar" MaxLength="50" />
+    <Property Name="tramcode" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="wechatUser">
+    <Key>
+      <PropertyRef Name="openid" />
+    </Key>
+    <Property Name="openid" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nickname" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex" Type="int" />
+    <Property Name="province" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+    <Property Name="country" Type="nvarchar" MaxLength="50" />
+    <Property Name="headimgurl" Type="nvarchar" MaxLength="200" />
+    <Property Name="status" Type="int" />
+    <Property Name="audit" Type="int" />
+    <Property Name="auditdes" Type="nvarchar" MaxLength="20" />
+    <Property Name="role_code" Type="nvarchar" MaxLength="20" />
+    <Property Name="addtime" Type="datetime" />
+    <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
+    <Property Name="cShenFenZhengHao" Type="nvarchar" MaxLength="30" />
+    <Property Name="cZhunJiaCheXing" Type="nvarchar" MaxLength="30" />
+    <Property Name="dRuZhiRiQi" Type="datetime" />
+    <Property Name="cHuJi" Type="varchar" MaxLength="100" />
+    <Property Name="cLianXiDianHua" Type="nvarchar" MaxLength="60" />
+    <Property Name="cJinJiLianXiRen" Type="nvarchar" MaxLength="30" />
+    <Property Name="cJinJiLianXiRenGuanXi" Type="nvarchar" MaxLength="30" />
+    <Property Name="cJinJiLianXiDianHua" Type="nvarchar" MaxLength="60" />
+    <Property Name="cJiaShiYuanShuXing" Type="nvarchar" MaxLength="30" />
+    <Property Name="bStop" Type="bit" />
+    <Property Name="dStop" Type="datetime" />
+    <Property Name="cBeiZhu" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="WeiXiuJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dWeiXiuRiQi" Type="datetime" />
+    <Property Name="cWeiXiuLeiXing" Type="varchar" MaxLength="50" />
+    <Property Name="iWeiXiuGongShi" Type="money" />
+    <Property Name="cWeiXiuChang" Type="varchar" MaxLength="60" />
+    <Property Name="cWeiXiuJiLu" Type="varchar" MaxLength="300" />
+    <Property Name="iWeiXiuJinE" Type="money" />
+    <Property Name="iDanQiangLiCheng" Type="money" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="WeiZhangJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dWeiZhangRiQi" Type="datetime" />
+    <Property Name="cWeiZhangLeiXing" Type="varchar" MaxLength="30" />
+    <Property Name="cWeiZhangDiZhi" Type="varchar" MaxLength="100" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="iFaKuanJinE" Type="money" />
+    <Property Name="iZiFuJinE" Type="money" />
+    <Property Name="bShiFouChuLi" Type="bit" />
+    <Property Name="dChuLiRiQi" Type="datetime" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="XianLuInfo">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cTuWeiBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cTuWeiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="iGongLiShu" Type="money" />
+    <Property Name="iJinE" Type="money" />
+    <Property Name="iShiJian" Type="int" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="30" />
+    <Property Name="bStop" Type="bit" />
+    <Property Name="dStop" Type="datetime" />
+  </EntityType>
+  <EntityType Name="XieZuoDanWeiDaLei">
+    <Key>
+      <PropertyRef Name="cDaLeiBianMa" />
+    </Key>
+    <Property Name="cDaLeiBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cDaLeiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="iJiCi" Type="int" />
+    <Property Name="bEnd" Type="bit" />
+  </EntityType>
+  <EntityType Name="XieZuoDanWeiInfo">
+    <Key>
+      <PropertyRef Name="cXZDWBianMa" />
+    </Key>
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cXZDWMingCheng" Type="varchar" MaxLength="150" />
+    <Property Name="cXZDWDaLeiBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="cZhuCeDiZhi" Type="varchar" MaxLength="150" />
+    <Property Name="cBanGongDiZhi" Type="varchar" MaxLength="150" />
+    <Property Name="cZhuCeHao" Type="varchar" MaxLength="60" />
+    <Property Name="cFaRen" Type="varchar" MaxLength="50" />
+    <Property Name="cLianXiRen1" Type="varchar" MaxLength="50" />
+    <Property Name="cLianXiDianHua1" Type="varchar" MaxLength="50" />
+    <Property Name="cLianXiRen2" Type="varchar" MaxLength="50" />
+    <Property Name="cLianXiDianHua2" Type="varchar" MaxLength="50" />
+    <Property Name="cZuoJi" Type="varchar" MaxLength="50" />
+    <Property Name="cKaiHuMingCheng" Type="varchar" MaxLength="60" />
+    <Property Name="cKaiHuHang" Type="varchar" MaxLength="60" />
+    <Property Name="cYinHangZhangHao" Type="varchar" MaxLength="60" />
+    <Property Name="cNaShuiRenShiBieHao" Type="varchar" MaxLength="60" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="YeZhuHuiYiJiLu">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cYeZhuBianMa" Type="varchar" MaxLength="20" />
+    <Property Name="dKaiHuiRiQi" Type="datetime" />
+    <Property Name="cHuiYiYiTi" Type="varchar" MaxLength="300" />
+    <Property Name="cKaiHuiDiDian" Type="varchar" MaxLength="200" />
+    <Property Name="cCanHuiRenYuan" Type="varchar" MaxLength="500" />
+    <Property Name="cHuiYiNeiRong" Type="varchar" MaxLength="500" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="YeZhuInfo">
+    <Key>
+      <PropertyRef Name="cYeZhuBianMa" />
+    </Key>
+    <Property Name="cYeZhuBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cQiYeMingCheng" Type="varchar" MaxLength="150" />
+    <Property Name="cZhuCeDiZhi" Type="varchar" MaxLength="150" />
+    <Property Name="cBanGongDiZhi" Type="varchar" MaxLength="150" />
+    <Property Name="cZhuCeHao" Type="varchar" MaxLength="30" />
+    <Property Name="cFaRen" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiRen1" Type="varchar" MaxLength="30" />
+    <Property Name="cShouJiHao1" Type="varchar" MaxLength="30" />
+    <Property Name="cLianXiRen2" Type="varchar" MaxLength="30" />
+    <Property Name="cShouJiHao2" Type="varchar" MaxLength="30" />
+    <Property Name="cZuoJi" Type="varchar" MaxLength="30" />
+    <Property Name="cKaiHuMingCheng" Type="varchar" MaxLength="150" />
+    <Property Name="cKaiHuHang" Type="varchar" MaxLength="150" />
+    <Property Name="cYinHangZhangHao" Type="varchar" MaxLength="50" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
+    <Parameter Name="VouchType" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PD_VouchCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
+    <Parameter Name="RiQi" Type="datetime" Mode="In" />
+    <Parameter Name="VouchType" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="EBMSystemModelStoreContainer">
+    <EntitySet Name="BangDingJiLu" EntityType="Self.BangDingJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BaoXianJiLu" EntityType="Self.BaoXianJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BaoYangJiLu" EntityType="Self.BaoYangJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BaseCode" EntityType="Self.BaseCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CangKuInfo" EntityType="Self.CangKuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CheLiangInfo" EntityType="Self.CheLiangInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GongChengCheDingDan" EntityType="Self.GongChengCheDingDan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GongDiCheLiang" EntityType="Self.GongDiCheLiang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GongDiInfo" EntityType="Self.GongDiInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GongDiXianLu" EntityType="Self.GongDiXianLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GradeDef" EntityType="Self.GradeDef" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JiaYouJiLu" EntityType="Self.JiaYouJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KeHuDaLei" EntityType="Self.KeHuDaLei" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KeHuInfo" EntityType="Self.KeHuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NianJianJiLu" EntityType="Self.NianJianJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPinChuKu" EntityType="Self.ShangPinChuKu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPinChuKuS" EntityType="Self.ShangPinChuKuS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPinDaLei" EntityType="Self.ShangPinDaLei" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPinInfo" EntityType="Self.ShangPinInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPinRuKu" EntityType="Self.ShangPinRuKu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangPinRuKuS" EntityType="Self.ShangPinRuKuS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShiGuJiLu" EntityType="Self.ShiGuJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sys_AbleHold" EntityType="Self.Sys_AbleHold" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sys_AbleList" EntityType="Self.Sys_AbleList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sys_User" EntityType="Self.Sys_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemSet" EntityType="Self.SystemSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TuWeiInfo" EntityType="Self.TuWeiInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VouchCode" EntityType="Self.VouchCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WaJueJiDingDan" EntityType="Self.WaJueJiDingDan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="wechatAccessToken" EntityType="Self.wechatAccessToken" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="wechatRole" EntityType="Self.wechatRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="wechatTram" EntityType="Self.wechatTram" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="wechatUser" EntityType="Self.wechatUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WeiXiuJiLu" EntityType="Self.WeiXiuJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WeiZhangJiLu" EntityType="Self.WeiZhangJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XianLuInfo" EntityType="Self.XianLuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XieZuoDanWeiDaLei" EntityType="Self.XieZuoDanWeiDaLei" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XieZuoDanWeiInfo" EntityType="Self.XieZuoDanWeiInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YeZhuHuiYiJiLu" EntityType="Self.YeZhuHuiYiJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YeZhuInfo" EntityType="Self.YeZhuInfo" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
