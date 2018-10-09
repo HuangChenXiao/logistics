@@ -111,7 +111,7 @@ function getUserInfo(to, from, next) {
 
           break;
         default:
-          next({ name: 'admin-index' })
+          next({ name: 'web404' })
           break;
       }
       next()
