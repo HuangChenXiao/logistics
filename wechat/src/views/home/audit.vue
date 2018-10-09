@@ -23,7 +23,8 @@
 
 <script>
 import { validatePhone } from '@/utils/validate.js'
-import { WeChatAccredit, PostWechatUser } from '@/api/home.js'
+import { PostWechatUser } from '@/api/home.js'
+import {WeChatAccredit } from '@/api/wechat.js'
 export default {
   data() {
     return {

@@ -68,6 +68,7 @@ Vue.use(BusPlugin)
 Vue.use(DatetimePlugin)
 
 Vue.prototype.baseurl = process.env.BASE_API;
+Vue.prototype.wechaturl = process.env.WECHAT_API;
 
 import { AlertModule } from 'vux'
 router.beforeEach((to, from, next) => {
@@ -109,13 +110,16 @@ function getUserInfo(to, from, next) {
         case '005'://老板
 
           break;
+        default:
+          next({ name: 'admin-index' })
+          break;
       }
       next()
     }
     next()
   })
     .catch((res) => {
-      location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+      next()
     })
 }
 
