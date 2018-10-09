@@ -23,7 +23,7 @@
 
 <script>
 import { validatePhone } from '@/utils/validate.js'
-import { WeChatAccredit } from '@/api/home.js'
+import { WeChatAccredit, PostWechatUser } from '@/api/home.js'
 export default {
   data() {
     return {
@@ -80,16 +80,45 @@ export default {
       return theRequest
     },
     submit_info() {
-      // if(){
-
-      // }
+      if (!this.user.openid) {
+        this.$vux.alert.show({
+          title: '提示',
+          content: '获取微信授权失败',
+          onHide() {
+            location.href =
+              'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
+          }
+        })
+        return
+      }
+      if (!this.user.cXingMing) {
+        this.$vux.alert.show({
+          title: '提示',
+          content: '请输入姓名'
+        })
+        return
+      }
+      if (!validatePhone(this.user.cLianXiDianHua)) {
+        this.$vux.alert.show({
+          title: '提示',
+          content: '请输入正确的手机号'
+        })
+        return
+      }
       var _this = this
       this.$vux.confirm.show({
         title: '提示',
         content: '请认真填写后提交，是否继续？',
         onConfirm() {
-          _this.$router.push({
-            name: 'means'
+          PostWechatUser(this.user).then(res => {
+            // this.$vux.toast.show({
+            //   text: 'Hello World',
+            //   width: '3rem',
+            //   type: 'text'
+            // })
+            _this.$router.push({
+              name: 'means'
+            })
           })
         }
       })

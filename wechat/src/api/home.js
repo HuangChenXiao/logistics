@@ -7,3 +7,10 @@ export function WeChatAccredit(data) {
         params: data
     })
 }
+export function PostWechatUser(data) {
+    return request({
+        url: 'wechatUser',
+        method: "post",
+        data
+    })
+}
