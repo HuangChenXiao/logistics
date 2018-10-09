@@ -44,7 +44,7 @@ export default {
     var Request = this.GetRequest()
     var openid = localStorage.getItem('openid')
     if (openid) {
-      var res = localStorage.setItem('user_info', JSON.parse(res))
+      var res = JSON.parse(localStorage.getItem('user_info'))
       this.user.openid = res.openid
       this.user.nickname = res.nickname
       this.user.sex = res.sex
@@ -54,15 +54,17 @@ export default {
       this.user.headimgurl = res.headimgurl
     } else {
       WeChatAccredit({ code: Request.code }).then(res => {
-        localStorage.setItem('openid', res.openid)
-        localStorage.setItem('user_info', JSON.stringify(res))
-        this.user.openid = res.openid
-        this.user.nickname = res.nickname
-        this.user.sex = res.sex
-        this.user.province = res.province
-        this.user.city = res.city
-        this.user.country = res.country
-        this.user.headimgurl = res.headimgurl
+        if (res.openid) {
+          localStorage.setItem('openid', res.openid)
+          localStorage.setItem('user_info', JSON.stringify(res))
+          this.user.openid = res.openid
+          this.user.nickname = res.nickname
+          this.user.sex = res.sex
+          this.user.province = res.province
+          this.user.city = res.city
+          this.user.country = res.country
+          this.user.headimgurl = res.headimgurl
+        }
       })
     }
   },
@@ -110,7 +112,7 @@ export default {
         title: '提示',
         content: '请认真填写后提交，是否继续？',
         onConfirm() {
-          PostWechatUser(this.user).then(res => {
+          PostWechatUser(_this.user).then(res => {
             // this.$vux.toast.show({
             //   text: 'Hello World',
             //   width: '3rem',

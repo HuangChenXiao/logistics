@@ -1,7 +1,6 @@
 
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { login } from '@/api/login.js'
-import { userInfo } from '@/api/user.js'
+import { wechatUser } from '@/api/home.js'
 
 const user = {
   state: {
@@ -31,6 +30,17 @@ const user = {
         })
       })
     },
+    ValidateUser({ commit }) {
+      return new Promise((resolve, reject) => {
+        wechatUser().then(res => {
+          setToken(res.data.token)
+          commit('SET_TOKEN', res.data.token)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     setToken({ commit }, token) {
       return new Promise((resolve, reject) => {
         if (token) {
@@ -45,7 +55,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        userInfo({}).then(res => {
+        wechatUser({}).then(res => {
           commit('SET_USER_INFO', res.data)
           resolve(res)
         }).catch(error => {

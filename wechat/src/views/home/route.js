@@ -6,5 +6,6 @@ export default [
   { name: 'audit', path: '/audit', component: _import('home/audit'), meta: { verifylogin: false } },
   { name: 'means', path: '/means', component: _import('home/means'), meta: { verifylogin: false } },
   { name: 'oauth', path: '/oauth', component: _import('home/oauth'), meta: { verifylogin: false } },
+  { name: 'disable', path: '/disable', component: _import('home/disable'), meta: { verifylogin: false } },
   { name: 'admin-index', path: '/admin-index', component: _import('home/admin-index'), meta: { verifylogin: true } },
   ]

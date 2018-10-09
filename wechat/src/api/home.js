@@ -14,3 +14,9 @@ export function PostWechatUser(data) {
         data
     })
 }
+export function wechatUser(data) {
+    return request({
+        url: 'wechatUser',
+        method: "get"
+    })
+}

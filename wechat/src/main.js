@@ -71,26 +71,53 @@ Vue.prototype.baseurl = process.env.BASE_API;
 
 import { AlertModule } from 'vux'
 router.beforeEach((to, from, next) => {
-  var openid=localStorage.getItem("openid");
-  if(!openid){
-    if(to.name!='audit'){
-      // debugger
-      // next({
-      //   path: "/audit"
-      // })
-      location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+  var openid = localStorage.getItem("openid");
+  if (!openid) {
+    if (to.name != 'audit') {
+      location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
     }
-    else{
+    else {
       next()
     }
   }
   else {
-    setTimeout(() => {
-      next()
-    }, 300)
+    getUserInfo(to, from, next);
   }
 })
 
+function getUserInfo(to, from, next) {
+  store.dispatch('GetInfo').then(res => { // 拉取user_info
+    if (res.data.audit == 0 && to.name != 'means') {
+      next({ name: 'means' })
+    }
+    else {
+      switch (res.data.role_code) {
+        case '001'://现场管理员
+          if (to.name != 'admin-index') {
+            next({ name: 'admin-index' })
+          }
+          break;
+        case '002'://驾驶员
+
+          break;
+        case '003'://土尾管理员
+
+          break;
+        case '004'://部门经理
+
+          break;
+        case '005'://老板
+
+          break;
+      }
+      next()
+    }
+    next()
+  })
+    .catch((res) => {
+      location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+    })
+}
 
 //全局过滤器
 import * as custom from '@/utils/filter'
