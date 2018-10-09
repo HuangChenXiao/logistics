@@ -16,25 +16,24 @@ using System.Web.Http.Results;
 
 namespace WebAPI.Controllers.User
 {
-    [WebApiActionDebugFilter]
     public class wechatUserController : ApiController
     {
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
 
-        // GET: api/Role
-        public ResponseMessageResult GetwechatUser()
+        public ResponseMessageResult Get()
         {
-            JwtModel jwtmodel = JwtHelper.getToken(HttpContext.Current.Request.Headers.GetValues("Authorization").First().ToString());
-            if (jwtmodel.isadmin)
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
             {
                 var temp = from a in db.wechatUser select a;
-                model.data = temp.ToList();
+                model.data = temp.Where(o => o.openid == openid).FirstOrDefault();
 
-                if (model.data.Count > 0)
+                if (model.data != null)
                 {
                     model.message = "查询成功";
                     model.status_code = 200;
+                    return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
                 }
                 else
                 {
@@ -44,7 +43,7 @@ namespace WebAPI.Controllers.User
             }
             else
             {
-                model.message = "用户权限不足";
+                model.message = "微信授权失败";
                 model.status_code = 401;
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
@@ -82,21 +81,18 @@ namespace WebAPI.Controllers.User
         [ResponseType(typeof(wechatUser))]
         public IHttpActionResult PostwechatUser(wechatUser wechatUser)
         {
-            JwtModel jwtmodel = JwtHelper.getToken(HttpContext.Current.Request.Headers.GetValues("Authorization").First().ToString());
-            if (jwtmodel.isadmin)
+            wechatUser.addtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            db.wechatUser.Add(wechatUser);
+            try
             {
-                db.wechatUser.Add(wechatUser);
-                try
-                {
-                    db.SaveChanges();
-                    model.message = "新增成功";
-                    model.status_code = 200;
-                }
-                catch (Exception ex)
-                {
-                    model.message = ex.Message;
-                    model.status_code = 401;
-                }
+                db.SaveChanges();
+                model.message = "新增成功";
+                model.status_code = 200;
+            }
+            catch (Exception ex)
+            {
+                model.message = ex.Message;
+                model.status_code = 401;
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }

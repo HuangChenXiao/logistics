@@ -28,3 +28,13 @@ D:\Code\API-Niuchao\trunk\MvcWebApi\WeChatSDK\bin\Debug\EntityFramework.dll
 D:\Code\API-Niuchao\trunk\MvcWebApi\WeChatSDK\bin\Debug\ModelDb.pdb
 D:\Code\API-Niuchao\trunk\MvcWebApi\WeChatSDK\bin\Debug\EntityFramework.xml
 D:\Code\API-Niuchao\trunk\MvcWebApi\WeChatSDK\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\WeChatSDK.dll
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\WeChatSDK.pdb
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\ModelDb.dll
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\EntityFramework.dll
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\ModelDb.pdb
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\EntityFramework.xml
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\obj\Debug\WeChatSDK.csprojResolveAssemblyReference.cache
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\obj\Debug\WeChatSDK.dll
+F:\gitCode\logistics\MvcWebApi\WeChatSDK\obj\Debug\WeChatSDK.pdb

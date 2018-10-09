@@ -25,9 +25,7 @@ namespace Com
             var payload = new Dictionary<string, object>
                 {
                     { "id", md.userid },
-                    { "usercode", md.rolecode },
                     { "username", md.username },
-                    { "isadmin", md.isadmin },
                     { "rolecode", md.rolecode },
                     { "exp", md.exp }
                 };
@@ -62,7 +60,6 @@ namespace Com
                 jwtmodel.userid = result.id;
                 jwtmodel.usercode = result.usercode;
                 jwtmodel.username = result.username;
-                jwtmodel.isadmin = result.isadmin;
                 jwtmodel.rolecode = result.rolecode;
                 jwtmodel.message = "获取成功";
                 jwtmodel.status_code = 200;
