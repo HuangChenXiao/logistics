@@ -222,3 +222,6 @@ img{
     display: inline-block;
     border-radius: 3px;
   }
+  .weui-btn_primary:not(.weui-btn_disabled):active{
+     background-color: #f00 !important;
+  }

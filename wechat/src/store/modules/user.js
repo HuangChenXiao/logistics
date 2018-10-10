@@ -5,7 +5,8 @@ import { wechatUser } from '@/api/home.js'
 const user = {
   state: {
     token: getToken(),
-    user_info: null,//用户信息
+    user_info: localStorage.getItem("user_info") != null ? JSON.parse(localStorage.getItem("user_info")) : {},//用户信息
+    gongdi_info: localStorage.getItem("cGongDiMingCheng") != null ? JSON.parse(localStorage.getItem("cGongDiMingCheng")) : {},//工地名称
   },
 
   mutations: {
@@ -14,14 +15,29 @@ const user = {
     },
     SET_USER_INFO: (state, user_info) => {
       state.user_info = user_info
+    },
+    SET_gongdi_info: (state, gongdi_info) => {
+      state.gongdi_info = gongdi_info
     }
   },
 
   actions: {
+    //工地名称
+    SGongDiMingCheng({ commit }, val) {
+      return new Promise((resolve, reject) => {
+        if (val) {
+          commit('SET_gongdi_info', val)
+          resolve(val)
+        }
+        else {
+          reject('工地不能为空')
+        }
+      })
+    },
     // 登录
     Login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        login({ "mobile": userInfo.mobile, "password": userInfo.password } ).then(res => {
+        login({ "mobile": userInfo.mobile, "password": userInfo.password }).then(res => {
           setToken(res.data.token)
           commit('SET_TOKEN', res.data.token)
           resolve()

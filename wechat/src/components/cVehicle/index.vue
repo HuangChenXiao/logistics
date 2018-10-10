@@ -5,15 +5,14 @@
       <div class="item">
         <div class="ico"></div>
         <div class="ipt">
-          <input type="text" placeholder="请输入要搜索的车辆">
+          <input type="text" v-model="search_val" placeholder="请输入要搜索的车辆">
         </div>
       </div>
     </div>
     <div class="item-list" v-if="list.length>0">
       <div class="item" v-for="item in list">
-        <div class="code">驾驶员：{{item.name}}</div>
-        <div class="code">车牌：{{item.code}}</div>
-        <div class="color">颜色：{{item.color}}</div>
+        <div class="code">驾驶员：{{item.cXingMing}}</div>
+        <div class="code">车牌：{{item.cChePaiHao}}</div>
         <div class="opt-btn" v-if="single_drive">
           <div class="sed-btn" @click="select_vehicle(item)">
             选择
@@ -37,14 +36,16 @@
 
 <script>
 export default {
-  props: ['title','value', 'single_drive'],
+  props: ['title','value', 'valueData', 'single_drive'],
   data() {
     return {
-      list: null
+      list: null,
+      search_val: null
     }
   },
   created() {
-    this.list = this.value
+    this.list = this.valueData
+    this.search_val = this.value
   },
   methods: {
     select_vehicle(item) {
@@ -52,6 +53,17 @@ export default {
     },
     select_many_vehicle() {
       this.$emit('selectVehicle', [])
+    }
+  },
+  watch: {
+    valueData(val, oldVal) {
+      this.list = val
+    },
+    value(val, oldVal) {
+      this.search_val = val
+    },
+    search_val(val, oldVal) {
+      this.$emit('input', val)
     }
   }
 }
@@ -87,6 +99,7 @@ export default {
     padding: 0.266667rem 0.533333rem;
     border-bottom: 1px solid #efefef;
     text-align: left;
+    padding-right: 2rem;
     .opt-btn {
       position: absolute;
       top: 0;
@@ -95,12 +108,12 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.7rem;
+        top: 0.5rem;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;
         border-radius: 5px;
-        padding: 0.133333rem 0.266667rem;
+        padding: 0.05rem 0.266667rem;
       }
     }
   }

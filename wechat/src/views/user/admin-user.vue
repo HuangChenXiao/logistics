@@ -30,47 +30,11 @@
 </template>
 
 <script>
-import { userInfo, memberOnline } from '@/api/user.js'
 import adminBottom from '@/components/adminBottom'
 export default {
   components: {
     adminBottom
   },
-  data() {
-    return {
-      user_info: {}
-    }
-  },
-  computed: {
-    onlinestatus() {
-      if (this.user_info.onlinestatus) {
-        return true
-      }
-      return false
-    }
-  },
-  created() {
-    this.getList()
-  },
-  methods: {
-    getList() {
-      userInfo().then(res => {
-        this.user_info = res.data
-      })
-    },
-    update_status(status) {
-      memberOnline({ status: status })
-        .then(res => {
-          this.user_info.onlinestatus = status
-        })
-        .catch(res => {
-          this.$vux.alert.show({
-            title: '系统提示',
-            content: res.message
-          })
-        })
-    }
-  }
 }
 </script>
 

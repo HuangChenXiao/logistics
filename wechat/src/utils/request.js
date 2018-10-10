@@ -12,7 +12,7 @@ service.interceptors.request.use(config => {
   // if (getToken()) {
   //   config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
   // }
-  var openid=localStorage.getItem('openid');
+  var openid = localStorage.getItem('openid');
   if (openid) {
     config.headers['openid'] = openid // 让每个请求携带自定义token 请根据实际情况自行修改
   }
@@ -39,6 +39,10 @@ service.interceptors.response.use(
   error => {
     console.log('err' + error)// for debug
     var res = error.response.data;
+    if (res.status_code == 402) {
+      localStorage.clear()
+      location.reload()
+    }
     return Promise.reject(res)
   }
 )

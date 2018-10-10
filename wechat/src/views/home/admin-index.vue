@@ -5,7 +5,7 @@
     <div style="height:1.26rem"></div>
     <div class="home">
       <div class="address">
-        我的工地：厦门市软件园二期
+        我的工地：{{cGongDiMingCheng}}
         <i class="ico ico-edit" @click="showWorkSite=true"></i>
       </div>
       <div class="address">
@@ -27,6 +27,7 @@
                     <div class="btn-select" @click="showCooperation=true">
                       选择
                     </div>
+                    <span>{{bItem.cXZDWMingCheng}}</span>
                   </div>
                 </div>
                 <div class="group-item">
@@ -35,6 +36,7 @@
                     <div class="btn-select" @click="showScrollBox=true">
                       选择
                     </div>
+                    <span>{{bItem.cChePaiHao}}</span>
                   </div>
                 </div>
                 <div class="group-item">
@@ -43,13 +45,15 @@
                     <div class="btn-select" @click="showWorkRoute=true">
                       选择
                     </div>
+                    <span>{{bItem.cXianLuBianMa}}</span>
                   </div>
                 </div>
                 <!-- <selector title="合作单位"  v-model="value2"></selector>
                                 <selector title="车辆" :options="['闽G123', '其他']" v-model="value2"></selector>
                                 <selector title="路线" :options="['高新技术园-软件园', '五缘湾-火车站']" v-model="value2"></selector> -->
                 <div class="wk-btn">
-                  <div class="ok-btn">发布订单</div>
+                  <!-- <div class="ok-btn">发布订单</div> -->
+                  <x-button class="ok-btn" :class="{'btn-success':validate_order}" type="primary" :disabled="!validate_order" @click.native="submit_order"> 发布订单</x-button>
                 </div>
               </group>
             </div>
@@ -72,7 +76,8 @@
                   </div>
                 </div>
                 <div class="wk-btn">
-                  <div class="ok-btn">发布订单</div>
+                  <!-- <div class="ok-btn">发布订单</div> -->
+                  <x-button class="ok-btn" type="primary"> 发布订单</x-button>
                 </div>
               </group>
             </div>
@@ -83,13 +88,13 @@
         <div class="title">最新订单</div>
         <div class="item-list">
           <section v-for="item in order_list">
-            <div class="n1">订单号：{{item.orderno}}</div>
-            <div class="n1">工地：{{item.work}}</div>
-            <div class="n1">工尾：{{item.tail_work}}</div>
-            <div class="n1">车牌：{{item.license_plate}}</div>
-            <div class="n1">驾驶员：{{item.name}}</div>
-            <div class="n1">起运时间：{{item.addtime}}</div>
-            <div class="n1">状态：{{item.status}}</div>
+            <div class="n1">订单号：AF546465654512</div>
+            <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+            <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
+            <div class="n1">车牌：{{item.cChePaiHao}}</div>
+            <div class="n1">驾驶员：{{item.cXingMing}}</div>
+            <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
+            <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
           </section>
         </div>
       </div>
@@ -102,17 +107,21 @@
       </group>
     </div> -->
     <admin-bottom route_name="admin-index"></admin-bottom>
+    <!-- 合作单位 -->
     <x-dialog v-model="showCooperation" :hide-on-blur="true" class="dialog-demo">
-      <cooperation @selectVehicle="select_cooperation" v-model="cooperation_list"></cooperation>
+      <cooperation @selectVehicle="select_cooperation" :valueData="cooperation_list" v-model="cooperation_keyword"></cooperation>
     </x-dialog>
+    <!-- 车辆信息 -->
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
+      <c-vehicle @selectVehicle="select_vehicle" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
     </x-dialog>
+    <!-- 线路 -->
     <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
-      <work-route @selectVehicle="select_wordRoute" v-model="route_list"></work-route>
+      <work-route @selectVehicle="select_wordRoute" :valueData="route_list" v-model="route_keyword"></work-route>
     </x-dialog>
+    <!-- 工地信息 -->
     <x-dialog v-model="showWorkSite" class="dialog-demo">
-      <work-site @selectVehicle="selectWork" v-model="work_list"></work-site>
+      <work-site @selectVehicle="selectWork" :valueData="work_list" v-model="work_keyword"></work-site>
     </x-dialog>
   </div>
 </template>
@@ -127,7 +136,6 @@ import {
   SwiperItem,
   DatetimeRange
 } from 'vux'
-import { getAdList } from '@/api/home.js'
 import getformattedAddress from '@/map/index.js'
 import { setTimeout } from 'timers'
 import cVehicle from '@/components/cVehicle'
@@ -137,6 +145,15 @@ import workRoute from '@/components/workRoute'
 import adminBottom from '@/components/adminBottom'
 import { defaultCoreCipherList } from 'constants'
 const list = () => ['工程车', '挖掘机']
+
+import {
+  GongDiInfo,
+  CheLiangInfo,
+  XieZuoDanWeiInfo,
+  XianLuInfo,
+  GongChengCheDingDan,
+  GetGongChengCheDingDan
+} from '@/api/home.js'
 export default {
   components: {
     Group,
@@ -154,6 +171,7 @@ export default {
   },
   data() {
     return {
+      isavailable: true,
       showCooperation: false,
       showScrollBox: false,
       showWorkRoute: false,
@@ -161,9 +179,15 @@ export default {
       index: 0,
       demo2: '美食',
       showWorkSite: false,
-      vehicle_info: null,
       bItem: {
-        start_position: '厦门市'
+        start_position: '厦门市',
+        cGongDiBianMa: null, //工地编码
+        cChePaiHao: null, //车牌号
+        openid: null, //驾驶员编码
+        cXianLuBianMa: null, //线路编码
+        cXZDWBianMa: null, //协作单位编码
+        cXZDWMingCheng: null, //协作单位名称
+        cGuanLiYuanBianMa: localStorage.getItem('openid') //现场管理员编码
       },
       store_query: {
         longitude: this.$store.getters.longitude,
@@ -171,31 +195,10 @@ export default {
         startrow: 1,
         pagesize: 10
       },
-      vehicle_list: [
-        { id: 1, name: '黄臣晓', code: '闽A12345', color: '红色' },
-        { id: 2, name: '黄臣晓', code: '闽A12345', color: '白色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2, name: '黄臣晓', code: '闽A4564', color: '黑色' }
-      ],
-      cooperation_list: [
-        { id: 1, code: '阿里巴巴集团' },
-        { id: 2, code: '腾讯控股' }
-      ],
-      route_list: [
-        { id: 1, code: '莲花新城-中美新城' },
-        { id: 2, code: '厦门大学-火车站' }
-      ],
-      work_list: [
-        { id: 1, code: '厦门市集美区软件园一号' },
-        { id: 2, code: '厦门北站' }
-      ],
+      vehicle_list: [],
+      cooperation_list: [],
+      route_list: [],
+      work_list: [],
       order_list: [
         {
           orderno: 'DX95546346546464161',
@@ -205,7 +208,8 @@ export default {
           name: '黄臣晓',
           addtime: '2018-9-29 10:52:24',
           status: '未确认'
-        },{
+        },
+        {
           orderno: 'DX95546346546464161',
           work: '厦门市软件园二期何厝路口东路',
           tail_work: '厦门市杏林路杏林湾东二路',
@@ -214,30 +218,153 @@ export default {
           addtime: '2018-9-29 10:52:24',
           status: '未确认'
         }
-      ]
+      ],
+      work_keyword: null,
+      driver_keyword: null,
+      driver_cXZDWBianMa: null,
+      cooperation_keyword: null,
+      route_keyword: null
+    }
+  },
+  computed: {
+    cGongDiMingCheng() {
+      if (this.$store.getters.gongdi_info.cGongDiMingCheng) {
+        return this.$store.getters.gongdi_info.cGongDiMingCheng
+      } else {
+        return '请选择'
+      }
+    },
+    validate_order() {
+      if (
+        this.bItem.cChePaiHao &&
+        this.bItem.openid &&
+        this.bItem.cXianLuBianMa &&
+        this.bItem.cGuanLiYuanBianMa &&
+        this.isavailable
+      ) {
+        return true
+      }
+      return false
     }
   },
   created() {
     let _this = this
+    if (!this.$store.getters.gongdi_info.cGongDiMingCheng) {
+      //未选择工地时弹出
+      this.showWorkSite = true
+    }
     // if (_this.store_query.start_position) {
     //   _this.bItem.start_position = _this.store_query.start_position
     // } else {
     //   _this.get_address()
     // }
     this.set_time()
-    setTimeout(() => {
-      _this.$vux.alert.show({
-        title: '提示',
-        content: '接收到一个订单，请尽快执行',
-        onShow() {
-          _this.task_status = true
-        }
-      })
-    }, 1000000)
+    // setTimeout(() => {
+    //   _this.$vux.alert.show({
+    //     title: '提示',
+    //     content: '接收到一个订单，请尽快执行',
+    //     onShow() {
+    //       _this.task_status = true
+    //     }
+    //   })
+    // }, 1000000)
+    this.get_worksite() //工地信息
+    this.get_driver() //车辆信息
+    this.get_cooperation() //合作单位
+    this.get_route() //线路
+    this.get_order() //订单列表
   },
   methods: {
+    //订单列表
+    get_order() {
+      GetGongChengCheDingDan().then(res => {
+        this.order_list = res.data
+      })
+    },
+    //工地列表
+    get_worksite() {
+      GongDiInfo({ keyword: this.work_keyword }).then(res => {
+        this.work_list = res.data
+      })
+    },
+    //工地名称
     selectWork(val) {
+      this.$store.dispatch('SGongDiMingCheng', val).then(res => {
+        localStorage.setItem('cGongDiMingCheng', JSON.stringify(val))
+      })
       this.showWorkSite = false
+    },
+    //车辆列表
+    get_driver() {
+      CheLiangInfo({
+        keyword: this.driver_keyword,
+        cXZDWBianMa: this.driver_cXZDWBianMa
+      }).then(res => {
+        this.vehicle_list = res.data
+      })
+    },
+    //车辆名称
+    select_vehicle(item) {
+      this.showScrollBox = false
+      this.bItem.cChePaiHao = item.cChePaiHao
+      this.bItem.openid = item.openid
+    },
+    //合作单位
+    get_cooperation() {
+      XieZuoDanWeiInfo({ keyword: this.cooperation_keyword }).then(res => {
+        this.cooperation_list = res.data
+      })
+    },
+    //合作单位名称
+    select_cooperation(item) {
+      this.showCooperation = false
+      this.bItem.cXZDWBianMa = item.cXZDWBianMa
+      this.bItem.cXZDWMingCheng = item.cXZDWMingCheng
+      //选择合作单位后车辆条件加上 driver_cXZDWBianMa 清空驾驶员
+      this.driver_cXZDWBianMa = item.cXZDWBianMa
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
+      this.get_driver() //车辆信息
+    },
+    //路线
+    get_route() {
+      XianLuInfo({ keyword: this.route_keyword }).then(res => {
+        this.route_list = res.data
+      })
+    },
+    //线路名称
+    select_wordRoute(item) {
+      this.showWorkRoute = false
+      this.bItem.cXianLuBianMa = item.cXianLuBianMa
+    },
+    //发布订单
+    submit_order() {
+      this.isavailable = false
+      this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa
+      GongChengCheDingDan(this.bItem)
+        .then(res => {
+          this.$vux.alert.show({
+            title: '提示',
+            content: '工程车订单发布成功'
+          })
+          this.resetItem()
+          this.get_order() //订单列表
+          this.isavailable = true
+          return
+        })
+        .catch(res => {
+          this.isavailable = true
+        })
+    },
+    resetItem() {
+      this.bItem = {
+        cGongDiBianMa: null, //工地编码
+        cChePaiHao: null, //车牌号
+        openid: null, //驾驶员编码
+        cXianLuBianMa: null, //线路编码
+        cXZDWBianMa: null, //协作单位编码
+        cXZDWMingCheng: null //协作单位名称
+      }
     },
     complete_order() {
       this.$vux.confirm.show({
@@ -247,17 +374,6 @@ export default {
           _this.work_status = work_status
         }
       })
-    },
-    select_vehicle(item) {
-      this.showScrollBox = false
-      this.vehicle_info = item.code
-      this.work_status = 1
-    },
-    select_cooperation(item) {
-      this.showCooperation = false
-    },
-    select_wordRoute(res) {
-      this.showWorkRoute = false
     },
     get_address() {
       let _this = this
@@ -303,6 +419,24 @@ export default {
           }
         })
       }
+    }
+  },
+  watch: {
+    work_keyword(val, oldVal) {
+      //工地列表
+      this.get_worksite()
+    },
+    driver_keyword(val, oldVal) {
+      //车辆列表
+      this.get_driver()
+    },
+    cooperation_keyword(val, oldVal) {
+      //合作单位列表
+      this.get_cooperation()
+    },
+    route_keyword(val, oldVal) {
+      //线路列表
+      this.get_route()
     }
   }
 }
@@ -390,8 +524,12 @@ export default {
     background: #ddd;
     color: #fff;
     display: inline-block;
-    padding: 0.16rem 0.8rem;
+    // padding: 0.16rem 0.8rem;
     border-radius: 3px;
+    width: 3rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.373333rem;
   }
 }
 .group-item {
@@ -407,6 +545,7 @@ export default {
   }
   .info {
     .btn-select {
+      position: relative;
       color: #f00;
       border: 1px solid #f00;
       border-radius: 3px;
@@ -415,6 +554,17 @@ export default {
       width: 1.6rem;
       text-align: center;
       display: inline-block;
+      margin-right: 0.266667rem;
+    }
+    .btn-select:after {
+      content: ' ';
+      position: absolute;
+      right: -0.266667rem;
+      top: 0;
+      display: block;
+      height: 0.6rem;
+      width: 1px;
+      background: #efefef;
     }
   }
 }

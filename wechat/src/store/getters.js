@@ -10,5 +10,6 @@ const getters = {
   start_position: state => state.com.start_position,
   isLoading: state => state.com.isLoading,
   loadingText: state => state.com.loadingText,
+  gongdi_info: state => state.user.gongdi_info,
 }
 export default getters

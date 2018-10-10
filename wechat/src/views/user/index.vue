@@ -8,10 +8,7 @@
         <img src="../../assets/img/t_1.png" alt="">
       </div>
       <div class="content">
-        <div class="name">小小物流员</div>
-        <!-- <div class="count">
-          交易次数：{{user_info.tradeqty}}
-        </div> -->
+        <div class="name">驾驶员</div>
       </div>
     </div>
     <div class="item-list">
@@ -30,43 +27,15 @@
 </template>
 
 <script>
-import { userInfo, memberOnline } from '@/api/user.js'
 export default {
   data() {
     return {
       user_info: {}
     }
   },
-  computed: {
-    onlinestatus() {
-      if (this.user_info.onlinestatus) {
-        return true
-      }
-      return false
-    }
-  },
   created() {
     this.getList()
   },
-  methods: {
-    getList() {
-      userInfo().then(res => {
-        this.user_info = res.data
-      })
-    },
-    update_status(status) {
-      memberOnline({ status: status })
-        .then(res => {
-          this.user_info.onlinestatus = status
-        })
-        .catch(res => {
-          this.$vux.alert.show({
-            title: '系统提示',
-            content: res.message
-          })
-        })
-    }
-  }
 }
 </script>
 

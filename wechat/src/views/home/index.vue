@@ -123,15 +123,15 @@ export default {
     //   _this.get_address()
     // }
     this.set_time()
-    setTimeout(() => {
-      _this.$vux.alert.show({
-        title: '提示',
-        content: '接收到一个订单，请尽快执行',
-        onShow() {
-          _this.task_status = true
-        }
-      })
-    }, 1000000)
+    // setTimeout(() => {
+    //   _this.$vux.alert.show({
+    //     title: '提示',
+    //     content: '接收到一个订单，请尽快执行',
+    //     onShow() {
+    //       _this.task_status = true
+    //     }
+    //   })
+    // }, 1000000)
   },
   methods: {
     complete_order() {

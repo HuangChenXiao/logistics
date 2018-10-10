@@ -87,40 +87,47 @@ router.beforeEach((to, from, next) => {
 })
 
 function getUserInfo(to, from, next) {
+  // var user_info = store.getters.user_info;
+  // if (user_info.openid) {
+  //   route_from(to, from, next,user_info)
+  // }
+  // else {
+  //   store.dispatch('GetInfo').then(res => { // 拉取user_info
+  //     route_from(to, from, next,res.data)
+  //   }).catch((res) => {
+  //     next()
+  //   })
+  // }
   store.dispatch('GetInfo').then(res => { // 拉取user_info
-    if (res.data.audit == 0 && to.name != 'means') {
-      next({ name: 'means' })
-    }
-    else {
-      switch (res.data.role_code) {
-        case '001'://现场管理员
-          if (to.name != 'admin-index') {
-            next({ name: 'admin-index' })
-          }
-          break;
-        case '002'://驾驶员
-
-          break;
-        case '003'://土尾管理员
-
-          break;
-        case '004'://部门经理
-
-          break;
-        case '005'://老板
-
-          break;
-        default:
-          next({ name: 'web404' })
-          break;
-      }
-      next()
-    }
+    route_from(to, from, next,res.data)
+  }).catch((res) => {
     next()
   })
-    .catch((res) => {
+}
+//审核后跳转地址
+function route_from(to, from, next,user) {
+  if (user.audit == 0) {
+    if (to.name != 'means') {
+      next({ name: 'means' })
+    }
+  }
+  else {
+    if (!to.meta.role_code) {
       next()
-    })
+    }
+    else if (user.role_code == to.meta.role_code) {
+      localStorage.setItem("user_info", JSON.stringify(user));
+      next()
+    }
+    else {
+      AlertModule.show({
+        title: '提示',
+        content: '未分配角色信息',
+      })
+      return
+    }
+    next()
+  }
 }
 
 //全局过滤器

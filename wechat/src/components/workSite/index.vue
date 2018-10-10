@@ -1,45 +1,58 @@
 <template>
-    <div>
-        <div class="title">选择工地</div>
-        <div class="search">
-            <div class="item">
-                <div class="ico"></div>
-                <div class="ipt">
-                    <input type="text" placeholder="请输入要搜索的起始路线">
-                </div>
-            </div>
+  <div>
+    <div class="title">选择工地</div>
+    <div class="search">
+      <div class="item">
+        <div class="ico"></div>
+        <div class="ipt">
+          <input type="text" v-model="search_val" placeholder="请输入要搜索的起始路线">
         </div>
-        <div class="item-list" v-if="list.length>0">
-            <div class="item" v-for="item in list">
-                <div class="code">{{item.code}}</div>
-                <!-- <div class="color">颜色：{{item.color}}</div> -->
-                <div class="opt-btn">
-                    <div class="sed-btn" @click="select_vehicle(item)">
-                        选择
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="no-data" v-else>
-            暂无工地~
-        </div>
+      </div>
     </div>
+    <div class="item-list" v-if="list.length>0">
+      <div class="item" v-for="item in list">
+        <div class="code">编码：{{item.cGongDiBianMa}}</div>
+        <div class="color">名称：{{item.cGongDiMingCheng}}</div>
+        <div class="opt-btn">
+          <div class="sed-btn" @click="select_vehicle(item)">
+            选择
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="no-data" v-else>
+      暂无工地~
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ['value'],
+  props: ['value', 'valueData'],
   data() {
     return {
-      list: null
+      list: null,
+      search_val: null
     }
   },
   created() {
-    this.list = this.value
+    this.list = this.valueData
+    this.search_val = this.value
   },
   methods: {
     select_vehicle(item) {
       this.$emit('selectVehicle', item)
+    }
+  },
+  watch: {
+    valueData(val, oldVal) {
+      this.list = val
+    },
+    value(val, oldVal) {
+      this.search_val = val
+    },
+    search_val(val, oldVal) {
+      this.$emit('input', val)
     }
   }
 }
@@ -76,6 +89,7 @@ export default {
     padding: 0.266667rem 0.533333rem;
     border-bottom: 1px solid #efefef;
     text-align: left;
+    padding-right: 2rem;
     .opt-btn {
       position: absolute;
       top: 0;
@@ -84,7 +98,7 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.2rem;
+        top: 0.5rem;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;

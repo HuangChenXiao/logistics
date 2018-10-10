@@ -5,13 +5,13 @@
             <div class="item">
                 <div class="ico"></div>
                 <div class="ipt">
-                    <input type="text" placeholder="请输入要搜索的合作客户">
+                    <input type="text" v-model="search_val" placeholder="请输入要搜索的合作客户">
                 </div>
             </div>
         </div>
         <div class="item-list" v-if="list.length>0">
             <div class="item" v-for="item in list">
-                <div class="code">{{item.code}}</div>
+                <div class="code">{{item.cXZDWMingCheng}}</div>
                 <!-- <div class="color">颜色：{{item.color}}</div> -->
                 <div class="opt-btn">
                     <div class="sed-btn" @click="select_vehicle(item)">
@@ -28,18 +28,31 @@
 
 <script>
 export default {
-  props: ['value'],
+  props: ['value', 'valueData'],
   data() {
     return {
-      list: null
+      list: null,
+      search_val: null
     }
   },
   created() {
-    this.list = this.value
+    this.list = this.valueData
+    this.search_val = this.value
   },
   methods: {
     select_vehicle(item) {
       this.$emit('selectVehicle', item)
+    }
+  },
+  watch: {
+    valueData(val, oldVal) {
+      this.list = val
+    },
+    value(val, oldVal) {
+      this.search_val = val
+    },
+    search_val(val, oldVal) {
+      this.$emit('input', val)
     }
   }
 }
@@ -76,6 +89,7 @@ export default {
     padding: 0.266667rem 0.533333rem;
     border-bottom: 1px solid #efefef;
     text-align: left;
+    padding-right: 2rem;
     .opt-btn {
       position: absolute;
       top: 0;
