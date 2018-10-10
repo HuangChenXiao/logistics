@@ -192,6 +192,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiActionDebugFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Home\CheLiangInfoController.cs" />
+    <Compile Include="Controllers\Home\GongChengCheDingDanController.cs" />
+    <Compile Include="Controllers\Home\GongDiInfoController.cs" />
+    <Compile Include="Controllers\Home\WaJueJiDingDanController.cs" />
+    <Compile Include="Controllers\Home\XianLuInfoController.cs" />
+    <Compile Include="Controllers\Home\XieZuoDanWeiInfoController.cs" />
     <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\User\wechatUserController.cs" />

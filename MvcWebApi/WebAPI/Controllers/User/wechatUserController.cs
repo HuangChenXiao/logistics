@@ -37,8 +37,8 @@ namespace WebAPI.Controllers.User
                 }
                 else
                 {
-                    model.message = "暂无数据";
-                    model.status_code = 200;
+                    model.message = "微信授权已过期";
+                    model.status_code = 402;
                 }
             }
             else
@@ -81,6 +81,8 @@ namespace WebAPI.Controllers.User
         [ResponseType(typeof(wechatUser))]
         public IHttpActionResult PostwechatUser(wechatUser wechatUser)
         {
+            wechatUser.status = 0;
+            wechatUser.audit = 0;
             wechatUser.addtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             db.wechatUser.Add(wechatUser);
             try

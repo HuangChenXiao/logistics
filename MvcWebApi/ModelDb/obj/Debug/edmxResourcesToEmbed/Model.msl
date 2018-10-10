@@ -1,628 +1,673 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="EBMSystemModelStoreContainer" CdmEntityContainer="EBMSystemEntities">
+    <FunctionImportMapping FunctionImportName="PD_BaseCode" FunctionName="EBMSystemModel.Store.PD_BaseCode" />
+    <FunctionImportMapping FunctionImportName="PD_VouchCode" FunctionName="EBMSystemModel.Store.PD_VouchCode" />
     <EntitySetMapping Name="BangDingJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BangDingJiLu">
         <MappingFragment StoreEntitySet="BangDingJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="dShiJian" ColumnName="dShiJian" />
-          <ScalarProperty Name="iBangDingLeiXing" ColumnName="iBangDingLeiXing" />
-          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
-          <ScalarProperty Name="iDelete" ColumnName="iDelete" />
           <ScalarProperty Name="iFangShi" ColumnName="iFangShi" />
+          <ScalarProperty Name="iDelete" ColumnName="iDelete" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="iBangDingLeiXing" ColumnName="iBangDingLeiXing" />
+          <ScalarProperty Name="dShiJian" ColumnName="dShiJian" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BaoXianJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BaoXianJiLu">
         <MappingFragment StoreEntitySet="BaoXianJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="cBaoXianGongShi" ColumnName="cBaoXianGongShi" />
-          <ScalarProperty Name="cXianZhong" ColumnName="cXianZhong" />
-          <ScalarProperty Name="cBaoXianHao" ColumnName="cBaoXianHao" />
-          <ScalarProperty Name="iBaoE" ColumnName="iBaoE" />
-          <ScalarProperty Name="dTouBaoRiQi" ColumnName="dTouBaoRiQi" />
-          <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
+          <ScalarProperty Name="dTouBaoRiQi" ColumnName="dTouBaoRiQi" />
+          <ScalarProperty Name="iBaoE" ColumnName="iBaoE" />
+          <ScalarProperty Name="cBaoXianHao" ColumnName="cBaoXianHao" />
+          <ScalarProperty Name="cXianZhong" ColumnName="cXianZhong" />
+          <ScalarProperty Name="cBaoXianGongShi" ColumnName="cBaoXianGongShi" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BaoYangJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BaoYangJiLu">
         <MappingFragment StoreEntitySet="BaoYangJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="cBaoYangLeiXing" ColumnName="cBaoYangLeiXing" />
-          <ScalarProperty Name="dBaoYangRiQi" ColumnName="dBaoYangRiQi" />
-          <ScalarProperty Name="iBaoYangGongShi" ColumnName="iBaoYangGongShi" />
-          <ScalarProperty Name="cBaoYangJiLu" ColumnName="cBaoYangJiLu" />
-          <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
-          <ScalarProperty Name="iBaoYangJinE" ColumnName="iBaoYangJinE" />
-          <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
+          <ScalarProperty Name="iBaoYangJinE" ColumnName="iBaoYangJinE" />
+          <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
+          <ScalarProperty Name="cBaoYangJiLu" ColumnName="cBaoYangJiLu" />
+          <ScalarProperty Name="iBaoYangGongShi" ColumnName="iBaoYangGongShi" />
+          <ScalarProperty Name="dBaoYangRiQi" ColumnName="dBaoYangRiQi" />
+          <ScalarProperty Name="cBaoYangLeiXing" ColumnName="cBaoYangLeiXing" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BaseCode">
       <EntityTypeMapping TypeName="EBMSystemModel.BaseCode">
         <MappingFragment StoreEntitySet="BaseCode">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cVouchType" ColumnName="cVouchType" />
           <ScalarProperty Name="iIndex" ColumnName="iIndex" />
+          <ScalarProperty Name="cVouchType" ColumnName="cVouchType" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CangKuInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.CangKuInfo">
         <MappingFragment StoreEntitySet="CangKuInfo">
-          <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
-          <ScalarProperty Name="cCangKuMingCheng" ColumnName="cCangKuMingCheng" />
-          <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
-          <ScalarProperty Name="cLianXiRen" ColumnName="cLianXiRen" />
-          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
-          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
+          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
+          <ScalarProperty Name="cLianXiRen" ColumnName="cLianXiRen" />
+          <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
+          <ScalarProperty Name="cCangKuMingCheng" ColumnName="cCangKuMingCheng" />
+          <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CheLiangInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.CheLiangInfo">
         <MappingFragment StoreEntitySet="CheLiangInfo">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="cPinPai" ColumnName="cPinPai" />
-          <ScalarProperty Name="cXingHao" ColumnName="cXingHao" />
-          <ScalarProperty Name="cCheJiaHao" ColumnName="cCheJiaHao" />
-          <ScalarProperty Name="cFaDongJiHao" ColumnName="cFaDongJiHao" />
-          <ScalarProperty Name="dGouMaiRiQi" ColumnName="dGouMaiRiQi" />
-          <ScalarProperty Name="dNianShenRiQi" ColumnName="dNianShenRiQi" />
-          <ScalarProperty Name="iTuFangShu" ColumnName="iTuFangShu" />
-          <ScalarProperty Name="cCheLiangSuoShu" ColumnName="cCheLiangSuoShu" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="cCheLiangLeiBie" ColumnName="cCheLiangLeiBie" />
-          <ScalarProperty Name="bShiFouBaoFei" ColumnName="bShiFouBaoFei" />
-          <ScalarProperty Name="dBaoFeiRiQi" ColumnName="dBaoFeiRiQi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="dBaoFeiRiQi" ColumnName="dBaoFeiRiQi" />
+          <ScalarProperty Name="bShiFouBaoFei" ColumnName="bShiFouBaoFei" />
+          <ScalarProperty Name="cCheLiangLeiBie" ColumnName="cCheLiangLeiBie" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
+          <ScalarProperty Name="cCheLiangSuoShu" ColumnName="cCheLiangSuoShu" />
+          <ScalarProperty Name="iTuFangShu" ColumnName="iTuFangShu" />
+          <ScalarProperty Name="dNianShenRiQi" ColumnName="dNianShenRiQi" />
+          <ScalarProperty Name="dGouMaiRiQi" ColumnName="dGouMaiRiQi" />
+          <ScalarProperty Name="cFaDongJiHao" ColumnName="cFaDongJiHao" />
+          <ScalarProperty Name="cCheJiaHao" ColumnName="cCheJiaHao" />
+          <ScalarProperty Name="cXingHao" ColumnName="cXingHao" />
+          <ScalarProperty Name="cPinPai" ColumnName="cPinPai" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GongChengCheDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
         <MappingFragment StoreEntitySet="GongChengCheDingDan">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
-          <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
-          <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
-          <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-          <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
-          <ScalarProperty Name="iState" ColumnName="iState" />
-          <ScalarProperty Name="cState" ColumnName="cState" />
-          <ScalarProperty Name="iTWState" ColumnName="iTWState" />
-          <ScalarProperty Name="cTWState" ColumnName="cTWState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cTWState" ColumnName="cTWState" />
+          <ScalarProperty Name="iTWState" ColumnName="iTWState" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
+          <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
+          <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
+          <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GongDiCheLiang">
       <EntityTypeMapping TypeName="EBMSystemModel.GongDiCheLiang">
         <MappingFragment StoreEntitySet="GongDiCheLiang">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GongDiInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.GongDiInfo">
         <MappingFragment StoreEntitySet="GongDiInfo">
-          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
-          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
-          <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
-          <ScalarProperty Name="cYeZhuMingCheng" ColumnName="cYeZhuMingCheng" />
-          <ScalarProperty Name="iTuFangShu" ColumnName="iTuFangShu" />
-          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
-          <ScalarProperty Name="iZongJia" ColumnName="iZongJia" />
-          <ScalarProperty Name="cCeHuiRen" ColumnName="cCeHuiRen" />
-          <ScalarProperty Name="cFuZeRen" ColumnName="cFuZeRen" />
-          <ScalarProperty Name="cLianXiRen" ColumnName="cLianXiRen" />
-          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
-          <ScalarProperty Name="cHeTongBianMa" ColumnName="cHeTongBianMa" />
-          <ScalarProperty Name="cHeTongMingCheng" ColumnName="cHeTongMingCheng" />
-          <ScalarProperty Name="dQianDingRiQi" ColumnName="dQianDingRiQi" />
-          <ScalarProperty Name="cHeTongNeiRong" ColumnName="cHeTongNeiRong" />
-          <ScalarProperty Name="cChengFaNeiRong" ColumnName="cChengFaNeiRong" />
-          <ScalarProperty Name="dTingYongRiQi" ColumnName="dTingYongRiQi" />
-          <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
-          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
-          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
           <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
+          <ScalarProperty Name="dTingYongRiQi" ColumnName="dTingYongRiQi" />
+          <ScalarProperty Name="cChengFaNeiRong" ColumnName="cChengFaNeiRong" />
+          <ScalarProperty Name="cHeTongNeiRong" ColumnName="cHeTongNeiRong" />
+          <ScalarProperty Name="dQianDingRiQi" ColumnName="dQianDingRiQi" />
+          <ScalarProperty Name="cHeTongMingCheng" ColumnName="cHeTongMingCheng" />
+          <ScalarProperty Name="cHeTongBianMa" ColumnName="cHeTongBianMa" />
+          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
+          <ScalarProperty Name="cLianXiRen" ColumnName="cLianXiRen" />
+          <ScalarProperty Name="cFuZeRen" ColumnName="cFuZeRen" />
+          <ScalarProperty Name="cCeHuiRen" ColumnName="cCeHuiRen" />
+          <ScalarProperty Name="iZongJia" ColumnName="iZongJia" />
+          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
+          <ScalarProperty Name="iTuFangShu" ColumnName="iTuFangShu" />
+          <ScalarProperty Name="cYeZhuMingCheng" ColumnName="cYeZhuMingCheng" />
+          <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GongDiXianLu">
       <EntityTypeMapping TypeName="EBMSystemModel.GongDiXianLu">
         <MappingFragment StoreEntitySet="GongDiXianLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
           <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GradeDef">
       <EntityTypeMapping TypeName="EBMSystemModel.GradeDef">
         <MappingFragment StoreEntitySet="GradeDef">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cItem" ColumnName="cItem" />
-          <ScalarProperty Name="cItemClass" ColumnName="cItemClass" />
-          <ScalarProperty Name="iValue1" ColumnName="iValue1" />
-          <ScalarProperty Name="iValue2" ColumnName="iValue2" />
-          <ScalarProperty Name="iValue3" ColumnName="iValue3" />
-          <ScalarProperty Name="iValue4" ColumnName="iValue4" />
           <ScalarProperty Name="iValue5" ColumnName="iValue5" />
+          <ScalarProperty Name="iValue4" ColumnName="iValue4" />
+          <ScalarProperty Name="iValue3" ColumnName="iValue3" />
+          <ScalarProperty Name="iValue2" ColumnName="iValue2" />
+          <ScalarProperty Name="iValue1" ColumnName="iValue1" />
+          <ScalarProperty Name="cItemClass" ColumnName="cItemClass" />
+          <ScalarProperty Name="cItem" ColumnName="cItem" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="JiaYouJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.JiaYouJiLu">
         <MappingFragment StoreEntitySet="JiaYouJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="dJiaYouJiLu" ColumnName="dJiaYouJiLu" />
-          <ScalarProperty Name="cJiaYouKaHao" ColumnName="cJiaYouKaHao" />
-          <ScalarProperty Name="cJiaYouLeiXing" ColumnName="cJiaYouLeiXing" />
-          <ScalarProperty Name="iYouLiang" ColumnName="iYouLiang" />
-          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
-          <ScalarProperty Name="iJinE" ColumnName="iJinE" />
-          <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
+          <ScalarProperty Name="iJinE" ColumnName="iJinE" />
+          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
+          <ScalarProperty Name="iYouLiang" ColumnName="iYouLiang" />
+          <ScalarProperty Name="cJiaYouLeiXing" ColumnName="cJiaYouLeiXing" />
+          <ScalarProperty Name="cJiaYouKaHao" ColumnName="cJiaYouKaHao" />
+          <ScalarProperty Name="dJiaYouJiLu" ColumnName="dJiaYouJiLu" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KeHuDaLei">
       <EntityTypeMapping TypeName="EBMSystemModel.KeHuDaLei">
         <MappingFragment StoreEntitySet="KeHuDaLei">
-          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
-          <ScalarProperty Name="cDaLeiMingCheng" ColumnName="cDaLeiMingCheng" />
-          <ScalarProperty Name="iJiCi" ColumnName="iJiCi" />
           <ScalarProperty Name="bEnd" ColumnName="bEnd" />
+          <ScalarProperty Name="iJiCi" ColumnName="iJiCi" />
+          <ScalarProperty Name="cDaLeiMingCheng" ColumnName="cDaLeiMingCheng" />
+          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KeHuInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.KeHuInfo">
         <MappingFragment StoreEntitySet="KeHuInfo">
-          <ScalarProperty Name="cKeHuBianMa" ColumnName="cKeHuBianMa" />
-          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
-          <ScalarProperty Name="cKeHuMingCheng" ColumnName="cKeHuMingCheng" />
-          <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
-          <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
-          <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
-          <ScalarProperty Name="cFaRen" ColumnName="cFaRen" />
-          <ScalarProperty Name="cLianXiRen1" ColumnName="cLianXiRen1" />
-          <ScalarProperty Name="cLianXiRenShouJi1" ColumnName="cLianXiRenShouJi1" />
-          <ScalarProperty Name="cLianXiRen2" ColumnName="cLianXiRen2" />
-          <ScalarProperty Name="cLianXiRenShouJi2" ColumnName="cLianXiRenShouJi2" />
-          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
-          <ScalarProperty Name="cKaiHuMingCheng" ColumnName="cKaiHuMingCheng" />
-          <ScalarProperty Name="cKaiHuHang" ColumnName="cKaiHuHang" />
-          <ScalarProperty Name="cYinHangZhengHao" ColumnName="cYinHangZhengHao" />
-          <ScalarProperty Name="cNaShuiRenShiBieHao" ColumnName="cNaShuiRenShiBieHao" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cNaShuiRenShiBieHao" ColumnName="cNaShuiRenShiBieHao" />
+          <ScalarProperty Name="cYinHangZhengHao" ColumnName="cYinHangZhengHao" />
+          <ScalarProperty Name="cKaiHuHang" ColumnName="cKaiHuHang" />
+          <ScalarProperty Name="cKaiHuMingCheng" ColumnName="cKaiHuMingCheng" />
+          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
+          <ScalarProperty Name="cLianXiRenShouJi2" ColumnName="cLianXiRenShouJi2" />
+          <ScalarProperty Name="cLianXiRen2" ColumnName="cLianXiRen2" />
+          <ScalarProperty Name="cLianXiRenShouJi1" ColumnName="cLianXiRenShouJi1" />
+          <ScalarProperty Name="cLianXiRen1" ColumnName="cLianXiRen1" />
+          <ScalarProperty Name="cFaRen" ColumnName="cFaRen" />
+          <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
+          <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
+          <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
+          <ScalarProperty Name="cKeHuMingCheng" ColumnName="cKeHuMingCheng" />
+          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
+          <ScalarProperty Name="cKeHuBianMa" ColumnName="cKeHuBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NianJianJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.NianJianJiLu">
         <MappingFragment StoreEntitySet="NianJianJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="cNianJianLeiXing" ColumnName="cNianJianLeiXing" />
-          <ScalarProperty Name="dNianJianRiQi" ColumnName="dNianJianRiQi" />
-          <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
-          <ScalarProperty Name="cNianJianJiLu" ColumnName="cNianJianJiLu" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cNianJianJiLu" ColumnName="cNianJianJiLu" />
+          <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
+          <ScalarProperty Name="dNianJianRiQi" ColumnName="dNianJianRiQi" />
+          <ScalarProperty Name="cNianJianLeiXing" ColumnName="cNianJianLeiXing" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShangPinChuKu">
       <EntityTypeMapping TypeName="EBMSystemModel.ShangPinChuKu">
         <MappingFragment StoreEntitySet="ShangPinChuKu">
-          <ScalarProperty Name="gCKID" ColumnName="gCKID" />
-          <ScalarProperty Name="cChuKuBianMa" ColumnName="cChuKuBianMa" />
-          <ScalarProperty Name="dChuKuRiQi" ColumnName="dChuKuRiQi" />
-          <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
-          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
-          <ScalarProperty Name="iState" ColumnName="iState" />
-          <ScalarProperty Name="cState" ColumnName="cState" />
-          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
-          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
-          <ScalarProperty Name="cModify" ColumnName="cModify" />
-          <ScalarProperty Name="dModify" ColumnName="dModify" />
-          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
           <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
+          <ScalarProperty Name="dChuKuRiQi" ColumnName="dChuKuRiQi" />
+          <ScalarProperty Name="cChuKuBianMa" ColumnName="cChuKuBianMa" />
+          <ScalarProperty Name="gCKID" ColumnName="gCKID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShangPinChuKuS">
       <EntityTypeMapping TypeName="EBMSystemModel.ShangPinChuKuS">
         <MappingFragment StoreEntitySet="ShangPinChuKuS">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="gCKID" ColumnName="gCKID" />
-          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
-          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
-          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
-          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
-          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
-          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
           <ScalarProperty Name="iJinE" ColumnName="iJinE" />
+          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
+          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
+          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
+          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
+          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
+          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
+          <ScalarProperty Name="gCKID" ColumnName="gCKID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShangPinDaLei">
       <EntityTypeMapping TypeName="EBMSystemModel.ShangPinDaLei">
         <MappingFragment StoreEntitySet="ShangPinDaLei">
-          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
-          <ScalarProperty Name="cDaLeiMingCheng" ColumnName="cDaLeiMingCheng" />
-          <ScalarProperty Name="iJiCi" ColumnName="iJiCi" />
           <ScalarProperty Name="bEnd" ColumnName="bEnd" />
+          <ScalarProperty Name="iJiCi" ColumnName="iJiCi" />
+          <ScalarProperty Name="cDaLeiMingCheng" ColumnName="cDaLeiMingCheng" />
+          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShangPinInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.ShangPinInfo">
         <MappingFragment StoreEntitySet="ShangPinInfo">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
-          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
-          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
-          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
-          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
-          <ScalarProperty Name="iAnQuanKuCun" ColumnName="iAnQuanKuCun" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="iAnQuanKuCun" ColumnName="iAnQuanKuCun" />
+          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
+          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
+          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
+          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
+          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShangPinRuKu">
       <EntityTypeMapping TypeName="EBMSystemModel.ShangPinRuKu">
         <MappingFragment StoreEntitySet="ShangPinRuKu">
-          <ScalarProperty Name="gRKID" ColumnName="gRKID" />
-          <ScalarProperty Name="cRuKuBianMa" ColumnName="cRuKuBianMa" />
-          <ScalarProperty Name="dRuKuRiQi" ColumnName="dRuKuRiQi" />
-          <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
-          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
-          <ScalarProperty Name="iState" ColumnName="iState" />
-          <ScalarProperty Name="cState" ColumnName="cState" />
-          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
-          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
-          <ScalarProperty Name="cModify" ColumnName="cModify" />
-          <ScalarProperty Name="dModify" ColumnName="dModify" />
-          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
           <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
+          <ScalarProperty Name="dRuKuRiQi" ColumnName="dRuKuRiQi" />
+          <ScalarProperty Name="cRuKuBianMa" ColumnName="cRuKuBianMa" />
+          <ScalarProperty Name="gRKID" ColumnName="gRKID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShangPinRuKuS">
       <EntityTypeMapping TypeName="EBMSystemModel.ShangPinRuKuS">
         <MappingFragment StoreEntitySet="ShangPinRuKuS">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="gRKID" ColumnName="gRKID" />
-          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
-          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
-          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
-          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
-          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
-          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
           <ScalarProperty Name="iJinE" ColumnName="iJinE" />
+          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
+          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
+          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
+          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
+          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
+          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
+          <ScalarProperty Name="gRKID" ColumnName="gRKID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShiGuJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.ShiGuJiLu">
         <MappingFragment StoreEntitySet="ShiGuJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="dShiGuRiQi" ColumnName="dShiGuRiQi" />
-          <ScalarProperty Name="cZeRenGuiShu" ColumnName="cZeRenGuiShu" />
-          <ScalarProperty Name="cFaShengDiDian" ColumnName="cFaShengDiDian" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="cDuiFangChePai" ColumnName="cDuiFangChePai" />
-          <ScalarProperty Name="cDuiFangJiaShiYuan" ColumnName="cDuiFangJiaShiYuan" />
-          <ScalarProperty Name="cDuiFangDianHua" ColumnName="cDuiFangDianHua" />
-          <ScalarProperty Name="iPeiFuDuiFangJinE" ColumnName="iPeiFuDuiFangJinE" />
-          <ScalarProperty Name="iDuiFangPeiFuJinE" ColumnName="iDuiFangPeiFuJinE" />
-          <ScalarProperty Name="iGongShiChengDanJinE" ColumnName="iGongShiChengDanJinE" />
-          <ScalarProperty Name="iGeRenChengDanJinE" ColumnName="iGeRenChengDanJinE" />
-          <ScalarProperty Name="dChuLiRiQi" ColumnName="dChuLiRiQi" />
-          <ScalarProperty Name="cChuLiQingKuan" ColumnName="cChuLiQingKuan" />
-          <ScalarProperty Name="bShiFouChuXian" ColumnName="bShiFouChuXian" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="bShiFouChuXian" ColumnName="bShiFouChuXian" />
+          <ScalarProperty Name="cChuLiQingKuan" ColumnName="cChuLiQingKuan" />
+          <ScalarProperty Name="dChuLiRiQi" ColumnName="dChuLiRiQi" />
+          <ScalarProperty Name="iGeRenChengDanJinE" ColumnName="iGeRenChengDanJinE" />
+          <ScalarProperty Name="iGongShiChengDanJinE" ColumnName="iGongShiChengDanJinE" />
+          <ScalarProperty Name="iDuiFangPeiFuJinE" ColumnName="iDuiFangPeiFuJinE" />
+          <ScalarProperty Name="iPeiFuDuiFangJinE" ColumnName="iPeiFuDuiFangJinE" />
+          <ScalarProperty Name="cDuiFangDianHua" ColumnName="cDuiFangDianHua" />
+          <ScalarProperty Name="cDuiFangJiaShiYuan" ColumnName="cDuiFangJiaShiYuan" />
+          <ScalarProperty Name="cDuiFangChePai" ColumnName="cDuiFangChePai" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cFaShengDiDian" ColumnName="cFaShengDiDian" />
+          <ScalarProperty Name="cZeRenGuiShu" ColumnName="cZeRenGuiShu" />
+          <ScalarProperty Name="dShiGuRiQi" ColumnName="dShiGuRiQi" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sys_AbleHold">
       <EntityTypeMapping TypeName="EBMSystemModel.Sys_AbleHold">
         <MappingFragment StoreEntitySet="Sys_AbleHold">
-          <ScalarProperty Name="cAbleCode" ColumnName="cAbleCode" />
-          <ScalarProperty Name="cAbleName" ColumnName="cAbleName" />
-          <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
-          <ScalarProperty Name="bEdit" ColumnName="bEdit" />
-          <ScalarProperty Name="bPrint" ColumnName="bPrint" />
-          <ScalarProperty Name="bAudit" ColumnName="bAudit" />
-          <ScalarProperty Name="bUnAudit" ColumnName="bUnAudit" />
           <ScalarProperty Name="bExport" ColumnName="bExport" />
+          <ScalarProperty Name="bUnAudit" ColumnName="bUnAudit" />
+          <ScalarProperty Name="bAudit" ColumnName="bAudit" />
+          <ScalarProperty Name="bPrint" ColumnName="bPrint" />
+          <ScalarProperty Name="bEdit" ColumnName="bEdit" />
+          <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
+          <ScalarProperty Name="cAbleName" ColumnName="cAbleName" />
+          <ScalarProperty Name="cAbleCode" ColumnName="cAbleCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sys_AbleList">
       <EntityTypeMapping TypeName="EBMSystemModel.Sys_AbleList">
         <MappingFragment StoreEntitySet="Sys_AbleList">
-          <ScalarProperty Name="cAbleCode" ColumnName="cAbleCode" />
-          <ScalarProperty Name="cAbleName" ColumnName="cAbleName" />
-          <ScalarProperty Name="cAbleClass" ColumnName="cAbleClass" />
           <ScalarProperty Name="iGrade" ColumnName="iGrade" />
+          <ScalarProperty Name="cAbleClass" ColumnName="cAbleClass" />
+          <ScalarProperty Name="cAbleName" ColumnName="cAbleName" />
+          <ScalarProperty Name="cAbleCode" ColumnName="cAbleCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sys_User">
       <EntityTypeMapping TypeName="EBMSystemModel.Sys_User">
         <MappingFragment StoreEntitySet="Sys_User">
-          <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
-          <ScalarProperty Name="cUserName" ColumnName="cUserName" />
-          <ScalarProperty Name="cPassword" ColumnName="cPassword" />
-          <ScalarProperty Name="cGroupCode" ColumnName="cGroupCode" />
-          <ScalarProperty Name="bSelf" ColumnName="bSelf" />
-          <ScalarProperty Name="bIsAdmin" ColumnName="bIsAdmin" />
-          <ScalarProperty Name="bGroup" ColumnName="bGroup" />
           <ScalarProperty Name="bIsStop" ColumnName="bIsStop" />
+          <ScalarProperty Name="bGroup" ColumnName="bGroup" />
+          <ScalarProperty Name="bIsAdmin" ColumnName="bIsAdmin" />
+          <ScalarProperty Name="bSelf" ColumnName="bSelf" />
+          <ScalarProperty Name="cGroupCode" ColumnName="cGroupCode" />
+          <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+          <ScalarProperty Name="cUserName" ColumnName="cUserName" />
+          <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SystemSet">
       <EntityTypeMapping TypeName="EBMSystemModel.SystemSet">
         <MappingFragment StoreEntitySet="SystemSet">
-          <ScalarProperty Name="cItemCode" ColumnName="cItemCode" />
-          <ScalarProperty Name="cItemName" ColumnName="cItemName" />
-          <ScalarProperty Name="cItemValue" ColumnName="cItemValue" />
-          <ScalarProperty Name="iClass" ColumnName="iClass" />
           <ScalarProperty Name="cItemClass" ColumnName="cItemClass" />
+          <ScalarProperty Name="iClass" ColumnName="iClass" />
+          <ScalarProperty Name="cItemValue" ColumnName="cItemValue" />
+          <ScalarProperty Name="cItemName" ColumnName="cItemName" />
+          <ScalarProperty Name="cItemCode" ColumnName="cItemCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TuWeiInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.TuWeiInfo">
         <MappingFragment StoreEntitySet="TuWeiInfo">
-          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
-          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
-          <ScalarProperty Name="cLianXiRen" ColumnName="cLianXiRen" />
-          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
-          <ScalarProperty Name="cShouFeiFangShi" ColumnName="cShouFeiFangShi" />
-          <ScalarProperty Name="cTuWeiDiZhi" ColumnName="cTuWeiDiZhi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cTuWeiDiZhi" ColumnName="cTuWeiDiZhi" />
+          <ScalarProperty Name="cShouFeiFangShi" ColumnName="cShouFeiFangShi" />
+          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
+          <ScalarProperty Name="cLianXiRen" ColumnName="cLianXiRen" />
+          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VouchCode">
       <EntityTypeMapping TypeName="EBMSystemModel.VouchCode">
         <MappingFragment StoreEntitySet="VouchCode">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cVouchType" ColumnName="cVouchType" />
-          <ScalarProperty Name="cDate" ColumnName="cDate" />
           <ScalarProperty Name="iIndex" ColumnName="iIndex" />
+          <ScalarProperty Name="cDate" ColumnName="cDate" />
+          <ScalarProperty Name="cVouchType" ColumnName="cVouchType" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WaJueJiDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan">
         <MappingFragment StoreEntitySet="WaJueJiDingDan">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
-          <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="dKaiShiShiJian" ColumnName="dKaiShiShiJian" />
-          <ScalarProperty Name="dJieShuShiJian" ColumnName="dJieShuShiJian" />
-          <ScalarProperty Name="iXiaoShiShu" ColumnName="iXiaoShiShu" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
-          <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-          <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
-          <ScalarProperty Name="iState" ColumnName="iState" />
-          <ScalarProperty Name="cState" ColumnName="cState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
+          <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
+          <ScalarProperty Name="iXiaoShiShu" ColumnName="iXiaoShiShu" />
+          <ScalarProperty Name="dJieShuShiJian" ColumnName="dJieShuShiJian" />
+          <ScalarProperty Name="dKaiShiShiJian" ColumnName="dKaiShiShiJian" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="wechatAccessToken">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatAccessToken">
         <MappingFragment StoreEntitySet="wechatAccessToken">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="access_token" ColumnName="access_token" />
-          <ScalarProperty Name="expires_in" ColumnName="expires_in" />
           <ScalarProperty Name="addtime" ColumnName="addtime" />
+          <ScalarProperty Name="expires_in" ColumnName="expires_in" />
+          <ScalarProperty Name="access_token" ColumnName="access_token" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="wechatRole">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatRole">
         <MappingFragment StoreEntitySet="wechatRole">
-          <ScalarProperty Name="code" ColumnName="code" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="addtime" ColumnName="addtime" />
           <ScalarProperty Name="isdefault" ColumnName="isdefault" />
+          <ScalarProperty Name="addtime" ColumnName="addtime" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="wechatTram">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatTram">
         <MappingFragment StoreEntitySet="wechatTram">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
           <ScalarProperty Name="tramcode" ColumnName="tramcode" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="wechatUser">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatUser">
         <MappingFragment StoreEntitySet="wechatUser">
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="nickname" ColumnName="nickname" />
-          <ScalarProperty Name="sex" ColumnName="sex" />
-          <ScalarProperty Name="province" ColumnName="province" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="country" ColumnName="country" />
-          <ScalarProperty Name="headimgurl" ColumnName="headimgurl" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="audit" ColumnName="audit" />
-          <ScalarProperty Name="auditdes" ColumnName="auditdes" />
-          <ScalarProperty Name="role_code" ColumnName="role_code" />
-          <ScalarProperty Name="addtime" ColumnName="addtime" />
-          <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
-          <ScalarProperty Name="cShenFenZhengHao" ColumnName="cShenFenZhengHao" />
-          <ScalarProperty Name="cZhunJiaCheXing" ColumnName="cZhunJiaCheXing" />
-          <ScalarProperty Name="dRuZhiRiQi" ColumnName="dRuZhiRiQi" />
-          <ScalarProperty Name="cHuJi" ColumnName="cHuJi" />
-          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
-          <ScalarProperty Name="cJinJiLianXiRen" ColumnName="cJinJiLianXiRen" />
-          <ScalarProperty Name="cJinJiLianXiRenGuanXi" ColumnName="cJinJiLianXiRenGuanXi" />
-          <ScalarProperty Name="cJinJiLianXiDianHua" ColumnName="cJinJiLianXiDianHua" />
-          <ScalarProperty Name="cJiaShiYuanShuXing" ColumnName="cJiaShiYuanShuXing" />
-          <ScalarProperty Name="bStop" ColumnName="bStop" />
-          <ScalarProperty Name="dStop" ColumnName="dStop" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="dStop" ColumnName="dStop" />
+          <ScalarProperty Name="bStop" ColumnName="bStop" />
+          <ScalarProperty Name="cJiaShiYuanShuXing" ColumnName="cJiaShiYuanShuXing" />
+          <ScalarProperty Name="cJinJiLianXiDianHua" ColumnName="cJinJiLianXiDianHua" />
+          <ScalarProperty Name="cJinJiLianXiRenGuanXi" ColumnName="cJinJiLianXiRenGuanXi" />
+          <ScalarProperty Name="cJinJiLianXiRen" ColumnName="cJinJiLianXiRen" />
+          <ScalarProperty Name="cLianXiDianHua" ColumnName="cLianXiDianHua" />
+          <ScalarProperty Name="cHuJi" ColumnName="cHuJi" />
+          <ScalarProperty Name="dRuZhiRiQi" ColumnName="dRuZhiRiQi" />
+          <ScalarProperty Name="cZhunJiaCheXing" ColumnName="cZhunJiaCheXing" />
+          <ScalarProperty Name="cShenFenZhengHao" ColumnName="cShenFenZhengHao" />
+          <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
+          <ScalarProperty Name="addtime" ColumnName="addtime" />
+          <ScalarProperty Name="role_code" ColumnName="role_code" />
+          <ScalarProperty Name="auditdes" ColumnName="auditdes" />
+          <ScalarProperty Name="audit" ColumnName="audit" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="headimgurl" ColumnName="headimgurl" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WeiXiuJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.WeiXiuJiLu">
         <MappingFragment StoreEntitySet="WeiXiuJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="dWeiXiuRiQi" ColumnName="dWeiXiuRiQi" />
-          <ScalarProperty Name="cWeiXiuLeiXing" ColumnName="cWeiXiuLeiXing" />
-          <ScalarProperty Name="iWeiXiuGongShi" ColumnName="iWeiXiuGongShi" />
-          <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
-          <ScalarProperty Name="cWeiXiuJiLu" ColumnName="cWeiXiuJiLu" />
-          <ScalarProperty Name="iWeiXiuJinE" ColumnName="iWeiXiuJinE" />
-          <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
+          <ScalarProperty Name="iWeiXiuJinE" ColumnName="iWeiXiuJinE" />
+          <ScalarProperty Name="cWeiXiuJiLu" ColumnName="cWeiXiuJiLu" />
+          <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
+          <ScalarProperty Name="iWeiXiuGongShi" ColumnName="iWeiXiuGongShi" />
+          <ScalarProperty Name="cWeiXiuLeiXing" ColumnName="cWeiXiuLeiXing" />
+          <ScalarProperty Name="dWeiXiuRiQi" ColumnName="dWeiXiuRiQi" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WeiZhangJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.WeiZhangJiLu">
         <MappingFragment StoreEntitySet="WeiZhangJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
-          <ScalarProperty Name="dWeiZhangRiQi" ColumnName="dWeiZhangRiQi" />
-          <ScalarProperty Name="cWeiZhangLeiXing" ColumnName="cWeiZhangLeiXing" />
-          <ScalarProperty Name="cWeiZhangDiZhi" ColumnName="cWeiZhangDiZhi" />
-          <ScalarProperty Name="openid" ColumnName="openid" />
-          <ScalarProperty Name="iFaKuanJinE" ColumnName="iFaKuanJinE" />
-          <ScalarProperty Name="iZiFuJinE" ColumnName="iZiFuJinE" />
-          <ScalarProperty Name="bShiFouChuLi" ColumnName="bShiFouChuLi" />
-          <ScalarProperty Name="dChuLiRiQi" ColumnName="dChuLiRiQi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="dChuLiRiQi" ColumnName="dChuLiRiQi" />
+          <ScalarProperty Name="bShiFouChuLi" ColumnName="bShiFouChuLi" />
+          <ScalarProperty Name="iZiFuJinE" ColumnName="iZiFuJinE" />
+          <ScalarProperty Name="iFaKuanJinE" ColumnName="iFaKuanJinE" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cWeiZhangDiZhi" ColumnName="cWeiZhangDiZhi" />
+          <ScalarProperty Name="cWeiZhangLeiXing" ColumnName="cWeiZhangLeiXing" />
+          <ScalarProperty Name="dWeiZhangRiQi" ColumnName="dWeiZhangRiQi" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="XianLuInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.XianLuInfo">
         <MappingFragment StoreEntitySet="XianLuInfo">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
-          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
-          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
-          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
-          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
-          <ScalarProperty Name="iGongLiShu" ColumnName="iGongLiShu" />
-          <ScalarProperty Name="iJinE" ColumnName="iJinE" />
-          <ScalarProperty Name="iShiJian" ColumnName="iShiJian" />
-          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
-          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
-          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
-          <ScalarProperty Name="iState" ColumnName="iState" />
-          <ScalarProperty Name="cState" ColumnName="cState" />
-          <ScalarProperty Name="bStop" ColumnName="bStop" />
           <ScalarProperty Name="dStop" ColumnName="dStop" />
+          <ScalarProperty Name="bStop" ColumnName="bStop" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="iShiJian" ColumnName="iShiJian" />
+          <ScalarProperty Name="iJinE" ColumnName="iJinE" />
+          <ScalarProperty Name="iGongLiShu" ColumnName="iGongLiShu" />
+          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="XieZuoDanWeiDaLei">
       <EntityTypeMapping TypeName="EBMSystemModel.XieZuoDanWeiDaLei">
         <MappingFragment StoreEntitySet="XieZuoDanWeiDaLei">
-          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
-          <ScalarProperty Name="cDaLeiMingCheng" ColumnName="cDaLeiMingCheng" />
-          <ScalarProperty Name="iJiCi" ColumnName="iJiCi" />
           <ScalarProperty Name="bEnd" ColumnName="bEnd" />
+          <ScalarProperty Name="iJiCi" ColumnName="iJiCi" />
+          <ScalarProperty Name="cDaLeiMingCheng" ColumnName="cDaLeiMingCheng" />
+          <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="XieZuoDanWeiInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.XieZuoDanWeiInfo">
         <MappingFragment StoreEntitySet="XieZuoDanWeiInfo">
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
-          <ScalarProperty Name="cXZDWMingCheng" ColumnName="cXZDWMingCheng" />
-          <ScalarProperty Name="cXZDWDaLeiBianMa" ColumnName="cXZDWDaLeiBianMa" />
-          <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
-          <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
-          <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
-          <ScalarProperty Name="cFaRen" ColumnName="cFaRen" />
-          <ScalarProperty Name="cLianXiRen1" ColumnName="cLianXiRen1" />
-          <ScalarProperty Name="cLianXiDianHua1" ColumnName="cLianXiDianHua1" />
-          <ScalarProperty Name="cLianXiRen2" ColumnName="cLianXiRen2" />
-          <ScalarProperty Name="cLianXiDianHua2" ColumnName="cLianXiDianHua2" />
-          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
-          <ScalarProperty Name="cKaiHuMingCheng" ColumnName="cKaiHuMingCheng" />
-          <ScalarProperty Name="cKaiHuHang" ColumnName="cKaiHuHang" />
-          <ScalarProperty Name="cYinHangZhangHao" ColumnName="cYinHangZhangHao" />
-          <ScalarProperty Name="cNaShuiRenShiBieHao" ColumnName="cNaShuiRenShiBieHao" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cNaShuiRenShiBieHao" ColumnName="cNaShuiRenShiBieHao" />
+          <ScalarProperty Name="cYinHangZhangHao" ColumnName="cYinHangZhangHao" />
+          <ScalarProperty Name="cKaiHuHang" ColumnName="cKaiHuHang" />
+          <ScalarProperty Name="cKaiHuMingCheng" ColumnName="cKaiHuMingCheng" />
+          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
+          <ScalarProperty Name="cLianXiDianHua2" ColumnName="cLianXiDianHua2" />
+          <ScalarProperty Name="cLianXiRen2" ColumnName="cLianXiRen2" />
+          <ScalarProperty Name="cLianXiDianHua1" ColumnName="cLianXiDianHua1" />
+          <ScalarProperty Name="cLianXiRen1" ColumnName="cLianXiRen1" />
+          <ScalarProperty Name="cFaRen" ColumnName="cFaRen" />
+          <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
+          <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
+          <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
+          <ScalarProperty Name="cXZDWDaLeiBianMa" ColumnName="cXZDWDaLeiBianMa" />
+          <ScalarProperty Name="cXZDWMingCheng" ColumnName="cXZDWMingCheng" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="YeZhuHuiYiJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.YeZhuHuiYiJiLu">
         <MappingFragment StoreEntitySet="YeZhuHuiYiJiLu">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
-          <ScalarProperty Name="dKaiHuiRiQi" ColumnName="dKaiHuiRiQi" />
-          <ScalarProperty Name="cHuiYiYiTi" ColumnName="cHuiYiYiTi" />
-          <ScalarProperty Name="cKaiHuiDiDian" ColumnName="cKaiHuiDiDian" />
-          <ScalarProperty Name="cCanHuiRenYuan" ColumnName="cCanHuiRenYuan" />
-          <ScalarProperty Name="cHuiYiNeiRong" ColumnName="cHuiYiNeiRong" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cHuiYiNeiRong" ColumnName="cHuiYiNeiRong" />
+          <ScalarProperty Name="cCanHuiRenYuan" ColumnName="cCanHuiRenYuan" />
+          <ScalarProperty Name="cKaiHuiDiDian" ColumnName="cKaiHuiDiDian" />
+          <ScalarProperty Name="cHuiYiYiTi" ColumnName="cHuiYiYiTi" />
+          <ScalarProperty Name="dKaiHuiRiQi" ColumnName="dKaiHuiRiQi" />
+          <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="YeZhuInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.YeZhuInfo">
         <MappingFragment StoreEntitySet="YeZhuInfo">
-          <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
-          <ScalarProperty Name="cQiYeMingCheng" ColumnName="cQiYeMingCheng" />
-          <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
-          <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
-          <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
-          <ScalarProperty Name="cFaRen" ColumnName="cFaRen" />
-          <ScalarProperty Name="cLianXiRen1" ColumnName="cLianXiRen1" />
-          <ScalarProperty Name="cShouJiHao1" ColumnName="cShouJiHao1" />
-          <ScalarProperty Name="cLianXiRen2" ColumnName="cLianXiRen2" />
-          <ScalarProperty Name="cShouJiHao2" ColumnName="cShouJiHao2" />
-          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
-          <ScalarProperty Name="cKaiHuMingCheng" ColumnName="cKaiHuMingCheng" />
-          <ScalarProperty Name="cKaiHuHang" ColumnName="cKaiHuHang" />
-          <ScalarProperty Name="cYinHangZhangHao" ColumnName="cYinHangZhangHao" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cYinHangZhangHao" ColumnName="cYinHangZhangHao" />
+          <ScalarProperty Name="cKaiHuHang" ColumnName="cKaiHuHang" />
+          <ScalarProperty Name="cKaiHuMingCheng" ColumnName="cKaiHuMingCheng" />
+          <ScalarProperty Name="cZuoJi" ColumnName="cZuoJi" />
+          <ScalarProperty Name="cShouJiHao2" ColumnName="cShouJiHao2" />
+          <ScalarProperty Name="cLianXiRen2" ColumnName="cLianXiRen2" />
+          <ScalarProperty Name="cShouJiHao1" ColumnName="cShouJiHao1" />
+          <ScalarProperty Name="cLianXiRen1" ColumnName="cLianXiRen1" />
+          <ScalarProperty Name="cFaRen" ColumnName="cFaRen" />
+          <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
+          <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
+          <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
+          <ScalarProperty Name="cQiYeMingCheng" ColumnName="cQiYeMingCheng" />
+          <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="PD_BaseCode" FunctionName="EBMSystemModel.Store.PD_BaseCode" />
-    <FunctionImportMapping FunctionImportName="PD_VouchCode" FunctionName="EBMSystemModel.Store.PD_VouchCode" />
+    <EntitySetMapping Name="GongChengCheDingDan_View">
+      <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan_View">
+        <MappingFragment StoreEntitySet="GongChengCheDingDan_View">
+          <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
+          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cTWState" ColumnName="cTWState" />
+          <ScalarProperty Name="iTWState" ColumnName="iTWState" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
+          <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
+          <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
+          <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WaJueJiDingDan_View">
+      <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan_View">
+        <MappingFragment StoreEntitySet="WaJueJiDingDan_View">
+          <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
+          <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
+          <ScalarProperty Name="iXiaoShiShu" ColumnName="iXiaoShiShu" />
+          <ScalarProperty Name="dJieShuShiJian" ColumnName="dJieShuShiJian" />
+          <ScalarProperty Name="dKaiShiShiJian" ColumnName="dKaiShiShiJian" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -77,6 +77,9 @@
     <Compile Include="GongChengCheDingDan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="GongChengCheDingDan_View.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="GongDiCheLiang.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -157,6 +160,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="WaJueJiDingDan.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaJueJiDingDan_View.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="wechatAccessToken.cs">

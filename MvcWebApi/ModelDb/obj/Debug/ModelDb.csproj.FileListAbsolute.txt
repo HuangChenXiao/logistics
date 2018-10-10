@@ -48,3 +48,15 @@ D:\Code\API-Niuchao\trunk\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.Sq
 D:\Code\API-Niuchao\trunk\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache
 D:\Code\API-Niuchao\trunk\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
 D:\Code\API-Niuchao\trunk\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.dll.config
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.dll
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.pdb
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.dll
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.SqlServer.dll
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.xml
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.SqlServer.xml
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache
+F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
+F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb
