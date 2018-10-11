@@ -1,5 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EBMSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EBMSystemEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="PD_BaseCode">
+      <Parameter Name="NewCode" Mode="InOut" Type="String" />
+      <Parameter Name="VouchType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PD_VouchCode">
+      <Parameter Name="NewCode" Mode="InOut" Type="String" />
+      <Parameter Name="RiQi" Mode="In" Type="DateTime" />
+      <Parameter Name="VouchType" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="BangDingJiLu" EntityType="EBMSystemModel.BangDingJiLu" />
+    <EntitySet Name="BaoXianJiLu" EntityType="EBMSystemModel.BaoXianJiLu" />
+    <EntitySet Name="BaoYangJiLu" EntityType="EBMSystemModel.BaoYangJiLu" />
+    <EntitySet Name="BaseCode" EntityType="EBMSystemModel.BaseCode" />
+    <EntitySet Name="CangKuInfo" EntityType="EBMSystemModel.CangKuInfo" />
+    <EntitySet Name="CheLiangInfo" EntityType="EBMSystemModel.CheLiangInfo" />
+    <EntitySet Name="GongChengCheDingDan" EntityType="EBMSystemModel.GongChengCheDingDan" />
+    <EntitySet Name="GongDiCheLiang" EntityType="EBMSystemModel.GongDiCheLiang" />
+    <EntitySet Name="GongDiInfo" EntityType="EBMSystemModel.GongDiInfo" />
+    <EntitySet Name="GongDiXianLu" EntityType="EBMSystemModel.GongDiXianLu" />
+    <EntitySet Name="GradeDef" EntityType="EBMSystemModel.GradeDef" />
+    <EntitySet Name="JiaYouJiLu" EntityType="EBMSystemModel.JiaYouJiLu" />
+    <EntitySet Name="KeHuDaLei" EntityType="EBMSystemModel.KeHuDaLei" />
+    <EntitySet Name="KeHuInfo" EntityType="EBMSystemModel.KeHuInfo" />
+    <EntitySet Name="NianJianJiLu" EntityType="EBMSystemModel.NianJianJiLu" />
+    <EntitySet Name="ShangPinChuKu" EntityType="EBMSystemModel.ShangPinChuKu" />
+    <EntitySet Name="ShangPinChuKuS" EntityType="EBMSystemModel.ShangPinChuKuS" />
+    <EntitySet Name="ShangPinDaLei" EntityType="EBMSystemModel.ShangPinDaLei" />
+    <EntitySet Name="ShangPinInfo" EntityType="EBMSystemModel.ShangPinInfo" />
+    <EntitySet Name="ShangPinRuKu" EntityType="EBMSystemModel.ShangPinRuKu" />
+    <EntitySet Name="ShangPinRuKuS" EntityType="EBMSystemModel.ShangPinRuKuS" />
+    <EntitySet Name="ShiGuJiLu" EntityType="EBMSystemModel.ShiGuJiLu" />
+    <EntitySet Name="Sys_AbleHold" EntityType="EBMSystemModel.Sys_AbleHold" />
+    <EntitySet Name="Sys_AbleList" EntityType="EBMSystemModel.Sys_AbleList" />
+    <EntitySet Name="Sys_User" EntityType="EBMSystemModel.Sys_User" />
+    <EntitySet Name="SystemSet" EntityType="EBMSystemModel.SystemSet" />
+    <EntitySet Name="TuWeiInfo" EntityType="EBMSystemModel.TuWeiInfo" />
+    <EntitySet Name="VouchCode" EntityType="EBMSystemModel.VouchCode" />
+    <EntitySet Name="WaJueJiDingDan" EntityType="EBMSystemModel.WaJueJiDingDan" />
+    <EntitySet Name="wechatAccessToken" EntityType="EBMSystemModel.wechatAccessToken" />
+    <EntitySet Name="wechatRole" EntityType="EBMSystemModel.wechatRole" />
+    <EntitySet Name="wechatTram" EntityType="EBMSystemModel.wechatTram" />
+    <EntitySet Name="wechatUser" EntityType="EBMSystemModel.wechatUser" />
+    <EntitySet Name="WeiXiuJiLu" EntityType="EBMSystemModel.WeiXiuJiLu" />
+    <EntitySet Name="WeiZhangJiLu" EntityType="EBMSystemModel.WeiZhangJiLu" />
+    <EntitySet Name="XianLuInfo" EntityType="EBMSystemModel.XianLuInfo" />
+    <EntitySet Name="XieZuoDanWeiDaLei" EntityType="EBMSystemModel.XieZuoDanWeiDaLei" />
+    <EntitySet Name="XieZuoDanWeiInfo" EntityType="EBMSystemModel.XieZuoDanWeiInfo" />
+    <EntitySet Name="YeZhuHuiYiJiLu" EntityType="EBMSystemModel.YeZhuHuiYiJiLu" />
+    <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
+    <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
+    <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
+  </EntityContainer>
   <EntityType Name="BangDingJiLu">
     <Key>
       <PropertyRef Name="AutoID" />
@@ -32,7 +85,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cBaoYangLeiXing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="dBaoYangRiQi" Type="DateTime" Precision="3" />
     <Property Name="iBaoYangGongShi" Type="Decimal" Precision="19" Scale="4" />
@@ -54,7 +107,7 @@
     <Key>
       <PropertyRef Name="cCangKuBianMa" />
     </Key>
-    <Property Name="cCangKuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cCangKuBianMa" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cCangKuMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cDiZhi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cLianXiRen" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -115,7 +168,7 @@
     <Key>
       <PropertyRef Name="cGongDiBianMa" />
     </Key>
-    <Property Name="cGongDiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cGongDiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cYeZhuBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cYeZhuMingCheng" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -163,7 +216,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="dJiaYouJiLu" Type="DateTime" Precision="3" />
     <Property Name="cJiaYouKaHao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cJiaYouLeiXing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -177,7 +230,7 @@
     <Key>
       <PropertyRef Name="cDaLeiBianMa" />
     </Key>
-    <Property Name="cDaLeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cDaLeiBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cDaLeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="iJiCi" Type="Int32" />
     <Property Name="bEnd" Type="Boolean" />
@@ -186,7 +239,7 @@
     <Key>
       <PropertyRef Name="cKeHuBianMa" />
     </Key>
-    <Property Name="cKeHuBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cKeHuBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cDaLeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cKeHuMingCheng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="cZhuCeDiZhi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -209,7 +262,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cNianJianLeiXing" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dNianJianRiQi" Type="DateTime" Precision="3" />
     <Property Name="dDaoQiRiQi" Type="DateTime" Precision="3" />
@@ -252,7 +305,7 @@
     <Key>
       <PropertyRef Name="cDaLeiBianMa" />
     </Key>
-    <Property Name="cDaLeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cDaLeiBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cDaLeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="iJiCi" Type="Int32" />
     <Property Name="bEnd" Type="Boolean" />
@@ -307,7 +360,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="dShiGuRiQi" Type="DateTime" Precision="3" />
     <Property Name="cZeRenGuiShu" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
     <Property Name="cFaShengDiDian" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -329,9 +382,9 @@
       <PropertyRef Name="cAbleCode" />
       <PropertyRef Name="cUserCode" />
     </Key>
-    <Property Name="cAbleCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cAbleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cUserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cAbleCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cAbleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cUserCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="bEdit" Type="Boolean" />
     <Property Name="bPrint" Type="Boolean" />
     <Property Name="bAudit" Type="Boolean" />
@@ -342,8 +395,8 @@
     <Key>
       <PropertyRef Name="cAbleCode" />
     </Key>
-    <Property Name="cAbleCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cAbleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cAbleCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cAbleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cAbleClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="iGrade" Type="Int32" />
   </EntityType>
@@ -351,7 +404,7 @@
     <Key>
       <PropertyRef Name="cUserCode" />
     </Key>
-    <Property Name="cUserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cUserCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cUserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cGroupCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -364,8 +417,8 @@
     <Key>
       <PropertyRef Name="cItemCode" />
     </Key>
-    <Property Name="cItemCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cItemCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cItemValue" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="iClass" Type="Byte" Nullable="false" />
     <Property Name="cItemClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -374,7 +427,7 @@
     <Key>
       <PropertyRef Name="cTuWeiBianMa" />
     </Key>
-    <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cTuWeiBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cTuWeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cLianXiRen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cLianXiDianHua" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -423,7 +476,7 @@
     <Key>
       <PropertyRef Name="code" />
     </Key>
-    <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="addtime" Type="DateTime" Precision="3" />
     <Property Name="isdefault" Type="Boolean" />
@@ -440,7 +493,7 @@
     <Key>
       <PropertyRef Name="openid" />
     </Key>
-    <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="openid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="sex" Type="Int32" />
     <Property Name="province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -471,7 +524,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="dWeiXiuRiQi" Type="DateTime" Precision="3" />
     <Property Name="cWeiXiuLeiXing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="iWeiXiuGongShi" Type="Decimal" Precision="19" Scale="4" />
@@ -486,7 +539,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="dWeiZhangRiQi" Type="DateTime" Precision="3" />
     <Property Name="cWeiZhangLeiXing" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cWeiZhangDiZhi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -522,7 +575,7 @@
     <Key>
       <PropertyRef Name="cDaLeiBianMa" />
     </Key>
-    <Property Name="cDaLeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cDaLeiBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cDaLeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="iJiCi" Type="Int32" />
     <Property Name="bEnd" Type="Boolean" />
@@ -531,7 +584,7 @@
     <Key>
       <PropertyRef Name="cXZDWBianMa" />
     </Key>
-    <Property Name="cXZDWBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cXZDWBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cXZDWMingCheng" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="cXZDWDaLeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cZhuCeDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -566,7 +619,7 @@
     <Key>
       <PropertyRef Name="cYeZhuBianMa" />
     </Key>
-    <Property Name="cYeZhuBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cYeZhuBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cQiYeMingCheng" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="cZhuCeDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="cBanGongDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -582,55 +635,47 @@
     <Property Name="cYinHangZhangHao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cBeiZhu" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityContainer Name="EBMSystemEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="BangDingJiLu" EntityType="Self.BangDingJiLu" />
-    <EntitySet Name="BaoXianJiLu" EntityType="Self.BaoXianJiLu" />
-    <EntitySet Name="BaoYangJiLu" EntityType="Self.BaoYangJiLu" />
-    <EntitySet Name="BaseCode" EntityType="Self.BaseCode" />
-    <EntitySet Name="CangKuInfo" EntityType="Self.CangKuInfo" />
-    <EntitySet Name="CheLiangInfo" EntityType="Self.CheLiangInfo" />
-    <EntitySet Name="GongChengCheDingDan" EntityType="Self.GongChengCheDingDan" />
-    <EntitySet Name="GongDiCheLiang" EntityType="Self.GongDiCheLiang" />
-    <EntitySet Name="GongDiInfo" EntityType="Self.GongDiInfo" />
-    <EntitySet Name="GongDiXianLu" EntityType="Self.GongDiXianLu" />
-    <EntitySet Name="GradeDef" EntityType="Self.GradeDef" />
-    <EntitySet Name="JiaYouJiLu" EntityType="Self.JiaYouJiLu" />
-    <EntitySet Name="KeHuDaLei" EntityType="Self.KeHuDaLei" />
-    <EntitySet Name="KeHuInfo" EntityType="Self.KeHuInfo" />
-    <EntitySet Name="NianJianJiLu" EntityType="Self.NianJianJiLu" />
-    <EntitySet Name="ShangPinChuKu" EntityType="Self.ShangPinChuKu" />
-    <EntitySet Name="ShangPinChuKuS" EntityType="Self.ShangPinChuKuS" />
-    <EntitySet Name="ShangPinDaLei" EntityType="Self.ShangPinDaLei" />
-    <EntitySet Name="ShangPinInfo" EntityType="Self.ShangPinInfo" />
-    <EntitySet Name="ShangPinRuKu" EntityType="Self.ShangPinRuKu" />
-    <EntitySet Name="ShangPinRuKuS" EntityType="Self.ShangPinRuKuS" />
-    <EntitySet Name="ShiGuJiLu" EntityType="Self.ShiGuJiLu" />
-    <EntitySet Name="Sys_AbleHold" EntityType="Self.Sys_AbleHold" />
-    <EntitySet Name="Sys_AbleList" EntityType="Self.Sys_AbleList" />
-    <EntitySet Name="Sys_User" EntityType="Self.Sys_User" />
-    <EntitySet Name="SystemSet" EntityType="Self.SystemSet" />
-    <EntitySet Name="TuWeiInfo" EntityType="Self.TuWeiInfo" />
-    <EntitySet Name="VouchCode" EntityType="Self.VouchCode" />
-    <EntitySet Name="WaJueJiDingDan" EntityType="Self.WaJueJiDingDan" />
-    <EntitySet Name="wechatAccessToken" EntityType="Self.wechatAccessToken" />
-    <EntitySet Name="wechatRole" EntityType="Self.wechatRole" />
-    <EntitySet Name="wechatTram" EntityType="Self.wechatTram" />
-    <EntitySet Name="wechatUser" EntityType="Self.wechatUser" />
-    <EntitySet Name="WeiXiuJiLu" EntityType="Self.WeiXiuJiLu" />
-    <EntitySet Name="WeiZhangJiLu" EntityType="Self.WeiZhangJiLu" />
-    <EntitySet Name="XianLuInfo" EntityType="Self.XianLuInfo" />
-    <EntitySet Name="XieZuoDanWeiDaLei" EntityType="Self.XieZuoDanWeiDaLei" />
-    <EntitySet Name="XieZuoDanWeiInfo" EntityType="Self.XieZuoDanWeiInfo" />
-    <EntitySet Name="YeZhuHuiYiJiLu" EntityType="Self.YeZhuHuiYiJiLu" />
-    <EntitySet Name="YeZhuInfo" EntityType="Self.YeZhuInfo" />
-    <FunctionImport Name="PD_BaseCode">
-      <Parameter Name="NewCode" Mode="InOut" Type="String" />
-      <Parameter Name="VouchType" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="PD_VouchCode">
-      <Parameter Name="NewCode" Mode="InOut" Type="String" />
-      <Parameter Name="RiQi" Mode="In" Type="DateTime" />
-      <Parameter Name="VouchType" Mode="In" Type="String" />
-    </FunctionImport>
-  </EntityContainer>
+  <EntityType Name="GongChengCheDingDan_View">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="Int64" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dDanJuRiQi" Type="DateTime" Precision="3" />
+    <Property Name="cChePaiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dQiYunShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
+    <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="iState" Type="Int32" />
+    <Property Name="cState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="iTWState" Type="Int32" />
+    <Property Name="cTWState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cGongDiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cTuWeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WaJueJiDingDan_View">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="Int64" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dDanJuRiQi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cChePaiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dKaiShiShiJian" Type="DateTime" Precision="3" />
+    <Property Name="dJieShuShiJian" Type="DateTime" Precision="3" />
+    <Property Name="iXiaoShiShu" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
+    <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="iState" Type="Int32" />
+    <Property Name="cState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

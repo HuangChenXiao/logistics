@@ -16,7 +16,7 @@ namespace ModelDb
     {
         public long AutoID { get; set; }
         public string cGongDiBianMa { get; set; }
-        public string dDanJuRiQi { get; set; }
+        public Nullable<System.DateTime> dDanJuRiQi { get; set; }
         public string cChePaiHao { get; set; }
         public string openid { get; set; }
         public Nullable<System.DateTime> dKaiShiShiJian { get; set; }
@@ -29,5 +29,6 @@ namespace ModelDb
         public string cState { get; set; }
         public string cBeiZhu { get; set; }
         public string cXingMing { get; set; }
+        public string cGongDiMingCheng { get; set; }
     }
 }

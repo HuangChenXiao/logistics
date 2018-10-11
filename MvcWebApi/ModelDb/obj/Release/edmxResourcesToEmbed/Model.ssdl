@@ -582,6 +582,53 @@
     <Property Name="cYinHangZhangHao" Type="varchar" MaxLength="50" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="200" />
   </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“EBMSystem.dbo.GongChengCheDingDan_View”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="GongChengCheDingDan_View">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dDanJuRiQi" Type="datetime" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="dQiYunShiJian" Type="nvarchar" MaxLength="50" />
+    <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dQueRenShiJian" Type="datetime" />
+    <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="30" />
+    <Property Name="iTWState" Type="int" />
+    <Property Name="cTWState" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cTuWeiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“EBMSystem.dbo.WaJueJiDingDan_View”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="WaJueJiDingDan_View">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" Nullable="false" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dDanJuRiQi" Type="nvarchar" MaxLength="50" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
+    <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="dKaiShiShiJian" Type="datetime" />
+    <Property Name="dJieShuShiJian" Type="datetime" />
+    <Property Name="iXiaoShiShu" Type="money" />
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="dQueRenShiJian" Type="datetime" />
+    <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
+  </EntityType>
   <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
     <Parameter Name="VouchType" Type="varchar" Mode="In" />
@@ -632,5 +679,46 @@
     <EntitySet Name="XieZuoDanWeiInfo" EntityType="Self.XieZuoDanWeiInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YeZhuHuiYiJiLu" EntityType="Self.YeZhuHuiYiJiLu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YeZhuInfo" EntityType="Self.YeZhuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GongChengCheDingDan_View" EntityType="Self.GongChengCheDingDan_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GongChengCheDingDan_View].[AutoID] AS [AutoID], 
+    [GongChengCheDingDan_View].[cGongDiBianMa] AS [cGongDiBianMa], 
+    [GongChengCheDingDan_View].[dDanJuRiQi] AS [dDanJuRiQi], 
+    [GongChengCheDingDan_View].[cChePaiHao] AS [cChePaiHao], 
+    [GongChengCheDingDan_View].[openid] AS [openid], 
+    [GongChengCheDingDan_View].[dQiYunShiJian] AS [dQiYunShiJian], 
+    [GongChengCheDingDan_View].[cXianLuBianMa] AS [cXianLuBianMa], 
+    [GongChengCheDingDan_View].[cXZDWBianMa] AS [cXZDWBianMa], 
+    [GongChengCheDingDan_View].[dQueRenShiJian] AS [dQueRenShiJian], 
+    [GongChengCheDingDan_View].[cGuanLiYuanBianMa] AS [cGuanLiYuanBianMa], 
+    [GongChengCheDingDan_View].[iState] AS [iState], 
+    [GongChengCheDingDan_View].[cState] AS [cState], 
+    [GongChengCheDingDan_View].[iTWState] AS [iTWState], 
+    [GongChengCheDingDan_View].[cTWState] AS [cTWState], 
+    [GongChengCheDingDan_View].[cBeiZhu] AS [cBeiZhu], 
+    [GongChengCheDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng], 
+    [GongChengCheDingDan_View].[cTuWeiMingCheng] AS [cTuWeiMingCheng], 
+    [GongChengCheDingDan_View].[cXingMing] AS [cXingMing]
+    FROM [dbo].[GongChengCheDingDan_View] AS [GongChengCheDingDan_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="WaJueJiDingDan_View" EntityType="Self.WaJueJiDingDan_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [WaJueJiDingDan_View].[AutoID] AS [AutoID], 
+    [WaJueJiDingDan_View].[cGongDiBianMa] AS [cGongDiBianMa], 
+    [WaJueJiDingDan_View].[dDanJuRiQi] AS [dDanJuRiQi], 
+    [WaJueJiDingDan_View].[cChePaiHao] AS [cChePaiHao], 
+    [WaJueJiDingDan_View].[openid] AS [openid], 
+    [WaJueJiDingDan_View].[dKaiShiShiJian] AS [dKaiShiShiJian], 
+    [WaJueJiDingDan_View].[dJieShuShiJian] AS [dJieShuShiJian], 
+    [WaJueJiDingDan_View].[iXiaoShiShu] AS [iXiaoShiShu], 
+    [WaJueJiDingDan_View].[cXZDWBianMa] AS [cXZDWBianMa], 
+    [WaJueJiDingDan_View].[dQueRenShiJian] AS [dQueRenShiJian], 
+    [WaJueJiDingDan_View].[cGuanLiYuanBianMa] AS [cGuanLiYuanBianMa], 
+    [WaJueJiDingDan_View].[iState] AS [iState], 
+    [WaJueJiDingDan_View].[cState] AS [cState], 
+    [WaJueJiDingDan_View].[cBeiZhu] AS [cBeiZhu], 
+    [WaJueJiDingDan_View].[cXingMing] AS [cXingMing]
+    FROM [dbo].[WaJueJiDingDan_View] AS [WaJueJiDingDan_View]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

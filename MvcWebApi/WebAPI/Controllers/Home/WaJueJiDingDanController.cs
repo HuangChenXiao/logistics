@@ -52,6 +52,7 @@ namespace WebAPI.Controllers.Home
         {
             WaJueJiDingDan.iState = 0;
             WaJueJiDingDan.dDanJuRiQi = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            WaJueJiDingDan.dKaiShiShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             db.WaJueJiDingDan.Add(WaJueJiDingDan);
             try
             {

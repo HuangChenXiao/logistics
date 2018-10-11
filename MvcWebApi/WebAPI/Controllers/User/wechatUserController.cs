@@ -81,20 +81,29 @@ namespace WebAPI.Controllers.User
         [ResponseType(typeof(wechatUser))]
         public IHttpActionResult PostwechatUser(wechatUser wechatUser)
         {
-            wechatUser.status = 0;
-            wechatUser.audit = 0;
-            wechatUser.addtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            db.wechatUser.Add(wechatUser);
-            try
+            var info = db.wechatUser.Where(o => o.openid == wechatUser.openid);
+            if (info != null)
             {
-                db.SaveChanges();
-                model.message = "新增成功";
-                model.status_code = 200;
-            }
-            catch (Exception ex)
-            {
-                model.message = ex.Message;
+                model.message = "微信号已经授权，退出后重新进入";
                 model.status_code = 401;
+            }
+            else
+            {
+                wechatUser.status = 0;
+                wechatUser.audit = 0;
+                wechatUser.addtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                db.wechatUser.Add(wechatUser);
+                try
+                {
+                    db.SaveChanges();
+                    model.message = "新增成功";
+                    model.status_code = 200;
+                }
+                catch (Exception ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
