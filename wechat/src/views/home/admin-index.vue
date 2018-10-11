@@ -13,6 +13,18 @@
         <i class="ico ico-ad" onclick="location.reload()"></i>
       </div>
 
+      <div class="work">
+        <div class="work-item sb-item" v-if="work_status==0">
+          <i class="ico ico-sb"></i>
+          <span>上班</span>
+        </div>
+        <div class="work-item xb-item" v-if="work_status==1">
+          <i class="ico ico-xb"></i>
+          <span>下班</span>
+        </div>
+        
+                {{bItem}}
+      </div>
       <div>
         <tab :line-width=2 active-color='#f00' v-model="index">
           <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
@@ -28,6 +40,7 @@
                       选择
                     </div>
                     <span>{{bItem.cXZDWMingCheng}}</span>
+                    <div class="ico-clear" v-if="bItem.cXZDWMingCheng" @click="chepai_change()"></div>
                   </div>
                 </div>
                 <div class="group-item">
@@ -37,6 +50,7 @@
                       选择
                     </div>
                     <span>{{bItem.cChePaiHao}}</span>
+                    <div class="ico-clear" v-if="bItem.cChePaiHao" @click="cheliang_change()"></div>
                   </div>
                 </div>
                 <div class="group-item">
@@ -46,6 +60,7 @@
                       选择
                     </div>
                     <span>{{bItem.cXianLuBianMa}}</span>
+                    <div class="ico-clear" v-if="bItem.cXianLuBianMa" @click="bItem.cXianLuBianMa=null"></div>
                   </div>
                 </div>
                 <!-- <selector title="合作单位"  v-model="value2"></selector>
@@ -65,6 +80,8 @@
                     <div class="btn-select" @click="showCooperation=true">
                       选择
                     </div>
+                    <span>{{bItem.cXZDWMingCheng}}</span>
+                    <div class="ico-clear" v-if="bItem.cXZDWMingCheng" @click="chepai_change()"></div>
                   </div>
                 </div>
                 <div class="group-item">
@@ -73,11 +90,13 @@
                     <div class="btn-select" @click="showScrollBox=true">
                       选择
                     </div>
+                    <span>{{bItem.cChePaiHao}}</span>
+                    <div class="ico-clear" v-if="bItem.cChePaiHao" @click="cheliang_change()"></div>
                   </div>
                 </div>
                 <div class="wk-btn">
                   <!-- <div class="ok-btn">发布订单</div> -->
-                  <x-button class="ok-btn" type="primary"> 发布订单</x-button>
+                  <x-button class="ok-btn" :class="{'btn-success':wj_validate_order}" type="primary" :disabled="!wj_validate_order" @click.native="wj_submit_order"> 发布订单</x-button>
                 </div>
               </group>
             </div>
@@ -85,17 +104,32 @@
         </swiper>
       </div>
       <div class="task">
-        <div class="title">最新订单</div>
-        <div class="item-list">
-          <section v-for="item in order_list">
-            <div class="n1">订单号：AF546465654512</div>
-            <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
-            <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
-            <div class="n1">车牌：{{item.cChePaiHao}}</div>
-            <div class="n1">驾驶员：{{item.cXingMing}}</div>
-            <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
-            <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
-          </section>
+        <div class="tab-order" v-if="index==0">
+          <div class="title">最新订单</div>
+          <div class="item-list">
+            <section v-for="item in order_list">
+              <div class="n1">订单号：AF546465654512</div>
+              <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+              <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
+              <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">驾驶员：{{item.cXingMing}}</div>
+              <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
+              <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
+            </section>
+          </div>
+        </div>
+        <div class="tab-order" v-else>
+          <div class="title">最新订单</div>
+          <div class="item-list">
+            <section v-for="item in wj_order_list">
+              <div class="n1">订单号：AF546465654512</div>
+              <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+              <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">驾驶员：{{item.cXingMing}}</div>
+              <div class="n1">订单时间：{{item.dDanJuRiQi}}</div>
+              <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -152,7 +186,9 @@ import {
   XieZuoDanWeiInfo,
   XianLuInfo,
   GongChengCheDingDan,
-  GetGongChengCheDingDan
+  GetGongChengCheDingDan,
+  WaJueJiDingDan,
+  GetWaJueJiDingDan
 } from '@/api/home.js'
 export default {
   components: {
@@ -171,6 +207,7 @@ export default {
   },
   data() {
     return {
+      work_status: 0,
       isavailable: true,
       showCooperation: false,
       showScrollBox: false,
@@ -199,26 +236,8 @@ export default {
       cooperation_list: [],
       route_list: [],
       work_list: [],
-      order_list: [
-        {
-          orderno: 'DX95546346546464161',
-          work: '厦门市软件园二期何厝路口东路',
-          tail_work: '厦门市杏林路杏林湾东二路',
-          license_plate: '闽A123',
-          name: '黄臣晓',
-          addtime: '2018-9-29 10:52:24',
-          status: '未确认'
-        },
-        {
-          orderno: 'DX95546346546464161',
-          work: '厦门市软件园二期何厝路口东路',
-          tail_work: '厦门市杏林路杏林湾东二路',
-          license_plate: '闽A123',
-          name: '黄臣晓',
-          addtime: '2018-9-29 10:52:24',
-          status: '未确认'
-        }
-      ],
+      order_list: [],
+      wj_order_list: [],
       work_keyword: null,
       driver_keyword: null,
       driver_cXZDWBianMa: null,
@@ -239,6 +258,17 @@ export default {
         this.bItem.cChePaiHao &&
         this.bItem.openid &&
         this.bItem.cXianLuBianMa &&
+        this.bItem.cGuanLiYuanBianMa &&
+        this.isavailable
+      ) {
+        return true
+      }
+      return false
+    },
+    wj_validate_order() {
+      if (
+        this.bItem.cChePaiHao &&
+        this.bItem.openid &&
         this.bItem.cGuanLiYuanBianMa &&
         this.isavailable
       ) {
@@ -272,13 +302,33 @@ export default {
     this.get_driver() //车辆信息
     this.get_cooperation() //合作单位
     this.get_route() //线路
-    this.get_order() //订单列表
+    this.get_order() //工程车订单列表
+    this.get_wj_order() //挖掘机订单
   },
   methods: {
-    //订单列表
+    //清空车辆
+    cheliang_change() {
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
+    },
+    //清空合作单位
+    chepai_change() {
+      this.bItem.cXZDWMingCheng = null
+      this.driver_cXZDWBianMa = null
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
+      this.get_driver() //车辆信息
+    },
+    //工程车订单列表
     get_order() {
       GetGongChengCheDingDan().then(res => {
         this.order_list = res.data
+      })
+    },
+    //挖掘机订单列表
+    get_wj_order() {
+      GetWaJueJiDingDan().then(res => {
+        this.wj_order_list = res.data
       })
     },
     //工地列表
@@ -356,6 +406,25 @@ export default {
           this.isavailable = true
         })
     },
+    //挖掘机订单
+    wj_submit_order() {
+      this.isavailable = false
+      this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa
+      WaJueJiDingDan(this.bItem)
+        .then(res => {
+          this.$vux.alert.show({
+            title: '提示',
+            content: '挖掘机订单发布成功'
+          })
+          this.resetItem()
+          this.get_wj_order() //挖掘机订单
+          this.isavailable = true
+          return
+        })
+        .catch(res => {
+          this.isavailable = true
+        })
+    },
     resetItem() {
       this.bItem = {
         cGongDiBianMa: null, //工地编码
@@ -363,7 +432,8 @@ export default {
         openid: null, //驾驶员编码
         cXianLuBianMa: null, //线路编码
         cXZDWBianMa: null, //协作单位编码
-        cXZDWMingCheng: null //协作单位名称
+        cXZDWMingCheng: null, //协作单位名称
+        cGuanLiYuanBianMa: localStorage.getItem('openid') //现场管理员编码
       }
     },
     complete_order() {
@@ -450,6 +520,50 @@ export default {
 <style scoped lang="scss">
 .home {
   font-size: 0.373333rem;
+}
+
+.work {
+  position: relative;
+  text-align: center;
+  background: #fff;
+  padding: 0.266667rem 0;
+  border-bottom: 1px solid #efefef;
+  .sb-item {
+    border: 3px solid #67c23a;
+    color: #67c23a;
+  }
+  .xb-item {
+    border: 3px solid #f56c6c;
+    color: #f56c6c;
+  }
+  .work-item {
+    position: relative;
+    display: inline-block;
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 1.6rem;
+    font-weight: 600;
+    .ico {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.1rem;
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+    span {
+      position: absolute;
+      bottom: 0.2rem;
+      left: 0.5rem;
+    }
+    .ico-sb {
+      background: url(../../assets/img/sb.png);
+      background-size: 100%;
+    }
+    .ico-xb {
+      background: url(../../assets/img/xb.png);
+      background-size: 100%;
+    }
+  }
 }
 .address {
   position: relative;
@@ -544,6 +658,16 @@ export default {
     text-align: right;
   }
   .info {
+    position: relative;
+    .ico-clear {
+      position: absolute;
+      right: 0.266667rem;
+      top: 0.32rem;
+      width: 0.426667rem;
+      height: 0.426667rem;
+      background: url('../../assets/img/delete.png');
+      background-size: 100%;
+    }
     .btn-select {
       position: relative;
       color: #f00;

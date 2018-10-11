@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '../store'
 import { getToken } from '@/utils/auth'
+import { AlertModule } from 'vux'
 
 // 创建axios实例
 const service = axios.create({
@@ -39,7 +40,13 @@ service.interceptors.response.use(
   error => {
     console.log('err' + error)// for debug
     var res = error.response.data;
-    if (res.status_code == 402) {
+    if (res.status_code == 401) {
+      AlertModule.show({
+        title: '提示',
+        content: res.message,
+      })
+    }
+    else if (res.status_code == 402) {
       localStorage.clear()
       location.reload()
     }

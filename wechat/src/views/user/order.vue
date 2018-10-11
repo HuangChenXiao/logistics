@@ -7,27 +7,29 @@
     </u-header>
     <div style="height:1.2rem"></div>
     <div>
-      <!-- <div v-show="is_order==true">
-        <tab :line-width=2 v-model="w_qeury.status" active-color="#FF8010" bar-active-color="#FF8010">
+      <div>
+        <tab :line-width=2 v-model="w_qeury.status" active-color="#f00" bar-active-color="#f00">
           <tab-item class="vux-center" :selected="sed_index === index" v-for="(item, index) in list2" @on-item-click="change_tab_index(index)" :key="index">{{item.value}}</tab-item>
         </tab>
-      </div> -->
+      </div>
       <!-- <div style="height:2rem">{{typeof w_qeury.status}}</div> -->
       <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
-
         <div class="item-list">
-          <div class="item" v-for="item in list">
+          <div class="item" v-for="item in order_list">
             <section>
-              <div class="n1">订单号：{{item.orderno}}</div>
-              <div class="n1">工地：{{item.work}}</div>
-              <div class="n1">工尾：{{item.tail_work}}</div>
-              <div class="n1">车牌：{{item.license_plate}}</div>
-              <div class="n1">驾驶员：{{item.name}}</div>
-              <div class="n1">起运时间：{{item.addtime}}</div>
-              <div class="n1">状态：{{item.status}}</div>
+              <div class="n1">订单号：AF546465654512</div>
+              <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+              <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
+              <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">驾驶员：{{item.cXingMing}}</div>
+              <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
+              <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
             </section>
             <div class="op-btn">
-              <div class="confirm-btn">
+              <div class="reset-btn" v-if="menu_route=='admin-user'">
+                作废
+              </div>
+              <div class="confirm-btn" v-else>
                 确认订单
               </div>
             </div>
@@ -38,7 +40,7 @@
             <span> 我是有底线的~
             </span>
           </div>
-          <!-- <div style="height:2.5rem" v-if="list.length"></div> -->
+          <div style="height:2.5rem" v-if="order_list.length"></div>
         </div>
 
       </scroller>
@@ -50,31 +52,37 @@
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
           <x-input title="订单号" placeholder="请输入订单号"></x-input>
           <div class="cus-item">
+            <div class="lbl">工地</div>
+            <div class="set-btn" @click="showWorkSite=true">
+              选择
+            </div>
+            <span>{{w_qeury.cGongDiMingCheng}}</span>
+            <div class="ico-clear" v-if="w_qeury.cGongDiMingCheng" @click="gongdi_change()"></div>
+          </div>
+          <div class="cus-item">
             <div class="lbl">车辆</div>
             <div class="set-btn" @click="showScrollBox=true">
               选择
             </div>
+            <span>{{w_qeury.cChePaiHao}}</span>
+            <div class="ico-clear" v-if="w_qeury.cChePaiHao" @click="cheliang_change()"></div>
           </div>
-          <div class="cus-item">
-            <div class="lbl">驾驶员</div>
-            <div class="set-btn" @click="showWorkRoute=true">
-              选择
-            </div>
-          </div>
-          <datetime title="开始日期" v-model="time1" value-text-align="left"></datetime>
-          <datetime title="结束日期" v-model="time2" value-text-align="left"></datetime>
+          <datetime title="开始日期" v-model="w_qeury.begindate" format="YYYY-MM-DD" value-text-align="left"></datetime>
+          <datetime title="结束日期" v-model="w_qeury.enddate" format="YYYY-MM-DD" value-text-align="left"></datetime>
           <div class="wk-btn">
             <div class="reset-btn" @click="showWhere=false">取消</div>
-            <div class="ok-btn">确定</div>
+            <div class="ok-btn" @click="get_order()">确定</div>
           </div>
         </group>
       </div>
     </div>
+    <!-- 车辆信息 -->
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle title="选择车辆" :single_drive="true" @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
+      <c-vehicle @selectVehicle="select_vehicle" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
     </x-dialog>
-    <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
-      <work-route @selectVehicle="select_wordRoute" v-model="route_list"></work-route>
+    <!-- 工地信息 -->
+    <x-dialog v-model="showWorkSite" :hide-on-blur="true" class="dialog-demo">
+      <work-site @selectVehicle="selectWork" :valueData="work_list" v-model="work_keyword"></work-site>
     </x-dialog>
   </div>
 </template>
@@ -83,12 +91,11 @@
 // import { getOrderMyList } from '@/api/user.js'
 import { Tab, TabItem, XDialog, Datetime } from 'vux'
 import cVehicle from '@/components/cVehicle'
-import workRoute from '@/components/workRoute'
+import workSite from '@/components/workSite'
+import { CheLiang, GongDiInfo, GetGongChengCheDingDan } from '@/api/home.js'
 const list = () => [
-  { key: 0, value: '全部' },
-  { key: 1, value: '昨日订单' },
-  { key: 2, value: '今日订单' },
-  { key: 3, value: '已取消' }
+  { key: 0, value: '工程车订单' },
+  { key: 1, value: '挖掘机订单' }
 ]
 export default {
   components: {
@@ -96,13 +103,13 @@ export default {
     TabItem,
     XDialog,
     Datetime,
-    workRoute,
-    cVehicle,
+    workSite,
+    cVehicle
   },
   data() {
     return {
       showScrollBox: false,
-      showWorkRoute: false,
+      showWorkSite: false,
       showWhere: false,
       title: this.$route.query.title,
       index: 0,
@@ -114,46 +121,92 @@ export default {
       w_qeury: {
         page: 1,
         pagesize: 10,
-        status: this.$route.query.status,
-        tradetype: this.$route.query.tradetype
+        cGongDiBianMa: null, //工地编码
+        cGongDiMingCheng: null, //工地名称
+        cChePaiHao: null, //车牌号
+        openid: null, //驾驶员编码
+        cGuanLiYuanBianMa: null, //现场管理员编码
+        begindate: '2018-01-11',
+        enddate: '2018-10-11'
       },
-      list: [],
+      order_list: [],
       onFetching: false,
       noData: false,
-      vehicle_list: [
-        { id: 1,name:'黄臣晓', code: '闽A12345', color: '红色' },
-        { id: 2,name:'黄臣晓', code: '闽A12345', color: '白色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' }
-      ],
-      route_list: [
-        { id: 1, code: '莲花新城-中美新城' },
-        { id: 2, code: '厦门大学-火车站' }
-      ]
+      vehicle_list: [],
+      work_list: [],
+      driver_keyword: null,
+      work_keyword: null
     }
   },
   created() {
     this.onScrollBottom()
+    this.get_worksite()
+    this.get_driver()
+    this.get_order()
   },
   mounted() {},
   methods: {
+    //清空工地条件
+    gongdi_change() {
+      this.w_qeury.cGongDiBianMa = null
+      this.w_qeury.cGongDiMingCheng = null
+    },
+    //清空车辆条件
+    cheliang_change() {
+      this.w_qeury.cChePaiHao = null
+    },
+    //工地名称
+    get_worksite() {
+      GongDiInfo({ keyword: this.work_keyword }).then(res => {
+        this.work_list = res.data
+      })
+    },
+    //工地名称
+    selectWork(val) {
+      this.w_qeury.cGongDiBianMa = val.cGongDiBianMa
+      this.w_qeury.cGongDiMingCheng = val.cGongDiMingCheng
+      this.showWorkSite = false
+    },
+    //车辆列表
+    get_driver() {
+      CheLiang({
+        keyword: this.driver_keyword
+      }).then(res => {
+        this.vehicle_list = res.data
+      })
+    },
+    //车辆名称
     select_vehicle(item) {
       this.showScrollBox = false
-      this.vehicle_info = item.code
-      this.work_status = 1
+      this.w_qeury.cChePaiHao = item.cChePaiHao
+    },
+    //工程车订单列表
+    get_order() {
+      GetGongChengCheDingDan(this.w_qeury).then(res => {
+        this.showWhere = false
+        if (res.data.length) {
+          this.order_list = this.order_list.concat(res.data)
+          // this.$nextTick(() => {
+          //   this.$refs.scrollerBottom.reset()
+          // })
+          this.w_qeury.page++
+          if (res.data.length < 10) {
+            this.onFetching = true
+            this.noData = true
+          } else {
+            this.onFetching = false
+          }
+        } else {
+          this.onFetching = true
+          this.noData = true
+        }
+      })
     },
     select_wordRoute(res) {
       this.showWorkRoute = false
     },
     init_query() {
-      this.list = []
+      this.order_list = []
       this.onFetching = false
       this.w_qeury.page = 1
       this.$nextTick(() => {
@@ -186,36 +239,7 @@ export default {
         // do nothing
       } else {
         this.onFetching = true
-        this.list = []
-        this.list = [
-          {
-            orderno: 'DX95546346546464161',
-            work: '厦门市软件园二期何厝路口东路',
-            tail_work:'厦门市杏林路杏林湾东二路',
-            license_plate:'闽A123',
-            name:'黄臣晓',
-            addtime: '2018-9-29 10:52:24',
-            status: '未确认'
-          },
-        ]
-        // getOrderMyList(this.w_qeury).then(res => {
-        //   if (res.data.length) {
-        //     this.list = this.list.concat(res.data)
-        //     // this.$nextTick(() => {
-        //     //   this.$refs.scrollerBottom.reset()
-        //     // })
-        //     this.w_qeury.page++
-        //     if (res.data.length < 10) {
-        //       this.onFetching = true
-        //       this.noData = true
-        //     } else {
-        //       this.onFetching = false
-        //     }
-        //   } else {
-        //     this.onFetching = true
-        //     this.noData = true
-        //   }
-        // })
+        this.get_order()
       }
     }
   }
@@ -250,6 +274,14 @@ export default {
         display: inline-block;
         color: #fff;
         background: #f00;
+        padding: 0.08rem 0.133333rem;
+        border-radius: 3px;
+      }
+      .reset-btn {
+        display: inline-block;
+        color: #b3b3b3;
+        border: 1px solid #ddd;
+        background: #fff;
         padding: 0.08rem 0.133333rem;
         border-radius: 3px;
       }
@@ -303,6 +335,15 @@ export default {
   position: relative;
   padding: 10px 15px;
   padding-left: 2.8rem;
+  .ico-clear {
+    position: absolute;
+    right: 0.266667rem;
+    top: 0.32rem;
+    width: 0.426667rem;
+    height: 0.426667rem;
+    background: url('../../assets/img/delete.png');
+    background-size: 100%;
+  }
   .lbl {
     position: absolute;
     width: 4.5em;
@@ -311,12 +352,24 @@ export default {
     left: 15px;
   }
   .set-btn {
+    position: relative;
     border: 1px solid #f00;
     color: #f00;
     text-align: center;
     display: inline-block;
     border-radius: 3px;
     padding: 2px 5px;
+    margin-right: 0.3rem;
+  }
+  .set-btn:after {
+    content: ' ';
+    position: absolute;
+    right: -0.266667rem;
+    top: 0;
+    display: block;
+    height: 0.6rem;
+    width: 1px;
+    background: #efefef;
   }
 }
 </style>

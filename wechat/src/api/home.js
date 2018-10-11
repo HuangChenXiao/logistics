@@ -56,3 +56,25 @@ export function GetGongChengCheDingDan(data) {
     })
 }
 
+export function WaJueJiDingDan(data) {
+    return request({
+        url: 'WaJueJiDingDan',
+        method: "post",
+        data
+    })
+}
+export function GetWaJueJiDingDan(data) {
+    return request({
+        url: 'WaJueJiDingDan',
+        method: "get",
+        params: data
+    })
+}
+export function CheLiang(data) {
+    return request({
+        url: 'CheLiang',
+        method: "get",
+        params: data
+    })
+}
+
