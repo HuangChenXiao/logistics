@@ -22,8 +22,6 @@
           <i class="ico ico-xb"></i>
           <span>下班</span>
         </div>
-        
-                {{bItem}}
       </div>
       <div>
         <tab :line-width=2 active-color='#f00' v-model="index">

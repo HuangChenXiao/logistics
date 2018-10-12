@@ -84,6 +84,7 @@ router.beforeEach((to, from, next) => {
   else {
     getUserInfo(to, from, next);
   }
+  // next()
 })
 
 function getUserInfo(to, from, next) {
@@ -109,6 +110,9 @@ function route_from(to, from, next,user) {
   if (user.audit == 0) {
     if (to.name != 'means') {
       next({ name: 'means' })
+    }
+    else{
+      next()
     }
   }
   else {
