@@ -615,7 +615,7 @@
     </Key>
     <Property Name="AutoID" Type="bigint" Nullable="false" />
     <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
-    <Property Name="dDanJuRiQi" Type="nvarchar" MaxLength="50" />
+    <Property Name="dDanJuRiQi" Type="datetime" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dKaiShiShiJian" Type="datetime" />
@@ -628,6 +628,7 @@
     <Property Name="cState" Type="varchar" MaxLength="30" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
     <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
+    <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
   </EntityType>
   <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
@@ -717,7 +718,8 @@
     [WaJueJiDingDan_View].[iState] AS [iState], 
     [WaJueJiDingDan_View].[cState] AS [cState], 
     [WaJueJiDingDan_View].[cBeiZhu] AS [cBeiZhu], 
-    [WaJueJiDingDan_View].[cXingMing] AS [cXingMing]
+    [WaJueJiDingDan_View].[cXingMing] AS [cXingMing], 
+    [WaJueJiDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng]
     FROM [dbo].[WaJueJiDingDan_View] AS [WaJueJiDingDan_View]</DefiningQuery>
     </EntitySet>
   </EntityContainer>

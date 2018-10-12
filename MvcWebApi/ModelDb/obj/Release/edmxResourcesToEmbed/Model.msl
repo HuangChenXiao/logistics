@@ -651,6 +651,7 @@
     <EntitySetMapping Name="WaJueJiDingDan_View">
       <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan_View">
         <MappingFragment StoreEntitySet="WaJueJiDingDan_View">
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
           <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="cState" ColumnName="cState" />

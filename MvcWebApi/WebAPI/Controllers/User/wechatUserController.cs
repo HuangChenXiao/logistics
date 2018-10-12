@@ -82,7 +82,7 @@ namespace WebAPI.Controllers.User
         public IHttpActionResult PostwechatUser(wechatUser wechatUser)
         {
             var info = db.wechatUser.Where(o => o.openid == wechatUser.openid);
-            if (info != null)
+            if (info.FirstOrDefault() != null)
             {
                 model.message = "微信号已经授权，退出后重新进入";
                 model.status_code = 401;
