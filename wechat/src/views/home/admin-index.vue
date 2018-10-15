@@ -25,7 +25,7 @@
       </div>
       <div>
         <tab :line-width=2 active-color='#f00' v-model="index">
-          <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
+          <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
         </tab>
         <swiper v-model="index" height="200px" :show-dots="false">
           <swiper-item v-for="(item, index) in list2" :key="index">
@@ -327,6 +327,11 @@ export default {
     this.get_bangding() //绑定记录
   },
   methods: {
+    set_tab_item(item) {
+      this.demo2 = item
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
+    },
     //查询上班状态
     get_bangding() {
       BangDingJiLu().then(res => {
@@ -399,7 +404,7 @@ export default {
         GongDiCheLiang({
           keyword: this.driver_keyword,
           cGongDiBianMa: this.cGongDiBianMa,
-          cCheLiangLeiBie:this.index==0?'土方车':'挖掘机'
+          cCheLiangLeiBie: this.index == 0 ? '土方车' : '挖掘机'
         }).then(res => {
           this.vehicle_list = res.data
         })
