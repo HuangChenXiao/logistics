@@ -32,5 +32,6 @@ namespace ModelDb
         public string cGongDiMingCheng { get; set; }
         public string cTuWeiMingCheng { get; set; }
         public string cXingMing { get; set; }
+        public string cDingDanHao { get; set; }
     }
 }

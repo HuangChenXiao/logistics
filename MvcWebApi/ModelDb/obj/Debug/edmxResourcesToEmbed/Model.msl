@@ -109,6 +109,7 @@
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
           <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
           <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -437,6 +438,7 @@
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
           <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
           <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
+          <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -627,6 +629,7 @@
     <EntitySetMapping Name="GongChengCheDingDan_View">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan_View">
         <MappingFragment StoreEntitySet="GongChengCheDingDan_View">
+          <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
           <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
           <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
           <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
@@ -651,6 +654,7 @@
     <EntitySetMapping Name="WaJueJiDingDan_View">
       <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan_View">
         <MappingFragment StoreEntitySet="WaJueJiDingDan_View">
+          <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
           <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
           <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />

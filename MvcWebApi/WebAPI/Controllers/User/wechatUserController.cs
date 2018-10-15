@@ -91,6 +91,7 @@ namespace WebAPI.Controllers.User
             {
                 wechatUser.status = 0;
                 wechatUser.audit = 0;
+                wechatUser.auditdes = "未审核";
                 wechatUser.addtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 db.wechatUser.Add(wechatUser);
                 try

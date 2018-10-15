@@ -88,6 +88,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
     <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dDanJuRiQi" Type="datetime" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
@@ -396,6 +397,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
     <Property Name="cGongDiBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dDanJuRiQi" Type="datetime" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
@@ -606,6 +608,7 @@
     <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
     <Property Name="cTuWeiMingCheng" Type="varchar" MaxLength="100" />
     <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
+    <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
   </EntityType>
   <!--生成过程中发现错误:
 警告 6002: 表/视图“EBMSystem.dbo.WaJueJiDingDan_View”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -629,6 +632,7 @@
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
     <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
     <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
+    <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
   </EntityType>
   <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
@@ -699,7 +703,8 @@
     [GongChengCheDingDan_View].[cBeiZhu] AS [cBeiZhu], 
     [GongChengCheDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng], 
     [GongChengCheDingDan_View].[cTuWeiMingCheng] AS [cTuWeiMingCheng], 
-    [GongChengCheDingDan_View].[cXingMing] AS [cXingMing]
+    [GongChengCheDingDan_View].[cXingMing] AS [cXingMing], 
+    [GongChengCheDingDan_View].[cDingDanHao] AS [cDingDanHao]
     FROM [dbo].[GongChengCheDingDan_View] AS [GongChengCheDingDan_View]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="WaJueJiDingDan_View" EntityType="Self.WaJueJiDingDan_View" store:Type="Views" store:Schema="dbo">
@@ -719,7 +724,8 @@
     [WaJueJiDingDan_View].[cState] AS [cState], 
     [WaJueJiDingDan_View].[cBeiZhu] AS [cBeiZhu], 
     [WaJueJiDingDan_View].[cXingMing] AS [cXingMing], 
-    [WaJueJiDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng]
+    [WaJueJiDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng], 
+    [WaJueJiDingDan_View].[cDingDanHao] AS [cDingDanHao]
     FROM [dbo].[WaJueJiDingDan_View] AS [WaJueJiDingDan_View]</DefiningQuery>
     </EntitySet>
   </EntityContainer>

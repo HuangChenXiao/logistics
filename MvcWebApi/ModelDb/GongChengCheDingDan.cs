@@ -15,6 +15,7 @@ namespace ModelDb
     public partial class GongChengCheDingDan
     {
         public long AutoID { get; set; }
+        public string cDingDanHao { get; set; }
         public string cGongDiBianMa { get; set; }
         public Nullable<System.DateTime> dDanJuRiQi { get; set; }
         public string cChePaiHao { get; set; }

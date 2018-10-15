@@ -16,6 +16,7 @@ namespace WebAPI.Controllers.Home
 {
     public class GongChengCheDingDanController : ApiController
     {
+        //管理员订单
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
         public ResponseMessageResult Get()
@@ -23,7 +24,9 @@ namespace WebAPI.Controllers.Home
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var temp = from a in db.GongChengCheDingDan_View select a;
+                var temp = from a in db.GongChengCheDingDan_View 
+                           where a.cGuanLiYuanBianMa==openid
+                           select a;
                 model.data = temp.Take(10).OrderByDescending(o => o.dQiYunShiJian).ToList();
 
                 if (model.data != null)
@@ -45,7 +48,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int page, int pagesize, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string begindate = null, string enddate = null)
+        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao = null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string begindate = null, string enddate = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
@@ -53,7 +56,9 @@ namespace WebAPI.Controllers.Home
                 var beginDate=Convert.ToDateTime(begindate);
                 var endDate = Convert.ToDateTime(enddate);
                 var temp = from a in db.GongChengCheDingDan_View
-                           where (a.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa)) &&
+                           where
+                           (a.cDingDanHao == cDingDanHao || string.IsNullOrEmpty(cDingDanHao)) &&
+                           (a.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa)) &&
                            (a.cChePaiHao == cChePaiHao || string.IsNullOrEmpty(cChePaiHao)) &&
                            (a.openid == js_openid || string.IsNullOrEmpty(js_openid)) &&
                            (a.cGuanLiYuanBianMa == cGuanLiYuanBianMa || string.IsNullOrEmpty(cGuanLiYuanBianMa)) &&
@@ -87,8 +92,11 @@ namespace WebAPI.Controllers.Home
         [ResponseType(typeof(GongChengCheDingDan))]
         public IHttpActionResult PostGongChengCheDingDan(GongChengCheDingDan GongChengCheDingDan)
         {
+            GongChengCheDingDan.cDingDanHao = "WX"+DateTime.Now.ToString("yyyyMMddHHmmssfff");
             GongChengCheDingDan.iState = 0;
+            GongChengCheDingDan.cState = "未确认";
             GongChengCheDingDan.iTWState = 0;
+            GongChengCheDingDan.cTWState = "未确认";
             GongChengCheDingDan.dDanJuRiQi = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
             GongChengCheDingDan.dQiYunShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             db.GongChengCheDingDan.Add(GongChengCheDingDan);

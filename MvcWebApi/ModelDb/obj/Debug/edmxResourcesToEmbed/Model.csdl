@@ -141,6 +141,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cGongDiBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dDanJuRiQi" Type="DateTime" Precision="3" />
     <Property Name="cChePaiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -449,6 +450,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cGongDiBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dDanJuRiQi" Type="DateTime" Precision="3" />
     <Property Name="cChePaiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -657,6 +659,7 @@
     <Property Name="cGongDiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cTuWeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="WaJueJiDingDan_View">
     <Key>
@@ -678,5 +681,6 @@
     <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="cGongDiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
