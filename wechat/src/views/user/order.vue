@@ -40,16 +40,17 @@
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
-              <div class="n1">订单时间：{{item.dDanJuRiQi}}</div>
+              <div class="n1">开始时间：{{item.dKaiShiShiJian}}</div>
+              <div class="n1">结束时间：{{item.dJieShuShiJian}}</div>
               <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
             <div class="op-btn">
               <div class="reset-btn" @click="edit_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
                 作废
               </div>
-              <!-- <div class="confirm-btn" v-else>
-                确认订单
-              </div> -->
+              <div class="confirm-btn" @click="end_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
+                结束订单
+              </div>
             </div>
           </div>
           <load-more tip="加载中" v-if="!onFetching"></load-more>
@@ -113,7 +114,8 @@ import {
   CheLiang,
   GongDiInfo,
   GetGongChengCheDingDan,
-  GetWaJueJiDingDan
+  GetWaJueJiDingDan,
+  EndWaJueJiDingDan
 } from '@/api/home.js'
 const list = () => [
   { key: 0, value: '工程车订单' },
@@ -245,6 +247,25 @@ export default {
               })
             })
           }
+        }
+      })
+    },
+    end_order(item) {
+      var _this = this
+      this.$vux.confirm.show({
+        title: '提示',
+        content: '只有到达目的地后才能结束订单，是否继续？',
+        onConfirm() {
+          EndWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(
+            res => {
+              item.iState = 100
+              item.dJieShuShiJian=res.data;
+              _this.$vux.alert.show({
+                title: '提示',
+                content: '操作成功！'
+              })
+            }
+          )
         }
       })
     },

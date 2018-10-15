@@ -101,4 +101,10 @@ export function GongDiXianLu(data) {
     })
 }
 
-
+export function EndWaJueJiDingDan(data) {
+    return request({
+        url: 'EndWaJueJiDingDan',
+        method: "get",
+        params: data
+    })
+}

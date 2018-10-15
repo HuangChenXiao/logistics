@@ -124,7 +124,8 @@
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
-              <div class="n1">订单时间：{{item.dDanJuRiQi}}</div>
+              <div class="n1">开始时间：{{item.dKaiShiShiJian}}</div>
+              <div class="n1">结束时间：{{item.dKaiShiShiJian}}</div>
               <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
           </div>
@@ -397,7 +398,8 @@ export default {
       if (this.cGongDiBianMa) {
         GongDiCheLiang({
           keyword: this.driver_keyword,
-          cGongDiBianMa: this.cGongDiBianMa
+          cGongDiBianMa: this.cGongDiBianMa,
+          cCheLiangLeiBie:this.index==0?'土方车':'挖掘机'
         }).then(res => {
           this.vehicle_list = res.data
         })
@@ -533,6 +535,9 @@ export default {
     }
   },
   watch: {
+    index(val, oldVal) {
+      this.get_driver() //车辆信息
+    },
     cGongDiMingCheng(val, oldVal) {
       this.get_driver() //车辆信息
       this.get_route() //线路
