@@ -21,7 +21,7 @@ namespace WebAPI.Controllers.Home
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
 
-        public ResponseMessageResult Get(string cGongDiBianMa, string keyword=null)
+        public ResponseMessageResult Get(string cGongDiBianMa, string cCheLiangLeiBie, string keyword = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
@@ -31,6 +31,7 @@ namespace WebAPI.Controllers.Home
                            join c in db.GongDiCheLiang on a.cChePaiHao equals c.cChePaiHao
                            where (c.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa))
                            && (a.cChePaiHao.Contains(keyword) || a.cPinPai.Contains(keyword) || b.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword))
+                           && a.cCheLiangLeiBie == cCheLiangLeiBie
                            select new
                            {
                                a.cChePaiHao,

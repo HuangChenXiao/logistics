@@ -100,7 +100,6 @@
           <Property Name="openid" Type="varchar" MaxLength="50" />
           <Property Name="dQiYunShiJian" Type="datetime" />
           <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
-          <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
           <Property Name="dQueRenShiJian" Type="datetime" />
           <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
           <Property Name="iState" Type="int" />
@@ -602,7 +601,6 @@
           <Property Name="openid" Type="varchar" MaxLength="50" />
           <Property Name="dQiYunShiJian" Type="nvarchar" MaxLength="50" />
           <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
-          <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
           <Property Name="dQueRenShiJian" Type="datetime" />
           <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
           <Property Name="iState" Type="int" />
@@ -626,8 +624,8 @@
           <Property Name="dDanJuRiQi" Type="datetime" />
           <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
           <Property Name="openid" Type="varchar" MaxLength="50" />
-          <Property Name="dKaiShiShiJian" Type="datetime" />
-          <Property Name="dJieShuShiJian" Type="datetime" />
+          <Property Name="dKaiShiShiJian" Type="nvarchar" MaxLength="50" />
+          <Property Name="dJieShuShiJian" Type="nvarchar" MaxLength="50" />
           <Property Name="iXiaoShiShu" Type="money" />
           <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
           <Property Name="dQueRenShiJian" Type="datetime" />
@@ -698,7 +696,6 @@
     [GongChengCheDingDan_View].[openid] AS [openid], 
     [GongChengCheDingDan_View].[dQiYunShiJian] AS [dQiYunShiJian], 
     [GongChengCheDingDan_View].[cXianLuBianMa] AS [cXianLuBianMa], 
-    [GongChengCheDingDan_View].[cXZDWBianMa] AS [cXZDWBianMa], 
     [GongChengCheDingDan_View].[dQueRenShiJian] AS [dQueRenShiJian], 
     [GongChengCheDingDan_View].[cGuanLiYuanBianMa] AS [cGuanLiYuanBianMa], 
     [GongChengCheDingDan_View].[iState] AS [iState], 
@@ -886,7 +883,6 @@
           <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dQiYunShiJian" Type="DateTime" Precision="3" />
           <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
           <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="iState" Type="Int32" />
@@ -1386,7 +1382,6 @@
           <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dQiYunShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
           <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="iState" Type="Int32" />
@@ -1408,8 +1403,8 @@
           <Property Name="dDanJuRiQi" Type="DateTime" Precision="3" />
           <Property Name="cChePaiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dKaiShiShiJian" Type="DateTime" Precision="3" />
-          <Property Name="dJieShuShiJian" Type="DateTime" Precision="3" />
+          <Property Name="dKaiShiShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dJieShuShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="iXiaoShiShu" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
@@ -1528,7 +1523,6 @@
                 <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
                 <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-                <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
                 <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
                 <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
                 <ScalarProperty Name="openid" ColumnName="openid" />
@@ -2066,7 +2060,6 @@
                 <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
                 <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-                <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
                 <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
                 <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
                 <ScalarProperty Name="openid" ColumnName="openid" />

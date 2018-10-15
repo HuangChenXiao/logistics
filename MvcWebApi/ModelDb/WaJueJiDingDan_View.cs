@@ -19,8 +19,8 @@ namespace ModelDb
         public Nullable<System.DateTime> dDanJuRiQi { get; set; }
         public string cChePaiHao { get; set; }
         public string openid { get; set; }
-        public Nullable<System.DateTime> dKaiShiShiJian { get; set; }
-        public Nullable<System.DateTime> dJieShuShiJian { get; set; }
+        public string dKaiShiShiJian { get; set; }
+        public string dJieShuShiJian { get; set; }
         public Nullable<decimal> iXiaoShiShu { get; set; }
         public string cXZDWBianMa { get; set; }
         public Nullable<System.DateTime> dQueRenShiJian { get; set; }

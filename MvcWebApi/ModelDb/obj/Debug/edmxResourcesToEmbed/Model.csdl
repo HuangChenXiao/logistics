@@ -148,7 +148,6 @@
     <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="dQiYunShiJian" Type="DateTime" Precision="3" />
     <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
     <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="iState" Type="Int32" />
@@ -648,7 +647,6 @@
     <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="dQiYunShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
     <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="iState" Type="Int32" />
@@ -670,8 +668,8 @@
     <Property Name="dDanJuRiQi" Type="DateTime" Precision="3" />
     <Property Name="cChePaiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="dKaiShiShiJian" Type="DateTime" Precision="3" />
-    <Property Name="dJieShuShiJian" Type="DateTime" Precision="3" />
+    <Property Name="dKaiShiShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dJieShuShiJian" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="iXiaoShiShu" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />

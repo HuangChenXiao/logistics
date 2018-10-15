@@ -95,7 +95,6 @@
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dQiYunShiJian" Type="datetime" />
     <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
-    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dQueRenShiJian" Type="datetime" />
     <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
     <Property Name="iState" Type="int" />
@@ -597,7 +596,6 @@
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dQiYunShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
-    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dQueRenShiJian" Type="datetime" />
     <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
     <Property Name="iState" Type="int" />
@@ -621,8 +619,8 @@
     <Property Name="dDanJuRiQi" Type="datetime" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
-    <Property Name="dKaiShiShiJian" Type="datetime" />
-    <Property Name="dJieShuShiJian" Type="datetime" />
+    <Property Name="dKaiShiShiJian" Type="nvarchar" MaxLength="50" />
+    <Property Name="dJieShuShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="iXiaoShiShu" Type="money" />
     <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dQueRenShiJian" Type="datetime" />
@@ -693,7 +691,6 @@
     [GongChengCheDingDan_View].[openid] AS [openid], 
     [GongChengCheDingDan_View].[dQiYunShiJian] AS [dQiYunShiJian], 
     [GongChengCheDingDan_View].[cXianLuBianMa] AS [cXianLuBianMa], 
-    [GongChengCheDingDan_View].[cXZDWBianMa] AS [cXZDWBianMa], 
     [GongChengCheDingDan_View].[dQueRenShiJian] AS [dQueRenShiJian], 
     [GongChengCheDingDan_View].[cGuanLiYuanBianMa] AS [cGuanLiYuanBianMa], 
     [GongChengCheDingDan_View].[iState] AS [iState], 

@@ -22,7 +22,6 @@ namespace ModelDb
         public string openid { get; set; }
         public Nullable<System.DateTime> dQiYunShiJian { get; set; }
         public string cXianLuBianMa { get; set; }
-        public string cXZDWBianMa { get; set; }
         public Nullable<System.DateTime> dQueRenShiJian { get; set; }
         public string cGuanLiYuanBianMa { get; set; }
         public Nullable<int> iState { get; set; }

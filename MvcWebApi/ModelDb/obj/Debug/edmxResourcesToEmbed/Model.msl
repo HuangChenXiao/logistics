@@ -102,7 +102,6 @@
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
           <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
           <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
           <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
           <ScalarProperty Name="openid" ColumnName="openid" />
@@ -640,7 +639,6 @@
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
           <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
           <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
           <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
           <ScalarProperty Name="openid" ColumnName="openid" />
