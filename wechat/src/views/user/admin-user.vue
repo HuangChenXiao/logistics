@@ -8,7 +8,7 @@
                 <img src="../../assets/img/t_1.png" alt="">
             </div>
             <div class="content">
-                <div class="name">杏林工头</div>
+                <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>
                 <!-- <div class="count">
           交易次数：{{user_info.tradeqty}}
         </div> -->

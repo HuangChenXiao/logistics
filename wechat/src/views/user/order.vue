@@ -8,7 +8,7 @@
     <div style="height:1.2rem"></div>
     <div>
       <div>
-        <tab :line-width=2 v-model="w_qeury.status" active-color="#f00" bar-active-color="#f00">
+        <tab :line-width=2 v-model="sed_index" active-color="#f00" bar-active-color="#f00">
           <tab-item class="vux-center" :selected="sed_index === index" v-for="(item, index) in list2" @on-item-click="change_tab_index(index)" :key="index">{{item.value}}</tab-item>
         </tab>
       </div>
@@ -26,12 +26,12 @@
               <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" v-if="menu_route=='admin-user' && item.iState==0">
+              <div class="reset-btn" @click="edit_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
                 作废
               </div>
-              <div class="confirm-btn" v-else>
+              <!-- <div class="confirm-btn" v-else>
                 确认订单
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="item" v-if="sed_index==1" v-for="item in wj_order_list">
@@ -44,12 +44,12 @@
               <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" v-if="menu_route=='admin-user' && item.iState==0">
+              <div class="reset-btn" @click="edit_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
                 作废
               </div>
-              <div class="confirm-btn" v-else>
+              <!-- <div class="confirm-btn" v-else>
                 确认订单
-              </div>
+              </div> -->
             </div>
           </div>
           <load-more tip="加载中" v-if="!onFetching"></load-more>
@@ -67,7 +67,7 @@
       <div class="mask-content">
         <div class="title">查询条件</div>
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-          <x-input title="订单号" placeholder="请输入订单号" v-model="w_query.cDingDanHao"></x-input>
+          <x-input title="订单号" placeholder="请输入订单号" v-model="w_qeury.cDingDanHao"></x-input>
           <div class="cus-item">
             <div class="lbl">工地</div>
             <div class="set-btn" @click="showWorkSite=true">
@@ -88,7 +88,7 @@
           <datetime title="结束日期" v-model="w_qeury.enddate" format="YYYY-MM-DD" value-text-align="left"></datetime>
           <div class="wk-btn">
             <div class="reset-btn" @click="showWhere=false">取消</div>
-            <div class="ok-btn" @click="get_order()">确定</div>
+            <div class="ok-btn" @click="search_order()">确定</div>
           </div>
         </group>
       </div>
@@ -143,7 +143,7 @@ export default {
       w_qeury: {
         page: 1,
         pagesize: 10,
-        cDingDanHao:null,//订单号
+        cDingDanHao: null, //订单号
         cGongDiBianMa: null, //工地编码
         cGongDiMingCheng: null, //工地名称
         cChePaiHao: null, //车牌号
@@ -214,6 +214,40 @@ export default {
       this.showScrollBox = false
       this.w_qeury.cChePaiHao = item.cChePaiHao
     },
+    search_order() {
+      this.init_query()
+      this.get_order()
+    },
+    //作废订单
+    edit_order(item) {
+      var _this = this
+      this.$vux.confirm.show({
+        title: '提示',
+        content: '只有未确认的订单才能作废，是否继续？',
+        onConfirm() {
+          console.log(_this.sed_index)
+          if (_this.sed_index == 0) {
+            GetGongChengCheDingDan({ cDingDanHao: item.cDingDanHao }).then(
+              res => {
+                item.iState = 110
+                _this.$vux.alert.show({
+                  title: '提示',
+                  content: '操作成功！'
+                })
+              }
+            )
+          } else {
+            GetWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(res => {
+              item.iState = 110
+              _this.$vux.alert.show({
+                title: '提示',
+                content: '操作成功！'
+              })
+            })
+          }
+        }
+      })
+    },
     //工程车订单列表
     get_order() {
       console.log(this.sed_index)
@@ -273,7 +307,6 @@ export default {
       })
     },
     change_tab_index(index) {
-      this.w_qeury.status = index
       this.sed_index = index
       this.init_query()
       this.onScrollBottom()
