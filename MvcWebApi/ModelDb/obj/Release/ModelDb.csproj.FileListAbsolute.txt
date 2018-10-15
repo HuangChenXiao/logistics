@@ -36,3 +36,15 @@ F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\zh-Hans\EntityFramework.SqlSe
 F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.csprojResolveAssemblyReference.cache
 F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.dll
 F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.pdb
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\ModelDb.dll.config
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\ModelDb.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\ModelDb.pdb
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.SqlServer.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.xml
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.SqlServer.xml
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\zh-Hans\EntityFramework.resources.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Release\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.csprojResolveAssemblyReference.cache
+G:\gitCode\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.pdb

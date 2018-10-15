@@ -60,3 +60,15 @@ F:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.SqlServ
 F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache
 F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
 F:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.dll.config
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.pdb
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.SqlServer.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.xml
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.SqlServer.xml
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache
+G:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
+G:\gitCode\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb

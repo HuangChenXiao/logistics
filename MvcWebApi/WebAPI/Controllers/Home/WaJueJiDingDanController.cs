@@ -48,6 +48,41 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
+        public ResponseMessageResult Get(string cDingDanHao)
+        {
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
+            {
+                try
+                {
+                    var order = db.WaJueJiDingDan.Where(o => o.cDingDanHao == cDingDanHao).FirstOrDefault();
+                    if (order.iState == 0)
+                    {
+                        order.iState = 110;
+                        order.cState = "作废";
+                        model.message = "修改成功";
+                        model.status_code = 200;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        model.message = "订单状态已变化，请刷新后重试！";
+                        model.status_code = 401;
+                    }
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
+            }
+            else
+            {
+                model.message = "微信授权失败";
+                model.status_code = 401;
+            }
+            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+        }
         public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao=null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string begindate = null, string enddate = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
@@ -57,7 +92,7 @@ namespace WebAPI.Controllers.Home
                 var endDate = Convert.ToDateTime(enddate);
                 var temp = from a in db.WaJueJiDingDan_View
                            where
-                           (a.cDingDanHao == cDingDanHao || string.IsNullOrEmpty(cDingDanHao)) &&
+                           (a.cDingDanHao.Contains(cDingDanHao) || string.IsNullOrEmpty(cDingDanHao)) &&
                            (a.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa)) &&
                            (a.cChePaiHao == cChePaiHao || string.IsNullOrEmpty(cChePaiHao)) &&
                            (a.openid == js_openid || string.IsNullOrEmpty(js_openid)) &&
