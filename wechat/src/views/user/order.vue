@@ -12,21 +12,21 @@
           <tab-item class="vux-center" :selected="sed_index === index" v-for="(item, index) in list2" @on-item-click="change_tab_index(index)" :key="index">{{item.value}}</tab-item>
         </tab>
       </div>
-      <!-- <div style="height:2rem">{{typeof w_qeury.status}}</div> -->
+      <!-- <div style="height:2rem">{{sed_index==1}}</div> -->
       <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
         <div class="item-list">
-          <div class="item" v-for="item in order_list">
+          <div class="item" v-if="sed_index==0" v-for="item in order_list">
             <section>
-              <div class="n1">订单号：AF546465654512</div>
+              <div class="n1">订单号：{{item.cDingDanHao}}</div>
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
-              <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
+              <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" v-if="menu_route=='admin-user'">
+              <div class="reset-btn" v-if="menu_route=='admin-user' && item.iState==0">
                 作废
               </div>
               <div class="confirm-btn" v-else>
@@ -34,13 +34,30 @@
               </div>
             </div>
           </div>
-
+          <div class="item" v-if="sed_index==1" v-for="item in wj_order_list">
+            <section>
+              <div class="n1">订单号：{{item.cDingDanHao}}</div>
+              <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+              <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">驾驶员：{{item.cXingMing}}</div>
+              <div class="n1">订单时间：{{item.dDanJuRiQi}}</div>
+              <div class="n1">状态：{{item.iState|status_filters}}</div>
+            </section>
+            <div class="op-btn">
+              <div class="reset-btn" v-if="menu_route=='admin-user' && item.iState==0">
+                作废
+              </div>
+              <div class="confirm-btn" v-else>
+                确认订单
+              </div>
+            </div>
+          </div>
           <load-more tip="加载中" v-if="!onFetching"></load-more>
           <div class="no-more-data" v-if="noData">
             <span> 我是有底线的~
             </span>
           </div>
-          <div style="height:2.5rem" v-if="order_list.length"></div>
+          <div style="height:2.5rem" v-if="order_list.length||wj_order_list.length"></div>
         </div>
 
       </scroller>
@@ -50,7 +67,7 @@
       <div class="mask-content">
         <div class="title">查询条件</div>
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-          <x-input title="订单号" placeholder="请输入订单号"></x-input>
+          <x-input title="订单号" placeholder="请输入订单号" v-model="w_query.cDingDanHao"></x-input>
           <div class="cus-item">
             <div class="lbl">工地</div>
             <div class="set-btn" @click="showWorkSite=true">
@@ -92,7 +109,12 @@
 import { Tab, TabItem, XDialog, Datetime } from 'vux'
 import cVehicle from '@/components/cVehicle'
 import workSite from '@/components/workSite'
-import { CheLiang, GongDiInfo, GetGongChengCheDingDan } from '@/api/home.js'
+import {
+  CheLiang,
+  GongDiInfo,
+  GetGongChengCheDingDan,
+  GetWaJueJiDingDan
+} from '@/api/home.js'
 const list = () => [
   { key: 0, value: '工程车订单' },
   { key: 1, value: '挖掘机订单' }
@@ -121,14 +143,16 @@ export default {
       w_qeury: {
         page: 1,
         pagesize: 10,
+        cDingDanHao:null,//订单号
         cGongDiBianMa: null, //工地编码
         cGongDiMingCheng: null, //工地名称
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
         cGuanLiYuanBianMa: null, //现场管理员编码
-        begindate: '2018-01-11',
-        enddate: '2018-10-11'
+        begindate: '',
+        enddate: ''
       },
+      wj_order_list: [],
       order_list: [],
       onFetching: false,
       noData: false,
@@ -138,8 +162,18 @@ export default {
       work_keyword: null
     }
   },
+  filters: {
+    status_filters(val) {
+      var valMap = {
+        0: '未确认',
+        100: '确认',
+        110: '作废'
+      }
+      return valMap[val]
+    }
+  },
   created() {
-    this.onScrollBottom()
+    // this.onScrollBottom()
     this.get_worksite()
     this.get_driver()
     this.get_order()
@@ -182,44 +216,65 @@ export default {
     },
     //工程车订单列表
     get_order() {
-      GetGongChengCheDingDan(this.w_qeury).then(res => {
-        this.showWhere = false
-        if (res.data.length) {
-          this.order_list = this.order_list.concat(res.data)
-          // this.$nextTick(() => {
-          //   this.$refs.scrollerBottom.reset()
-          // })
-          this.w_qeury.page++
-          if (res.data.length < 10) {
+      console.log(this.sed_index)
+      if (this.sed_index == 0) {
+        this.onFetching = true
+        GetGongChengCheDingDan(this.w_qeury).then(res => {
+          this.showWhere = false
+          if (res.data.length) {
+            this.order_list = this.order_list.concat(res.data)
+            // this.$nextTick(() => {
+            //   this.$refs.scrollerBottom.reset()
+            // })
+            this.w_qeury.page++
+            if (res.data.length < 10) {
+              this.onFetching = true
+              this.noData = true
+            } else {
+              this.onFetching = false
+            }
+          } else {
             this.onFetching = true
             this.noData = true
-          } else {
-            this.onFetching = false
           }
-        } else {
-          this.onFetching = true
-          this.noData = true
-        }
-      })
+        })
+      } else {
+        GetWaJueJiDingDan(this.w_qeury).then(res => {
+          this.showWhere = false
+          if (res.data.length) {
+            this.wj_order_list = this.wj_order_list.concat(res.data)
+            // this.$nextTick(() => {
+            //   this.$refs.scrollerBottom.reset()
+            // })
+            this.w_qeury.page++
+            if (res.data.length < 10) {
+              this.onFetching = true
+              this.noData = true
+            } else {
+              this.onFetching = false
+            }
+          } else {
+            this.onFetching = true
+            this.noData = true
+          }
+        })
+      }
     },
     select_wordRoute(res) {
       this.showWorkRoute = false
     },
     init_query() {
       this.order_list = []
+      this.wj_order_list = []
       this.onFetching = false
       this.w_qeury.page = 1
       this.$nextTick(() => {
         this.$refs.scrollerBottom.reset({ top: 0 })
       })
     },
-    orderBuyType(type) {
-      this.w_qeury.tradetype = type
-      this.init_query()
-      this.onScrollBottom()
-    },
     change_tab_index(index) {
       this.w_qeury.status = index
+      this.sed_index = index
       this.init_query()
       this.onScrollBottom()
     },

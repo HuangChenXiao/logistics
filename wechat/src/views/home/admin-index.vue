@@ -14,11 +14,11 @@
       </div>
 
       <div class="work">
-        <div class="work-item sb-item" v-if="work_status==0">
+        <div class="work-item sb-item" v-if="work_status==0" @click="change_work(1)">
           <i class="ico ico-sb"></i>
           <span>上班</span>
         </div>
-        <div class="work-item xb-item" v-if="work_status==1">
+        <div class="work-item xb-item" v-if="work_status==1" @click="change_work(0)">
           <i class="ico ico-xb"></i>
           <span>下班</span>
         </div>
@@ -31,7 +31,7 @@
           <swiper-item v-for="(item, index) in list2" :key="index">
             <div class="tab-swiper vux-center" v-if="index==0">
               <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-                <div class="group-item">
+                <!-- <div class="group-item">
                   <div class="lbl">合作单位</div>
                   <div class="info">
                     <div class="btn-select" @click="showCooperation=true">
@@ -40,7 +40,7 @@
                     <span>{{bItem.cXZDWMingCheng}}</span>
                     <div class="ico-clear" v-if="bItem.cXZDWMingCheng" @click="chepai_change()"></div>
                   </div>
-                </div>
+                </div> -->
                 <div class="group-item">
                   <div class="lbl">车辆</div>
                   <div class="info">
@@ -72,7 +72,7 @@
             </div>
             <div class="tab-swiper vux-center" v-if="index==1">
               <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-                <div class="group-item">
+                <!-- <div class="group-item">
                   <div class="lbl">合作单位</div>
                   <div class="info">
                     <div class="btn-select" @click="showCooperation=true">
@@ -81,7 +81,7 @@
                     <span>{{bItem.cXZDWMingCheng}}</span>
                     <div class="ico-clear" v-if="bItem.cXZDWMingCheng" @click="chepai_change()"></div>
                   </div>
-                </div>
+                </div> -->
                 <div class="group-item">
                   <div class="lbl">车辆</div>
                   <div class="info">
@@ -106,13 +106,13 @@
           <div class="title">最新订单</div>
           <div class="item-list">
             <section v-for="item in order_list">
-              <div class="n1">订单号：AF546465654512</div>
+              <div class="n1">订单号：{{item.cDingDanHao}}</div>
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
-              <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
+              <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
           </div>
         </div>
@@ -120,12 +120,12 @@
           <div class="title">最新订单</div>
           <div class="item-list">
             <section v-for="item in wj_order_list">
-              <div class="n1">订单号：AF546465654512</div>
+              <div class="n1">订单号：{{item.cDingDanHao}}</div>
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">订单时间：{{item.dDanJuRiQi}}</div>
-              <div class="n1">状态：{{item.iState==0?'未确认':'已确认'}}</div>
+              <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
           </div>
         </div>
@@ -180,13 +180,14 @@ const list = () => ['工程车', '挖掘机']
 
 import {
   GongDiInfo,
-  CheLiangInfo,
+  GongDiCheLiang,
   XieZuoDanWeiInfo,
-  XianLuInfo,
+  GongDiXianLu,
   GongChengCheDingDan,
   GetGongChengCheDingDan,
   WaJueJiDingDan,
-  GetWaJueJiDingDan
+  GetWaJueJiDingDan,
+  BangDingJiLu
 } from '@/api/home.js'
 export default {
   components: {
@@ -210,6 +211,7 @@ export default {
       showCooperation: false,
       showScrollBox: false,
       showWorkRoute: false,
+      work_status: 0,
       list2: list(),
       index: 0,
       demo2: '美食',
@@ -220,7 +222,7 @@ export default {
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
         cXianLuBianMa: null, //线路编码
-        cXZDWBianMa: null, //协作单位编码
+        // cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
         cGuanLiYuanBianMa: localStorage.getItem('openid') //现场管理员编码
       },
@@ -243,6 +245,16 @@ export default {
       route_keyword: null
     }
   },
+  filters: {
+    status_filters(val) {
+      var valMap = {
+        0: '未确认',
+        100: '确认',
+        110: '作废'
+      }
+      return valMap[val]
+    }
+  },
   computed: {
     cGongDiMingCheng() {
       if (this.$store.getters.gongdi_info.cGongDiMingCheng) {
@@ -251,13 +263,21 @@ export default {
         return '请选择'
       }
     },
+    cGongDiBianMa() {
+      if (this.$store.getters.gongdi_info.cGongDiBianMa) {
+        return this.$store.getters.gongdi_info.cGongDiBianMa
+      } else {
+        return ''
+      }
+    },
     validate_order() {
       if (
         this.bItem.cChePaiHao &&
         this.bItem.openid &&
         this.bItem.cXianLuBianMa &&
         this.bItem.cGuanLiYuanBianMa &&
-        this.isavailable
+        this.isavailable &&
+        this.work_status == 1
       ) {
         return true
       }
@@ -268,7 +288,8 @@ export default {
         this.bItem.cChePaiHao &&
         this.bItem.openid &&
         this.bItem.cGuanLiYuanBianMa &&
-        this.isavailable
+        this.isavailable &&
+        this.work_status == 1
       ) {
         return true
       }
@@ -298,12 +319,41 @@ export default {
     // }, 1000000)
     this.get_worksite() //工地信息
     this.get_driver() //车辆信息
-    this.get_cooperation() //合作单位
     this.get_route() //线路
+    // this.get_cooperation() //合作单位
     this.get_order() //工程车订单列表
     this.get_wj_order() //挖掘机订单
+    this.get_bangding() //绑定记录
   },
   methods: {
+    //查询上班状态
+    get_bangding() {
+      BangDingJiLu().then(res => {
+        if (res.data == null) {
+          this.work_status = 0
+        } else {
+          this.work_status = 1
+        }
+      })
+    },
+    change_work(work_status) {
+      var _this = this
+      if (work_status == 0) {
+        this.$vux.confirm.show({
+          title: '提示',
+          content: '下班后将不能发布订单，是否继续？',
+          onConfirm() {
+            BangDingJiLu({ iBangDingLeiXing: work_status }).then(res => {
+              _this.work_status = work_status
+            })
+          }
+        })
+      } else {
+        BangDingJiLu({ iBangDingLeiXing: work_status }).then(res => {
+          _this.work_status = work_status
+        })
+      }
+    },
     //清空车辆
     cheliang_change() {
       this.bItem.cChePaiHao = null
@@ -344,12 +394,14 @@ export default {
     },
     //车辆列表
     get_driver() {
-      CheLiangInfo({
-        keyword: this.driver_keyword,
-        cXZDWBianMa: this.driver_cXZDWBianMa
-      }).then(res => {
-        this.vehicle_list = res.data
-      })
+      if (this.cGongDiBianMa) {
+        GongDiCheLiang({
+          keyword: this.driver_keyword,
+          cGongDiBianMa: this.cGongDiBianMa
+        }).then(res => {
+          this.vehicle_list = res.data
+        })
+      }
     },
     //车辆名称
     select_vehicle(item) {
@@ -376,9 +428,14 @@ export default {
     },
     //路线
     get_route() {
-      XianLuInfo({ keyword: this.route_keyword }).then(res => {
-        this.route_list = res.data
-      })
+      if (this.cGongDiBianMa) {
+        GongDiXianLu({
+          cGongDiBianMa: this.cGongDiBianMa,
+          keyword: this.route_keyword
+        }).then(res => {
+          this.route_list = res.data
+        })
+      }
     },
     //线路名称
     select_wordRoute(item) {
@@ -473,23 +530,13 @@ export default {
         }
         return i
       }
-    },
-    change_work(work_status) {
-      var _this = this
-      if (work_status == 1) {
-        this.showScrollBox = true
-      } else {
-        this.$vux.confirm.show({
-          title: '提示',
-          content: '下班后将接收不到订单，是否继续？',
-          onConfirm() {
-            _this.work_status = work_status
-          }
-        })
-      }
     }
   },
   watch: {
+    cGongDiMingCheng(val, oldVal) {
+      this.get_driver() //车辆信息
+      this.get_route() //线路
+    },
     work_keyword(val, oldVal) {
       //工地列表
       this.get_worksite()

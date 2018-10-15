@@ -19,10 +19,10 @@
                 <span>我的订单</span>
                 <i class="next"></i>
             </router-link>
-            <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
+            <!-- <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
                 <span>路线</span>
                 <i class="next"></i>
-            </router-link>
+            </router-link> -->
         </div>
         <div style="height:1.5rem"></div>
         <admin-bottom route_name="admin-user"></admin-bottom>

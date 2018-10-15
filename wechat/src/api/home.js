@@ -78,3 +78,27 @@ export function CheLiang(data) {
     })
 }
 
+export function BangDingJiLu(data) {
+    return request({
+        url: 'BangDingJiLu',
+        method: "get",
+        params: data
+    })
+}
+
+export function GongDiCheLiang(data) {
+    return request({
+        url: 'GongDiCheLiang',
+        method: "get",
+        params: data
+    })
+}
+export function GongDiXianLu(data) {
+    return request({
+        url: 'GongDiXianLu',
+        method: "get",
+        params: data
+    })
+}
+
+
