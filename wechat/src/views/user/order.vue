@@ -23,11 +23,15 @@
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
+              <div class="n1">确认时间：{{item.dQueRenShiJian}}</div>
               <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" @click="edit_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
+              <div class="reset-btn" @click="edit_order(item)" v-if="role_code=='001' && item.iState==0">
                 作废
+              </div>
+              <div class="confirm-btn" @click="ok_order(item)" v-if="role_code=='002' && sed_index==0 && item.iState==0">
+                确认订单
               </div>
               <!-- <div class="confirm-btn" v-else>
                 确认订单
@@ -45,10 +49,10 @@
               <div class="n1">状态：{{item.iState|status_filters}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" @click="edit_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
+              <div class="reset-btn" @click="edit_order(item)" v-if="role_code=='001' && item.iState==0">
                 作废
               </div>
-              <div class="confirm-btn" @click="end_order(item)" v-if="menu_route=='admin-user' && item.iState==0">
+              <div class="confirm-btn" @click="end_order(item)" v-if="role_code=='001' && item.iState==0">
                 结束订单
               </div>
             </div>
@@ -107,20 +111,18 @@
 
 <script>
 // import { getOrderMyList } from '@/api/user.js'
-import { Tab, TabItem, XDialog, Datetime } from 'vux'
-import cVehicle from '@/components/cVehicle'
-import workSite from '@/components/workSite'
+import { Tab, TabItem, XDialog, Datetime } from "vux";
+import cVehicle from "@/components/cVehicle";
+import workSite from "@/components/workSite";
 import {
   CheLiang,
   GongDiInfo,
   GetGongChengCheDingDan,
   GetWaJueJiDingDan,
-  EndWaJueJiDingDan
-} from '@/api/home.js'
-const list = () => [
-  { key: 0, value: '工程车订单' },
-  { key: 1, value: '挖掘机订单' }
-]
+  EndWaJueJiDingDan,
+  ConfirmOrder
+} from "@/api/home.js";
+const list = () => [{ key: 0, value: "工程车订单" }, { key: 1, value: "挖掘机订单" }];
 export default {
   components: {
     Tab,
@@ -149,11 +151,12 @@ export default {
         cGongDiBianMa: null, //工地编码
         cGongDiMingCheng: null, //工地名称
         cChePaiHao: null, //车牌号
-        openid: null, //驾驶员编码
+        js_openid: null, //驾驶员编码
         cGuanLiYuanBianMa: null, //现场管理员编码
-        begindate: '',
-        enddate: ''
+        begindate: "",
+        enddate: ""
       },
+      role_code: localStorage.getItem("role_code"),
       wj_order_list: [],
       order_list: [],
       onFetching: false,
@@ -162,197 +165,221 @@ export default {
       work_list: [],
       driver_keyword: null,
       work_keyword: null
-    }
+    };
   },
   filters: {
     status_filters(val) {
       var valMap = {
-        0: '未确认',
-        100: '确认',
-        110: '作废'
-      }
-      return valMap[val]
+        0: "未确认",
+        100: "确认",
+        110: "作废"
+      };
+      return valMap[val];
     }
   },
   created() {
-    // this.onScrollBottom()
-    this.get_worksite()
-    this.get_driver()
-    this.get_order()
+    //驾驶员
+    if (this.role_code == "002") {
+      this.w_qeury.js_openid = localStorage.getItem("openid");
+    }
+    this.get_worksite();
+    this.get_driver();
+    this.get_order();
   },
   mounted() {},
   methods: {
     //清空工地条件
     gongdi_change() {
-      this.w_qeury.cGongDiBianMa = null
-      this.w_qeury.cGongDiMingCheng = null
+      this.w_qeury.cGongDiBianMa = null;
+      this.w_qeury.cGongDiMingCheng = null;
     },
     //清空车辆条件
     cheliang_change() {
-      this.w_qeury.cChePaiHao = null
+      this.w_qeury.cChePaiHao = null;
     },
     //工地名称
     get_worksite() {
       GongDiInfo({ keyword: this.work_keyword }).then(res => {
-        this.work_list = res.data
-      })
+        this.work_list = res.data;
+      });
     },
     //工地名称
     selectWork(val) {
-      this.w_qeury.cGongDiBianMa = val.cGongDiBianMa
-      this.w_qeury.cGongDiMingCheng = val.cGongDiMingCheng
-      this.showWorkSite = false
+      this.w_qeury.cGongDiBianMa = val.cGongDiBianMa;
+      this.w_qeury.cGongDiMingCheng = val.cGongDiMingCheng;
+      this.showWorkSite = false;
     },
     //车辆列表
     get_driver() {
       CheLiang({
         keyword: this.driver_keyword
       }).then(res => {
-        this.vehicle_list = res.data
-      })
+        this.vehicle_list = res.data;
+      });
     },
     //车辆名称
     select_vehicle(item) {
-      this.showScrollBox = false
-      this.w_qeury.cChePaiHao = item.cChePaiHao
+      this.showScrollBox = false;
+      this.w_qeury.cChePaiHao = item.cChePaiHao;
     },
     search_order() {
-      this.init_query()
-      this.get_order()
+      this.init_query();
+      this.get_order();
+    },
+    //确认订单
+    ok_order(item) {
+      var _this = this;
+      this.$vux.confirm.show({
+        title: "提示",
+        content: "确认后订单完结，是否继续？",
+        onConfirm() {
+          console.log(_this.sed_index);
+          if (_this.sed_index == 0) {
+            ConfirmOrder({
+              cDingDanHao: item.cDingDanHao
+            }).then(res => {
+              item.iState = 100;
+              item.dQueRenShiJian = res.data;
+              _this.$vux.alert.show({
+                title: "提示",
+                content: "操作成功！"
+              });
+            });
+          }
+        }
+      });
     },
     //作废订单
     edit_order(item) {
-      var _this = this
+      var _this = this;
       this.$vux.confirm.show({
-        title: '提示',
-        content: '只有未确认的订单才能作废，是否继续？',
+        title: "提示",
+        content: "只有未确认的订单才能作废，是否继续？",
         onConfirm() {
-          console.log(_this.sed_index)
+          console.log(_this.sed_index);
           if (_this.sed_index == 0) {
-            GetGongChengCheDingDan({ cDingDanHao: item.cDingDanHao }).then(
-              res => {
-                item.iState = 110
-                _this.$vux.alert.show({
-                  title: '提示',
-                  content: '操作成功！'
-                })
-              }
-            )
+            GetGongChengCheDingDan({
+              cDingDanHao: item.cDingDanHao
+            }).then(res => {
+              item.iState = 110;
+              _this.$vux.alert.show({
+                title: "提示",
+                content: "操作成功！"
+              });
+            });
           } else {
             GetWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(res => {
-              item.iState = 110
+              item.iState = 110;
               _this.$vux.alert.show({
-                title: '提示',
-                content: '操作成功！'
-              })
-            })
+                title: "提示",
+                content: "操作成功！"
+              });
+            });
           }
         }
-      })
+      });
     },
     end_order(item) {
-      var _this = this
+      var _this = this;
       this.$vux.confirm.show({
-        title: '提示',
-        content: '只有到达目的地后才能结束订单，是否继续？',
+        title: "提示",
+        content: "只有到达目的地后才能结束订单，是否继续？",
         onConfirm() {
-          EndWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(
-            res => {
-              item.iState = 100
-              item.dJieShuShiJian=res.data;
-              _this.$vux.alert.show({
-                title: '提示',
-                content: '操作成功！'
-              })
-            }
-          )
+          EndWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(res => {
+            item.iState = 100;
+            item.dJieShuShiJian = res.data;
+            _this.$vux.alert.show({
+              title: "提示",
+              content: "操作成功！"
+            });
+          });
         }
-      })
+      });
     },
     //工程车订单列表
     get_order() {
-      console.log(this.sed_index)
+      console.log(this.sed_index);
       if (this.sed_index == 0) {
-        this.onFetching = true
+        this.onFetching = true;
         GetGongChengCheDingDan(this.w_qeury).then(res => {
-          this.showWhere = false
+          this.showWhere = false;
           if (res.data.length) {
-            this.order_list = this.order_list.concat(res.data)
+            this.order_list = this.order_list.concat(res.data);
             // this.$nextTick(() => {
             //   this.$refs.scrollerBottom.reset()
             // })
-            this.w_qeury.page++
+            this.w_qeury.page++;
             if (res.data.length < 10) {
-              this.onFetching = true
-              this.noData = true
+              this.onFetching = true;
+              this.noData = true;
             } else {
-              this.onFetching = false
+              this.onFetching = false;
             }
           } else {
-            this.onFetching = true
-            this.noData = true
+            this.onFetching = true;
+            this.noData = true;
           }
-        })
+        });
       } else {
         GetWaJueJiDingDan(this.w_qeury).then(res => {
-          this.showWhere = false
+          this.showWhere = false;
           if (res.data.length) {
-            this.wj_order_list = this.wj_order_list.concat(res.data)
+            this.wj_order_list = this.wj_order_list.concat(res.data);
             // this.$nextTick(() => {
             //   this.$refs.scrollerBottom.reset()
             // })
-            this.w_qeury.page++
+            this.w_qeury.page++;
             if (res.data.length < 10) {
-              this.onFetching = true
-              this.noData = true
+              this.onFetching = true;
+              this.noData = true;
             } else {
-              this.onFetching = false
+              this.onFetching = false;
             }
           } else {
-            this.onFetching = true
-            this.noData = true
+            this.onFetching = true;
+            this.noData = true;
           }
-        })
+        });
       }
     },
     select_wordRoute(res) {
-      this.showWorkRoute = false
+      this.showWorkRoute = false;
     },
     init_query() {
-      this.order_list = []
-      this.wj_order_list = []
-      this.onFetching = false
-      this.w_qeury.page = 1
+      this.order_list = [];
+      this.wj_order_list = [];
+      this.onFetching = false;
+      this.w_qeury.page = 1;
       this.$nextTick(() => {
-        this.$refs.scrollerBottom.reset({ top: 0 })
-      })
+        this.$refs.scrollerBottom.reset({ top: 0 });
+      });
     },
     change_tab_index(index) {
-      this.sed_index = index
-      this.init_query()
-      this.onScrollBottom()
+      this.sed_index = index;
+      this.init_query();
+      this.onScrollBottom();
     },
     goPayment(item) {
       if (item.status == 0) {
         this.$router.push({
-          name: 'purchase-details_payment',
+          name: "purchase-details_payment",
           query: {
             orderno: item.orderno,
             tradetype: this.w_qeury.tradetype
           }
-        })
+        });
       }
     },
     onScrollBottom() {
       if (this.onFetching) {
         // do nothing
       } else {
-        this.onFetching = true
-        this.get_order()
+        this.onFetching = true;
+        this.get_order();
       }
     }
   }
-}
+};
 </script>
 <style>
 .group-content .weui-cells {
@@ -450,7 +477,7 @@ export default {
     top: 0.32rem;
     width: 0.426667rem;
     height: 0.426667rem;
-    background: url('../../assets/img/delete.png');
+    background: url("../../assets/img/delete.png");
     background-size: 100%;
   }
   .lbl {
@@ -471,7 +498,7 @@ export default {
     margin-right: 0.3rem;
   }
   .set-btn:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     right: -0.266667rem;
     top: 0;

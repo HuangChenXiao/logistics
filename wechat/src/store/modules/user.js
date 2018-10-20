@@ -7,6 +7,7 @@ const user = {
     token: getToken(),
     user_info: localStorage.getItem("user_info") != null ? JSON.parse(localStorage.getItem("user_info")) : {},//用户信息
     gongdi_info: localStorage.getItem("cGongDiMingCheng") != null ? JSON.parse(localStorage.getItem("cGongDiMingCheng")) : {},//工地名称
+    cChePaiHao: localStorage.getItem("cChePaiHao")!= null ? JSON.parse(localStorage.getItem("cChePaiHao")) : {},//车辆信息
   },
 
   mutations: {
@@ -18,6 +19,9 @@ const user = {
     },
     SET_gongdi_info: (state, gongdi_info) => {
       state.gongdi_info = gongdi_info
+    }, 
+    SET_cChePaiHao: (state, cChePaiHao) => {
+      state.cChePaiHao = cChePaiHao
     }
   },
 
@@ -55,6 +59,13 @@ const user = {
         }).catch(error => {
           reject(error)
         })
+      })
+    },
+    setcChePaiHao({ commit }, cChePaiHao) {
+      return new Promise((resolve, reject) => {
+        commit('SET_cChePaiHao', JSON.parse(cChePaiHao))
+        localStorage.setItem('cChePaiHao',cChePaiHao)
+        resolve(cChePaiHao)
       })
     },
     setToken({ commit }, token) {

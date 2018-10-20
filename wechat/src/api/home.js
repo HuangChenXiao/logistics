@@ -108,3 +108,11 @@ export function EndWaJueJiDingDan(data) {
         params: data
     })
 }
+
+export function ConfirmOrder(data) {
+    return request({
+        url: 'ConfirmOrder',
+        method: "get",
+        params: data
+    })
+}

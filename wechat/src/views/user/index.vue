@@ -16,10 +16,10 @@
         <span>我的订单</span>
         <i class="next"></i>
       </router-link>
-      <router-link :to="{name:'wages',query:{title:'我的工资'}}" class="item">
+      <!-- <router-link :to="{name:'wages',query:{title:'我的工资'}}" class="item">
         <span>我的工资</span>
         <i class="next"></i>
-      </router-link>
+      </router-link> -->
     </div>
     <div style="height:1.5rem"></div>
     <c-bottom></c-bottom>

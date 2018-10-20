@@ -55,7 +55,7 @@ const getformattedAddress = new Promise(function (resolve, reject) {
     //解析定位错误信息
     function onError(data) {
         console.log('定位失败')
-        reject(data)
+        reject(JSON.stringify(data))
     }
 })
 export default getformattedAddress

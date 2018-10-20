@@ -11,5 +11,6 @@ const getters = {
   isLoading: state => state.com.isLoading,
   loadingText: state => state.com.loadingText,
   gongdi_info: state => state.user.gongdi_info,
+  cChePaiHao: state => state.user.cChePaiHao,
 }
 export default getters

@@ -4,24 +4,24 @@
     </n-header>
     <div style="height:1.26rem"></div>
     <div class="home">
-      <div class="address">
+      <!-- <div class="address">
         当前位置：{{bItem.start_position}}
         <i class="ico ico-ad" onclick="location.reload()"></i>
-      </div>
+      </div> -->
       <div class="work">
-        <div class="work-item sb-item" v-if="work_status==2" @click="change_work(1)">
+        <div class="work-item sb-item" v-if="work_status==0" @click="change_work(1)">
           <i class="ico ico-sb"></i>
           <span>上班</span>
         </div>
-        <div class="work-item xb-item" v-if="work_status==1" @click="change_work(2)">
+        <div class="work-item xb-item" v-if="work_status==1" @click="change_work(0)">
           <i class="ico ico-xb"></i>
           <span>下班</span>
         </div>
       </div>
       <div class="info">
-        <div class="item">
+        <!-- <div class="item">
           <div class="lbl">当前时间：{{time}}</div>
-        </div>
+        </div> -->
         <div class="item">
           <div class="lbl">我的状态：
             <span :class="{'gen':work_status==1}">{{work_status|workMethod}}</span>
@@ -29,11 +29,16 @@
         </div>
         <div class="item">
           <div class="lbl">我的车辆：
-            <span>{{vehicle_info}}</span>
+            <span>{{cChePaiHao}}</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="lbl">车辆类型：
+            <span>{{cCheLiangLeiBie}}</span>
           </div>
         </div>
       </div>
-      <div class="count-item clearfix">
+      <!-- <div class="count-item clearfix">
         <div class="item it_1">
           <div class="title">昨日订单</div>
           <div class="qty">单量：10</div>
@@ -42,20 +47,43 @@
           <div class="title">今日订单</div>
           <div class="qty">单量：20</div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="task">
-        <div class="title">最新订单</div>
-        <div class="item-list">
-          <div class="item">订单号：TGF13301111133332</div>
-          <div class="item">开始地址：厦门市软件园二期</div>
-          <div class="item">结束地址：厦门市软件园三期</div>
-          <!-- <div class="sus-btn" @click="complete_order">
-            完成订单
-          </div> -->
+        <tab :line-width=2 active-color='#f00' v-model="index">
+          <tab-item class="vux-center" v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
+        </tab>
+       <div class="task">
+        <div class="tab-order" v-if="index==0">
+          <div class="title">最新订单</div>
+          <div class="item-list">
+            <section v-for="item in order_list">
+              <div class="n1">订单号：{{item.cDingDanHao}}</div>
+              <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+              <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
+              <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">驾驶员：{{item.cXingMing}}</div>
+              <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
+              <div class="n1">状态：{{item.iState|status_filters}}</div>
+            </section>
+          </div>
+        </div>
+        <div class="tab-order" v-else>
+          <div class="title">最新订单</div>
+          <div class="item-list">
+            <section v-for="item in wj_order_list">
+              <div class="n1">订单号：{{item.cDingDanHao}}</div>
+              <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
+              <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">驾驶员：{{item.cXingMing}}</div>
+              <div class="n1">开始时间：{{item.dKaiShiShiJian}}</div>
+              <div class="n1">结束时间：{{item.dKaiShiShiJian}}</div>
+              <div class="n1">状态：{{item.iState|status_filters}}</div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
+    <div style="height:1.5rem"></div>
     <!-- <div style="margin:0">
       <group label-width="4.5em" label-margin-right="2em" label-align="right">
 
@@ -63,66 +91,113 @@
       </group>
     </div> -->
     <c-bottom route_name="home"></c-bottom>
+    <!-- 车辆信息 -->
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle :single_drive="true" @selectVehicle="select_vehicle" v-model="vehicle_list"></c-vehicle>
+      <c-vehicle :single_drive="true" title="车辆信息" @selectVehicle="select_vehicle" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
     </x-dialog>
+    <!-- 班别 -->
+    <popup v-model="BanBieShow">
+        <!-- group already has a top border, so we need to hide header's bottom border-->
+        <popup-header
+        right-text="确定"
+        title="选择班别"
+        :show-bottom-border="false"
+        @on-click-left="BanBieShow = false"
+        @on-click-right="setBanBieShow"></popup-header>
+        <group gutter="0">
+          <radio v-model="cShangBanBianMa" :options="banbie_list"></radio>
+        </group>
+      </popup>
   </div>
 </template>
 
 <script>
-import { Group, XDialog } from 'vux'
-import { getAdList } from '@/api/home.js'
-import getformattedAddress from '@/map/index.js'
-import { setTimeout } from 'timers'
-import cVehicle from '@/components/cVehicle'
-import workSite from '@/components/workSite'
-import { defaultCoreCipherList } from 'constants';
+import { Radio, Popup, PopupHeader, Group, XDialog, Tab, TabItem } from "vux";
+import getformattedAddress from "@/map/index.js";
+import { setTimeout } from "timers";
+import cVehicle from "@/components/cVehicle";
+import workSite from "@/components/workSite";
+import { defaultCoreCipherList } from "constants";
+import { DriverCheLiang, ShangBanLeiBie } from "@/api/driver.js";
+import { wechatUser } from "@/api/home.js";
+
+import {
+  BangDingJiLu,
+  GetGongChengCheDingDan,
+  GetWaJueJiDingDan
+} from "@/api/home.js";
+
+const list = () => ["工程车", "挖掘机"];
 export default {
   components: {
+    Radio,
+    Popup,
+    PopupHeader,
     Group,
     XDialog,
     cVehicle,
-    workSite
+    workSite,
+    Tab,
+    TabItem
   },
   data() {
     return {
-      vehicle_list: [
-        { id: 1,name:'黄臣晓', code: '闽A12345', color: '红色' },
-        { id: 2,name:'黄臣晓', code: '闽A12345', color: '白色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' },
-        { id: 2,name:'黄臣晓', code: '闽A4564', color: '黑色' }
-      ],
+      cShangBanBianMa: null, //班别值
+      BanBieShow: false, //班别
+      index: 0,
+      list2: list(),
+      vehicle_list: [],
       showScrollBox: false,
-      vehicle_info: null,
       task_status: false,
       work_status: 2,
       time: null,
       bItem: {
-        start_position: '厦门市'
+        start_position: "厦门市"
       },
+      order_list: [],
+      wj_order_list: [],
+      banbie_list: [],
       store_query: {
         longitude: this.$store.getters.longitude,
         latitude: this.$store.getters.latitude,
         startrow: 1,
         pagesize: 10
+      },
+      driver_keyword: null
+    };
+  },
+  filters: {
+    status_filters(val) {
+      var valMap = {
+        0: "未确认",
+        100: "确认",
+        110: "作废"
+      };
+      return valMap[val];
+    }
+  },
+  computed: {
+    cChePaiHao() {
+      if (this.$store.getters.cChePaiHao) {
+        return this.$store.getters.cChePaiHao.cChePaiHao;
       }
+      return "";
+    },
+    cCheLiangLeiBie() {
+      if (this.$store.getters.cChePaiHao) {
+        return this.$store.getters.cChePaiHao.cCheLiangLeiBie;
+      }
+      return "";
     }
   },
   created() {
-    let _this = this
+    let _this = this;
     // if (_this.store_query.start_position) {
     //   _this.bItem.start_position = _this.store_query.start_position
     // } else {
     //   _this.get_address()
     // }
-    this.set_time()
+    // this.set_time();
     // setTimeout(() => {
     //   _this.$vux.alert.show({
     //     title: '提示',
@@ -132,69 +207,141 @@ export default {
     //     }
     //   })
     // }, 1000000)
+    this.get_driver(); //车辆列表
+    this.get_bangding(); //查询上班状态
+    this.get_order(); //订单
+    this.get_banbieinfo(); //班别
   },
   methods: {
+    get_banbieinfo() {
+      ShangBanLeiBie().then(res => {
+        this.banbie_list = res.data.map(o => {
+          var data = {};
+          data.key = o.cShangBanBianMa;
+          data.value = o.cShangBanMingCheng;
+          return data;
+        });
+      });
+    },
+    setBanBieShow() {
+      console.log(this.cShangBanBianMa)
+      this.BanBieShow = false;
+      this.showScrollBox = true;
+    },
+    //切换时清空数据
+    set_tab_item(item) {
+      if (this.index == 0) {
+        this.get_order();
+      } else {
+        this.get_wj_order();
+      }
+    },
+    //工程车订单列表
+    get_order() {
+      GetGongChengCheDingDan({
+        page: 1,
+        pagesize: 10,
+        openid: localStorage.getItem("openid")
+      }).then(res => {
+        this.order_list = res.data;
+      });
+    },
+    //挖掘机订单列表
+    get_wj_order() {
+      GetWaJueJiDingDan({
+        page: 1,
+        pagesize: 10,
+        openid: localStorage.getItem("openid")
+      }).then(res => {
+        this.wj_order_list = res.data;
+      });
+    },
+    get_driver() {
+      DriverCheLiang().then(res => {
+        this.vehicle_list = res.data;
+      });
+    },
     complete_order() {
       this.$vux.confirm.show({
-        title: '提示',
-        content: '只有到达目的地与管理员确认后才能操作，是否继续？',
+        title: "提示",
+        content: "只有到达目的地与管理员确认后才能操作，是否继续？",
         onConfirm() {
-          _this.work_status = work_status
+          _this.work_status = work_status;
         }
-      })
+      });
     },
     select_vehicle(item) {
-      this.showScrollBox = false
-      this.vehicle_info = item.code
-      this.work_status = 1
+      this.showScrollBox = false;
+      this.$store.dispatch("setcChePaiHao", JSON.stringify(item)); //车牌号
+      BangDingJiLu({
+        iBangDingLeiXing: 1,
+        cChePaiHao: this.cChePaiHao,
+        cShangBanBianMa: this.cShangBanBianMa,
+      }).then(res => {
+        this.work_status = 1;
+      });
     },
     get_address() {
-      let _this = this
-      _this.bItem.start_position = '正在定位。。。'
-      _this.$store.dispatch('setisLoading', true)
+      let _this = this;
+      _this.bItem.start_position = "正在定位。。。";
+      _this.$store.dispatch("setisLoading", true);
       getformattedAddress.then(res => {
-        _this.bItem.start_position = res.regeocode.formattedAddress
+        _this.bItem.start_position = res.regeocode.formattedAddress;
         // console.log(res.regeocode.formattedAddress)
-        _this.$store.dispatch('setisLoading', false)
-      })
+        _this.$store.dispatch("setisLoading", false);
+      });
     },
     set_time() {
-      var _this = this
-      var t = null
-      t = setTimeout(time, 1000) //開始运行
+      var _this = this;
+      var t = null;
+      t = setTimeout(time, 1000); //開始运行
       function time() {
-        clearTimeout(t) //清除定时器
-        var dt = new Date()
-        var h = checkTime(dt.getHours()) //获取时
-        var m = checkTime(dt.getMinutes()) //获取分
-        var s = checkTime(dt.getSeconds()) //获取秒
-        _this.time = h + '：' + m + '：' + s
-        t = setTimeout(time, 1000) //设定定时器，循环运行
+        clearTimeout(t); //清除定时器
+        var dt = new Date();
+        var h = checkTime(dt.getHours()); //获取时
+        var m = checkTime(dt.getMinutes()); //获取分
+        var s = checkTime(dt.getSeconds()); //获取秒
+        _this.time = h + "：" + m + "：" + s;
+        t = setTimeout(time, 1000); //设定定时器，循环运行
       }
       function checkTime(i) {
         //将0-9的数字前面加上0，例1变为01
         if (i < 10) {
-          i = '0' + i
+          i = "0" + i;
         }
-        return i
+        return i;
       }
     },
+    //查询上班状态
+    get_bangding() {
+      wechatUser().then(res => {
+        this.work_status = res.data.status;
+      });
+    },
     change_work(work_status) {
-      var _this = this
-      if (work_status == 1) {
-        this.showScrollBox = true
-      } else {
+      var _this = this;
+      if (work_status == 0) {
         this.$vux.confirm.show({
-          title: '提示',
-          content: '下班后将接收不到订单，是否继续？',
+          title: "提示",
+          content: "下班后将不能接收订单，是否继续？",
           onConfirm() {
-            _this.work_status = work_status
+            BangDingJiLu({
+              iBangDingLeiXing: work_status,
+              cChePaiHao: _this.cChePaiHao,
+              cShangBanBianMa: _this.cShangBanBianMa
+            }).then(res => {
+              _this.work_status = work_status;
+              _this.$store.dispatch("setcChePaiHao", null);
+            });
           }
-        })
+        });
+      } else {
+        // this.showScrollBox = true;
+        this.BanBieShow = true;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -266,7 +413,7 @@ export default {
     background-size: 100%;
   }
   .ico:before {
-    content: ' ';
+    content: " ";
     position: absolute;
     left: -0.266667rem;
     display: block;
@@ -283,6 +430,7 @@ export default {
 .count-item {
   background: #fff;
   border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
   .item {
     float: left;
     width: 50%;
@@ -340,5 +488,9 @@ export default {
     border-radius: 3px;
     width: 2rem;
   }
+}
+.task .item-list section {
+  border-bottom: 1px solid #ededed;
+  padding: 0.266667rem;
 }
 </style>

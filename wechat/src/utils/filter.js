@@ -10,9 +10,8 @@ let orderType = value => {
 
 let workMethod = value => {
     var valMap = {
-        0: '用户被禁用',
+        0: '休息中',
         1: '正在上班',
-        2: '休息中',
     }
     return valMap[value]
 }

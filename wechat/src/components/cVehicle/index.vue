@@ -11,8 +11,9 @@
     </div>
     <div class="item-list" v-if="list.length>0">
       <div class="item" v-for="item in list">
-        <div class="code">驾驶员：{{item.cXingMing}}</div>
+        <div class="code" v-if="item.cXingMing">驾驶员：{{item.cXingMing}}</div>
         <div class="code">车牌：{{item.cChePaiHao}}</div>
+        <div class="code">类型：{{item.cCheLiangLeiBie}}</div>
         <div class="opt-btn" v-if="single_drive">
           <div class="sed-btn" @click="select_vehicle(item)">
             选择
@@ -108,7 +109,7 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.5rem;
+        top: 30%;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;
