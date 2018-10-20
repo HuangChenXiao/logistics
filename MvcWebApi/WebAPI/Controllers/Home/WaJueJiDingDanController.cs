@@ -25,7 +25,7 @@ namespace WebAPI.Controllers.Home
             if (!string.IsNullOrEmpty(openid))
             {
                 var temp = from a in db.WaJueJiDingDan_View
-                           where a.cGuanLiYuanBianMa==openid
+                           where a.cGuanLiYuanBianMa == openid
                            select a;
                 model.data = temp.Take(10).OrderByDescending(o => o.dDanJuRiQi).ToList();
 
@@ -83,7 +83,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao=null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string begindate = null, string enddate = null)
+        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao = null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string begindate = null, string enddate = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
@@ -127,21 +127,35 @@ namespace WebAPI.Controllers.Home
         [ResponseType(typeof(WaJueJiDingDan))]
         public IHttpActionResult PostWaJueJiDingDan(WaJueJiDingDan WaJueJiDingDan)
         {
-            WaJueJiDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            WaJueJiDingDan.iState = 0;
-            WaJueJiDingDan.cState = "未确认";
-            WaJueJiDingDan.dDanJuRiQi = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            WaJueJiDingDan.dKaiShiShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            db.WaJueJiDingDan.Add(WaJueJiDingDan);
-            try
+
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
             {
-                db.SaveChanges();
-                model.message = "新增成功";
-                model.status_code = 200;
+                var info = db.CheLiangInfo.Where(o => o.cChePaiHao == WaJueJiDingDan.cChePaiHao).FirstOrDefault();
+                WaJueJiDingDan.cShangBanBianMa = info.cShangBanBianMa;
+                WaJueJiDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                WaJueJiDingDan.iState = 0;
+                WaJueJiDingDan.cState = "未确认";
+                WaJueJiDingDan.iBiaoShi = 1;
+                WaJueJiDingDan.dDanJuRiQi = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                WaJueJiDingDan.dKaiShiShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                db.WaJueJiDingDan.Add(WaJueJiDingDan);
+                try
+                {
+                    db.SaveChanges();
+                    model.message = "新增成功";
+                    model.status_code = 200;
+                }
+                catch (Exception ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
+
             }
-            catch (Exception ex)
+            else
             {
-                model.message = ex.Message;
+                model.message = "微信授权失败";
                 model.status_code = 401;
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));

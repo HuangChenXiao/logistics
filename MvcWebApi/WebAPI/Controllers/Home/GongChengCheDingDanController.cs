@@ -55,6 +55,7 @@ namespace WebAPI.Controllers.Home
             {
                 try
                 {
+
                     var order = db.GongChengCheDingDan.Where(o => o.cDingDanHao == cDingDanHao).FirstOrDefault();
                     if (order.iState == 0)
                     {
@@ -136,23 +137,36 @@ namespace WebAPI.Controllers.Home
         [ResponseType(typeof(GongChengCheDingDan))]
         public IHttpActionResult PostGongChengCheDingDan(GongChengCheDingDan GongChengCheDingDan)
         {
-            GongChengCheDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            GongChengCheDingDan.iState = 0;
-            GongChengCheDingDan.cState = "未确认";
-            GongChengCheDingDan.iTWState = 0;
-            GongChengCheDingDan.cTWState = "未确认";
-            GongChengCheDingDan.dDanJuRiQi = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-            GongChengCheDingDan.dQiYunShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            db.GongChengCheDingDan.Add(GongChengCheDingDan);
-            try
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
             {
-                db.SaveChanges();
-                model.message = "新增成功";
-                model.status_code = 200;
+                var info = db.CheLiangInfo.Where(o => o.cChePaiHao == GongChengCheDingDan.cChePaiHao).FirstOrDefault();
+                GongChengCheDingDan.cShangBanBianMa = info.cShangBanBianMa;
+                GongChengCheDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                GongChengCheDingDan.iState = 0;
+                GongChengCheDingDan.cState = "未确认";
+                GongChengCheDingDan.iTWState = 0;
+                GongChengCheDingDan.cTWState = "未确认";
+                GongChengCheDingDan.iBiaoShi = 1;
+                GongChengCheDingDan.dDanJuRiQi = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+                GongChengCheDingDan.dQiYunShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                db.GongChengCheDingDan.Add(GongChengCheDingDan);
+                try
+                {
+                    db.SaveChanges();
+                    model.message = "新增成功";
+                    model.status_code = 200;
+                }
+                catch (Exception ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
+
             }
-            catch (Exception ex)
+            else
             {
-                model.message = ex.Message;
+                model.message = "微信授权失败";
                 model.status_code = 401;
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));

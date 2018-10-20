@@ -491,7 +491,6 @@ F:\gitCode\logistics\MvcWebApi\WebAPI\bin\zh-Hans\System.Web.Http.Owin.resources
 F:\gitCode\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 F:\gitCode\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.dll
 F:\gitCode\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.pdb
-G:\gitCode\logistics\MvcWebApi\WebAPI\bin\WebAPI.dll.config
 G:\gitCode\logistics\MvcWebApi\WebAPI\bin\WebAPI.dll
 G:\gitCode\logistics\MvcWebApi\WebAPI\bin\WebAPI.pdb
 G:\gitCode\logistics\MvcWebApi\WebAPI\bin\Antlr3.Runtime.dll
@@ -691,3 +690,4 @@ F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\zh-Hans\System.Web.Http.Owin
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.dll
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.pdb
+G:\gitCode\logistics\MvcWebApi\WebAPI\bin\WebAPI.dll.config

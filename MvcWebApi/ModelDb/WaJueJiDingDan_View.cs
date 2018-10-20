@@ -22,7 +22,6 @@ namespace ModelDb
         public string dKaiShiShiJian { get; set; }
         public string dJieShuShiJian { get; set; }
         public Nullable<decimal> iXiaoShiShu { get; set; }
-        public string cXZDWBianMa { get; set; }
         public Nullable<System.DateTime> dQueRenShiJian { get; set; }
         public string cGuanLiYuanBianMa { get; set; }
         public Nullable<int> iState { get; set; }

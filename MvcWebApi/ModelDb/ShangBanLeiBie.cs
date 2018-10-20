@@ -12,16 +12,9 @@ namespace ModelDb
     using System;
     using System.Collections.Generic;
     
-    public partial class BangDingJiLu
+    public partial class ShangBanLeiBie
     {
-        public long AutoID { get; set; }
-        public string cChePaiHao { get; set; }
-        public string openid { get; set; }
-        public Nullable<System.DateTime> dShiJian { get; set; }
-        public Nullable<int> iBangDingLeiXing { get; set; }
-        public string cDiZhi { get; set; }
-        public Nullable<int> iDelete { get; set; }
-        public Nullable<int> iFangShi { get; set; }
         public string cShangBanBianMa { get; set; }
+        public string cShangBanMingCheng { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace ModelDb
         public Nullable<System.DateTime> dDanJuRiQi { get; set; }
         public string cChePaiHao { get; set; }
         public string openid { get; set; }
+        public string cShangBanBianMa { get; set; }
         public Nullable<System.DateTime> dQiYunShiJian { get; set; }
         public string cXianLuBianMa { get; set; }
         public Nullable<System.DateTime> dQueRenShiJian { get; set; }
@@ -29,5 +30,7 @@ namespace ModelDb
         public Nullable<int> iTWState { get; set; }
         public string cTWState { get; set; }
         public string cBeiZhu { get; set; }
+        public string cCreate { get; set; }
+        public Nullable<int> iBiaoShi { get; set; }
     }
 }

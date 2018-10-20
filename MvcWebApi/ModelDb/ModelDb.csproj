@@ -120,6 +120,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShangBanLeiBie.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ShangPinChuKu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

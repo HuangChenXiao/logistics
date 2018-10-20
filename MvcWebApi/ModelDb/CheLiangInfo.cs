@@ -26,6 +26,7 @@ namespace ModelDb
         public string cCheLiangSuoShu { get; set; }
         public string cXZDWBianMa { get; set; }
         public string openid { get; set; }
+        public string cShangBanBianMa { get; set; }
         public string cCheLiangLeiBie { get; set; }
         public Nullable<bool> bShiFouBaoFei { get; set; }
         public Nullable<System.DateTime> dBaoFeiRiQi { get; set; }

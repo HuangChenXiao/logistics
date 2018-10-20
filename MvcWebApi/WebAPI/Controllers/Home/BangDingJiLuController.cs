@@ -25,9 +25,9 @@ namespace WebAPI.Controllers.Home
             {
                 var temp = from a in db.BangDingJiLu
                            join b in db.wechatUser on a.openid equals b.openid
-                           where a.iBangDingLeiXing == 1 && a.openid == openid
+                           where a.openid == openid
                            select a;
-                model.data = temp.OrderByDescending(o=>o.dShiJian).FirstOrDefault();
+                model.data = temp.OrderByDescending(o => o.dShiJian).FirstOrDefault().cChePaiHao;
 
                 if (model.data != null)
                 {
@@ -48,7 +48,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int iBangDingLeiXing)
+        public ResponseMessageResult Get(int iBangDingLeiXing, string cChePaiHao = null, string cDiZhi = null, string cShangBanBianMa = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
@@ -57,8 +57,26 @@ namespace WebAPI.Controllers.Home
                 jilu.iBangDingLeiXing = iBangDingLeiXing;
                 jilu.openid = openid;
                 jilu.iFangShi = 0;
+                jilu.cChePaiHao = cChePaiHao;
+                jilu.cDiZhi = cDiZhi;
+                jilu.cShangBanBianMa = cShangBanBianMa;
                 jilu.dShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 db.BangDingJiLu.Add(jilu);
+                var wechat = db.wechatUser.Where(o => o.openid == openid).FirstOrDefault();
+                wechat.status = iBangDingLeiXing;
+                if (!string.IsNullOrEmpty(cChePaiHao))
+                {
+                    var driver = db.CheLiangInfo.Where(o => o.cChePaiHao == cChePaiHao).FirstOrDefault();
+                    if (iBangDingLeiXing == 1)
+                    {
+                        driver.openid = openid;
+                    }
+                    else
+                    {
+                        driver.openid = null;
+                    }
+                    driver.cShangBanBianMa = cShangBanBianMa;
+                }
                 try
                 {
                     db.SaveChanges();

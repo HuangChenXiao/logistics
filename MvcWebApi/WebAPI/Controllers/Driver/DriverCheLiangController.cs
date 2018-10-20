@@ -14,33 +14,21 @@ using System.Web;
 using WebAPI.Models;
 using System.Web.Http.Results;
 
-namespace WebAPI.Controllers.Home
+namespace WebAPI.Controllers.Driver
 {
-    public class GongDiCheLiangController : ApiController
+    public class DriverCheLiangController : ApiController
     {
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
 
-        public ResponseMessageResult Get(string cGongDiBianMa, string cCheLiangLeiBie, string keyword = null)
+        public ResponseMessageResult Get()
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
                 var temp = from a in db.CheLiangInfo
-                           join b in db.wechatUser on a.openid equals b.openid
-                           join c in db.GongDiCheLiang on a.cChePaiHao equals c.cChePaiHao
-                           where (c.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa))
-                           && (a.cChePaiHao.Contains(keyword) || a.cPinPai.Contains(keyword) || b.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword))
-                           && a.cCheLiangLeiBie == cCheLiangLeiBie
-                           && b.status==1
-                           select new
-                           {
-                               a.cChePaiHao,
-                               a.cPinPai,
-                               b.cXingMing,
-                               b.openid,
-                               a.cCheLiangLeiBie
-                           };
+                           where string.IsNullOrEmpty(a.openid)
+                           select a;
                 model.data = temp.ToList();
 
                 if (model.data != null)

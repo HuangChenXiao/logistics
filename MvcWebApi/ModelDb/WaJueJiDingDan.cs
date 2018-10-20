@@ -20,14 +20,16 @@ namespace ModelDb
         public Nullable<System.DateTime> dDanJuRiQi { get; set; }
         public string cChePaiHao { get; set; }
         public string openid { get; set; }
+        public string cShangBanBianMa { get; set; }
         public Nullable<System.DateTime> dKaiShiShiJian { get; set; }
         public Nullable<System.DateTime> dJieShuShiJian { get; set; }
         public Nullable<decimal> iXiaoShiShu { get; set; }
-        public string cXZDWBianMa { get; set; }
         public Nullable<System.DateTime> dQueRenShiJian { get; set; }
         public string cGuanLiYuanBianMa { get; set; }
         public Nullable<int> iState { get; set; }
         public string cState { get; set; }
         public string cBeiZhu { get; set; }
+        public Nullable<int> iBiaoShi { get; set; }
+        public string cCreate { get; set; }
     }
 }
