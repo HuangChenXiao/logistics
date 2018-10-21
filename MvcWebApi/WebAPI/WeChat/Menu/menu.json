@@ -2,8 +2,8 @@
     "button": [
         {
               "type": "view",
-			  "name": "360夺宝",
-              "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfcda61d3ca18d831&redirect_uri=http%3A%2F%2Fapi.nuodj.com%2F../Menu/WeChatAccredit.aspx&response_type=code&scope=snsapi_userinfo&state=22#wechat_redirect"       
+			  "name": "首页",
+              "url": "http://test.chaomafu.com"       
         }
     ]
 }
