@@ -40,3 +40,6 @@ WeChatSDK.TemplateAlert.Model.errInfo
 消息推送返回码：43004
 2018/10/21 12:58:27
 
+消息推送返回码：0
+2018/10/21 13:17:40
+

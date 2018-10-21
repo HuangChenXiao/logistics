@@ -148,7 +148,7 @@ namespace WebAPI.Controllers.Home
                     model.status_code = 200;
 
                     JsonModel jm = new JsonModel();
-                    var result_msg = jm.GetJson(string.Format("http://localhost:59358/WeChat/TemplateAlert/TemplateMsg.ashx?openid={0}&orderno={1}", WaJueJiDingDan.openid, WaJueJiDingDan.cDingDanHao));
+                    var result_msg = jm.GetJson(string.Format("http://test.chaomafu.com/WeChat/TemplateAlert/TemplateMsg.ashx?openid={0}&orderno={1}", WaJueJiDingDan.openid, WaJueJiDingDan.cDingDanHao));
                     LogTextHelper.Log("消息推送返回码：" + result_msg);
                 }
                 catch (Exception ex)
