@@ -247,6 +247,7 @@ export default {
             DesEndOrder({
               cDingDanHao: item.cDingDanHao
             }).then(res => {
+              item.iTWState = 100;
               item.cTWState = "确认";
               _this.$vux.alert.show({
                 title: "提示",
@@ -269,6 +270,7 @@ export default {
             ConfirmOrder({
               cDingDanHao: item.cDingDanHao
             }).then(res => {
+              item.iState = 100;
               item.cState = "确认";
               item.dQueRenShiJian = res.data;
               _this.$vux.alert.show({
@@ -292,6 +294,7 @@ export default {
             GetGongChengCheDingDan({
               cDingDanHao: item.cDingDanHao
             }).then(res => {
+              item.iState = 110;
               item.cState = "作废";
               _this.$vux.alert.show({
                 title: "提示",
@@ -317,6 +320,7 @@ export default {
         content: "只有到达目的地后才能结束订单，是否继续？",
         onConfirm() {
           EndWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(res => {
+            item.iState = 100;
             item.cState = "确认";
             item.dJieShuShiJian = res.data;
             _this.$vux.alert.show({
