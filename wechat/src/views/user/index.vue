@@ -8,7 +8,7 @@
         <img src="../../assets/img/t_1.png" alt="">
       </div>
       <div class="content">
-        <div class="name">驾驶员</div>
+        <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>
       </div>
     </div>
     <div class="item-list">
@@ -34,7 +34,6 @@ export default {
     }
   },
   created() {
-    this.getList()
   },
 }
 </script>

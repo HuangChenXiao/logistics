@@ -7,3 +7,10 @@ export function WeChatAccredit(data) {
         params: data
     })
 }
+export function TemplateMsg(data) {
+    return request({
+        url: 'WeChat/TemplateAlert/TemplateMsg.ashx',
+        method: "get",
+        params: data
+    })
+}

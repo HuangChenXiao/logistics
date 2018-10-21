@@ -183,6 +183,10 @@ export default {
     }
   },
   created() {
+    //管理员
+    if (this.role_code == "001") {
+      this.w_qeury.cGuanLiYuanBianMa = localStorage.getItem("openid");
+    }
     //驾驶员
     if (this.role_code == "002") {
       this.w_qeury.js_openid = localStorage.getItem("openid");

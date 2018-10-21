@@ -241,7 +241,7 @@ export default {
       GetGongChengCheDingDan({
         page: 1,
         pagesize: 10,
-        openid: localStorage.getItem("openid")
+        js_openid: localStorage.getItem("openid")
       }).then(res => {
         this.order_list = res.data;
       });
@@ -251,7 +251,7 @@ export default {
       GetWaJueJiDingDan({
         page: 1,
         pagesize: 10,
-        openid: localStorage.getItem("openid")
+        js_openid: localStorage.getItem("openid")
       }).then(res => {
         this.wj_order_list = res.data;
       });
