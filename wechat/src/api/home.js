@@ -116,3 +116,10 @@ export function ConfirmOrder(data) {
         params: data
     })
 }
+export function DesEndOrder(data) {
+    return request({
+        url: 'DesEndOrder',
+        method: "get",
+        params: data
+    })
+}

@@ -8,7 +8,7 @@
 export default {
   created() {
     this.$store.dispatch("GetInfo").then(res => {
-      localStorage.setItem('role_code',res.data.role_code)
+      localStorage.setItem("role_code", res.data.role_code);
       switch (res.data.role_code) {
         case "001": //现场管理员
           this.$router.push({
@@ -21,6 +21,9 @@ export default {
           });
           break;
         case "003": //土尾管理员
+          this.$router.push({
+            name: "destination-user"
+          });
           break;
         case "004": //部门经理
           break;

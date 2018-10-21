@@ -24,14 +24,18 @@
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
               <div class="n1">确认时间：{{item.dQueRenShiJian}}</div>
-              <div class="n1">状态：{{item.iState|status_filters}}</div>
+              <div class="n1">状态：{{item.cState}}</div>
+              <div class="n1">土尾状态：{{item.cTWState}}</div>
             </section>
             <div class="op-btn">
               <div class="reset-btn" @click="edit_order(item)" v-if="role_code=='001' && item.iState==0">
                 作废
               </div>
-              <div class="confirm-btn" @click="ok_order(item)" v-if="role_code=='002' && sed_index==0 && item.iState==0">
+              <div class="confirm-btn" @click="ok_order(item)" v-if="role_code=='002' && item.iState==0">
                 确认订单
+              </div>
+              <div class="confirm-btn" @click="desend_order(item)" v-if="role_code=='003' && item.iTWState==0">
+                结束订单
               </div>
               <!-- <div class="confirm-btn" v-else>
                 确认订单
@@ -46,7 +50,7 @@
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">开始时间：{{item.dKaiShiShiJian}}</div>
               <div class="n1">结束时间：{{item.dJieShuShiJian}}</div>
-              <div class="n1">状态：{{item.iState|status_filters}}</div>
+              <div class="n1">状态：{{item.cState}}</div>
             </section>
             <div class="op-btn">
               <div class="reset-btn" @click="edit_order(item)" v-if="role_code=='001' && item.iState==0">
@@ -120,7 +124,8 @@ import {
   GetGongChengCheDingDan,
   GetWaJueJiDingDan,
   EndWaJueJiDingDan,
-  ConfirmOrder
+  ConfirmOrder,
+  DesEndOrder
 } from "@/api/home.js";
 const list = () => [{ key: 0, value: "工程车订单" }, { key: 1, value: "挖掘机订单" }];
 export default {
@@ -226,6 +231,28 @@ export default {
       this.init_query();
       this.get_order();
     },
+    //目的地管理员结束订单
+    desend_order(item) {
+      var _this = this;
+      this.$vux.confirm.show({
+        title: "提示",
+        content: "结束后订单完结，是否继续？",
+        onConfirm() {
+          console.log(_this.sed_index);
+          if (_this.sed_index == 0) {
+            DesEndOrder({
+              cDingDanHao: item.cDingDanHao
+            }).then(res => {
+              item.cTWState = "确认";
+              _this.$vux.alert.show({
+                title: "提示",
+                content: "操作成功！"
+              });
+            });
+          }
+        }
+      });
+    },
     //确认订单
     ok_order(item) {
       var _this = this;
@@ -238,7 +265,7 @@ export default {
             ConfirmOrder({
               cDingDanHao: item.cDingDanHao
             }).then(res => {
-              item.iState = 100;
+              item.cState = "确认";
               item.dQueRenShiJian = res.data;
               _this.$vux.alert.show({
                 title: "提示",
@@ -261,7 +288,7 @@ export default {
             GetGongChengCheDingDan({
               cDingDanHao: item.cDingDanHao
             }).then(res => {
-              item.iState = 110;
+              item.cState = "作废";
               _this.$vux.alert.show({
                 title: "提示",
                 content: "操作成功！"
@@ -286,7 +313,7 @@ export default {
         content: "只有到达目的地后才能结束订单，是否继续？",
         onConfirm() {
           EndWaJueJiDingDan({ cDingDanHao: item.cDingDanHao }).then(res => {
-            item.iState = 100;
+            item.cState = "确认";
             item.dJieShuShiJian = res.data;
             _this.$vux.alert.show({
               title: "提示",
