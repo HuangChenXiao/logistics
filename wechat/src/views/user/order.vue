@@ -7,9 +7,10 @@
     </u-header>
     <div style="height:1.2rem"></div>
     <div>
-      <div>
+      <div v-if="role_code!='003'">
         <tab :line-width=2 v-model="sed_index" active-color="#f00" bar-active-color="#f00">
-          <tab-item class="vux-center" :selected="sed_index === index" v-for="(item, index) in list2" @on-item-click="change_tab_index(index)" :key="index">{{item.value}}</tab-item>
+          <tab-item class="vux-center" :selected="sed_index === 0" @on-item-click="change_tab_index(0)" :key="0">工程车订单</tab-item>
+          <tab-item class="vux-center" :selected="sed_index === 1" @on-item-click="change_tab_index(1)" :key="1" >挖掘机订单</tab-item>
         </tab>
       </div>
       <!-- <div style="height:2rem">{{sed_index==1}}</div> -->
