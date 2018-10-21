@@ -234,6 +234,7 @@
     <Compile Include="WeChat\TemplateAlert\TemplateMsg.ashx.cs">
       <DependentUpon>TemplateMsg.ashx</DependentUpon>
     </Compile>
+    <Compile Include="WeChat\TemplateAlert\TemplateOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

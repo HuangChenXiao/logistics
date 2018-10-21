@@ -33,7 +33,7 @@ namespace WeChatSDK
                     if (DateTime.Now > Convert.ToDateTime(query.addtime).AddSeconds(Expires_Period))
                     {
                         mAccessToken = GetAccessToken(WeChatConfig.AppId, WeChatConfig.AppSecret);
-                        db.Execute(string.Format("insert into wechatAccessToken(access_token, addtime) values(@0,getdate())", mAccessToken));
+                        db.Execute("insert into wechatAccessToken(access_token, addtime) values(@0,getdate())", mAccessToken);
                     }
                     else
                     {
@@ -44,7 +44,7 @@ namespace WeChatSDK
                 else
                 {
                     mAccessToken = GetAccessToken(WeChatConfig.AppId, WeChatConfig.AppSecret);
-                    db.Execute(string.Format("insert into wechatAccessToken(access_token, addtime) values(@0,getdate())", mAccessToken));
+                    db.Execute("insert into wechatAccessToken(access_token, addtime) values(@0,getdate())", mAccessToken);
                 }
                 db.Close();
                 db.Dispose();

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebAPI.WeChat;
 using WeChatSDK.Helper;
 using WeChatSDK.TemplateAlert;
 using WeChatSDK.TemplateAlert.Model;
@@ -21,27 +22,29 @@ namespace WeChatAPI.TemplateAlert
         public void ProcessRequest(HttpContext context)
         {
             TemplatePurchaseNotice notice = new TemplatePurchaseNotice();
-            string Msg = notice.TemplateSendMsg(GetJsonString()).errmsg;
-            context.Response.Write("<script>alert('" + Msg + "')</script>");
+            string openid=context.Request["openid"].ToString();
+            string orderno = context.Request["orderno"].ToString();
+            var Msg = notice.TemplateSendMsg(GetJsonString(openid, orderno));
+            context.Response.Write(Msg.errcode);
         }
         /// <summary>
         /// 购买通知模板
         /// </summary>
         /// <returns></returns>
-        public string GetJsonString()
+        public string GetJsonString(string openid,string orderno)
         {
-            TemplateMainMsg p = new TemplateMainMsg();
+            TemplateOrder p = new TemplateOrder();
             //用户OPENID
-            p.touser = "oJ7qFxLKREZ8yrP7CUu50dqvQ3Po";
+            p.touser = openid;
             //模板ID
-            p.template_id = "U_JdsVFjPtK0ak6CpWhW34_N6kZCQFhx7z9tKpHX5bo";
-            p.url = "";
-            p.data = new TemplateDtlMsg
+            p.template_id = "SEEp8fPLMSiaKk4P-lRZNQo2pwqxk2xTZxyeFayQ2_8";
+            p.url = "http://test.chaomafu.com/user/order?title=我的订单&menu_route=user";
+            p.data = new TemplateOrderMsg
             {
-                first = new FirstMsg { value = "恭喜你购买成功", color = "#173177" },
-                keyword1 = new Keyword1Msg { value = "巧克力", color = "#173177" },
-                keyword2 = new Keyword2Msg { value = "39.8元", color = "#173177" },
-                keyword3 = new Keyword3Msg { value = "2014年9月22日", color = "#173177" },
+                first = new FirstMsg { value = "接收到新订单", color = "#173177" },
+                keyword1 = new Keyword1Msg { value = orderno, color = "#173177" },
+                keyword2 = new Keyword2Msg { value = "订单已下发，请尽快执行订单！", color = "#173177" },
+                //remark = new remarkMsg { value = "2014年9月22日", color = "#173177" },
             };
             return new JavaScriptSerializer().Serialize(p);
         }

@@ -69,7 +69,6 @@
     <Compile Include="Service\account.cs" />
     <Compile Include="Service\WeChatService.cs" />
     <Compile Include="TemplateAlert\Model\errInfo.cs" />
-    <Compile Include="TemplateAlert\Model\PurchaseNoticeModel.cs" />
     <Compile Include="TemplateAlert\MsgType\TemplatePurchaseNotice.cs" />
     <Compile Include="ToKen\GetXmlModel\GetXmlElementEven.cs" />
     <Compile Include="ToKen\GetXmlModel\GetXmlElementText.cs" />
