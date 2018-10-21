@@ -6,9 +6,10 @@
     <EntitySetMapping Name="BangDingJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BangDingJiLu">
         <MappingFragment StoreEntitySet="BangDingJiLu">
+          <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
           <ScalarProperty Name="iFangShi" ColumnName="iFangShi" />
           <ScalarProperty Name="iDelete" ColumnName="iDelete" />
-          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
           <ScalarProperty Name="iBangDingLeiXing" ColumnName="iBangDingLeiXing" />
           <ScalarProperty Name="dShiJian" ColumnName="dShiJian" />
           <ScalarProperty Name="openid" ColumnName="openid" />
@@ -77,6 +78,7 @@
           <ScalarProperty Name="dBaoFeiRiQi" ColumnName="dBaoFeiRiQi" />
           <ScalarProperty Name="bShiFouBaoFei" ColumnName="bShiFouBaoFei" />
           <ScalarProperty Name="cCheLiangLeiBie" ColumnName="cCheLiangLeiBie" />
+          <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
           <ScalarProperty Name="openid" ColumnName="openid" />
           <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
           <ScalarProperty Name="cCheLiangSuoShu" ColumnName="cCheLiangSuoShu" />
@@ -95,6 +97,8 @@
     <EntitySetMapping Name="GongChengCheDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
         <MappingFragment StoreEntitySet="GongChengCheDingDan">
+          <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="cTWState" ColumnName="cTWState" />
           <ScalarProperty Name="iTWState" ColumnName="iTWState" />
@@ -104,6 +108,7 @@
           <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
           <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
           <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
+          <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
           <ScalarProperty Name="openid" ColumnName="openid" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
           <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
@@ -231,6 +236,14 @@
           <ScalarProperty Name="cNianJianLeiXing" ColumnName="cNianJianLeiXing" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShangBanLeiBie">
+      <EntityTypeMapping TypeName="EBMSystemModel.ShangBanLeiBie">
+        <MappingFragment StoreEntitySet="ShangBanLeiBie">
+          <ScalarProperty Name="cShangBanMingCheng" ColumnName="cShangBanMingCheng" />
+          <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -424,15 +437,17 @@
     <EntitySetMapping Name="WaJueJiDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan">
         <MappingFragment StoreEntitySet="WaJueJiDingDan">
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="cState" ColumnName="cState" />
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
           <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
           <ScalarProperty Name="iXiaoShiShu" ColumnName="iXiaoShiShu" />
           <ScalarProperty Name="dJieShuShiJian" ColumnName="dJieShuShiJian" />
           <ScalarProperty Name="dKaiShiShiJian" ColumnName="dKaiShiShiJian" />
+          <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
           <ScalarProperty Name="openid" ColumnName="openid" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
           <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
@@ -660,7 +675,6 @@
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
           <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
-          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
           <ScalarProperty Name="iXiaoShiShu" ColumnName="iXiaoShiShu" />
           <ScalarProperty Name="dJieShuShiJian" ColumnName="dJieShuShiJian" />
           <ScalarProperty Name="dKaiShiShiJian" ColumnName="dKaiShiShiJian" />

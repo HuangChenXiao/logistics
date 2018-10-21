@@ -198,6 +198,7 @@
     <Compile Include="Controllers\Home\CheLiangController.cs" />
     <Compile Include="Controllers\Home\CheLiangInfoController.cs" />
     <Compile Include="Controllers\Home\ConfirmOrderController.cs" />
+    <Compile Include="Controllers\Home\DesEndOrderController.cs" />
     <Compile Include="Controllers\Home\EndWaJueJiDingDanController.cs" />
     <Compile Include="Controllers\Home\GongChengCheDingDanController.cs" />
     <Compile Include="Controllers\Home\GongDiCheLiangController.cs" />

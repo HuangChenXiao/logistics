@@ -610,7 +610,7 @@
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dQiYunShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
-    <Property Name="dQueRenShiJian" Type="datetime" />
+    <Property Name="dQueRenShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
     <Property Name="iState" Type="int" />
     <Property Name="cState" Type="varchar" MaxLength="30" />

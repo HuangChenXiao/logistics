@@ -9,9 +9,10 @@
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dShiJian" Type="datetime" />
     <Property Name="iBangDingLeiXing" Type="int" />
-    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="cDiZhi" Type="varchar" MaxLength="100" />
     <Property Name="iDelete" Type="int" />
     <Property Name="iFangShi" Type="int" />
+    <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="BaoXianJiLu">
     <Key>
@@ -78,6 +79,7 @@
     <Property Name="cCheLiangSuoShu" Type="varchar" MaxLength="30" />
     <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
     <Property Name="cCheLiangLeiBie" Type="varchar" MaxLength="30" />
     <Property Name="bShiFouBaoFei" Type="bit" />
     <Property Name="dBaoFeiRiQi" Type="datetime" />
@@ -93,6 +95,7 @@
     <Property Name="dDanJuRiQi" Type="datetime" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
     <Property Name="dQiYunShiJian" Type="datetime" />
     <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dQueRenShiJian" Type="datetime" />
@@ -102,6 +105,8 @@
     <Property Name="iTWState" Type="int" />
     <Property Name="cTWState" Type="varchar" MaxLength="30" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="iBiaoShi" Type="int" />
   </EntityType>
   <EntityType Name="GongDiCheLiang">
     <Key>
@@ -215,6 +220,13 @@
     <Property Name="dDaoQiRiQi" Type="datetime" />
     <Property Name="cNianJianJiLu" Type="varchar" MaxLength="300" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ShangBanLeiBie">
+    <Key>
+      <PropertyRef Name="cShangBanBianMa" />
+    </Key>
+    <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cShangBanMingCheng" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ShangPinChuKu">
     <Key>
@@ -401,15 +413,17 @@
     <Property Name="dDanJuRiQi" Type="datetime" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="30" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
+    <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
     <Property Name="dKaiShiShiJian" Type="datetime" />
     <Property Name="dJieShuShiJian" Type="datetime" />
     <Property Name="iXiaoShiShu" Type="money" />
-    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dQueRenShiJian" Type="datetime" />
     <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
     <Property Name="iState" Type="int" />
     <Property Name="cState" Type="varchar" MaxLength="30" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="iBiaoShi" Type="int" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="wechatAccessToken">
     <Key>
@@ -596,7 +610,7 @@
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dQiYunShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
-    <Property Name="dQueRenShiJian" Type="datetime" />
+    <Property Name="dQueRenShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
     <Property Name="iState" Type="int" />
     <Property Name="cState" Type="varchar" MaxLength="30" />
@@ -622,7 +636,6 @@
     <Property Name="dKaiShiShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="dJieShuShiJian" Type="nvarchar" MaxLength="50" />
     <Property Name="iXiaoShiShu" Type="money" />
-    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
     <Property Name="dQueRenShiJian" Type="datetime" />
     <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
     <Property Name="iState" Type="int" />
@@ -657,6 +670,7 @@
     <EntitySet Name="KeHuDaLei" EntityType="Self.KeHuDaLei" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KeHuInfo" EntityType="Self.KeHuInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NianJianJiLu" EntityType="Self.NianJianJiLu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShangBanLeiBie" EntityType="Self.ShangBanLeiBie" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShangPinChuKu" EntityType="Self.ShangPinChuKu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShangPinChuKuS" EntityType="Self.ShangPinChuKuS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShangPinDaLei" EntityType="Self.ShangPinDaLei" Schema="dbo" store:Type="Tables" />
@@ -714,7 +728,6 @@
     [WaJueJiDingDan_View].[dKaiShiShiJian] AS [dKaiShiShiJian], 
     [WaJueJiDingDan_View].[dJieShuShiJian] AS [dJieShuShiJian], 
     [WaJueJiDingDan_View].[iXiaoShiShu] AS [iXiaoShiShu], 
-    [WaJueJiDingDan_View].[cXZDWBianMa] AS [cXZDWBianMa], 
     [WaJueJiDingDan_View].[dQueRenShiJian] AS [dQueRenShiJian], 
     [WaJueJiDingDan_View].[cGuanLiYuanBianMa] AS [cGuanLiYuanBianMa], 
     [WaJueJiDingDan_View].[iState] AS [iState], 
