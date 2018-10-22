@@ -160,7 +160,8 @@ export default {
         js_openid: null, //驾驶员编码
         cGuanLiYuanBianMa: null, //现场管理员编码
         begindate: "",
-        enddate: ""
+        enddate: "",
+        cTuWeiBianMa:null,//土尾编码
       },
       role_code: localStorage.getItem("role_code"),
       wj_order_list: [],
@@ -184,6 +185,7 @@ export default {
     }
   },
   created() {
+    // console.log(this.$store.getters.user_info)
     //管理员
     if (this.role_code == "001") {
       this.w_qeury.cGuanLiYuanBianMa = localStorage.getItem("openid");
@@ -191,6 +193,10 @@ export default {
     //驾驶员
     if (this.role_code == "002") {
       this.w_qeury.js_openid = localStorage.getItem("openid");
+    }
+    //目的地管理员
+    if (this.role_code == "003") {
+      this.w_qeury.cTuWeiBianMa = this.$store.getters.user_info.cTuWeiBianMa;
     }
     this.get_worksite();
     this.get_driver();
