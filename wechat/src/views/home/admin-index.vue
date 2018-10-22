@@ -191,6 +191,7 @@ import {
   BangDingJiLu,
   wechatUser
 } from "@/api/home.js";
+import { TemplateMsg }from '@/api/wechat.js'
 export default {
   components: {
     Group,
@@ -456,16 +457,23 @@ export default {
       this.showWorkRoute = false;
       this.bItem.cXianLuBianMa = item.cXianLuBianMa;
     },
+    sendTplMsg(item){
+      TemplateMsg(item).then(res=>{
+        console.log(res)
+      })
+    },
     //发布订单
     submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
+      this.bItem.cDingDanHao=this.cfg.formatOrderNo()
       GongChengCheDingDan(this.bItem)
         .then(res => {
           this.$vux.alert.show({
             title: "提示",
             content: "工程车订单发布成功"
           });
+          this.sendTplMsg(this.bItem)
           this.resetItem();
           this.get_order(); //订单列表
           this.isavailable = true;
@@ -479,12 +487,14 @@ export default {
     wj_submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
+      this.bItem.cDingDanHao=this.cfg.formatOrderNo()
       WaJueJiDingDan(this.bItem)
         .then(res => {
           this.$vux.alert.show({
             title: "提示",
             content: "挖掘机订单发布成功"
           });
+          this.sendTplMsg(this.bItem)
           this.resetItem();
           this.get_wj_order(); //挖掘机订单
           this.isavailable = true;
