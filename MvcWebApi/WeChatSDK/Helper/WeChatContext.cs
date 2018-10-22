@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WeChatSDK.Helper;
+using WeChatSDK.WeChatLog;
 
 namespace WeChatSDK
 {
@@ -57,6 +58,7 @@ namespace WeChatSDK
             string url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", AppId, AppSecret);
             string result = WeChatUtility.GetData(url);
             OAuth_Token omodel = JsonHelper.ParseFromJson<OAuth_Token>(result);
+            LogTextHelper.Log("ToKen：" + result);
             if (omodel != null)
             {
                 GetAccessToken_Time = DateTime.Now;

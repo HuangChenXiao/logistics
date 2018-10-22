@@ -497,3 +497,6 @@ F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\zh-Hans\System.Web.Http.Owin
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Release\WebAPI.csprojResolveAssemblyReference.cache
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Release\WebAPI.dll
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Release\WebAPI.pdb
+F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\WebMatrix.Data.dll
+F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\WebMatrix.Data.xml
+F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\zh-Hans\WebMatrix.Data.resources.dll
