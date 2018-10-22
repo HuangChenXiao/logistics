@@ -85,7 +85,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao = null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string begindate = null, string enddate = null)
+        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao = null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string cTuWeiBianMa=null, string begindate = null, string enddate = null)
         {
             try
             {
@@ -101,6 +101,7 @@ namespace WebAPI.Controllers.Home
                                (a.cChePaiHao == cChePaiHao || string.IsNullOrEmpty(cChePaiHao)) &&
                                (a.openid == js_openid || string.IsNullOrEmpty(js_openid)) &&
                                (a.cGuanLiYuanBianMa == cGuanLiYuanBianMa || string.IsNullOrEmpty(cGuanLiYuanBianMa)) &&
+                               (a.cTuWeiBianMa == cTuWeiBianMa || string.IsNullOrEmpty(cTuWeiBianMa)) &&
                                (a.dDanJuRiQi >= beginDate || string.IsNullOrEmpty(begindate)) &&
                                (a.dDanJuRiQi <= endDate || string.IsNullOrEmpty(enddate))
                                select a

@@ -26,7 +26,9 @@ namespace WebAPI.Controllers.Home
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var temp = from a in db.XianLuInfo join b in db.GongDiXianLu on a.cXianLuBianMa equals b.cXianLuBianMa select a;
+                var temp = from a in db.XianLuInfo join b in db.GongDiXianLu on a.cXianLuBianMa equals b.cXianLuBianMa
+                           where b.cGongDiBianMa == cGongDiBianMa
+                           select a;
                 model.data = temp.Where(o => o.cXianLuBianMa.Contains(keyword) || string.IsNullOrEmpty(keyword)).ToList();
 
                 if (model.data != null)

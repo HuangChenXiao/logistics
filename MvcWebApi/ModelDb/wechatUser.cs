@@ -39,5 +39,6 @@ namespace ModelDb
         public Nullable<bool> bStop { get; set; }
         public Nullable<System.DateTime> dStop { get; set; }
         public string cBeiZhu { get; set; }
+        public string cTuWeiBianMa { get; set; }
     }
 }

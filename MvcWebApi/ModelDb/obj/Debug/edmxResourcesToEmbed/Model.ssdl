@@ -430,7 +430,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="access_token" Type="nvarchar" MaxLength="100" />
+    <Property Name="access_token" Type="nvarchar" MaxLength="500" />
     <Property Name="expires_in" Type="int" />
     <Property Name="addtime" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -480,6 +480,7 @@
     <Property Name="bStop" Type="bit" />
     <Property Name="dStop" Type="datetime" />
     <Property Name="cBeiZhu" Type="nvarchar" MaxLength="200" />
+    <Property Name="cTuWeiBianMa" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="WeiXiuJiLu">
     <Key>
@@ -621,6 +622,7 @@
     <Property Name="cTuWeiMingCheng" Type="varchar" MaxLength="100" />
     <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
     <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
+    <Property Name="cTuWeiBianMa" Type="varchar" MaxLength="20" />
   </EntityType>
   <!--生成过程中发现错误:
 警告 6002: 表/视图“EBMSystem.dbo.WaJueJiDingDan_View”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -715,7 +717,8 @@
     [GongChengCheDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng], 
     [GongChengCheDingDan_View].[cTuWeiMingCheng] AS [cTuWeiMingCheng], 
     [GongChengCheDingDan_View].[cXingMing] AS [cXingMing], 
-    [GongChengCheDingDan_View].[cDingDanHao] AS [cDingDanHao]
+    [GongChengCheDingDan_View].[cDingDanHao] AS [cDingDanHao], 
+    [GongChengCheDingDan_View].[cTuWeiBianMa] AS [cTuWeiBianMa]
     FROM [dbo].[GongChengCheDingDan_View] AS [GongChengCheDingDan_View]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="WaJueJiDingDan_View" EntityType="Self.WaJueJiDingDan_View" store:Type="Views" store:Schema="dbo">

@@ -489,6 +489,7 @@
     <EntitySetMapping Name="wechatUser">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatUser">
         <MappingFragment StoreEntitySet="wechatUser">
+          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="dStop" ColumnName="dStop" />
           <ScalarProperty Name="bStop" ColumnName="bStop" />
@@ -643,6 +644,7 @@
     <EntitySetMapping Name="GongChengCheDingDan_View">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan_View">
         <MappingFragment StoreEntitySet="GongChengCheDingDan_View">
+          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
           <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
           <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
           <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />

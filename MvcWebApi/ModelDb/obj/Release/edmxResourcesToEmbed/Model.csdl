@@ -484,7 +484,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="access_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="access_token" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="expires_in" Type="Int32" />
     <Property Name="addtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
@@ -534,6 +534,7 @@
     <Property Name="bStop" Type="Boolean" />
     <Property Name="dStop" Type="DateTime" Precision="3" />
     <Property Name="cBeiZhu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="WeiXiuJiLu">
     <Key>
@@ -673,6 +674,7 @@
     <Property Name="cTuWeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="WaJueJiDingDan_View">
     <Key>

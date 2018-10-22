@@ -627,6 +627,7 @@
           <Property Name="cTuWeiMingCheng" Type="varchar" MaxLength="100" />
           <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
           <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
+          <Property Name="cTuWeiBianMa" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“EBMSystem.dbo.WaJueJiDingDan_View”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -721,7 +722,8 @@
     [GongChengCheDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng], 
     [GongChengCheDingDan_View].[cTuWeiMingCheng] AS [cTuWeiMingCheng], 
     [GongChengCheDingDan_View].[cXingMing] AS [cXingMing], 
-    [GongChengCheDingDan_View].[cDingDanHao] AS [cDingDanHao]
+    [GongChengCheDingDan_View].[cDingDanHao] AS [cDingDanHao], 
+    [GongChengCheDingDan_View].[cTuWeiBianMa] AS [cTuWeiBianMa]
     FROM [dbo].[GongChengCheDingDan_View] AS [GongChengCheDingDan_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="WaJueJiDingDan_View" EntityType="Self.WaJueJiDingDan_View" store:Type="Views" store:Schema="dbo">
@@ -1423,6 +1425,7 @@
           <Property Name="cTuWeiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="WaJueJiDingDan_View">
           <Key>
@@ -2094,6 +2097,7 @@
           <EntitySetMapping Name="GongChengCheDingDan_View">
             <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan_View">
               <MappingFragment StoreEntitySet="GongChengCheDingDan_View">
+                <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
                 <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
                 <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
                 <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
