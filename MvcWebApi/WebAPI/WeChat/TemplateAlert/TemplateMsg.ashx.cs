@@ -24,8 +24,8 @@ namespace WeChatAPI.TemplateAlert
         {
             TemplatePurchaseNotice notice = new TemplatePurchaseNotice();
             string openid=context.Request["openid"].ToString();
-            string orderno = context.Request["orderno"].ToString();
-            var Msg = notice.TemplateSendMsg(GetJsonString(openid, orderno));
+            string cDingDanHao = context.Request["cDingDanHao"].ToString();
+            var Msg = notice.TemplateSendMsg(GetJsonString(openid, cDingDanHao));
             LogTextHelper.Log("消息推送返回码：" + Msg.errcode);
             context.Response.Write(Msg.errcode);
         }
@@ -33,7 +33,7 @@ namespace WeChatAPI.TemplateAlert
         /// 购买通知模板
         /// </summary>
         /// <returns></returns>
-        public string GetJsonString(string openid,string orderno)
+        public string GetJsonString(string openid,string cDingDanHao)
         {
             TemplateOrder p = new TemplateOrder();
             //用户OPENID
@@ -44,7 +44,7 @@ namespace WeChatAPI.TemplateAlert
             p.data = new TemplateOrderMsg
             {
                 first = new FirstMsg { value = "接收到新订单", color = "#173177" },
-                keyword1 = new Keyword1Msg { value = orderno, color = "#173177" },
+                keyword1 = new Keyword1Msg { value = cDingDanHao, color = "#173177" },
                 keyword2 = new Keyword2Msg { value = "订单已下发，请尽快执行订单！", color = "#173177" },
                 //remark = new remarkMsg { value = "2014年9月22日", color = "#173177" },
             };

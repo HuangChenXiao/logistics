@@ -691,3 +691,6 @@ F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.csprojResolveAs
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.dll
 F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\obj\Debug\WebAPI.pdb
 G:\gitCode\logistics\MvcWebApi\WebAPI\bin\WebAPI.dll.config
+F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\WebMatrix.Data.dll
+F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\WebMatrix.Data.xml
+F:\gitCode\logistics\logistics\MvcWebApi\WebAPI\bin\zh-Hans\WebMatrix.Data.resources.dll

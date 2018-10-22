@@ -134,7 +134,7 @@ namespace WebAPI.Controllers.Home
             {
                 var info = db.CheLiangInfo.Where(o => o.cChePaiHao == WaJueJiDingDan.cChePaiHao).FirstOrDefault();
                 WaJueJiDingDan.cShangBanBianMa = info.cShangBanBianMa;
-                WaJueJiDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                //WaJueJiDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
                 WaJueJiDingDan.iState = 0;
                 WaJueJiDingDan.cState = "未确认";
                 WaJueJiDingDan.iBiaoShi = 1;
@@ -147,9 +147,9 @@ namespace WebAPI.Controllers.Home
                     model.message = "新增成功";
                     model.status_code = 200;
 
-                    JsonModel jm = new JsonModel();
-                    var result_msg = jm.GetJson(string.Format("http://test.chaomafu.com/WeChat/TemplateAlert/TemplateMsg.ashx?openid={0}&orderno={1}", WaJueJiDingDan.openid, WaJueJiDingDan.cDingDanHao));
-                    LogTextHelper.Log("消息推送返回码：" + result_msg);
+                    //JsonModel jm = new JsonModel();
+                    //var result_msg = jm.GetJson(string.Format("http://test.chaomafu.com/WeChat/TemplateAlert/TemplateMsg.ashx?openid={0}&cDingDanHao={1}", WaJueJiDingDan.openid, WaJueJiDingDan.cDingDanHao));
+                    //LogTextHelper.Log("消息推送返回码：" + result_msg);
                 }
                 catch (Exception ex)
                 {

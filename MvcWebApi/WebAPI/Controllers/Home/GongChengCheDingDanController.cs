@@ -144,7 +144,7 @@ namespace WebAPI.Controllers.Home
             {
                 var info = db.CheLiangInfo.Where(o => o.cChePaiHao == GongChengCheDingDan.cChePaiHao).FirstOrDefault();
                 GongChengCheDingDan.cShangBanBianMa = info.cShangBanBianMa;
-                GongChengCheDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                //GongChengCheDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
                 GongChengCheDingDan.iState = 0;
                 GongChengCheDingDan.cState = "未确认";
                 GongChengCheDingDan.iTWState = 0;
@@ -158,9 +158,6 @@ namespace WebAPI.Controllers.Home
                     db.SaveChanges();
                     model.message = "新增成功";
                     model.status_code = 200;
-                    JsonModel jm = new JsonModel();
-                    jm.GetJson(string.Format("http://test.chaomafu.com/WeChat/TemplateAlert/TemplateMsg.ashx?openid={0}&orderno={1}", GongChengCheDingDan.openid, GongChengCheDingDan.cDingDanHao));
-                    //jm.GetJson(string.Format("http://localhost:59358/WeChat/TemplateAlert/TemplateMsg.ashx?openid={0}&orderno={1}", GongChengCheDingDan.openid, GongChengCheDingDan.cDingDanHao));
                 }
                 catch (Exception ex)
                 {
