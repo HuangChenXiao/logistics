@@ -435,7 +435,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="access_token" Type="nvarchar" MaxLength="100" />
+          <Property Name="access_token" Type="nvarchar" MaxLength="500" />
           <Property Name="expires_in" Type="int" />
           <Property Name="addtime" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -485,6 +485,7 @@
           <Property Name="bStop" Type="bit" />
           <Property Name="dStop" Type="datetime" />
           <Property Name="cBeiZhu" Type="nvarchar" MaxLength="200" />
+          <Property Name="cTuWeiBianMa" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="WeiXiuJiLu">
           <Key>
@@ -1232,7 +1233,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="access_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="access_token" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="expires_in" Type="Int32" />
           <Property Name="addtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -1282,6 +1283,7 @@
           <Property Name="bStop" Type="Boolean" />
           <Property Name="dStop" Type="DateTime" Precision="3" />
           <Property Name="cBeiZhu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WeiXiuJiLu">
           <Key>
@@ -1937,6 +1939,7 @@
           <EntitySetMapping Name="wechatUser">
             <EntityTypeMapping TypeName="EBMSystemModel.wechatUser">
               <MappingFragment StoreEntitySet="wechatUser">
+                <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="dStop" ColumnName="dStop" />
                 <ScalarProperty Name="bStop" ColumnName="bStop" />
