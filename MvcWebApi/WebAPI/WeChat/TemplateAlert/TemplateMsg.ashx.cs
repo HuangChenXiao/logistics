@@ -9,6 +9,7 @@ using WebAPI.WeChat;
 using WeChatSDK.Helper;
 using WeChatSDK.TemplateAlert;
 using WeChatSDK.TemplateAlert.Model;
+using WeChatSDK.WeChatLog;
 
 
 namespace WeChatAPI.TemplateAlert
@@ -25,6 +26,7 @@ namespace WeChatAPI.TemplateAlert
             string openid=context.Request["openid"].ToString();
             string orderno = context.Request["orderno"].ToString();
             var Msg = notice.TemplateSendMsg(GetJsonString(openid, orderno));
+            LogTextHelper.Log("消息推送返回码：" + Msg.errcode);
             context.Response.Write(Msg.errcode);
         }
         /// <summary>
