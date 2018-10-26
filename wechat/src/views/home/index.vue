@@ -49,10 +49,10 @@
         </div>
       </div> -->
 
-        <tab :line-width=2 active-color='#f00' v-model="index">
-          <tab-item class="vux-center" v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
-        </tab>
-       <div class="task">
+      <tab :line-width=2 active-color='#f00' v-model="index">
+        <tab-item class="vux-center" v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
+      </tab>
+      <div class="task">
         <div class="tab-order" v-if="index==0">
           <div class="title">最新订单</div>
           <div class="item-list">
@@ -97,37 +97,32 @@
     </x-dialog>
     <!-- 班别 -->
     <popup v-model="BanBieShow">
-        <!-- group already has a top border, so we need to hide header's bottom border-->
-        <popup-header
-        right-text="确定"
-        title="选择班别"
-        :show-bottom-border="false"
-        @on-click-left="BanBieShow = false"
-        @on-click-right="setBanBieShow"></popup-header>
-        <group gutter="0">
-          <radio v-model="cShangBanBianMa" :options="banbie_list"></radio>
-        </group>
-      </popup>
+      <!-- group already has a top border, so we need to hide header's bottom border-->
+      <popup-header right-text="确定" title="选择班别" :show-bottom-border="false" @on-click-left="BanBieShow = false" @on-click-right="setBanBieShow"></popup-header>
+      <group gutter="0">
+        <radio v-model="cShangBanBianMa" :options="banbie_list"></radio>
+      </group>
+    </popup>
   </div>
 </template>
 
 <script>
-import { Radio, Popup, PopupHeader, Group, XDialog, Tab, TabItem } from "vux";
-import getformattedAddress from "@/map/index.js";
-import { setTimeout } from "timers";
-import cVehicle from "@/components/cVehicle";
-import workSite from "@/components/workSite";
-import { defaultCoreCipherList } from "constants";
-import { DriverCheLiang, ShangBanLeiBie } from "@/api/driver.js";
-import { wechatUser } from "@/api/home.js";
+import { Radio, Popup, PopupHeader, Group, XDialog, Tab, TabItem } from 'vux'
+import getformattedAddress from '@/map/index.js'
+import { setTimeout } from 'timers'
+import cVehicle from '@/components/cVehicle'
+import workSite from '@/components/workSite'
+import { defaultCoreCipherList } from 'constants'
+import { DriverCheLiang, ShangBanLeiBie } from '@/api/driver.js'
+import { wechatUser } from '@/api/home.js'
 
 import {
   BangDingJiLu,
   GetGongChengCheDingDan,
   GetWaJueJiDingDan
-} from "@/api/home.js";
+} from '@/api/home.js'
 
-const list = () => ["工程车", "挖掘机"];
+const list = () => ['工程车', '挖掘机']
 export default {
   components: {
     Radio,
@@ -142,7 +137,7 @@ export default {
   },
   data() {
     return {
-      cShangBanBianMa: null, //班别值
+      cShangBanBianMa: '001', //班别值
       BanBieShow: false, //班别
       index: 0,
       list2: list(),
@@ -152,7 +147,7 @@ export default {
       work_status: 2,
       time: null,
       bItem: {
-        start_position: "厦门市"
+        start_position: '厦门市'
       },
       order_list: [],
       wj_order_list: [],
@@ -164,34 +159,34 @@ export default {
         pagesize: 10
       },
       driver_keyword: null
-    };
+    }
   },
   filters: {
     status_filters(val) {
       var valMap = {
-        0: "未确认",
-        100: "确认",
-        110: "作废"
-      };
-      return valMap[val];
+        0: '未确认',
+        100: '确认',
+        110: '作废'
+      }
+      return valMap[val]
     }
   },
   computed: {
     cChePaiHao() {
       if (this.$store.getters.cChePaiHao) {
-        return this.$store.getters.cChePaiHao.cChePaiHao;
+        return this.$store.getters.cChePaiHao.cChePaiHao
       }
-      return "";
+      return ''
     },
     cCheLiangLeiBie() {
       if (this.$store.getters.cChePaiHao) {
-        return this.$store.getters.cChePaiHao.cCheLiangLeiBie;
+        return this.$store.getters.cChePaiHao.cCheLiangLeiBie
       }
-      return "";
+      return ''
     }
   },
   created() {
-    let _this = this;
+    let _this = this
     // if (_this.store_query.start_position) {
     //   _this.bItem.start_position = _this.store_query.start_position
     // } else {
@@ -207,33 +202,33 @@ export default {
     //     }
     //   })
     // }, 1000000)
-    this.get_driver(); //车辆列表
-    this.get_bangding(); //查询上班状态
-    this.get_order(); //订单
-    this.get_banbieinfo(); //班别
+    this.get_driver() //车辆列表
+    this.get_bangding() //查询上班状态
+    this.get_order() //订单
+    this.get_banbieinfo() //班别
   },
   methods: {
     get_banbieinfo() {
       ShangBanLeiBie().then(res => {
         this.banbie_list = res.data.map(o => {
-          var data = {};
-          data.key = o.cShangBanBianMa;
-          data.value = o.cShangBanMingCheng;
-          return data;
-        });
-      });
+          var data = {}
+          data.key = o.cShangBanBianMa
+          data.value = o.cShangBanMingCheng
+          return data
+        })
+      })
     },
     setBanBieShow() {
       console.log(this.cShangBanBianMa)
-      this.BanBieShow = false;
-      this.showScrollBox = true;
+      this.BanBieShow = false
+      this.showScrollBox = true
     },
     //切换时清空数据
     set_tab_item(item) {
       if (this.index == 0) {
-        this.get_order();
+        this.get_order()
       } else {
-        this.get_wj_order();
+        this.get_wj_order()
       }
     },
     //工程车订单列表
@@ -241,107 +236,112 @@ export default {
       GetGongChengCheDingDan({
         page: 1,
         pagesize: 10,
-        js_openid: localStorage.getItem("openid")
+        js_openid: localStorage.getItem('openid')
       }).then(res => {
-        this.order_list = res.data;
-      });
+        this.order_list = res.data
+      })
     },
     //挖掘机订单列表
     get_wj_order() {
       GetWaJueJiDingDan({
         page: 1,
         pagesize: 10,
-        js_openid: localStorage.getItem("openid")
+        js_openid: localStorage.getItem('openid')
       }).then(res => {
-        this.wj_order_list = res.data;
-      });
+        this.wj_order_list = res.data
+      })
     },
     get_driver() {
       DriverCheLiang().then(res => {
-        this.vehicle_list = res.data;
-      });
+        this.vehicle_list = res.data
+      })
     },
     complete_order() {
       this.$vux.confirm.show({
-        title: "提示",
-        content: "只有到达目的地与管理员确认后才能操作，是否继续？",
+        title: '提示',
+        content: '只有到达目的地与管理员确认后才能操作，是否继续？',
         onConfirm() {
-          _this.work_status = work_status;
+          _this.work_status = work_status
         }
-      });
+      })
     },
     select_vehicle(item) {
-      this.showScrollBox = false;
-      this.$store.dispatch("setcChePaiHao", JSON.stringify(item)); //车牌号
+      this.showScrollBox = false
       BangDingJiLu({
         iBangDingLeiXing: 1,
-        cChePaiHao: this.cChePaiHao,
-        cShangBanBianMa: this.cShangBanBianMa,
-      }).then(res => {
-        this.work_status = 1;
-      });
+        cChePaiHao: item.cChePaiHao,
+        cShangBanBianMa: this.cShangBanBianMa
+      })
+        .then(res => {
+          this.work_status = 1
+          this.$store.dispatch('setcChePaiHao', JSON.stringify(item)) //车牌号
+        })
+        .catch(res => {
+          this.get_driver() //车辆列表
+        })
     },
     get_address() {
-      let _this = this;
-      _this.bItem.start_position = "正在定位。。。";
-      _this.$store.dispatch("setisLoading", true);
+      let _this = this
+      _this.bItem.start_position = '正在定位。。。'
+      _this.$store.dispatch('setisLoading', true)
       getformattedAddress.then(res => {
-        _this.bItem.start_position = res.regeocode.formattedAddress;
+        _this.bItem.start_position = res.regeocode.formattedAddress
         // console.log(res.regeocode.formattedAddress)
-        _this.$store.dispatch("setisLoading", false);
-      });
+        _this.$store.dispatch('setisLoading', false)
+      })
     },
     set_time() {
-      var _this = this;
-      var t = null;
-      t = setTimeout(time, 1000); //開始运行
+      var _this = this
+      var t = null
+      t = setTimeout(time, 1000) //開始运行
       function time() {
-        clearTimeout(t); //清除定时器
-        var dt = new Date();
-        var h = checkTime(dt.getHours()); //获取时
-        var m = checkTime(dt.getMinutes()); //获取分
-        var s = checkTime(dt.getSeconds()); //获取秒
-        _this.time = h + "：" + m + "：" + s;
-        t = setTimeout(time, 1000); //设定定时器，循环运行
+        clearTimeout(t) //清除定时器
+        var dt = new Date()
+        var h = checkTime(dt.getHours()) //获取时
+        var m = checkTime(dt.getMinutes()) //获取分
+        var s = checkTime(dt.getSeconds()) //获取秒
+        _this.time = h + '：' + m + '：' + s
+        t = setTimeout(time, 1000) //设定定时器，循环运行
       }
       function checkTime(i) {
         //将0-9的数字前面加上0，例1变为01
         if (i < 10) {
-          i = "0" + i;
+          i = '0' + i
         }
-        return i;
+        return i
       }
     },
     //查询上班状态
     get_bangding() {
       wechatUser().then(res => {
-        this.work_status = res.data.status;
-      });
+        this.work_status = res.data.status
+      })
     },
     change_work(work_status) {
-      var _this = this;
+      var _this = this
       if (work_status == 0) {
         this.$vux.confirm.show({
-          title: "提示",
-          content: "下班后将不能接收订单，是否继续？",
+          title: '提示',
+          content: '下班后将不能接收订单，是否继续？',
           onConfirm() {
             BangDingJiLu({
               iBangDingLeiXing: work_status,
               cChePaiHao: _this.cChePaiHao,
               cShangBanBianMa: _this.cShangBanBianMa
             }).then(res => {
-              _this.work_status = work_status;
-              _this.$store.dispatch("setcChePaiHao", null);
-            });
+              _this.work_status = work_status
+              _this.$store.dispatch('setcChePaiHao', null)
+            })
           }
-        });
+        })
       } else {
         // this.showScrollBox = true;
-        this.BanBieShow = true;
+        this.BanBieShow = true
+        this.get_driver() //车辆列表
       }
     }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -413,7 +413,7 @@ export default {
     background-size: 100%;
   }
   .ico:before {
-    content: " ";
+    content: ' ';
     position: absolute;
     left: -0.266667rem;
     display: block;
