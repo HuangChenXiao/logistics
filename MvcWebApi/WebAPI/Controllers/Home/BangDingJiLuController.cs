@@ -11,6 +11,7 @@ using System.Web;
 using WebAPI.Models;
 using System.Web.Http.Results;
 using System;
+using WeChatSDK.WeChatLog;
 
 namespace WebAPI.Controllers.Home
 {
@@ -64,9 +65,16 @@ namespace WebAPI.Controllers.Home
                 db.BangDingJiLu.Add(jilu);
                 var wechat = db.wechatUser.Where(o => o.openid == openid).FirstOrDefault();
                 wechat.status = iBangDingLeiXing;
+                LogTextHelper.Log("openid:" + openid + ";车牌号：" + cChePaiHao);
                 if (!string.IsNullOrEmpty(cChePaiHao))
                 {
                     var driver = db.CheLiangInfo.Where(o => o.cChePaiHao == cChePaiHao).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(driver.openid) && iBangDingLeiXing == 1)
+                    {
+                        model.message = "车辆已经被其他驾驶员绑定，请重新选择";
+                        model.status_code = 401;
+                        return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                    }
                     if (iBangDingLeiXing == 1)
                     {
                         driver.openid = openid;
