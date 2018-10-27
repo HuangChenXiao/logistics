@@ -27,8 +27,7 @@ namespace WebAPI.Controllers.Home
             if (!string.IsNullOrEmpty(openid))
             {
                 var temp = from a in db.TuWeiInfo
-                           where (a.cTuWeiBianMa.Contains(keyword) || string.IsNullOrEmpty(keyword)) &&
-                           (a.cTuWeiMingCheng.Contains(keyword) || string.IsNullOrEmpty(keyword))
+                           where (a.cTuWeiBianMa.Contains(keyword) || a.cTuWeiMingCheng.Contains(keyword) || string.IsNullOrEmpty(keyword))
                            select a;
                 model.data = temp.ToList();
 
