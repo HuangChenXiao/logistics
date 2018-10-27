@@ -112,6 +112,7 @@
           <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
           <Property Name="cCreate" Type="varchar" MaxLength="30" />
           <Property Name="iBiaoShi" Type="int" />
+          <Property Name="cDiZhi" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="GongDiCheLiang">
           <Key>
@@ -628,6 +629,7 @@
           <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
           <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
           <Property Name="cTuWeiBianMa" Type="varchar" MaxLength="20" />
+          <Property Name="cGuanLiYuanMingChen" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“EBMSystem.dbo.WaJueJiDingDan_View”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -651,6 +653,7 @@
           <Property Name="cXingMing" Type="nvarchar" MaxLength="30" />
           <Property Name="cGongDiMingCheng" Type="varchar" MaxLength="100" />
           <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
+          <Property Name="cGuanLiYuanMingChen" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
@@ -723,7 +726,8 @@
     [GongChengCheDingDan_View].[cTuWeiMingCheng] AS [cTuWeiMingCheng], 
     [GongChengCheDingDan_View].[cXingMing] AS [cXingMing], 
     [GongChengCheDingDan_View].[cDingDanHao] AS [cDingDanHao], 
-    [GongChengCheDingDan_View].[cTuWeiBianMa] AS [cTuWeiBianMa]
+    [GongChengCheDingDan_View].[cTuWeiBianMa] AS [cTuWeiBianMa], 
+    [GongChengCheDingDan_View].[cGuanLiYuanMingChen] AS [cGuanLiYuanMingChen]
     FROM [dbo].[GongChengCheDingDan_View] AS [GongChengCheDingDan_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="WaJueJiDingDan_View" EntityType="Self.WaJueJiDingDan_View" store:Type="Views" store:Schema="dbo">
@@ -743,7 +747,8 @@
     [WaJueJiDingDan_View].[cBeiZhu] AS [cBeiZhu], 
     [WaJueJiDingDan_View].[cXingMing] AS [cXingMing], 
     [WaJueJiDingDan_View].[cGongDiMingCheng] AS [cGongDiMingCheng], 
-    [WaJueJiDingDan_View].[cDingDanHao] AS [cDingDanHao]
+    [WaJueJiDingDan_View].[cDingDanHao] AS [cDingDanHao], 
+    [WaJueJiDingDan_View].[cGuanLiYuanMingChen] AS [cGuanLiYuanMingChen]
     FROM [dbo].[WaJueJiDingDan_View] AS [WaJueJiDingDan_View]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -912,6 +917,7 @@
           <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="iBiaoShi" Type="Int32" />
+          <Property Name="cDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GongDiCheLiang">
           <Key>
@@ -1426,6 +1432,7 @@
           <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WaJueJiDingDan_View">
           <Key>
@@ -1447,6 +1454,7 @@
           <Property Name="cXingMing" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="cGongDiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1550,6 +1558,7 @@
           <EntitySetMapping Name="GongChengCheDingDan">
             <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
               <MappingFragment StoreEntitySet="GongChengCheDingDan">
+                <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
                 <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
                 <ScalarProperty Name="cCreate" ColumnName="cCreate" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
@@ -2097,6 +2106,7 @@
           <EntitySetMapping Name="GongChengCheDingDan_View">
             <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan_View">
               <MappingFragment StoreEntitySet="GongChengCheDingDan_View">
+                <ScalarProperty Name="cGuanLiYuanMingChen" ColumnName="cGuanLiYuanMingChen" />
                 <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
                 <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
                 <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
@@ -2122,6 +2132,7 @@
           <EntitySetMapping Name="WaJueJiDingDan_View">
             <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan_View">
               <MappingFragment StoreEntitySet="WaJueJiDingDan_View">
+                <ScalarProperty Name="cGuanLiYuanMingChen" ColumnName="cGuanLiYuanMingChen" />
                 <ScalarProperty Name="cDingDanHao" ColumnName="cDingDanHao" />
                 <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
                 <ScalarProperty Name="cXingMing" ColumnName="cXingMing" />
