@@ -22,6 +22,7 @@
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">派单员：{{item.cGuanLiYuanMingChen}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
               <div class="n1">确认时间：{{item.dQueRenShiJian}}</div>
@@ -48,6 +49,7 @@
               <div class="n1">订单号：{{item.cDingDanHao}}</div>
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">派单员：{{item.cGuanLiYuanMingChen}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">开始时间：{{item.dKaiShiShiJian}}</div>
               <div class="n1">结束时间：{{item.dJieShuShiJian}}</div>

@@ -16,26 +16,65 @@
         <span>我的订单</span>
         <i class="next"></i>
       </router-link>
+      <router-link :to="{name:'driver-count'}" class="item">
+        <span>订单统计数</span>
+        <i class="next"></i>
+      </router-link>
       <!-- <router-link :to="{name:'wages',query:{title:'我的工资'}}" class="item">
         <span>我的工资</span>
         <i class="next"></i>
       </router-link> -->
     </div>
+    
+        <div class="item-list" v-if="work_status==1" @click="change_work">
+            <div class="item c9">
+                <span>下班</span>
+            </div>
+        </div>
     <div style="height:1.5rem"></div>
     <c-bottom></c-bottom>
   </div>
 </template>
 
 <script>
+import { BangDingJiLu } from "@/api/home.js";
 export default {
   data() {
     return {
-      user_info: {}
+      user_info: {},
+      work_status: 0
+    };
+  },
+  computed: {
+    cChePaiHao() {
+      if (this.$store.getters.cChePaiHao) {
+        return this.$store.getters.cChePaiHao.cChePaiHao;
+      }
+      return "";
     }
   },
   created() {
+    this.work_status = this.$store.getters.user_info.status;
   },
-}
+  methods: {
+    change_work() {
+      var _this = this;
+      this.$vux.confirm.show({
+        title: "提示",
+        content: "下班后将不能发布订单，是否继续？",
+        onConfirm() {
+          BangDingJiLu({
+            iBangDingLeiXing: 0,
+            cChePaiHao: _this.cChePaiHao,
+            cShangBanBianMa: _this.$store.getters.user_info.role_code
+          }).then(res => {
+            _this.work_status = 0;
+          });
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -61,6 +100,7 @@ export default {
   }
 }
 .item-list {
+  margin-top: 0.266667rem;
   background: #fff;
   .item {
     position: relative;
@@ -77,6 +117,9 @@ export default {
       width: 0.146667rem;
       height: 0.266667rem;
     }
+  }
+  .c9 {
+    color: #999;
   }
 }
 .btn-work {

@@ -8,12 +8,12 @@
         当前位置：{{bItem.start_position}}
         <i class="ico ico-ad" onclick="location.reload()"></i>
       </div> -->
-      <div class="work">
+      <div class="work" v-if="work_status==0">
         <div class="work-item sb-item" v-if="work_status==0" @click="change_work(1)">
           <i class="ico ico-sb"></i>
           <span>上班</span>
         </div>
-        <div class="work-item xb-item" v-if="work_status==1" @click="change_work(0)">
+        <div class="work-item xb-item" v-if="false" @click="change_work(0)">
           <i class="ico ico-xb"></i>
           <span>下班</span>
         </div>
@@ -61,6 +61,7 @@
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">派单员：{{item.cGuanLiYuanMingChen}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">起运时间：{{item.dQiYunShiJian}}</div>
               <div class="n1">状态：{{item.iState|status_filters}}</div>
@@ -74,6 +75,7 @@
               <div class="n1">订单号：{{item.cDingDanHao}}</div>
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
+              <div class="n1">派单员：{{item.cGuanLiYuanMingChen}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
               <div class="n1">开始时间：{{item.dKaiShiShiJian}}</div>
               <div class="n1">结束时间：{{item.dKaiShiShiJian}}</div>

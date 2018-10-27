@@ -12,3 +12,11 @@ export function ShangBanLeiBie(data) {
         method: "get"
     })
 }
+export function OrderNumberCount(data) {
+    return request({
+        url: 'OrderNumberCount',
+        method: "get",
+        params: data
+    })
+}
+

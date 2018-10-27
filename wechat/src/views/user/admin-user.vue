@@ -19,10 +19,15 @@
                 <span>我的订单</span>
                 <i class="next"></i>
             </router-link>
-            <!-- <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
-                <span>路线</span>
-                <i class="next"></i>
-            </router-link> -->
+            <router-link :to="{name:'admin-head-tail'}" class="item">
+              <span>订单统计数</span>
+              <i class="next"></i>
+            </router-link>
+        </div>
+        <div class="item-list" v-if="work_status==1" @click="change_work">
+            <div class="item c9">
+                <span>下班</span>
+            </div>
         </div>
         <div style="height:1.5rem"></div>
         <admin-bottom route_name="admin-user"></admin-bottom>
@@ -30,12 +35,38 @@
 </template>
 
 <script>
-import adminBottom from '@/components/adminBottom'
+import adminBottom from "@/components/adminBottom";
+import { BangDingJiLu } from "@/api/home.js";
 export default {
   components: {
     adminBottom
   },
-}
+  data() {
+    return {
+      work_status: 0
+    };
+  },
+  created() {
+    this.work_status = this.$store.getters.user_info.status;
+  },
+  methods: {
+    change_work() {
+      var _this = this;
+      this.$vux.confirm.show({
+        title: "提示",
+        content: "下班后将不能发布订单，是否继续？",
+        onConfirm() {
+          BangDingJiLu({
+            iBangDingLeiXing: 0,
+            cShangBanBianMa: _this.$store.getters.user_info.role_code
+          }).then(res => {
+            _this.work_status = 0;
+          });
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -61,6 +92,7 @@ export default {
   }
 }
 .item-list {
+  margin-top: 0.266667rem;
   background: #fff;
   .item {
     position: relative;
@@ -77,6 +109,9 @@ export default {
       width: 0.146667rem;
       height: 0.266667rem;
     }
+  }
+  .c9 {
+    color: #999;
   }
 }
 .btn-work {

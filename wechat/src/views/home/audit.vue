@@ -13,6 +13,10 @@
           <div class="lbl">手机号</div>
           <div class="ipt"><input type="text" placeholder="请输入手机号" v-model="user.cLianXiDianHua"></div>
         </div>
+        <div class="item">
+          <div class="lbl">身份证</div>
+          <div class="ipt"><input type="text" placeholder="请输入身份证" v-model="user.cShenFenZhengHao"></div>
+        </div>
       </div>
       <div class="ibtn">
         <div class="ibtn-default" @click="submit_info">提交</div>
@@ -22,7 +26,7 @@
 </template>
 
 <script>
-import { validatePhone } from '@/utils/validate.js'
+import { validatePhone,validateidentitycard } from '@/utils/validate.js'
 import { PostWechatUser } from '@/api/home.js'
 import {WeChatAccredit } from '@/api/wechat.js'
 export default {
@@ -31,6 +35,7 @@ export default {
       user: {
         cXingMing: null,
         cLianXiDianHua: null,
+        cShenFenZhengHao:null,
         openid: null,
         nickname: null,
         sex: null,
@@ -108,6 +113,14 @@ export default {
         })
         return
       }
+      if (!validateidentitycard(this.user.cShenFenZhengHao)) {
+        this.$vux.alert.show({
+          title: '提示',
+          content: '请输入正确的身份证'
+        })
+        return
+      }
+      
       var _this = this
       this.$vux.confirm.show({
         title: '提示',

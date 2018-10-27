@@ -123,3 +123,17 @@ export function DesEndOrder(data) {
         params: data
     })
 }
+export function HeadTailOrderCount(data) {
+    return request({
+        url: 'HeadTailOrderCount',
+        method: "get",
+        params: data
+    })
+}
+export function TuWeiInfo(data) {
+    return request({
+        url: 'TuWeiInfo',
+        method: "get",
+        params: data
+    })
+}
