@@ -151,6 +151,16 @@ export default {
         });
       });
     }
+  },
+  watch: {
+    work_keyword(val, oldVal) {
+      //工地列表
+      this.get_worksite();
+    },
+    tuwei_keyword(val, oldVal) {
+      //工地列表
+      this.get_tuwei();
+    },
   }
 };
 </script>
