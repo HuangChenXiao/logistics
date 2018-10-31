@@ -69,21 +69,24 @@ namespace WebAPI.Controllers.Home
                 if (!string.IsNullOrEmpty(cChePaiHao))
                 {
                     var driver = db.CheLiangInfo.Where(o => o.cChePaiHao == cChePaiHao).FirstOrDefault();
-                    if (!string.IsNullOrEmpty(driver.openid) && iBangDingLeiXing == 1)
+                    if (driver != null)
                     {
-                        model.message = "车辆已经被其他驾驶员绑定，请重新选择";
-                        model.status_code = 401;
-                        return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                        if (!string.IsNullOrEmpty(driver.openid) && iBangDingLeiXing == 1)
+                        {
+                            model.message = "车辆已经被其他驾驶员绑定，请重新选择";
+                            model.status_code = 401;
+                            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                        }
+                        if (iBangDingLeiXing == 1)
+                        {
+                            driver.openid = openid;
+                        }
+                        else
+                        {
+                            driver.openid = null;
+                        }
+                        driver.cShangBanBianMa = cShangBanBianMa;
                     }
-                    if (iBangDingLeiXing == 1)
-                    {
-                        driver.openid = openid;
-                    }
-                    else
-                    {
-                        driver.openid = null;
-                    }
-                    driver.cShangBanBianMa = cShangBanBianMa;
                 }
                 try
                 {
