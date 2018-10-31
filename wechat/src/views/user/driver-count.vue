@@ -51,7 +51,6 @@ export default {
     }
   },
   created() {
-    this.getOrderCount();
   },
   methods: {
     getOrderCount() {
