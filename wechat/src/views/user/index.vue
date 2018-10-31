@@ -27,7 +27,7 @@
     </div>
     
         <div class="item-list" v-if="work_status==1" @click="change_work">
-            <div class="item c9">
+            <div class="item">
                 <span>下班</span>
             </div>
         </div>
