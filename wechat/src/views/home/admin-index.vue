@@ -52,13 +52,13 @@
                   </div>
                 </div>
                 <div class="group-item">
-                  <div class="lbl">路线</div>
+                  <div class="lbl">土尾</div>
                   <div class="info">
                     <div class="btn-select" @click="showWorkRoute=true">
                       选择
                     </div>
-                    <span>{{bItem.cXianLuBianMa}}</span>
-                    <div class="ico-clear" v-if="bItem.cXianLuBianMa" @click="bItem.cXianLuBianMa=null"></div>
+                    <span>{{bItem.cTuWeiMingCheng}}</span>
+                    <div class="ico-clear" v-if="bItem.cTuWeiMingCheng" @click="clearTuiwei"></div>
                   </div>
                 </div>
                 <!-- <selector title="合作单位"  v-model="value2"></selector>
@@ -193,7 +193,7 @@ import {
   BangDingJiLu,
   wechatUser
 } from "@/api/home.js";
-import { TemplateMsg }from '@/api/wechat.js'
+import { TemplateMsg } from "@/api/wechat.js";
 export default {
   components: {
     Group,
@@ -227,6 +227,7 @@ export default {
         cXianLuBianMa: null, //线路编码
         // cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
+        cTuWeiMingCheng:null,//土尾名称
         cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
       },
       store_query: {
@@ -329,6 +330,10 @@ export default {
     this.get_bangding(); //绑定记录
   },
   methods: {
+    clearTuiwei() {
+      this.bItem.cTuWeiBianMa = null;
+      this.bItem.cTuWeiMingCheng = null;
+    },
     //选择时重新查询车辆
     setshowScrollBox() {
       this.get_driver(); //车辆信息
@@ -458,24 +463,25 @@ export default {
     select_wordRoute(item) {
       this.showWorkRoute = false;
       this.bItem.cXianLuBianMa = item.cXianLuBianMa;
+      this.bItem.cTuWeiMingCheng = item.cTuWeiMingCheng;
     },
-    sendTplMsg(item){
-      TemplateMsg(item).then(res=>{
-        console.log(res)
-      })
+    sendTplMsg(item) {
+      TemplateMsg(item).then(res => {
+        console.log(res);
+      });
     },
     //发布订单
     submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
-      this.bItem.cDingDanHao=this.cfg.formatOrderNo()
+      this.bItem.cDingDanHao = this.cfg.formatOrderNo();
       GongChengCheDingDan(this.bItem)
         .then(res => {
           this.$vux.alert.show({
             title: "提示",
             content: "工程车订单发布成功"
           });
-          this.sendTplMsg(this.bItem)
+          this.sendTplMsg(this.bItem);
           this.resetItem();
           this.get_order(); //订单列表
           this.isavailable = true;
@@ -489,14 +495,14 @@ export default {
     wj_submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
-      this.bItem.cDingDanHao=this.cfg.formatOrderNo()
+      this.bItem.cDingDanHao = this.cfg.formatOrderNo();
       WaJueJiDingDan(this.bItem)
         .then(res => {
           this.$vux.alert.show({
             title: "提示",
             content: "挖掘机订单发布成功"
           });
-          this.sendTplMsg(this.bItem)
+          this.sendTplMsg(this.bItem);
           this.resetItem();
           this.get_wj_order(); //挖掘机订单
           this.isavailable = true;

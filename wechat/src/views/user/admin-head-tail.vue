@@ -31,12 +31,15 @@
                       选择
                     </div>
                     <span>{{bItem.cTuWeiMingCheng}}</span>
-                    <div class="ico-clear" v-if="bItem.cTuWeiMingCheng" @click="bItem.cTuWeiMingCheng=null"></div>
+                    <div class="ico-clear" v-if="bItem.cTuWeiMingCheng" @click="clearTuiwei"></div>
                   </div>
                 </div>
                 <!-- <selector title="合作单位"  v-model="value2"></selector>
                                 <selector title="车辆" :options="['闽G123', '其他']" v-model="value2"></selector>
                                 <selector title="路线" :options="['高新技术园-软件园', '五缘湾-火车站']" v-model="value2"></selector> -->
+                                
+                <datetime title="开始日期" v-model="bItem.begindate" format="YYYY-MM-DD" value-text-align="left"></datetime>
+               <datetime title="结束日期" v-model="bItem.enddate" format="YYYY-MM-DD" value-text-align="left"></datetime>
                 <div class="wk-btn">
                   <!-- <div class="ok-btn">发布订单</div> -->
                   <x-button class="ok-btn" :class="{'btn-success':validate_order}" type="primary" :disabled="!validate_order" @click.native="getOrderCount"> 查询订单</x-button>
@@ -46,11 +49,17 @@
             <div class="head flex f-d-r">
                 <div class="th">工地</div>
                 <div class="th">土尾</div>
-                <div class="th">总单数</div>
             </div>
             <div class="body flex f-d-r">
                 <div class="td">{{bItem.cGongDiMingCheng}}</div>
                 <div class="td">{{bItem.cTuWeiMingCheng}}</div>
+            </div>
+        </div>
+        <div class="od-tb">
+            <div class="head flex f-d-r">
+                <div class="th">总单数</div>
+            </div>
+            <div class="body flex f-d-r">
                 <div class="td f-w600">{{total}}</div>
             </div>
         </div>
@@ -94,13 +103,15 @@ export default {
         cGongDiBianMa: null, //工地编码
         cGongDiMingCheng: null,
         cTuWeiBianMa: null, //土尾编码
-        cTuWeiMingCheng: null
+        cTuWeiMingCheng: null,
+        begindate: this.cfg.getCurrentMonthFirst(),
+        enddate: this.cfg.getCurrentMonthLast()
       }
     };
   },
   computed: {
     validate_order() {
-      if (this.bItem.cGongDiBianMa && this.bItem.cTuWeiBianMa) {
+      if (this.bItem.begindate && this.bItem.enddate) {
         return true;
       }
       return false;
@@ -111,6 +122,10 @@ export default {
     this.get_tuwei();
   },
   methods: {
+    clearTuiwei() {
+      this.bItem.cTuWeiBianMa = null;
+      this.bItem.cTuWeiMingCheng = null;
+    },
     clear_gongdi() {
       this.bItem.cGongDiBianMa = null;
       this.bItem.cGongDiMingCheng = null;
@@ -143,6 +158,8 @@ export default {
       var data = {};
       data.cTuWeiBianMa = this.bItem.cTuWeiBianMa;
       data.cGongDiBianMa = this.bItem.cGongDiBianMa;
+      data.begindate = this.bItem.begindate;
+      data.enddate = this.bItem.enddate;
       HeadTailOrderCount(data).then(res => {
         this.total = res.total;
         this.$vux.alert.show({
@@ -160,7 +177,7 @@ export default {
     tuwei_keyword(val, oldVal) {
       //工地列表
       this.get_tuwei();
-    },
+    }
   }
 };
 </script>

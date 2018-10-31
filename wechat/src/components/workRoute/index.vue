@@ -11,8 +11,8 @@
         </div>
         <div class="item-list" v-if="list.length>0">
             <div class="item" v-for="item in list">
-                <div class="code">{{item.cXianLuBianMa}}</div>
-                <!-- <div class="color">颜色：{{item.color}}</div> -->
+                <div class="color">土尾：{{item.cTuWeiMingCheng}}</div>
+                <div class="code">线路：{{item.cXianLuBianMa}}</div>
                 <div class="opt-btn">
                     <div class="sed-btn" @click="select_vehicle(item)">
                         选择
@@ -98,7 +98,7 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.2rem;
+        top: 0.5rem;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;
