@@ -66,6 +66,15 @@ namespace WebAPI.Controllers.Home
                 var wechat = db.wechatUser.Where(o => o.openid == openid).FirstOrDefault();
                 wechat.status = iBangDingLeiXing;
                 LogTextHelper.Log("openid:" + openid + ";车牌号：" + cChePaiHao);
+                //判断是否下班 车牌号为空时
+                if (iBangDingLeiXing == 0 && string.IsNullOrEmpty(cChePaiHao))
+                {
+                    var driver_list = db.CheLiangInfo.Where(o => o.openid == openid).ToList();
+                    driver_list.ForEach(o =>
+                    {
+                        o.openid = null;
+                    });
+                }
                 if (!string.IsNullOrEmpty(cChePaiHao))
                 {
                     var driver = db.CheLiangInfo.Where(o => o.cChePaiHao == cChePaiHao).FirstOrDefault();

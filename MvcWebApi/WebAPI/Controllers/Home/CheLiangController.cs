@@ -32,7 +32,8 @@ namespace WebAPI.Controllers.Home
                            {
                                a.cChePaiHao,
                                a.cPinPai,
-                               b.cXingMing
+                               b.cXingMing,
+                               a.cCheLiangLeiBie
                            };
                 model.data = temp.Where(o => o.cChePaiHao.Contains(keyword) || o.cPinPai.Contains(keyword) || o.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword)).ToList();
 
