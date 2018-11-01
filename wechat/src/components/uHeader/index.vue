@@ -78,8 +78,8 @@ export default {
   top: 0;
   z-index: 999;
   width: 100%;
-  height: 1.226667rem;
-  line-height: 1.226667rem;
+  height: 46px;
+  line-height: 46px;
   color: #2b2b2b;
   background: #fff;
   border-bottom: 1px solid #e5e5e5;
@@ -89,8 +89,8 @@ export default {
 .navbar .nav-wrap-left {
   position: relative;
   z-index: 10;
-  height: 1.226667rem;
-  line-height: 1.226667rem;
+  height: 46px;
+  line-height: 46px;
 }
 .navbar h1.nav-header,
 .navbar .h1.nav-header {
@@ -102,8 +102,8 @@ export default {
   font-size: 0.46rem;
   font-weight: 400;
   text-align: center;
-  height: 1.226667rem;
-  line-height: 1.226667rem;
+  height: 46px;
+  line-height: 46px;
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -134,8 +134,8 @@ div.nav-wrap-right a {
 }
 .nav-wrap-right a {
   height: 100%;
-  line-height: 1.226667rem;
-  height: 1.226667rem;
+  line-height: 46px;
+  height: 46px;
   text-align: center;
   width: 0.94rem;
 }
@@ -150,9 +150,9 @@ img {
 }
 .nav-wrap-left a.back {
   font-size: 0.426667rem;
-  height: 1.226667rem;
+  height: 46px;
   /* width: 0.45rem; */
-  line-height: 1.226667rem;
+  line-height: 46px;
   padding: 0 0.3rem;
 }
 .nav-wrap-left a.back span {

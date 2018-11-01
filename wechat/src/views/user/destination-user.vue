@@ -1,32 +1,32 @@
 <template>
-    <div>
-        <n-header title="我的">
-        </n-header>
-        <div style="height:1.2rem"></div>
-        <div class="info">
-            <div class="img">
-                <img src="../../assets/img/t_1.png" alt="">
-            </div>
-            <div class="content">
-                <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>
-                <!-- <div class="count">
+  <div>
+    <n-header title="我的">
+    </n-header>
+    <div style="height:1.2rem"></div>
+    <div class="info">
+      <div class="img">
+        <img v-lazy="$store.getters.user_info.headimgurl" alt="">
+      </div>
+      <div class="content">
+        <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>
+        <!-- <div class="count">
           交易次数：{{user_info.tradeqty}}
         </div> -->
-            </div>
-        </div>
-        <div class="item-list">
-            <router-link :to="{name:'order',query:{title:'我的订单',menu_route:'destination-user'}}" class="item">
-                <span>我的订单</span>
-                <i class="next"></i>
-            </router-link>
-            <!-- <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
+      </div>
+    </div>
+    <div class="item-list">
+      <router-link :to="{name:'order',query:{title:'我的订单',menu_route:'destination-user'}}" class="item">
+        <span>我的订单</span>
+        <i class="next"></i>
+      </router-link>
+      <!-- <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
                 <span>路线</span>
                 <i class="next"></i>
             </router-link> -->
-        </div>
-        <!-- <div style="height:1.5rem"></div> -->
-        <!-- <destination-bottom route_name="admin-user"></destination-bottom> -->
     </div>
+    <!-- <div style="height:1.5rem"></div> -->
+    <!-- <destination-bottom route_name="admin-user"></destination-bottom> -->
+  </div>
 </template>
 
 <script>
@@ -34,7 +34,7 @@ import destinationBottom from '@/components/destinationBottom'
 export default {
   components: {
     destinationBottom
-  },
+  }
 }
 </script>
 

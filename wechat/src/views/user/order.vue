@@ -5,7 +5,7 @@
         查询
       </div>
     </u-header>
-    <div style="height:1.2rem"></div>
+    <div style="height:46px"></div>
     <div>
       <div v-if="role_code!='003'">
         <tab :line-width=2 v-model="sed_index" active-color="#f00" bar-active-color="#f00">
@@ -14,7 +14,7 @@
         </tab>
       </div>
       <!-- <div style="height:2rem">{{sed_index==1}}</div> -->
-      <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
+      <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" height="-90" :scroll-bottom-offst="200">
         <div class="item-list">
           <div class="item" v-if="sed_index==0" v-for="item in order_list">
             <section>
@@ -69,7 +69,6 @@
             <span> 我是有底线的~
             </span>
           </div>
-          <div style="height:2.5rem" v-if="order_list.length||wj_order_list.length"></div>
         </div>
 
       </scroller>

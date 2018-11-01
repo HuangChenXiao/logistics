@@ -5,7 +5,7 @@
     <div style="height:1.2rem"></div>
     <div class="info">
       <div class="img">
-        <img src="../../assets/img/t_1.png" alt="">
+        <img v-lazy="$store.getters.user_info.headimgurl" alt="">
       </div>
       <div class="content">
         <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>

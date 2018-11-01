@@ -1,42 +1,42 @@
 <template>
-    <div>
-        <n-header title="我的">
-        </n-header>
-        <div style="height:1.2rem"></div>
-        <div class="info">
-            <div class="img">
-                <img src="../../assets/img/t_1.png" alt="">
-            </div>
-            <div class="content">
-                <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>
-                <!-- <div class="count">
+  <div>
+    <n-header title="我的">
+    </n-header>
+    <div style="height:1.2rem"></div>
+    <div class="info">
+      <div class="img">
+        <img v-lazy="$store.getters.user_info.headimgurl" alt="">
+      </div>
+      <div class="content">
+        <div class="name">{{this.$store.getters.user_info.cXingMing}}</div>
+        <!-- <div class="count">
           交易次数：{{user_info.tradeqty}}
         </div> -->
-            </div>
-        </div>
-        <div class="item-list">
-            <router-link :to="{name:'order',query:{title:'我的订单',menu_route:'admin-user'}}" class="item">
-                <span>我的订单</span>
-                <i class="next"></i>
-            </router-link>
-            <router-link :to="{name:'admin-head-tail'}" class="item">
-              <span>订单统计数</span>
-              <i class="next"></i>
-            </router-link>
-        </div>
-        <div class="item-list" v-if="work_status==1" @click="change_work">
-            <div class="item">
-                <span>下班</span>
-            </div>
-        </div>
-        <div style="height:1.5rem"></div>
-        <admin-bottom route_name="admin-user"></admin-bottom>
+      </div>
     </div>
+    <div class="item-list">
+      <router-link :to="{name:'order',query:{title:'我的订单',menu_route:'admin-user'}}" class="item">
+        <span>我的订单</span>
+        <i class="next"></i>
+      </router-link>
+      <router-link :to="{name:'admin-head-tail'}" class="item">
+        <span>订单统计数</span>
+        <i class="next"></i>
+      </router-link>
+    </div>
+    <div class="item-list" v-if="work_status==1" @click="change_work">
+      <div class="item">
+        <span>下班</span>
+      </div>
+    </div>
+    <div style="height:1.5rem"></div>
+    <admin-bottom route_name="admin-user"></admin-bottom>
+  </div>
 </template>
 
 <script>
-import adminBottom from "@/components/adminBottom";
-import { BangDingJiLu } from "@/api/home.js";
+import adminBottom from '@/components/adminBottom'
+import { BangDingJiLu } from '@/api/home.js'
 export default {
   components: {
     adminBottom
@@ -44,29 +44,29 @@ export default {
   data() {
     return {
       work_status: 0
-    };
+    }
   },
   created() {
-    this.work_status = this.$store.getters.user_info.status;
+    this.work_status = this.$store.getters.user_info.status
   },
   methods: {
     change_work() {
-      var _this = this;
+      var _this = this
       this.$vux.confirm.show({
-        title: "提示",
-        content: "下班后将不能发布订单，是否继续？",
+        title: '提示',
+        content: '下班后将不能发布订单，是否继续？',
         onConfirm() {
           BangDingJiLu({
             iBangDingLeiXing: 0,
             cShangBanBianMa: _this.$store.getters.user_info.role_code
           }).then(res => {
-            _this.work_status = 0;
-          });
+            _this.work_status = 0
+          })
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
