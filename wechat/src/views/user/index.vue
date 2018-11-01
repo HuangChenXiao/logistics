@@ -69,6 +69,7 @@ export default {
             cShangBanBianMa: _this.$store.getters.user_info.role_code
           }).then(res => {
             _this.work_status = 0;
+            _this.$store.dispatch('setcChePaiHao',null)
           });
         }
       });
