@@ -11,7 +11,6 @@
     </div>
     <div class="item-list" v-if="list.length>0">
       <div class="item" v-for="item in list">
-        <div class="code" v-if="item.cXingMing">驾驶员：{{item.cXingMing}}</div>
         <div class="code">车牌：{{item.cChePaiHao}}</div>
         <div class="code">类型：{{item.cCheLiangLeiBie}}</div>
         <div class="opt-btn" v-if="single_drive">

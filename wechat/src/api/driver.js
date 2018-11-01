@@ -3,7 +3,8 @@ import request from '@/utils/request'
 export function DriverCheLiang(data) {
     return request({
         url: 'DriverCheLiang',
-        method: "get"
+        method: "get",
+        params: data
     })
 }
 export function ShangBanLeiBie(data) {
