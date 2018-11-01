@@ -21,13 +21,14 @@ namespace WebAPI.Controllers.Driver
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
 
-        public ResponseMessageResult Get()
+        public ResponseMessageResult Get(string keyword=null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
                 var temp = from a in db.CheLiangInfo
                            where string.IsNullOrEmpty(a.openid)
+                           && (a.cChePaiHao.Contains(keyword) || string.IsNullOrEmpty(keyword))
                            select a;
                 model.data = temp.ToList();
 

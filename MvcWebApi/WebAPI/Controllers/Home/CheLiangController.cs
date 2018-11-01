@@ -27,15 +27,13 @@ namespace WebAPI.Controllers.Home
             if (!string.IsNullOrEmpty(openid))
             {
                 var temp = from a in db.CheLiangInfo
-                           join b in db.wechatUser on a.openid equals b.openid
                            select new
                            {
                                a.cChePaiHao,
                                a.cPinPai,
-                               b.cXingMing,
                                a.cCheLiangLeiBie
                            };
-                model.data = temp.Where(o => o.cChePaiHao.Contains(keyword) || o.cPinPai.Contains(keyword) || o.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword)).ToList();
+                model.data = temp.Where(o => o.cChePaiHao.Contains(keyword) || o.cPinPai.Contains(keyword) || string.IsNullOrEmpty(keyword)).ToList();
 
                 if (model.data != null)
                 {
