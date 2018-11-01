@@ -39,7 +39,7 @@ namespace WeChatAPI.TemplateAlert
             //用户OPENID
             p.touser = openid;
             //模板ID
-            p.template_id = "SEEp8fPLMSiaKk4P-lRZNQo2pwqxk2xTZxyeFayQ2_8";
+            p.template_id = "PKLyFsY0gkoqJYA_fc-as6O_zw_aolaaqJsn3W8imxg";
             p.url = "http://test.chaomafu.com/user/order?title=我的订单&menu_route=user";
             p.data = new TemplateOrderMsg
             {
