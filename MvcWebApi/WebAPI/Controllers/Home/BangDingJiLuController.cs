@@ -60,7 +60,7 @@ namespace WebAPI.Controllers.Home
                 jilu.iFangShi = 0;
                 jilu.cChePaiHao = cChePaiHao;
                 jilu.cDiZhi = cDiZhi;
-                jilu.cShangBanBianMa = cShangBanBianMa;
+                jilu.cShangBanBianMa = iBangDingLeiXing == 1 ? cShangBanBianMa : null;
                 jilu.dShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 db.BangDingJiLu.Add(jilu);
                 var wechat = db.wechatUser.Where(o => o.openid == openid).FirstOrDefault();
@@ -94,7 +94,7 @@ namespace WebAPI.Controllers.Home
                         {
                             driver.openid = null;
                         }
-                        driver.cShangBanBianMa = cShangBanBianMa;
+                        driver.cShangBanBianMa = iBangDingLeiXing == 1 ? cShangBanBianMa : null; ;
                     }
                 }
                 try
