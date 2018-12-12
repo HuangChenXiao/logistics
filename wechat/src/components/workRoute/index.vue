@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div class="title">选择起始路线</div>
+        <div class="title">
+           <span>选择起始路线</span> 
+           <slot></slot>
+        </div>
         <div class="search">
             <div class="item">
                 <div class="ico"></div>
@@ -12,7 +15,7 @@
         <div class="item-list" v-if="list.length>0">
             <div class="item" v-for="item in list">
                 <div class="color">土尾：{{item.cTuWeiMingCheng}}</div>
-                <div class="code">线路：{{item.cXianLuBianMa}}</div>
+                <!-- <div class="code">线路：{{item.cXianLuBianMa}}</div> -->
                 <div class="opt-btn">
                     <div class="sed-btn" @click="select_vehicle(item)">
                         选择
@@ -28,34 +31,34 @@
 
 <script>
 export default {
-  props: ['value', 'valueData'],
+  props: ["value", "valueData"],
   data() {
     return {
       list: null,
       search_val: null
-    }
+    };
   },
   created() {
-    this.list = this.valueData
-    this.search_val = this.value
+    this.list = this.valueData;
+    this.search_val = this.value;
   },
   methods: {
     select_vehicle(item) {
-      this.$emit('selectVehicle', item)
+      this.$emit("selectVehicle", item);
     }
   },
   watch: {
     valueData(val, oldVal) {
-      this.list = val
+      this.list = val;
     },
     value(val, oldVal) {
-      this.search_val = val
+      this.search_val = val;
     },
     search_val(val, oldVal) {
-      this.$emit('input', val)
+      this.$emit("input", val);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -71,6 +74,7 @@ export default {
 //     background-size: 100%;
 // }
 .title {
+  position: relative;
   font-size: 0.373333rem;
   height: 1.066667rem;
   line-height: 1.066667rem;
@@ -98,7 +102,7 @@ export default {
       height: 100%;
       .sed-btn {
         position: absolute;
-        top: 0.5rem;
+        top: 0.2rem;
         right: 0.533333rem;
         border: 1px solid #f00;
         color: #f00;

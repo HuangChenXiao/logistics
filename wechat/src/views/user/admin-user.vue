@@ -23,6 +23,10 @@
         <span>订单统计数</span>
         <i class="next"></i>
       </router-link>
+      <router-link :to="{name:'tu-wei'}" class="item">
+        <span>土尾列表</span>
+        <i class="next"></i>
+      </router-link>
     </div>
     <div class="item-list" v-if="work_status==1" @click="change_work">
       <div class="item">

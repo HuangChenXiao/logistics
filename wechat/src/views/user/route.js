@@ -9,4 +9,5 @@ export default [
   { name: 'driver-count', path: '/user/driver-count', component: _import('user/driver-count'), meta: { verifylogin: true } },
   { name: 'admin-head-tail', path: '/user/admin-head-tail', component: _import('user/admin-head-tail'), meta: { verifylogin: true } },
   { name: 'route-line', path: '/user/route-line', component: _import('user/route-line'), meta: { verifylogin: true } },
+  { name: 'tu-wei', path: '/user/tu-wei', component: _import('user/tu-wei'), meta: { verifylogin: true } },
 ]

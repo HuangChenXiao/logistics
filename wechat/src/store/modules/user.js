@@ -6,8 +6,9 @@ const user = {
   state: {
     token: getToken(),
     user_info: localStorage.getItem("user_info") != null ? JSON.parse(localStorage.getItem("user_info")) : {},//用户信息
-    gongdi_info: localStorage.getItem("cGongDiMingCheng") != null ? JSON.parse(localStorage.getItem("cGongDiMingCheng")) : {},//工地名称
+    gongdi_info: {},//工地名称
     cChePaiHao: localStorage.getItem("cChePaiHao")!= null ? JSON.parse(localStorage.getItem("cChePaiHao")) : {},//车辆信息
+    xianding_chelaing:localStorage.getItem('xianding_chelaing')=="true"?Boolean(localStorage.getItem('xianding_chelaing')):false,//限定车辆
   },
 
   mutations: {
@@ -22,10 +23,21 @@ const user = {
     }, 
     SET_cChePaiHao: (state, cChePaiHao) => {
       state.cChePaiHao = cChePaiHao
+    }, 
+    SET_Xianding_Chelaing: (state, xianding_chelaing) => {
+      state.xianding_chelaing = xianding_chelaing
     }
   },
 
   actions: {
+    //限定车辆
+    SXianding_Chelaing({ commit }, val) {
+      return new Promise((resolve, reject) => {
+        commit('SET_Xianding_Chelaing', val)
+        localStorage.setItem('xianding_chelaing',val)
+        resolve(val)
+      })
+    },
     //工地名称
     SGongDiMingCheng({ commit }, val) {
       return new Promise((resolve, reject) => {

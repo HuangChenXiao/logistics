@@ -8,6 +8,10 @@
         我的工地：{{cGongDiMingCheng}}
         <i class="ico ico-edit" @click="showWorkSite=true"></i>
       </div>
+      <!-- <div class="address">
+        限定车辆：
+      <check-icon :value.sync="xianding_chelaing" type="plain"> </check-icon>
+      </div> -->
       <div class="address">
         当前位置：{{bItem.start_position}}
         <i class="ico ico-ad" onclick="location.reload()"></i>
@@ -152,7 +156,11 @@
     </x-dialog>
     <!-- 线路 -->
     <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
-      <work-route @selectVehicle="select_wordRoute" :valueData="route_list" v-model="route_keyword"></work-route>
+      <work-route @selectVehicle="select_wordRoute" :valueData="route_list" v-model="route_keyword">
+          <div class="right-btn">
+              新增
+          </div>
+      </work-route>
     </x-dialog>
     <!-- 工地信息 -->
     <x-dialog v-model="showWorkSite" class="dialog-demo">
@@ -169,7 +177,8 @@ import {
   TabItem,
   Swiper,
   SwiperItem,
-  DatetimeRange
+  DatetimeRange,
+  CheckIcon
 } from "vux";
 import getformattedAddress from "@/map/index.js";
 import { setTimeout } from "timers";
@@ -191,7 +200,9 @@ import {
   WaJueJiDingDan,
   GetWaJueJiDingDan,
   BangDingJiLu,
-  wechatUser
+  wechatUser,
+  TuWeiInfo,
+  getChePaiTuWei
 } from "@/api/home.js";
 import { TemplateMsg } from "@/api/wechat.js";
 export default {
@@ -207,10 +218,12 @@ export default {
     SwiperItem,
     DatetimeRange,
     cooperation,
-    workRoute
+    workRoute,
+    CheckIcon
   },
   data() {
     return {
+      xianding_chelaing: false,
       work_status: 1,
       isavailable: true,
       showCooperation: false,
@@ -224,10 +237,10 @@ export default {
         cGongDiBianMa: null, //工地编码
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
-        cXianLuBianMa: null, //线路编码
+        cTuWeiBianMa: null, //土尾编码
         // cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
-        cTuWeiMingCheng:null,//土尾名称
+        cTuWeiMingCheng: null, //土尾名称
         cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
       },
       store_query: {
@@ -274,11 +287,18 @@ export default {
         return "";
       }
     },
+    bXianZhi() {
+      if (this.$store.getters.gongdi_info.bXianZhi) {
+        return this.$store.getters.gongdi_info.bXianZhi;
+      } else {
+        return false;
+      }
+    },
     validate_order() {
       if (
         this.bItem.cChePaiHao &&
         this.bItem.openid &&
-        this.bItem.cXianLuBianMa &&
+        this.bItem.cTuWeiBianMa &&
         this.bItem.cGuanLiYuanBianMa &&
         this.isavailable &&
         this.work_status == 1
@@ -321,6 +341,7 @@ export default {
     //     }
     //   })
     // }, 1000000)
+    this.xianding_chelaing = this.$store.getters.xianding_chelaing;
     this.get_worksite(); //工地信息
     this.get_driver(); //车辆信息
     this.get_route(); //线路
@@ -419,6 +440,7 @@ export default {
         GongDiCheLiang({
           keyword: this.driver_keyword,
           cGongDiBianMa: this.cGongDiBianMa,
+          bXianZhi: this.bXianZhi,
           cCheLiangLeiBie: this.index == 0 ? "土方车" : "挖掘机"
         }).then(res => {
           this.vehicle_list = res.data;
@@ -430,6 +452,10 @@ export default {
       this.showScrollBox = false;
       this.bItem.cChePaiHao = item.cChePaiHao;
       this.bItem.openid = item.openid;
+      getChePaiTuWei({ cChePaiHao: item.cChePaiHao }).then(res => {
+        this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
+        this.bItem.cTuWeiMingCheng = res.data.cTuWeiMingCheng;
+      });
     },
     //合作单位
     get_cooperation() {
@@ -450,19 +476,16 @@ export default {
     },
     //路线
     get_route() {
-      if (this.cGongDiBianMa) {
-        GongDiXianLu({
-          cGongDiBianMa: this.cGongDiBianMa,
-          keyword: this.route_keyword
-        }).then(res => {
-          this.route_list = res.data;
-        });
-      }
+      TuWeiInfo({
+        keyword: this.route_keyword
+      }).then(res => {
+        this.route_list = res.data;
+      });
     },
     //线路名称
     select_wordRoute(item) {
       this.showWorkRoute = false;
-      this.bItem.cXianLuBianMa = item.cXianLuBianMa;
+      this.bItem.cTuWeiBianMa = item.cTuWeiBianMa;
       this.bItem.cTuWeiMingCheng = item.cTuWeiMingCheng;
     },
     sendTplMsg(item) {
@@ -517,7 +540,7 @@ export default {
         cGongDiBianMa: null, //工地编码
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
-        cXianLuBianMa: null, //线路编码
+        cTuWeiBianMa: null, //线路编码
         cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
         cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
@@ -587,6 +610,9 @@ export default {
     route_keyword(val, oldVal) {
       //线路列表
       this.get_route();
+    },
+    xianding_chelaing(val, oldVal) {
+      this.$store.dispatch("SXianding_Chelaing", val);
     }
   }
 };
@@ -771,5 +797,13 @@ export default {
       background: #efefef;
     }
   }
+}
+.right-btn {
+  position: absolute;
+  right: 0.27rem;
+  top: 0;
+  font-size: 0.37rem;
+  color: #42a0ff;
+  display: block;
 }
 </style>
