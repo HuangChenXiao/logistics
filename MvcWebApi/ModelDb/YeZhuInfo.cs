@@ -16,6 +16,7 @@ namespace ModelDb
     {
         public string cYeZhuBianMa { get; set; }
         public string cQiYeMingCheng { get; set; }
+        public string cXiangMuMingCheng { get; set; }
         public string cZhuCeDiZhi { get; set; }
         public string cBanGongDiZhi { get; set; }
         public string cZhuCeHao { get; set; }

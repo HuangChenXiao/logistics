@@ -50,5 +50,61 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
+        public ResponseMessageResult Get(int page, int pagesize, string keyword=null)
+        {
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
+            {
+                var temp = from a in db.TuWeiInfo
+                           where (a.cTuWeiBianMa.Contains(keyword) || a.cTuWeiMingCheng.Contains(keyword) || string.IsNullOrEmpty(keyword))
+                           select a;
+                model.total = temp.Count();
+                model.data = temp.OrderByDescending(s => s.cTuWeiBianMa).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+
+                if (model.data.Count > 0)
+                {
+                    model.message = "查询成功";
+                    model.status_code = 200;
+                }
+                else
+                {
+                    model.message = "暂无数据";
+                    model.status_code = 200;
+                }
+            }
+            else
+            {
+                model.message = "微信授权失败";
+                model.status_code = 401;
+            }
+            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+        }
+        // POST: api/TuWeiInfo
+        [ResponseType(typeof(TuWeiInfo))]
+        public ResponseMessageResult Post(TuWeiInfo TuWeiInfo)
+        {
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
+            {
+                db.TuWeiInfo.Add(TuWeiInfo);
+                try
+                {
+                    db.SaveChanges();
+                    model.message = "新增成功";
+                    model.status_code = 200;
+                }
+                catch (Exception ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
+            }
+            else
+            {
+                model.message = "微信授权失败";
+                model.status_code = 401;
+            }
+            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+        }
     }
 }

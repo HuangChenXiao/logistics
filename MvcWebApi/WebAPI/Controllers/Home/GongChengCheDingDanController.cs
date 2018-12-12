@@ -85,7 +85,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao = null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string cTuWeiBianMa=null, string begindate = null, string enddate = null)
+        public ResponseMessageResult Get(int page, int pagesize, string cDingDanHao = null, string cGongDiBianMa = null, string cChePaiHao = null, string js_openid = null, string cGuanLiYuanBianMa = null, string cTuWeiBianMa = null, string begindate = null, string enddate = null)
         {
             try
             {
@@ -142,6 +142,33 @@ namespace WebAPI.Controllers.Home
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
+                //如果土尾没有线路则增加一条数据
+                var xianlu = db.XianLuInfo.Where(o => o.cTuWeiBianMa == GongChengCheDingDan.cTuWeiBianMa&&o.cGongDiBianMa==GongChengCheDingDan.cGongDiBianMa).FirstOrDefault();
+                if (xianlu == null)
+                {
+                    XianLuInfo xl_info = new XianLuInfo();
+                    var db_web = ContextDB.Context();
+                    xl_info.cXianLuBianMa = db_web.QueryValue("exec PROC_cXianLuBianMa");
+                    //给工程车订单赋值线路
+                    GongChengCheDingDan.cXianLuBianMa = xl_info.cXianLuBianMa;
+                    xl_info.cGongDiBianMa = GongChengCheDingDan.cGongDiBianMa;
+                    xl_info.cGongDiMingCheng = db.GongDiInfo.Where(o => o.cGongDiBianMa == GongChengCheDingDan.cGongDiBianMa).FirstOrDefault().cGongDiMingCheng;
+                    xl_info.cTuWeiBianMa = GongChengCheDingDan.cTuWeiBianMa;
+                    xl_info.cTuWeiMingCheng = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == GongChengCheDingDan.cTuWeiBianMa).FirstOrDefault().cTuWeiMingCheng;
+                    xl_info.bStop = false;
+                    xl_info.iState = 0;
+                    xl_info.cState = "未确认";
+                    xl_info.dCreate = DateTime.Now;
+                    xl_info.cCreate = "微信管理员";
+                    db_web.Dispose();
+                    db.XianLuInfo.Add(xl_info);
+                }
+                else
+                {
+                    //给工程车订单赋值线路
+                    GongChengCheDingDan.cXianLuBianMa = xianlu.cXianLuBianMa;
+                }
+                //新增工程车订单
                 var info = db.CheLiangInfo.Where(o => o.cChePaiHao == GongChengCheDingDan.cChePaiHao).FirstOrDefault();
                 GongChengCheDingDan.cShangBanBianMa = info.cShangBanBianMa;
                 //GongChengCheDingDan.cDingDanHao = "WX" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
@@ -171,6 +198,7 @@ namespace WebAPI.Controllers.Home
                 model.message = "微信授权失败";
                 model.status_code = 401;
             }
+            
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
         protected override void Dispose(bool disposing)

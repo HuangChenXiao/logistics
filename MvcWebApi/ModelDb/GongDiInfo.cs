@@ -35,5 +35,6 @@ namespace ModelDb
         public string cBeiZhu { get; set; }
         public string cCreate { get; set; }
         public Nullable<System.DateTime> dCreate { get; set; }
+        public Nullable<bool> bXianZhi { get; set; }
     }
 }

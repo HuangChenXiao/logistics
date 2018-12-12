@@ -86,6 +86,7 @@
           <Property Name="openid" Type="varchar" MaxLength="50" />
           <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
           <Property Name="cCheLiangLeiBie" Type="varchar" MaxLength="30" />
+          <Property Name="bShiFouZhiNengChe" Type="bit" />
           <Property Name="bShiFouBaoFei" Type="bit" />
           <Property Name="dBaoFeiRiQi" Type="datetime" />
           <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
@@ -103,6 +104,7 @@
           <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
           <Property Name="dQiYunShiJian" Type="datetime" />
           <Property Name="cXianLuBianMa" Type="varchar" MaxLength="30" />
+          <Property Name="cTuWeiBianMa" Type="varchar" MaxLength="30" />
           <Property Name="dQueRenShiJian" Type="datetime" />
           <Property Name="cGuanLiYuanBianMa" Type="varchar" MaxLength="30" />
           <Property Name="iState" Type="int" />
@@ -147,6 +149,7 @@
           <Property Name="cBeiZhu" Type="varchar" MaxLength="500" />
           <Property Name="cCreate" Type="varchar" MaxLength="30" />
           <Property Name="dCreate" Type="datetime" />
+          <Property Name="bXianZhi" Type="bit" />
         </EntityType>
         <EntityType Name="GongDiXianLu">
           <Key>
@@ -590,6 +593,7 @@
           </Key>
           <Property Name="cYeZhuBianMa" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="cQiYeMingCheng" Type="varchar" MaxLength="150" />
+          <Property Name="cXiangMuMingCheng" Type="varchar" MaxLength="200" />
           <Property Name="cZhuCeDiZhi" Type="varchar" MaxLength="150" />
           <Property Name="cBanGongDiZhi" Type="varchar" MaxLength="150" />
           <Property Name="cZhuCeHao" Type="varchar" MaxLength="30" />
@@ -659,11 +663,22 @@
           <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
           <Parameter Name="VouchType" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="PD_EndGongChengCheDingDan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cDingDanHao" Type="nvarchar" Mode="In" />
+          <Parameter Name="cGongDiBianMa" Type="nvarchar" Mode="In" />
+          <Parameter Name="cChePaiHao" Type="nvarchar" Mode="In" />
+          <Parameter Name="js_openid" Type="nvarchar" Mode="In" />
+          <Parameter Name="cGuanLiYuanBianMa" Type="nvarchar" Mode="In" />
+          <Parameter Name="cTuWeiBianMa" Type="nvarchar" Mode="In" />
+          <Parameter Name="begindate" Type="nvarchar" Mode="In" />
+          <Parameter Name="enddate" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="PD_VouchCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
           <Parameter Name="RiQi" Type="datetime" Mode="In" />
           <Parameter Name="VouchType" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="PROC_cXianLuBianMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="EBMSystemModelStoreContainer">
           <EntitySet Name="BangDingJiLu" EntityType="Self.BangDingJiLu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BaoXianJiLu" EntityType="Self.BaoXianJiLu" Schema="dbo" store:Type="Tables" />
@@ -766,6 +781,16 @@
             <Parameter Name="RiQi" Mode="In" Type="DateTime" />
             <Parameter Name="VouchType" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="PD_EndGongChengCheDingDan">
+            <Parameter Name="cDingDanHao" Mode="In" Type="String" />
+            <Parameter Name="cGongDiBianMa" Mode="In" Type="String" />
+            <Parameter Name="cChePaiHao" Mode="In" Type="String" />
+            <Parameter Name="js_openid" Mode="In" Type="String" />
+            <Parameter Name="cGuanLiYuanBianMa" Mode="In" Type="String" />
+            <Parameter Name="cTuWeiBianMa" Mode="In" Type="String" />
+            <Parameter Name="begindate" Mode="In" Type="String" />
+            <Parameter Name="enddate" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="BangDingJiLu" EntityType="EBMSystemModel.BangDingJiLu" />
           <EntitySet Name="BaoXianJiLu" EntityType="EBMSystemModel.BaoXianJiLu" />
           <EntitySet Name="BaoYangJiLu" EntityType="EBMSystemModel.BaoYangJiLu" />
@@ -809,6 +834,7 @@
           <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
           <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
           <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
+          <FunctionImport Name="PROC_cXianLuBianMa" ReturnType="Collection(String)" />
           </EntityContainer>
         <EntityType Name="BangDingJiLu">
           <Key>
@@ -891,6 +917,7 @@
           <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cShangBanBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="cCheLiangLeiBie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="bShiFouZhiNengChe" Type="Boolean" />
           <Property Name="bShiFouBaoFei" Type="Boolean" />
           <Property Name="dBaoFeiRiQi" Type="DateTime" Precision="3" />
           <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -908,6 +935,7 @@
           <Property Name="cShangBanBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="dQiYunShiJian" Type="DateTime" Precision="3" />
           <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cTuWeiBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
           <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="iState" Type="Int32" />
@@ -952,6 +980,7 @@
           <Property Name="cBeiZhu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="dCreate" Type="DateTime" Precision="3" />
+          <Property Name="bXianZhi" Type="Boolean" />
         </EntityType>
         <EntityType Name="GongDiXianLu">
           <Key>
@@ -1395,6 +1424,7 @@
           </Key>
           <Property Name="cYeZhuBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="cQiYeMingCheng" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cXiangMuMingCheng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="cZhuCeDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="cBanGongDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="cZhuCeHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -1464,6 +1494,7 @@
         <EntityContainerMapping StorageEntityContainer="EBMSystemModelStoreContainer" CdmEntityContainer="EBMSystemEntities">
           <FunctionImportMapping FunctionImportName="PD_BaseCode" FunctionName="EBMSystemModel.Store.PD_BaseCode" />
           <FunctionImportMapping FunctionImportName="PD_VouchCode" FunctionName="EBMSystemModel.Store.PD_VouchCode" />
+          <FunctionImportMapping FunctionImportName="PD_EndGongChengCheDingDan" FunctionName="EBMSystemModel.Store.PD_EndGongChengCheDingDan" />
           <EntitySetMapping Name="BangDingJiLu">
             <EntityTypeMapping TypeName="EBMSystemModel.BangDingJiLu">
               <MappingFragment StoreEntitySet="BangDingJiLu">
@@ -1538,6 +1569,7 @@
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="dBaoFeiRiQi" ColumnName="dBaoFeiRiQi" />
                 <ScalarProperty Name="bShiFouBaoFei" ColumnName="bShiFouBaoFei" />
+                <ScalarProperty Name="bShiFouZhiNengChe" ColumnName="bShiFouZhiNengChe" />
                 <ScalarProperty Name="cCheLiangLeiBie" ColumnName="cCheLiangLeiBie" />
                 <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
                 <ScalarProperty Name="openid" ColumnName="openid" />
@@ -1568,6 +1600,7 @@
                 <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
                 <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
+                <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
                 <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
                 <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
                 <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
@@ -1592,6 +1625,7 @@
           <EntitySetMapping Name="GongDiInfo">
             <EntityTypeMapping TypeName="EBMSystemModel.GongDiInfo">
               <MappingFragment StoreEntitySet="GongDiInfo">
+                <ScalarProperty Name="bXianZhi" ColumnName="bXianZhi" />
                 <ScalarProperty Name="dCreate" ColumnName="dCreate" />
                 <ScalarProperty Name="cCreate" ColumnName="cCreate" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
@@ -2098,6 +2132,7 @@
                 <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
                 <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
                 <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
+                <ScalarProperty Name="cXiangMuMingCheng" ColumnName="cXiangMuMingCheng" />
                 <ScalarProperty Name="cQiYeMingCheng" ColumnName="cQiYeMingCheng" />
                 <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
               </MappingFragment>
@@ -2152,6 +2187,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PROC_cXianLuBianMa" FunctionName="EBMSystemModel.Store.PROC_cXianLuBianMa" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

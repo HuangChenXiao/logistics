@@ -58,3 +58,4 @@ F:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Newtonsoft.Json.dll
 F:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Newtonsoft.Json.xml
 F:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.dll
 F:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.pdb
+F:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.csprojResolveAssemblyReference.cache

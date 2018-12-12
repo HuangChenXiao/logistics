@@ -92,5 +92,47 @@ namespace ModelDb
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PD_VouchCode", newCode, riQiParameter, vouchTypeParameter);
         }
+    
+        public virtual int PD_EndGongChengCheDingDan(string cDingDanHao, string cGongDiBianMa, string cChePaiHao, string js_openid, string cGuanLiYuanBianMa, string cTuWeiBianMa, string begindate, string enddate)
+        {
+            var cDingDanHaoParameter = cDingDanHao != null ?
+                new ObjectParameter("cDingDanHao", cDingDanHao) :
+                new ObjectParameter("cDingDanHao", typeof(string));
+    
+            var cGongDiBianMaParameter = cGongDiBianMa != null ?
+                new ObjectParameter("cGongDiBianMa", cGongDiBianMa) :
+                new ObjectParameter("cGongDiBianMa", typeof(string));
+    
+            var cChePaiHaoParameter = cChePaiHao != null ?
+                new ObjectParameter("cChePaiHao", cChePaiHao) :
+                new ObjectParameter("cChePaiHao", typeof(string));
+    
+            var js_openidParameter = js_openid != null ?
+                new ObjectParameter("js_openid", js_openid) :
+                new ObjectParameter("js_openid", typeof(string));
+    
+            var cGuanLiYuanBianMaParameter = cGuanLiYuanBianMa != null ?
+                new ObjectParameter("cGuanLiYuanBianMa", cGuanLiYuanBianMa) :
+                new ObjectParameter("cGuanLiYuanBianMa", typeof(string));
+    
+            var cTuWeiBianMaParameter = cTuWeiBianMa != null ?
+                new ObjectParameter("cTuWeiBianMa", cTuWeiBianMa) :
+                new ObjectParameter("cTuWeiBianMa", typeof(string));
+    
+            var begindateParameter = begindate != null ?
+                new ObjectParameter("begindate", begindate) :
+                new ObjectParameter("begindate", typeof(string));
+    
+            var enddateParameter = enddate != null ?
+                new ObjectParameter("enddate", enddate) :
+                new ObjectParameter("enddate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PD_EndGongChengCheDingDan", cDingDanHaoParameter, cGongDiBianMaParameter, cChePaiHaoParameter, js_openidParameter, cGuanLiYuanBianMaParameter, cTuWeiBianMaParameter, begindateParameter, enddateParameter);
+        }
+    
+        public virtual ObjectResult<string> PROC_cXianLuBianMa()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("PROC_cXianLuBianMa");
+        }
     }
 }

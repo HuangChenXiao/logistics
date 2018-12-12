@@ -21,28 +21,48 @@ namespace WebAPI.Controllers.Home
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
 
-        public ResponseMessageResult Get(string cGongDiBianMa, string cCheLiangLeiBie, string keyword = null)
+        public ResponseMessageResult Get(string cGongDiBianMa, string cCheLiangLeiBie, bool bXianZhi, string keyword = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var temp = from a in db.CheLiangInfo
-                           join b in db.wechatUser on a.openid equals b.openid
-                           join c in db.GongDiCheLiang on a.cChePaiHao equals c.cChePaiHao
-                           where (c.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa))
-                           && (a.cChePaiHao.Contains(keyword) || a.cPinPai.Contains(keyword) || b.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword))
-                           && a.cCheLiangLeiBie == cCheLiangLeiBie
-                           && b.status==1
-                           select new
-                           {
-                               a.cChePaiHao,
-                               a.cPinPai,
-                               b.cXingMing,
-                               b.openid,
-                               a.cCheLiangLeiBie
-                           };
-                model.data = temp.ToList();
-
+                //是否限制车辆
+                if (bXianZhi)
+                {
+                    var temp = from a in db.CheLiangInfo
+                               join b in db.wechatUser on a.openid equals b.openid
+                               join c in db.GongDiCheLiang on a.cChePaiHao equals c.cChePaiHao
+                               where (c.cGongDiBianMa == cGongDiBianMa || string.IsNullOrEmpty(cGongDiBianMa))
+                               && (a.cChePaiHao.Contains(keyword) || a.cPinPai.Contains(keyword) || b.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword))
+                               && a.cCheLiangLeiBie == cCheLiangLeiBie
+                               && b.status == 1
+                               select new
+                               {
+                                   a.cChePaiHao,
+                                   a.cPinPai,
+                                   b.cXingMing,
+                                   b.openid,
+                                   a.cCheLiangLeiBie
+                               };
+                    model.data = temp.ToList();
+                }
+                else
+                {
+                    var temp = from a in db.CheLiangInfo
+                               join b in db.wechatUser on a.openid equals b.openid
+                               where (a.cChePaiHao.Contains(keyword) || a.cPinPai.Contains(keyword) || b.cXingMing.Contains(keyword) || string.IsNullOrEmpty(keyword))
+                               && a.cCheLiangLeiBie == cCheLiangLeiBie
+                               && b.status == 1
+                               select new
+                               {
+                                   a.cChePaiHao,
+                                   a.cPinPai,
+                                   b.cXingMing,
+                                   b.openid,
+                                   a.cCheLiangLeiBie
+                               };
+                    model.data = temp.ToList();
+                }
                 if (model.data != null)
                 {
                     model.message = "查询成功";

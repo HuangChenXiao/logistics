@@ -23,6 +23,7 @@ namespace ModelDb
         public string cShangBanBianMa { get; set; }
         public Nullable<System.DateTime> dQiYunShiJian { get; set; }
         public string cXianLuBianMa { get; set; }
+        public string cTuWeiBianMa { get; set; }
         public Nullable<System.DateTime> dQueRenShiJian { get; set; }
         public string cGuanLiYuanBianMa { get; set; }
         public Nullable<int> iState { get; set; }

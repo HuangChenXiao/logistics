@@ -3,6 +3,7 @@
   <EntityContainerMapping StorageEntityContainer="EBMSystemModelStoreContainer" CdmEntityContainer="EBMSystemEntities">
     <FunctionImportMapping FunctionImportName="PD_BaseCode" FunctionName="EBMSystemModel.Store.PD_BaseCode" />
     <FunctionImportMapping FunctionImportName="PD_VouchCode" FunctionName="EBMSystemModel.Store.PD_VouchCode" />
+    <FunctionImportMapping FunctionImportName="PD_EndGongChengCheDingDan" FunctionName="EBMSystemModel.Store.PD_EndGongChengCheDingDan" />
     <EntitySetMapping Name="BangDingJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BangDingJiLu">
         <MappingFragment StoreEntitySet="BangDingJiLu">
@@ -77,6 +78,7 @@
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="dBaoFeiRiQi" ColumnName="dBaoFeiRiQi" />
           <ScalarProperty Name="bShiFouBaoFei" ColumnName="bShiFouBaoFei" />
+          <ScalarProperty Name="bShiFouZhiNengChe" ColumnName="bShiFouZhiNengChe" />
           <ScalarProperty Name="cCheLiangLeiBie" ColumnName="cCheLiangLeiBie" />
           <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
           <ScalarProperty Name="openid" ColumnName="openid" />
@@ -107,6 +109,7 @@
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cGuanLiYuanBianMa" ColumnName="cGuanLiYuanBianMa" />
           <ScalarProperty Name="dQueRenShiJian" ColumnName="dQueRenShiJian" />
+          <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
           <ScalarProperty Name="cXianLuBianMa" ColumnName="cXianLuBianMa" />
           <ScalarProperty Name="dQiYunShiJian" ColumnName="dQiYunShiJian" />
           <ScalarProperty Name="cShangBanBianMa" ColumnName="cShangBanBianMa" />
@@ -131,6 +134,7 @@
     <EntitySetMapping Name="GongDiInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.GongDiInfo">
         <MappingFragment StoreEntitySet="GongDiInfo">
+          <ScalarProperty Name="bXianZhi" ColumnName="bXianZhi" />
           <ScalarProperty Name="dCreate" ColumnName="dCreate" />
           <ScalarProperty Name="cCreate" ColumnName="cCreate" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
@@ -637,6 +641,7 @@
           <ScalarProperty Name="cZhuCeHao" ColumnName="cZhuCeHao" />
           <ScalarProperty Name="cBanGongDiZhi" ColumnName="cBanGongDiZhi" />
           <ScalarProperty Name="cZhuCeDiZhi" ColumnName="cZhuCeDiZhi" />
+          <ScalarProperty Name="cXiangMuMingCheng" ColumnName="cXiangMuMingCheng" />
           <ScalarProperty Name="cQiYeMingCheng" ColumnName="cQiYeMingCheng" />
           <ScalarProperty Name="cYeZhuBianMa" ColumnName="cYeZhuBianMa" />
         </MappingFragment>
@@ -691,5 +696,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PROC_cXianLuBianMa" FunctionName="EBMSystemModel.Store.PROC_cXianLuBianMa" />
   </EntityContainerMapping>
 </Mapping>
