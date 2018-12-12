@@ -137,6 +137,13 @@ export function TuWeiInfo(data) {
         params: data
     })
 }
+export function EditTuWeiInfo(data) {
+    return request({
+        url: 'TuWeiInfo',
+        method: "post",
+        data
+    })
+}
 export function getChePaiTuWei(data) {
     return request({
         url: 'getChePaiTuWei',

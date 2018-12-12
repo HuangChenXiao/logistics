@@ -2,7 +2,7 @@
   <div>
     <u-header title="土尾列表">
       <div class="s-where">
-        <span class="op-btn">新增</span>
+        <span class="op-btn" @click="getAddForm">新增</span>
         <span class="op-btn" @click="showWhere=true">查询</span>
       </div>
     </u-header>
@@ -29,7 +29,7 @@
       <div class="mask-content">
         <div class="title">查询条件</div>
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-          <x-input title="条件" placeholder="土尾名称/土尾编码" v-model="w_qeury.cDingDanHao"></x-input>
+          <x-input title="条件" placeholder="土尾名称/土尾编码" v-model="w_qeury.keyword"></x-input>
           
           <div class="wk-btn">
             <div class="reset-btn" @click="showWhere=false">取消</div>
@@ -39,6 +39,21 @@
         </group>
       </div>
     </div>
+    <x-dialog v-model="showTuWei" :hide-on-blur="true" class="dialog-demo">
+        <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
+            <div class="title">
+                <span>新增土尾信息</span> 
+            </div>
+            <x-input title="土尾编码" placeholder="请输入土尾编码" v-model="ruleForm.cTuWeiBianMa"></x-input>
+            <x-input title="土尾名称" placeholder="请输入土尾名称" v-model="ruleForm.cTuWeiMingCheng"></x-input>
+            <selector title="收费方式" placeholder="请选择收费方式" :options="['免费', '付费']" v-model="ruleForm.cShouFeiFangShi"></selector>
+            <div class="wk-btn">
+                <div class="reset-btn" @click="showTuWei=false">取消</div>
+                <div class="ok-btn" @click="add_tuwei()">确定</div>
+                <!-- <div class="ok-btn" @click="end_all_order()">批量结束订单</div> -->
+            </div>
+        </group>
+    </x-dialog>
   </div>
 </template>
 
@@ -47,7 +62,7 @@
 import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
-import { TuWeiInfo } from "@/api/home.js";
+import { TuWeiInfo, EditTuWeiInfo } from "@/api/home.js";
 const list = () => [
   { key: 0, value: "工程车订单" },
   { key: 1, value: "挖掘机订单" }
@@ -63,6 +78,8 @@ export default {
   },
   data() {
     return {
+      loading_tuwei: false,
+      showTuWei: false,
       showScrollBox: false,
       showWorkSite: false,
       showWhere: false,
@@ -81,7 +98,12 @@ export default {
       vehicle_list: [],
       work_list: [],
       driver_keyword: null,
-      work_keyword: null
+      work_keyword: null,
+      ruleForm:  {
+        cTuWeiBianMa: null,
+        cTuWeiMingCheng: null,
+        cShouFeiFangShi: "免费"
+      }
     };
   },
   filters: {
@@ -99,6 +121,47 @@ export default {
   },
   mounted() {},
   methods: {
+    getAddForm() {
+      this.resetForm();
+      this.showTuWei = true;
+    },
+    resetForm() {
+      this.ruleForm.cTuWeiBianMa=null
+      this.ruleForm.cTuWeiMingCheng=null 
+    },
+    add_tuwei() {
+      if (this.loading_tuwei) {
+        return;
+      }
+      if (!this.ruleForm.cTuWeiBianMa) {
+        this.$vux.alert.show({
+          title: "提示",
+          content: "请输入土尾编码"
+        });
+        return;
+      }
+      if (!this.ruleForm.cTuWeiMingCheng) {
+        this.$vux.alert.show({
+          title: "提示",
+          content: "请输入土尾名称"
+        });
+        return;
+      }
+      this.loading_tuwei = true;
+      EditTuWeiInfo(this.ruleForm)
+        .then(res => {
+          this.loading_tuwei = false;
+          this.showTuWei = false;
+          this.search_order();
+          this.$vux.alert.show({
+            title: "提示",
+            content: "土尾新增成功"
+          });
+        })
+        .catch(res => {
+          this.loading_tuwei = false;
+        });
+    },
     search_order() {
       this.init_query();
       this.get_order();
@@ -190,9 +253,9 @@ export default {
 }
 .s-where {
   color: #f00;
-  .op-btn{
-      display: inline-block;
-      padding-left: .27rem;
+  .op-btn {
+    display: inline-block;
+    padding-left: 0.27rem;
   }
 }
 .mask-content {
@@ -206,28 +269,28 @@ export default {
     margin-bottom: -1px;
     font-size: 0.46rem;
   }
-  .wk-btn {
-    text-align: center;
-    border-top: 1px solid #ededed;
-    padding-top: 0.266667rem;
-    margin-bottom: 0.266667rem;
-    font-size: 0.37rem;
-    .reset-btn {
-      color: #f00;
-      border: 1px solid #f00;
-      display: inline-block;
-      padding: 0.053333rem 0.2rem;
-      border-radius: 3px;
-      margin: 0 0.266667rem;
-    }
-    .ok-btn {
-      background: #f00;
-      color: #fff;
-      display: inline-block;
-      padding: 0.053333rem 0.2rem;
-      border-radius: 3px;
-      margin: 0 0.266667rem;
-    }
+}
+.wk-btn {
+  text-align: center;
+  border-top: 1px solid #ededed;
+  padding-top: 0.266667rem;
+  margin-bottom: 0.266667rem;
+  font-size: 0.37rem;
+  .reset-btn {
+    color: #f00;
+    border: 1px solid #f00;
+    display: inline-block;
+    padding: 0.053333rem 0.2rem;
+    border-radius: 3px;
+    margin: 0 0.266667rem;
+  }
+  .ok-btn {
+    background: #f00;
+    color: #fff;
+    display: inline-block;
+    padding: 0.053333rem 0.2rem;
+    border-radius: 3px;
+    margin: 0 0.266667rem;
   }
 }
 .bor-t {
