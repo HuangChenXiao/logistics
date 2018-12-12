@@ -50,7 +50,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int page, int pagesize, string keyword=null)
+        public ResponseMessageResult Get(int page, int pagesize, string keyword = null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
@@ -86,6 +86,13 @@ namespace WebAPI.Controllers.Home
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
+                var info = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == TuWeiInfo.cTuWeiBianMa);
+                if (info.Count()>0)
+                {
+                    model.message = "土尾编码不能重复";
+                    model.status_code = 401;
+                    return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                }
                 db.TuWeiInfo.Add(TuWeiInfo);
                 try
                 {

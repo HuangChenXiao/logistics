@@ -10,6 +10,16 @@
       <Parameter Name="RiQi" Mode="In" Type="DateTime" />
       <Parameter Name="VouchType" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="PD_EndGongChengCheDingDan">
+      <Parameter Name="cDingDanHao" Mode="In" Type="String" />
+      <Parameter Name="cGongDiBianMa" Mode="In" Type="String" />
+      <Parameter Name="cChePaiHao" Mode="In" Type="String" />
+      <Parameter Name="js_openid" Mode="In" Type="String" />
+      <Parameter Name="cGuanLiYuanBianMa" Mode="In" Type="String" />
+      <Parameter Name="cTuWeiBianMa" Mode="In" Type="String" />
+      <Parameter Name="begindate" Mode="In" Type="String" />
+      <Parameter Name="enddate" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="BangDingJiLu" EntityType="EBMSystemModel.BangDingJiLu" />
     <EntitySet Name="BaoXianJiLu" EntityType="EBMSystemModel.BaoXianJiLu" />
     <EntitySet Name="BaoYangJiLu" EntityType="EBMSystemModel.BaoYangJiLu" />
@@ -53,6 +63,7 @@
     <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
     <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
     <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
+    <FunctionImport Name="PROC_cXianLuBianMa" ReturnType="Collection(String)" />
   </EntityContainer>
   <EntityType Name="BangDingJiLu">
     <Key>
@@ -135,6 +146,7 @@
     <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cShangBanBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cCheLiangLeiBie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="bShiFouZhiNengChe" Type="Boolean" />
     <Property Name="bShiFouBaoFei" Type="Boolean" />
     <Property Name="dBaoFeiRiQi" Type="DateTime" Precision="3" />
     <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -152,6 +164,7 @@
     <Property Name="cShangBanBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="dQiYunShiJian" Type="DateTime" Precision="3" />
     <Property Name="cXianLuBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cTuWeiBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dQueRenShiJian" Type="DateTime" Precision="3" />
     <Property Name="cGuanLiYuanBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="iState" Type="Int32" />
@@ -196,6 +209,7 @@
     <Property Name="cBeiZhu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dCreate" Type="DateTime" Precision="3" />
+    <Property Name="bXianZhi" Type="Boolean" />
   </EntityType>
   <EntityType Name="GongDiXianLu">
     <Key>
@@ -639,6 +653,7 @@
     </Key>
     <Property Name="cYeZhuBianMa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cQiYeMingCheng" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cXiangMuMingCheng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="cZhuCeDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="cBanGongDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="cZhuCeHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
