@@ -453,8 +453,13 @@ export default {
       this.bItem.cChePaiHao = item.cChePaiHao;
       this.bItem.openid = item.openid;
       getChePaiTuWei({ cChePaiHao: item.cChePaiHao }).then(res => {
-        this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
-        this.bItem.cTuWeiMingCheng = res.data.cTuWeiMingCheng;
+        if (res.data) {
+          this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
+          this.bItem.cTuWeiMingCheng = res.data.cTuWeiMingCheng;
+        } else {
+          this.bItem.cTuWeiBianMa = null;
+          this.bItem.cTuWeiMingCheng = null;
+        }
       });
     },
     //合作单位
