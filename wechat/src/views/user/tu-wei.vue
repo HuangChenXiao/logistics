@@ -278,6 +278,7 @@ export default {
   .ok-btn {
     background: #f00;
     color: #fff;
+    border: 1px solid #f00;
     display: inline-block;
     padding: 0.053333rem 0.2rem;
     border-radius: 3px;
