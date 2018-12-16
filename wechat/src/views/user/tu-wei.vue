@@ -44,7 +44,7 @@
             <div class="title">
                 <span>新增土尾信息</span> 
             </div>
-            <x-input title="土尾编码" placeholder="请输入土尾编码" v-model="ruleForm.cTuWeiBianMa"></x-input>
+            <!-- <x-input title="土尾编码" placeholder="请输入土尾编码" v-model="ruleForm.cTuWeiBianMa"></x-input> -->
             <x-input title="土尾名称" placeholder="请输入土尾名称" v-model="ruleForm.cTuWeiMingCheng"></x-input>
             <selector title="收费方式" placeholder="请选择收费方式" :options="['免费', '付费']" v-model="ruleForm.cShouFeiFangShi"></selector>
             <div class="wk-btn">
@@ -100,7 +100,6 @@ export default {
       driver_keyword: null,
       work_keyword: null,
       ruleForm:  {
-        cTuWeiBianMa: null,
         cTuWeiMingCheng: null,
         cShouFeiFangShi: "免费"
       }
@@ -126,18 +125,10 @@ export default {
       this.showTuWei = true;
     },
     resetForm() {
-      this.ruleForm.cTuWeiBianMa=null
       this.ruleForm.cTuWeiMingCheng=null 
     },
     add_tuwei() {
       if (this.loading_tuwei) {
-        return;
-      }
-      if (!this.ruleForm.cTuWeiBianMa) {
-        this.$vux.alert.show({
-          title: "提示",
-          content: "请输入土尾编码"
-        });
         return;
       }
       if (!this.ruleForm.cTuWeiMingCheng) {
