@@ -148,9 +148,10 @@ namespace WebAPI.Controllers.Home
                 {
                     XianLuInfo xl_info = new XianLuInfo();
                     var db_web = ContextDB.Context();
-                    xl_info.cXianLuBianMa = db_web.QueryValue("exec PROC_cXianLuBianMa");
+                    string cXianLuBianMa = db_web.QueryValue("exec PROC_GongDiCode 'XL'");
+                    xl_info.cXianLuBianMa = cXianLuBianMa;
                     //给工程车订单赋值线路
-                    GongChengCheDingDan.cXianLuBianMa = xl_info.cXianLuBianMa;
+                    GongChengCheDingDan.cXianLuBianMa = cXianLuBianMa;
                     xl_info.cGongDiBianMa = GongChengCheDingDan.cGongDiBianMa;
                     xl_info.cGongDiMingCheng = db.GongDiInfo.Where(o => o.cGongDiBianMa == GongChengCheDingDan.cGongDiBianMa).FirstOrDefault().cGongDiMingCheng;
                     xl_info.cTuWeiBianMa = GongChengCheDingDan.cTuWeiBianMa;

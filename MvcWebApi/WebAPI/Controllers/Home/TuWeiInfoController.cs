@@ -93,6 +93,8 @@ namespace WebAPI.Controllers.Home
                     model.status_code = 401;
                     return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
                 }
+                var db_web = ContextDB.Context();
+                TuWeiInfo.cTuWeiBianMa= db_web.QueryValue("exec PROC_GongDiCode 'TW'");
                 db.TuWeiInfo.Add(TuWeiInfo);
                 try
                 {
@@ -105,6 +107,7 @@ namespace WebAPI.Controllers.Home
                     model.message = ex.Message;
                     model.status_code = 401;
                 }
+                db_web.Dispose();
             }
             else
             {
