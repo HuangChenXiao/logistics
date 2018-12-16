@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-header title="土尾列表">
+    <u-header title="土尾列表" route="admin-user">
       <div class="s-where">
         <span class="op-btn" @click="getAddForm">新增</span>
         <span class="op-btn" @click="showWhere=true">查询</span>

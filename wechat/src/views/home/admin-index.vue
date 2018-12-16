@@ -157,9 +157,9 @@
     <!-- 线路 -->
     <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
       <work-route @selectVehicle="select_wordRoute" :valueData="route_list" v-model="route_keyword">
-          <div class="right-btn">
+          <router-link  :to="{name:'tu-wei'}" class="right-btn">
               新增
-          </div>
+          </router-link>
       </work-route>
     </x-dialog>
     <!-- 工地信息 -->
