@@ -810,5 +810,6 @@ export default {
   font-size: 0.37rem;
   color: #42a0ff;
   display: block;
+  padding-left: .5rem;
 }
 </style>
