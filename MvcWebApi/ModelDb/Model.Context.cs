@@ -134,5 +134,14 @@ namespace ModelDb
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("PROC_cXianLuBianMa");
         }
+    
+        public virtual ObjectResult<string> PROC_GongDiCode(string vouchType)
+        {
+            var vouchTypeParameter = vouchType != null ?
+                new ObjectParameter("VouchType", vouchType) :
+                new ObjectParameter("VouchType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("PROC_GongDiCode", vouchTypeParameter);
+        }
     }
 }

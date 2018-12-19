@@ -696,6 +696,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="PROC_cXianLuBianMa" FunctionName="EBMSystemModel.Store.PROC_cXianLuBianMa" />
+    <FunctionImportMapping FunctionImportName="PROC_GongDiCode" FunctionName="EBMSystemModel.Store.PROC_GongDiCode" />
   </EntityContainerMapping>
 </Mapping>

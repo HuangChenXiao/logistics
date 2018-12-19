@@ -673,7 +673,9 @@
     <Parameter Name="RiQi" Type="datetime" Mode="In" />
     <Parameter Name="VouchType" Type="varchar" Mode="In" />
   </Function>
-  <Function Name="PROC_cXianLuBianMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PROC_GongDiCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VouchType" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="EBMSystemModelStoreContainer">
     <EntitySet Name="BangDingJiLu" EntityType="Self.BangDingJiLu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BaoXianJiLu" EntityType="Self.BaoXianJiLu" Schema="dbo" store:Type="Tables" />

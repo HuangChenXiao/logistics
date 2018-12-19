@@ -20,6 +20,7 @@
       <Parameter Name="begindate" Mode="In" Type="String" />
       <Parameter Name="enddate" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="PROC_cXianLuBianMa" ReturnType="Collection(String)" />
     <EntitySet Name="BangDingJiLu" EntityType="EBMSystemModel.BangDingJiLu" />
     <EntitySet Name="BaoXianJiLu" EntityType="EBMSystemModel.BaoXianJiLu" />
     <EntitySet Name="BaoYangJiLu" EntityType="EBMSystemModel.BaoYangJiLu" />
@@ -63,7 +64,9 @@
     <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
     <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
     <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
-    <FunctionImport Name="PROC_cXianLuBianMa" ReturnType="Collection(String)" />
+    <FunctionImport Name="PROC_GongDiCode" ReturnType="Collection(String)">
+      <Parameter Name="VouchType" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="BangDingJiLu">
     <Key>

@@ -26,7 +26,9 @@ namespace WebAPI.Controllers
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var temp = from a in db.GongDiInfo select a;
+                var temp = from a in db.GongDiInfo
+                           where (a.dTingYongRiQi==null||a.dTingYongRiQi>DateTime.Now)
+                           select a;
                 model.data = temp.Where(o => o.cGongDiBianMa.Contains(keyword) || o.cGongDiMingCheng.Contains(keyword)||string.IsNullOrEmpty(keyword)).ToList();
 
                 if (model.data != null)
