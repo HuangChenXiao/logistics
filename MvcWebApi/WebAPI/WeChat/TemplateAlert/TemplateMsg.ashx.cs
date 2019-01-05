@@ -48,7 +48,7 @@ namespace WeChatAPI.TemplateAlert
                 first = new FirstMsg { value = "接收到新订单", color = "#173177" },
                 keyword1 = new Keyword1Msg { value = cDingDanHao, color = "#173177" },
                 keyword2 = new Keyword2Msg { value = "订单已下发，请尽快执行订单！", color = "#173177" },
-                remark = new remarkMsg { value = "工地名称：" + cGongDiMingCheng+"\n土尾名称："+cTuWeiMingCheng, color = "#173177" },
+                remark = new remarkMsg { value = "工地名称：" + cGongDiMingCheng + "\n土尾名称：" + cTuWeiMingCheng+"\n起运时间："+DateTime.Now, color = "#FF0000" },
             };
             return new JavaScriptSerializer().Serialize(p);
         }

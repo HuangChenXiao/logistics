@@ -22,20 +22,13 @@ namespace WebAPI.Controllers.Driver
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
 
-        public ResponseMessageResult Get(string begindate, string enddate)
+        public ResponseMessageResult Get(string BegindDanJuRiQi="", string EnddDanJuRiQi="")
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var beginDate = Convert.ToDateTime(begindate);
-                var endDate = Convert.ToDateTime(enddate);
-                var temp = from a in db.GongChengCheDingDan
-                           where a.openid==openid &&
-                               (a.dDanJuRiQi >= beginDate || string.IsNullOrEmpty(begindate)) &&
-                               (a.dDanJuRiQi <= endDate || string.IsNullOrEmpty(enddate))
-                           select a;
-                model.total = temp.Count();
-
+                var db = ContextDB.Context();
+                model.data = db.Query("exec PROC_OrderSumDriverCount @0,@1,@2", openid, BegindDanJuRiQi, EnddDanJuRiQi).ToList();
                 if (model.data != null)
                 {
                     model.message = "查询成功";
