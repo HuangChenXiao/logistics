@@ -68,11 +68,11 @@ export default {
 
 <style scoped lang="scss">
 .group-content .weui-cell {
-  font-size: 0.373333rem !important;
+  font-size: .43rem !important;
 }
 .od-tb {
   margin-top: 0.266667rem;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   .head {
     background: #fff;
     .th {

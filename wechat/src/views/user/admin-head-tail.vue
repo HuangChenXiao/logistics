@@ -17,6 +17,7 @@
                 <div class="group-item">
                   <div class="lbl">工地</div>
                   <div class="info">
+                    <!-- <input type="text" placeholder="模糊搜索" v-model="bItem.cGongDiMingCheng" class="g-ipt"> -->
                     <div class="btn-select" @click="showWorkSite=true">
                       选择
                     </div>
@@ -27,6 +28,7 @@
                 <div class="group-item">
                   <div class="lbl">土尾</div>
                   <div class="info">
+                    <!-- <input type="text" placeholder="模糊搜索" v-model="bItem.cTuWeiMingCheng" class="g-ipt"> -->
                     <div class="btn-select" @click="showTuwei=true">
                       选择
                     </div>
@@ -34,18 +36,30 @@
                     <div class="ico-clear" v-if="bItem.cTuWeiMingCheng" @click="clearTuiwei"></div>
                   </div>
                 </div>
+                <div class="group-item">
+                  <div class="lbl">驾驶员</div>
+                  <div class="info">
+                    <input type="text" placeholder="模糊搜索" v-model="bItem.cXingMing" class="g-ipt">
+                  </div>
+                </div>
+                <div class="group-item">
+                  <div class="lbl">车牌号</div>
+                  <div class="info">
+                    <input type="text" placeholder="模糊搜索" v-model="bItem.cChePaiHao" class="g-ipt">
+                  </div>
+                </div>
                 <!-- <selector title="合作单位"  v-model="value2"></selector>
                                 <selector title="车辆" :options="['闽G123', '其他']" v-model="value2"></selector>
                                 <selector title="路线" :options="['高新技术园-软件园', '五缘湾-火车站']" v-model="value2"></selector> -->
                                 
-                <datetime title="开始日期" v-model="bItem.begindate" format="YYYY-MM-DD" value-text-align="left"></datetime>
-               <datetime title="结束日期" v-model="bItem.enddate" format="YYYY-MM-DD" value-text-align="left"></datetime>
+                <datetime title="开始日期" v-model="bItem.BegindDanJuRiQi" format="YYYY-MM-DD" value-text-align="left"></datetime>
+               <datetime title="结束日期" v-model="bItem.EnddDanJuRiQi" format="YYYY-MM-DD" value-text-align="left"></datetime>
                 <div class="wk-btn">
                   <!-- <div class="ok-btn">发布订单</div> -->
                   <x-button class="ok-btn" :class="{'btn-success':validate_order}" type="primary" :disabled="!validate_order" @click.native="getOrderCount"> 查询订单</x-button>
                 </div>
               </group>
-         <div class="od-tb">
+         <!-- <div class="od-tb">
             <div class="head flex f-d-r">
                 <div class="th">工地</div>
                 <div class="th">土尾</div>
@@ -54,14 +68,21 @@
                 <div class="td">{{bItem.cGongDiMingCheng}}</div>
                 <div class="td">{{bItem.cTuWeiMingCheng}}</div>
             </div>
-        </div>
+        </div> -->
         <div class="od-tb">
             <div class="head flex f-d-r">
-                <div class="th">总单数</div>
+                <div class="th">序号</div>
+                <div class="th">工地</div>
+                <div class="th">土尾</div>
+                <div class="th">车数</div>
             </div>
-            <div class="body flex f-d-r">
-                <div class="td f-w600">{{total}}</div>
+            <div class="body flex f-d-r" v-for="item in list">
+                <div class="td f-w600">{{item.RowNo}}</div>
+                <div class="td f-w600">{{item.cGongDiMingCheng}}</div>
+                <div class="td f-w600">{{item.cTuWeiMingCheng}}</div>
+                <div class="td f-w600">{{item.iNumber}}</div>
             </div>
+            <div v-if="list.length<=0" style="text-align:center">暂无数据</div>
         </div>
         
     <!-- 工地信息 -->
@@ -95,31 +116,50 @@ export default {
       showWorkSite: false,
       showTuwei: false,
       total: 0,
+      list:[],
       work_list: [],
       work_keyword: null,
       tuwei_list: [],
       tuwei_keyword: null,
+      role_code: localStorage.getItem("role_code"),
       bItem: {
-        cGongDiBianMa: null, //工地编码
-        cGongDiMingCheng: null,
-        cTuWeiBianMa: null, //土尾编码
-        cTuWeiMingCheng: null,
-        begindate: this.cfg.getCurrentMonthFirst(),
-        enddate: this.cfg.getCurrentMonthLast()
+        cGongDiMingCheng: null, //工地名称
+        cTuWeiMingCheng: null, //土尾名称
+        cXZDWMingCheng: null, //协作单位
+        cXingMing: null, //驾驶员
+        cChePaiHao: null, //车牌号
+        BegindDanJuRiQi: this.cfg.formatDate(),
+        EnddDanJuRiQi: this.cfg.formatDate(),
+        cGuanLiYuanBianMa: null //现场管理员编码
       }
     };
   },
   computed: {
     validate_order() {
-      if (this.bItem.begindate && this.bItem.enddate) {
+      if (this.bItem.BegindDanJuRiQi && this.bItem.EnddDanJuRiQi) {
         return true;
       }
       return false;
     }
   },
   created() {
+    //现场管理员
+    if (this.role_code == "001") {
+      this.bItem.cGuanLiYuanBianMa = localStorage.getItem("openid");
+    }
+    //老板
+    else if (this.role_code == "005") {
+      
+    } else {
+      this.$vux.alert.show({
+        title: "提示",
+        content: "网络异常，请重新登录！"
+      });
+      window.history.go(-1);
+    }
     this.get_worksite();
     this.get_tuwei();
+    this.getOrderCount();
   },
   methods: {
     clearTuiwei() {
@@ -155,17 +195,17 @@ export default {
       this.showTuwei = false;
     },
     getOrderCount() {
-      var data = {};
-      data.cTuWeiBianMa = this.bItem.cTuWeiBianMa;
-      data.cGongDiBianMa = this.bItem.cGongDiBianMa;
-      data.begindate = this.bItem.begindate;
-      data.enddate = this.bItem.enddate;
-      HeadTailOrderCount(data).then(res => {
-        this.total = res.total;
-        this.$vux.alert.show({
-          title: "提示",
-          content: "查询成功"
-        });
+      // var data = {};
+      // data.cTuWeiBianMa = this.bItem.cTuWeiBianMa;
+      // data.cGongDiBianMa = this.bItem.cGongDiBianMa;
+      // data.BegindDanJuRiQi = this.bItem.BegindDanJuRiQi;
+      // data.EnddDanJuRiQi = this.bItem.EnddDanJuRiQi;
+      HeadTailOrderCount(this.bItem).then(res => {
+        this.list = res.data;
+        // this.$vux.alert.show({
+        //   title: "提示",
+        //   content: "查询成功"
+        // });
       });
     }
   },
@@ -185,7 +225,7 @@ export default {
 <style scoped lang="scss">
 .od-tb {
   margin-top: 0.266667rem;
-  font-size: 0.373333rem;
+  font-size: 0.43rem;
   .head {
     background: #fff;
     .th {
@@ -242,7 +282,7 @@ export default {
   height: 1.066667rem;
   line-height: 1.066667rem;
   padding-left: 2.3rem;
-  font-size: 0.373333rem;
+  font-size: 0.43rem;
   .lbl {
     position: absolute;
     width: 1.5rem;
@@ -259,6 +299,11 @@ export default {
       height: 0.426667rem;
       background: url("../../assets/img/delete.png");
       background-size: 100%;
+    }
+    .g-ipt {
+      width: 90%;
+      border: 1px solid #ddd;
+      padding: 0.05rem 0.13rem;
     }
     .btn-select {
       position: relative;

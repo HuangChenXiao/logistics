@@ -31,10 +31,10 @@ export default {
 .footer-menu {
   position: fixed;
   bottom: 0;
-  height: 1.28rem;
+  height: 1.40rem;
   border-top: 1px solid #ededed;
   background: #fff;
-  font-size: 0.266667rem;
+  font-size: 0.43rem;
   width: 100%;
   text-align: center;
   .item {

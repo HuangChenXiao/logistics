@@ -359,7 +359,7 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 .work {
   position: relative;
@@ -406,7 +406,7 @@ export default {
 .address {
   position: relative;
   background: #fff;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   padding: 0.266667rem;
   border-bottom: 1px solid #efefef;
   padding-right: 1.2rem;
@@ -449,7 +449,7 @@ export default {
     width: 50%;
     text-align: center;
     padding: 0.533333rem 0;
-    font-size: 0.373333rem;
+    font-size: .43rem;
   }
   .it_1 {
     border-right: 1px solid #efefef;

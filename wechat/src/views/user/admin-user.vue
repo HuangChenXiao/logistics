@@ -78,7 +78,7 @@ export default {
   position: relative;
   background: #f00;
   padding: 0.533333rem 1.04rem;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   color: #fff;
   .name {
     height: 0.586667rem;
@@ -100,8 +100,8 @@ export default {
   background: #fff;
   .item {
     position: relative;
-    font-size: 0.373333rem;
-    padding: 0.373333rem 0.266667rem;
+    font-size: .43rem;
+    padding: .43rem 0.266667rem;
     border-bottom: 1px solid #ededed;
     .next {
       position: absolute;

@@ -393,11 +393,11 @@ export default {
 <style scoped lang="scss">
 .item-1 {
   background: #fff;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   padding: 0 0.266667rem;
   .row {
     border-bottom: 1px solid #ededed;
-    padding: 0.373333rem 0;
+    padding: .43rem 0;
     .lbl {
       position: relative;
       display: inline-block;
@@ -416,7 +416,7 @@ export default {
   }
 }
 .pay-title {
-  font-size: 0.373333rem;
+  font-size: .43rem;
   padding: 0.426667rem 0 0.266667rem 0.266667rem;
   background: #f5f5f5;
 }
@@ -449,7 +449,7 @@ export default {
   border-radius: 1.173333rem;
   text-align: center;
   color: #fff;
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 .pruchase-btn:disabled {
   background: #faaf6b;

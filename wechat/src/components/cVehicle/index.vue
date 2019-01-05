@@ -5,14 +5,15 @@
       <div class="item">
         <div class="ico"></div>
         <div class="ipt">
-          <input type="text" v-model="search_val" placeholder="请输入要搜索的车辆">
+          <input type="number" v-model="search_val" placeholder="请输入要搜索的车辆">
         </div>
       </div>
     </div>
     <div class="item-list" v-if="list.length>0">
       <div class="item" v-for="item in list">
-        <div class="code">车牌：{{item.cChePaiHao}}</div>
-        <div class="code">类型：{{item.cCheLiangLeiBie}}</div>
+        <div class="code"><span class="c-l">车牌：</span>{{item.cChePaiHao}}</div>
+        <div class="code"><span class="c-l">驾驶员：</span>{{item.cXingMing}}</div>
+        <div class="code"><span class="c-l">类型：</span>{{item.cCheLiangLeiBie}}</div>
         <div class="opt-btn" v-if="single_drive">
           <div class="sed-btn" @click="select_vehicle(item)">
             选择
@@ -82,7 +83,7 @@ export default {
 //     background-size: 100%;
 // }
 .title {
-  font-size: 0.373333rem;
+  font-size: .43rem;
   height: 1.066667rem;
   line-height: 1.066667rem;
   padding: 0 0.266667rem;
@@ -91,7 +92,7 @@ export default {
 }
 .item-list {
   position: relative;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   max-height: 10rem;
   overflow: auto;
   .item {
@@ -122,7 +123,7 @@ export default {
   background: #fff;
   text-align: center;
   padding: 0.266667rem 0.8rem;
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 .search {
   position: relative;
@@ -175,5 +176,10 @@ export default {
     display: inline-block;
     border-radius: 3px;
   }
+}
+.c-l{
+      width: 1.8rem;
+      display: inline-block;
+      text-align: right;
 }
 </style>

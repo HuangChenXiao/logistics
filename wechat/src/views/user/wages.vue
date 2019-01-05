@@ -190,13 +190,13 @@ export default {
 </script>
 <style>
 .group-content .weui-cells {
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 </style>
 <style scoped lang="scss">
 .item-list {
   background: #fff;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   .item {
     position: relative;
     border-bottom: 1px solid #ededed;
@@ -228,7 +228,7 @@ export default {
 }
 .mask-content {
   padding-bottom: 0.333333rem;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   .title {
     text-align: center;
     height: 1.226667rem;

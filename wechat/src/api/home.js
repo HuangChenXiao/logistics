@@ -20,6 +20,14 @@ export function GongDiInfo(data) {
         params: data
     })
 }
+
+export function EditGongDiInfo(data) {
+    return request({
+        url: 'GongDiInfo',
+        method: "post",
+        data
+    })
+}
 export function CheLiangInfo(data) {
     return request({
         url: 'CheLiangInfo',

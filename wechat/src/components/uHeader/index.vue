@@ -130,7 +130,7 @@ div.nav-wrap-right a {
   text-align: center;
   width: 0.94rem;
   color: #5a5a5a;
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 .nav-wrap-right a {
   height: 100%;

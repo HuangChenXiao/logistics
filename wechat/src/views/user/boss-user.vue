@@ -15,14 +15,14 @@
       </div>
     </div>
     <div class="item-list">
-      <router-link :to="{name:'order',query:{title:'我的订单',menu_route:'destination-user'}}" class="item">
-        <span>我的订单</span>
+      <router-link :to="{name:'admin-head-tail'}" class="item">
+        <span>订单统计数</span>
         <i class="next"></i>
       </router-link>
-      <!-- <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
-                <span>路线</span>
-                <i class="next"></i>
-            </router-link> -->
+      <router-link :to="{name:'gong-di'}" class="item">
+        <span>工地信息</span>
+        <i class="next"></i>
+      </router-link>
     </div>
     <!-- <div style="height:1.5rem"></div> -->
     <!-- <destination-bottom route_name="admin-user"></destination-bottom> -->

@@ -28,6 +28,9 @@ export default {
         case "004": //部门经理
           break;
         case "005": //老板
+          this.$router.push({
+            name: "boss-user"
+          });
           break;
         default:
           AlertModule.show({
@@ -43,5 +46,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

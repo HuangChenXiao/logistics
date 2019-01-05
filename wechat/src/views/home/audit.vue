@@ -145,7 +145,7 @@ export default {
 
 <style scoped lang="scss">
 .audit-content {
-  font-size: 0.373333rem;
+  font-size: .43rem;
   background: #fff;
 }
 .item-list {

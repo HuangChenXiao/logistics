@@ -51,10 +51,16 @@
                     <div class="btn-select" @click="setshowScrollBox">
                       选择
                     </div>
-                    <span>{{bItem.cChePaiHao}}</span>
+                    <span v-if="bItem.cChePaiHao">{{bItem.cChePaiHao}}—{{bItem.cXingMing}}</span>
                     <div class="ico-clear" v-if="bItem.cChePaiHao" @click="cheliang_change()"></div>
                   </div>
                 </div>
+                <!-- <div class="group-item" v-if="bItem.cXingMing">
+                  <div class="lbl">驾驶员</div>
+                  <div class="info">
+                    <span>{{bItem.cXingMing}}</span>
+                  </div>
+                </div> -->
                 <div class="group-item">
                   <div class="lbl">土尾</div>
                   <div class="info">
@@ -235,13 +241,15 @@ export default {
       bItem: {
         start_position: "厦门市",
         cGongDiBianMa: null, //工地编码
+        cGongDiMingCheng:null,//工地名称
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
         cTuWeiBianMa: null, //土尾编码
         // cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
         cTuWeiMingCheng: null, //土尾名称
-        cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
+        cGuanLiYuanBianMa: localStorage.getItem("openid"), //现场管理员编码
+        cXingMing:null,//驾驶员姓名
       },
       store_query: {
         longitude: this.$store.getters.longitude,
@@ -452,15 +460,16 @@ export default {
       this.showScrollBox = false;
       this.bItem.cChePaiHao = item.cChePaiHao;
       this.bItem.openid = item.openid;
-      getChePaiTuWei({ cChePaiHao: item.cChePaiHao }).then(res => {
-        if (res.data) {
-          this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
-          this.bItem.cTuWeiMingCheng = res.data.cTuWeiMingCheng;
-        } else {
-          this.bItem.cTuWeiBianMa = null;
-          this.bItem.cTuWeiMingCheng = null;
-        }
-      });
+      this.bItem.cXingMing=item.cXingMing;
+      // getChePaiTuWei({ cChePaiHao: item.cChePaiHao }).then(res => {
+      //   if (res.data) {
+      //     this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
+      //     this.bItem.cTuWeiMingCheng = res.data.cTuWeiMingCheng;
+      //   } else {
+      //     this.bItem.cTuWeiBianMa = null;
+      //     this.bItem.cTuWeiMingCheng = null;
+      //   }
+      // });
     },
     //合作单位
     get_cooperation() {
@@ -502,6 +511,7 @@ export default {
     submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
+      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng
       this.bItem.cDingDanHao = this.cfg.formatOrderNo();
       GongChengCheDingDan(this.bItem)
         .then(res => {
@@ -523,6 +533,7 @@ export default {
     wj_submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
+      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng
       this.bItem.cDingDanHao = this.cfg.formatOrderNo();
       WaJueJiDingDan(this.bItem)
         .then(res => {
@@ -545,7 +556,9 @@ export default {
         cGongDiBianMa: null, //工地编码
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
-        cTuWeiBianMa: null, //线路编码
+        cTuWeiBianMa: this.bItem.cTuWeiBianMa, //线路编码
+        cTuWeiBianMa:this.bItem.cTuWeiBianMa,//土尾编码
+        cTuWeiMingCheng:this.bItem.cTuWeiMingCheng,//土尾名称
         cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
         cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
@@ -625,12 +638,12 @@ export default {
 
 <style>
 .group-content .weui-cells {
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 </style>
 <style scoped lang="scss">
 .home {
-  font-size: 0.373333rem;
+  font-size: .43rem;
 }
 
 .work {
@@ -679,7 +692,7 @@ export default {
 .address {
   position: relative;
   background: #fff;
-  font-size: 0.373333rem;
+  font-size: .43rem;
   padding: 0.266667rem;
   border-bottom: 1px solid #efefef;
   padding-right: 1.2rem;
@@ -754,7 +767,7 @@ export default {
     width: 3rem;
     height: 0.8rem;
     line-height: 0.8rem;
-    font-size: 0.373333rem;
+    font-size: .43rem;
   }
 }
 .group-item {
@@ -807,7 +820,7 @@ export default {
   position: absolute;
   right: 0.27rem;
   top: 0;
-  font-size: 0.37rem;
+  font-size: .43rem;
   color: #42a0ff;
   display: block;
   padding-left: .5rem;

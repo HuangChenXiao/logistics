@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-header title="土尾列表" route="admin-user">
+    <u-header title="工地列表" route="boss-user">
       <div class="s-where">
         <span class="op-btn" @click="getAddForm">新增</span>
         <span class="op-btn" @click="showWhere=true">查询</span>
@@ -12,9 +12,8 @@
         <div class="item-list">
           <div class="item" v-if="sed_index==0" v-for="item in order_list">
             <section>
-              <div class="n1">土尾编码：{{item.cTuWeiBianMa}}</div>
-              <div class="n1">土尾名称：{{item.cTuWeiMingCheng}}</div>
-              <div class="n1">收费方式：{{item.cShouFeiFangShi}}</div>
+              <div class="n1">工地编码：{{item.cGongDiBianMa}}</div>
+              <div class="n1">工地名称：{{item.cGongDiMingCheng}}</div>
             </section>
           </div>
           <load-more tip="加载中" v-if="!onFetching"></load-more>
@@ -29,7 +28,7 @@
       <div class="mask-content">
         <div class="title">查询条件</div>
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
-          <x-input title="条件" placeholder="土尾名称/土尾编码" v-model="w_qeury.keyword"></x-input>
+          <x-input title="条件" placeholder="工地名称/工地编码" v-model="w_qeury.keyword"></x-input>
           
           <div class="wk-btn">
             <div class="reset-btn" @click="showWhere=false">取消</div>
@@ -42,11 +41,10 @@
     <x-dialog v-model="showTuWei" :hide-on-blur="true" class="dialog-demo">
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
             <div class="title">
-                <span>新增土尾信息</span> 
+                <span>新增工地信息</span> 
             </div>
-            <!-- <x-input title="土尾编码" placeholder="请输入土尾编码" v-model="ruleForm.cTuWeiBianMa"></x-input> -->
-            <x-input title="土尾名称" placeholder="请输入土尾名称" v-model="ruleForm.cTuWeiMingCheng"></x-input>
-            <selector title="收费方式" placeholder="请选择收费方式" :options="['免费', '付费']" v-model="ruleForm.cShouFeiFangShi"></selector>
+            <!-- <x-input title="工地编码" placeholder="请输入工地编码" v-model="ruleForm.cTuWeiBianMa"></x-input> -->
+            <x-input title="工地名称" placeholder="请输入工地名称" v-model="ruleForm.cGongDiMingCheng"></x-input>
             <div class="wk-btn">
                 <div class="reset-btn" @click="showTuWei=false">取消</div>
                 <div class="ok-btn" @click="add_tuwei()">确定</div>
@@ -62,7 +60,7 @@
 import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
-import { TuWeiInfo, EditTuWeiInfo } from "@/api/home.js";
+import { GongDiInfo, EditGongDiInfo } from "@/api/home.js";
 const list = () => [
   { key: 0, value: "工程车订单" },
   { key: 1, value: "挖掘机订单" }
@@ -100,8 +98,7 @@ export default {
       driver_keyword: null,
       work_keyword: null,
       ruleForm:  {
-        cTuWeiMingCheng: null,
-        cShouFeiFangShi: "免费"
+        cGongDiMingCheng: null,
       }
     };
   },
@@ -125,28 +122,28 @@ export default {
       this.showTuWei = true;
     },
     resetForm() {
-      this.ruleForm.cTuWeiMingCheng=null 
+      this.ruleForm.cGongDiMingCheng=null 
     },
     add_tuwei() {
       if (this.loading_tuwei) {
         return;
       }
-      if (!this.ruleForm.cTuWeiMingCheng) {
+      if (!this.ruleForm.cGongDiMingCheng) {
         this.$vux.alert.show({
           title: "提示",
-          content: "请输入土尾名称"
+          content: "请输入工地名称"
         });
         return;
       }
       this.loading_tuwei = true;
-      EditTuWeiInfo(this.ruleForm)
+      EditGongDiInfo(this.ruleForm)
         .then(res => {
           this.loading_tuwei = false;
           this.showTuWei = false;
           this.search_order();
           this.$vux.alert.show({
             title: "提示",
-            content: "土尾新增成功"
+            content: "工地新增成功"
           });
         })
         .catch(res => {
@@ -160,7 +157,7 @@ export default {
     //工程车订单列表
     get_order() {
       this.onFetching = true;
-      TuWeiInfo(this.w_qeury).then(res => {
+      GongDiInfo(this.w_qeury).then(res => {
         this.showWhere = false;
         if (res.data.length) {
           this.order_list = this.order_list.concat(res.data);

@@ -35,7 +35,7 @@ export default {
 
 <style scoped lang="scss">
 .item-list {
-  font-size: 0.373333rem;
+  font-size: .43rem;
   color: rgb(51, 51, 51);
   .title {
     background: rgb(243, 243, 243);
@@ -46,7 +46,7 @@ export default {
     background: #fff;
     padding: 0 0.266667rem;
     .row {
-      padding: 0.373333rem 0;
+      padding: .43rem 0;
       border-bottom: 1px solid #ededed;
     }
     .row:last-child {
