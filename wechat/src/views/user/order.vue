@@ -457,6 +457,9 @@ export default {
 };
 </script>
 <style>
+.vux-tab .vux-tab-item{
+  font-size: .43rem !important;
+}
 .group-content .weui-cells {
   font-size: 0.43rem;
 }
@@ -501,6 +504,7 @@ export default {
 }
 .s-where {
   color: #f00;
+  font-size: .37rem;
 }
 .mask-content {
   padding-bottom: 0.333333rem;

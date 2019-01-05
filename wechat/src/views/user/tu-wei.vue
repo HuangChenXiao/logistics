@@ -244,6 +244,7 @@ export default {
 }
 .s-where {
   color: #f00;
+  font-size: .37rem;
   .op-btn {
     display: inline-block;
     padding-left: 0.27rem;

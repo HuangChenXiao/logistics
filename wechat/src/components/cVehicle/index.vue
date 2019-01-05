@@ -151,6 +151,7 @@ export default {
       padding: 0.053333rem 0;
       border: 0;
       padding-left: 0.266667rem;
+      font-size: .43rem;
     }
   }
 }

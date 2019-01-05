@@ -159,3 +159,11 @@ export function getChePaiTuWei(data) {
         params: data
     })
 }
+export function UpdateTuWeriSortDate(data) {
+    return request({
+        url: 'UpdateTuWeriSortDate',
+        method: "get",
+        params: data
+    })
+}
+

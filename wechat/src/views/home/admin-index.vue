@@ -64,7 +64,7 @@
                 <div class="group-item">
                   <div class="lbl">土尾</div>
                   <div class="info">
-                    <div class="btn-select" @click="showWorkRoute=true">
+                    <div class="btn-select" @click="setshowWorkRoute">
                       选择
                     </div>
                     <span>{{bItem.cTuWeiMingCheng}}</span>
@@ -208,7 +208,8 @@ import {
   BangDingJiLu,
   wechatUser,
   TuWeiInfo,
-  getChePaiTuWei
+  getChePaiTuWei,
+  UpdateTuWeriSortDate
 } from "@/api/home.js";
 import { TemplateMsg } from "@/api/wechat.js";
 export default {
@@ -368,6 +369,11 @@ export default {
       this.get_driver(); //车辆信息
       this.showScrollBox = true;
     },
+    //选择时重新查询土尾
+    setshowWorkRoute(){
+      this.get_route();//土尾信息
+      this.showWorkRoute = true;
+    },
     //切换时清空数据
     set_tab_item(item) {
       this.demo2 = item;
@@ -501,6 +507,7 @@ export default {
       this.showWorkRoute = false;
       this.bItem.cTuWeiBianMa = item.cTuWeiBianMa;
       this.bItem.cTuWeiMingCheng = item.cTuWeiMingCheng;
+      UpdateTuWeriSortDate({cTuWeiBianMa:item.cTuWeiBianMa})
     },
     sendTplMsg(item) {
       TemplateMsg(item).then(res => {
