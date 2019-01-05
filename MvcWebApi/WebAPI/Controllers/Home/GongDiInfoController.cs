@@ -50,5 +50,35 @@ namespace WebAPI.Controllers
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
+        // POST: api/GongDiInfo
+        [ResponseType(typeof(GongDiInfo))]
+        public ResponseMessageResult Post(GongDiInfo GongDiInfo)
+        {
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
+            {
+                var db_web = ContextDB.Context();
+                GongDiInfo.cGongDiBianMa = db_web.QueryValue("exec PROC_GongDiCode 'GD'");
+                db.GongDiInfo.Add(GongDiInfo);
+                try
+                {
+                    db.SaveChanges();
+                    model.message = "新增成功";
+                    model.status_code = 200;
+                }
+                catch (Exception ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
+                db_web.Dispose();
+            }
+            else
+            {
+                model.message = "微信授权失败";
+                model.status_code = 401;
+            }
+            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+        }
     }
 }

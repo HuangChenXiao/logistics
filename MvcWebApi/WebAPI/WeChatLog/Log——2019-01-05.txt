@@ -1,0 +1,81 @@
+openid:o34Yw1W9hMczSWPPKFlOA5lLEoqY;车牌号：闽DD7072
+2019/1/5 9:16:12
+
+openid:o34Yw1WofudOippD3xcA1VVAfISo;车牌号：
+2019/1/5 9:16:42
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [4JoXDA00051533]"}
+2019/1/5 9:16:48
+
+消息推送返回码：41001
+2019/1/5 9:16:48
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [c2qTfa0497b101]"}
+2019/1/5 9:41:40
+
+消息推送返回码：41001
+2019/1/5 9:41:41
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [ol_0hA0689hb92]"}
+2019/1/5 9:44:52
+
+消息推送返回码：41001
+2019/1/5 9:44:52
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [d.qo6a07742067]"}
+2019/1/5 9:46:17
+
+消息推送返回码：41001
+2019/1/5 9:46:18
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [XB02IA07843064]"}
+2019/1/5 9:46:27
+
+消息推送返回码：41001
+2019/1/5 9:46:28
+
+消息推送返回码：41001
+2019/1/5 10:09:19
+
+消息推送返回码：41001
+2019/1/5 10:11:23
+
+消息推送返回码：41001
+2019/1/5 10:12:12
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [WK804222994]"}
+2019/1/5 10:13:46
+
+消息推送返回码：41001
+2019/1/5 10:14:07
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.128.210, not in whitelist hint: [KABjFA04532994]"}
+2019/1/5 10:16:34
+
+消息推送返回码：41001
+2019/1/5 10:16:34
+
+ToKen：{"access_token":"17_HYsdJESfMSNqyhKrT5O7mb5qdouNU8dq3wEbkV6CTg5sdtC_f8aVF1cTGAsiYIAqa3KV_wdC-7YlsFuX4eAyfYsi38oaL4dHUlYfM8l0g6lyQj6lOZRU_bb2_PftqK1D7AJPwCKPhkyb1hfSGIKdAIASUW","expires_in":7200}
+2019/1/5 10:16:43
+
+消息推送返回码：0
+2019/1/5 10:16:52
+
+消息推送返回码：0
+2019/1/5 10:17:57
+
+openid:o34Yw1QYbOoI_gshAYsSuCO6AMfY;车牌号：闽DD7125
+2019/1/5 11:27:35
+
+消息推送返回码：43004
+2019/1/5 11:28:24
+
+消息推送返回码：0
+2019/1/5 11:31:34
+
+消息推送返回码：0
+2019/1/5 11:46:26
+
+openid:o34Yw1W9hMczSWPPKFlOA5lLEoqY;车牌号：闽DD7125
+2019/1/5 12:14:57
+
