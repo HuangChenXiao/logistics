@@ -12,13 +12,10 @@ namespace ModelDb
     using System;
     using System.Collections.Generic;
     
-    public partial class ShangPinRuKuS
+    public partial class CurrentStore
     {
         public long AutoID { get; set; }
-        public System.Guid gRKID { get; set; }
         public string cShangPinBianMa { get; set; }
         public Nullable<decimal> iShuLiang { get; set; }
-        public Nullable<decimal> iDanJia { get; set; }
-        public Nullable<decimal> iJinE { get; set; }
     }
 }

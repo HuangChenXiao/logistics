@@ -18,6 +18,8 @@ namespace ModelDb
         public string cRuKuBianMa { get; set; }
         public Nullable<System.DateTime> dRuKuRiQi { get; set; }
         public string cCangKuBianMa { get; set; }
+        public Nullable<int> iRuKuLeiBie { get; set; }
+        public string cRuKuLeiBie { get; set; }
         public string cBeiZhu { get; set; }
         public Nullable<int> iState { get; set; }
         public string cState { get; set; }

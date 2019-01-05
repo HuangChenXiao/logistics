@@ -4,6 +4,17 @@
     <FunctionImportMapping FunctionImportName="PD_BaseCode" FunctionName="EBMSystemModel.Store.PD_BaseCode" />
     <FunctionImportMapping FunctionImportName="PD_VouchCode" FunctionName="EBMSystemModel.Store.PD_VouchCode" />
     <FunctionImportMapping FunctionImportName="PD_EndGongChengCheDingDan" FunctionName="EBMSystemModel.Store.PD_EndGongChengCheDingDan" />
+    <FunctionImportMapping FunctionImportName="PROC_GongDiCode" FunctionName="EBMSystemModel.Store.PROC_GongDiCode" />
+    <FunctionImportMapping FunctionImportName="PROC_OrderSumCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumCount_Result">
+          <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+          <ScalarProperty Name="iNumber" ColumnName="iNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="BangDingJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BangDingJiLu">
         <MappingFragment StoreEntitySet="BangDingJiLu">
@@ -92,6 +103,15 @@
           <ScalarProperty Name="cXingHao" ColumnName="cXingHao" />
           <ScalarProperty Name="cPinPai" ColumnName="cPinPai" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CurrentStore">
+      <EntityTypeMapping TypeName="EBMSystemModel.CurrentStore">
+        <MappingFragment StoreEntitySet="CurrentStore">
+          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
+          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -264,25 +284,12 @@
           <ScalarProperty Name="cState" ColumnName="cState" />
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cChuKuLeiBie" ColumnName="cChuKuLeiBie" />
+          <ScalarProperty Name="iChuKuLeiBie" ColumnName="iChuKuLeiBie" />
           <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
           <ScalarProperty Name="dChuKuRiQi" ColumnName="dChuKuRiQi" />
           <ScalarProperty Name="cChuKuBianMa" ColumnName="cChuKuBianMa" />
           <ScalarProperty Name="gCKID" ColumnName="gCKID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ShangPinChuKuS">
-      <EntityTypeMapping TypeName="EBMSystemModel.ShangPinChuKuS">
-        <MappingFragment StoreEntitySet="ShangPinChuKuS">
-          <ScalarProperty Name="iJinE" ColumnName="iJinE" />
-          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
-          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
-          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
-          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
-          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
-          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
-          <ScalarProperty Name="gCKID" ColumnName="gCKID" />
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -322,6 +329,8 @@
           <ScalarProperty Name="cState" ColumnName="cState" />
           <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cRuKuLeiBie" ColumnName="cRuKuLeiBie" />
+          <ScalarProperty Name="iRuKuLeiBie" ColumnName="iRuKuLeiBie" />
           <ScalarProperty Name="cCangKuBianMa" ColumnName="cCangKuBianMa" />
           <ScalarProperty Name="dRuKuRiQi" ColumnName="dRuKuRiQi" />
           <ScalarProperty Name="cRuKuBianMa" ColumnName="cRuKuBianMa" />
@@ -335,9 +344,6 @@
           <ScalarProperty Name="iJinE" ColumnName="iJinE" />
           <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
           <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
-          <ScalarProperty Name="cJiLiangDanWei" ColumnName="cJiLiangDanWei" />
-          <ScalarProperty Name="cGuiGeXingHao" ColumnName="cGuiGeXingHao" />
-          <ScalarProperty Name="cShangPinMingCheng" ColumnName="cShangPinMingCheng" />
           <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
           <ScalarProperty Name="gRKID" ColumnName="gRKID" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
@@ -363,6 +369,23 @@
           <ScalarProperty Name="cZeRenGuiShu" ColumnName="cZeRenGuiShu" />
           <ScalarProperty Name="dShiGuRiQi" ColumnName="dShiGuRiQi" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoreRecord">
+      <EntityTypeMapping TypeName="EBMSystemModel.StoreRecord">
+        <MappingFragment StoreEntitySet="StoreRecord">
+          <ScalarProperty Name="iJinE" ColumnName="iJinE" />
+          <ScalarProperty Name="iDanJia" ColumnName="iDanJia" />
+          <ScalarProperty Name="iShuLiang" ColumnName="iShuLiang" />
+          <ScalarProperty Name="cShangPinBianMa" ColumnName="cShangPinBianMa" />
+          <ScalarProperty Name="iID" ColumnName="iID" />
+          <ScalarProperty Name="dRiQi" ColumnName="dRiQi" />
+          <ScalarProperty Name="cDanJuHao" ColumnName="cDanJuHao" />
+          <ScalarProperty Name="cDanJuMingCheng" ColumnName="cDanJuMingCheng" />
+          <ScalarProperty Name="gID" ColumnName="gID" />
+          <ScalarProperty Name="iFlag" ColumnName="iFlag" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -419,6 +442,7 @@
     <EntitySetMapping Name="TuWeiInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.TuWeiInfo">
         <MappingFragment StoreEntitySet="TuWeiInfo">
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="cTuWeiDiZhi" ColumnName="cTuWeiDiZhi" />
           <ScalarProperty Name="cShouFeiFangShi" ColumnName="cShouFeiFangShi" />
@@ -559,6 +583,7 @@
     <EntitySetMapping Name="XianLuInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.XianLuInfo">
         <MappingFragment StoreEntitySet="XianLuInfo">
+          <ScalarProperty Name="iWaiBuJinE" ColumnName="iWaiBuJinE" />
           <ScalarProperty Name="dStop" ColumnName="dStop" />
           <ScalarProperty Name="bStop" ColumnName="bStop" />
           <ScalarProperty Name="cState" ColumnName="cState" />
@@ -696,6 +721,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="PROC_GongDiCode" FunctionName="EBMSystemModel.Store.PROC_GongDiCode" />
   </EntityContainerMapping>
 </Mapping>

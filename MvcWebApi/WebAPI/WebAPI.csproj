@@ -210,6 +210,7 @@
     <Compile Include="Controllers\Home\GongDiXianLuController.cs" />
     <Compile Include="Controllers\Home\HeadTailOrderCountController.cs" />
     <Compile Include="Controllers\Home\TuWeiInfoController.cs" />
+    <Compile Include="Controllers\Home\UpdateTuWeriSortDateController.cs" />
     <Compile Include="Controllers\Home\WaJueJiDingDanController.cs" />
     <Compile Include="Controllers\Home\XianLuInfoController.cs" />
     <Compile Include="Controllers\Home\XieZuoDanWeiInfoController.cs" />

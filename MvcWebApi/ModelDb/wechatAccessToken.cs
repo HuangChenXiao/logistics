@@ -17,6 +17,6 @@ namespace ModelDb
         public long id { get; set; }
         public string access_token { get; set; }
         public Nullable<int> expires_in { get; set; }
-        public string addtime { get; set; }
+        public Nullable<System.DateTime> addtime { get; set; }
     }
 }

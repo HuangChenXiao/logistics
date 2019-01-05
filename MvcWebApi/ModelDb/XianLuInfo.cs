@@ -30,5 +30,6 @@ namespace ModelDb
         public string cState { get; set; }
         public Nullable<bool> bStop { get; set; }
         public Nullable<System.DateTime> dStop { get; set; }
+        public Nullable<decimal> iWaiBuJinE { get; set; }
     }
 }

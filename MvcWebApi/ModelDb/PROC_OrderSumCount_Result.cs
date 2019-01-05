@@ -10,15 +10,12 @@
 namespace ModelDb
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ShangPinRuKuS
+    public partial class PROC_OrderSumCount_Result
     {
-        public long AutoID { get; set; }
-        public System.Guid gRKID { get; set; }
-        public string cShangPinBianMa { get; set; }
-        public Nullable<decimal> iShuLiang { get; set; }
-        public Nullable<decimal> iDanJia { get; set; }
-        public Nullable<decimal> iJinE { get; set; }
+        public Nullable<long> RowNo { get; set; }
+        public string cGongDiMingCheng { get; set; }
+        public string cTuWeiMingCheng { get; set; }
+        public Nullable<int> iNumber { get; set; }
     }
 }

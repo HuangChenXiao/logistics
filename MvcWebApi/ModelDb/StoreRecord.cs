@@ -12,14 +12,16 @@ namespace ModelDb
     using System;
     using System.Collections.Generic;
     
-    public partial class ShangPinChuKuS
+    public partial class StoreRecord
     {
         public long AutoID { get; set; }
-        public System.Guid gCKID { get; set; }
+        public Nullable<int> iFlag { get; set; }
+        public Nullable<System.Guid> gID { get; set; }
+        public string cDanJuMingCheng { get; set; }
+        public string cDanJuHao { get; set; }
+        public Nullable<System.DateTime> dRiQi { get; set; }
+        public Nullable<long> iID { get; set; }
         public string cShangPinBianMa { get; set; }
-        public string cShangPinMingCheng { get; set; }
-        public string cGuiGeXingHao { get; set; }
-        public string cJiLiangDanWei { get; set; }
         public Nullable<decimal> iShuLiang { get; set; }
         public Nullable<decimal> iDanJia { get; set; }
         public Nullable<decimal> iJinE { get; set; }

@@ -21,5 +21,6 @@ namespace ModelDb
         public string cShouFeiFangShi { get; set; }
         public string cTuWeiDiZhi { get; set; }
         public string cBeiZhu { get; set; }
+        public Nullable<System.DateTime> dDate { get; set; }
     }
 }

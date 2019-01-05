@@ -29,7 +29,7 @@ namespace WebAPI.Controllers.Home
                 var temp = from a in db.TuWeiInfo
                            where (a.cTuWeiBianMa.Contains(keyword) || a.cTuWeiMingCheng.Contains(keyword) || string.IsNullOrEmpty(keyword))
                            select a;
-                model.data = temp.ToList();
+                model.data = temp.OrderByDescending(o=>o.dDate).ToList();
 
                 if (model.data != null)
                 {
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers.Home
                            where (a.cTuWeiBianMa.Contains(keyword) || a.cTuWeiMingCheng.Contains(keyword) || string.IsNullOrEmpty(keyword))
                            select a;
                 model.total = temp.Count();
-                model.data = temp.OrderByDescending(s => s.cTuWeiBianMa).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+                model.data = temp.OrderByDescending(s => s.dDate).Skip((page - 1) * pagesize).Take(pagesize).ToList();
 
                 if (model.data.Count > 0)
                 {

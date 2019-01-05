@@ -33,6 +33,7 @@ namespace ModelDb
         public virtual DbSet<BaseCode> BaseCode { get; set; }
         public virtual DbSet<CangKuInfo> CangKuInfo { get; set; }
         public virtual DbSet<CheLiangInfo> CheLiangInfo { get; set; }
+        public virtual DbSet<CurrentStore> CurrentStore { get; set; }
         public virtual DbSet<GongChengCheDingDan> GongChengCheDingDan { get; set; }
         public virtual DbSet<GongDiCheLiang> GongDiCheLiang { get; set; }
         public virtual DbSet<GongDiInfo> GongDiInfo { get; set; }
@@ -44,12 +45,12 @@ namespace ModelDb
         public virtual DbSet<NianJianJiLu> NianJianJiLu { get; set; }
         public virtual DbSet<ShangBanLeiBie> ShangBanLeiBie { get; set; }
         public virtual DbSet<ShangPinChuKu> ShangPinChuKu { get; set; }
-        public virtual DbSet<ShangPinChuKuS> ShangPinChuKuS { get; set; }
         public virtual DbSet<ShangPinDaLei> ShangPinDaLei { get; set; }
         public virtual DbSet<ShangPinInfo> ShangPinInfo { get; set; }
         public virtual DbSet<ShangPinRuKu> ShangPinRuKu { get; set; }
         public virtual DbSet<ShangPinRuKuS> ShangPinRuKuS { get; set; }
         public virtual DbSet<ShiGuJiLu> ShiGuJiLu { get; set; }
+        public virtual DbSet<StoreRecord> StoreRecord { get; set; }
         public virtual DbSet<Sys_AbleHold> Sys_AbleHold { get; set; }
         public virtual DbSet<Sys_AbleList> Sys_AbleList { get; set; }
         public virtual DbSet<Sys_User> Sys_User { get; set; }
@@ -142,6 +143,43 @@ namespace ModelDb
                 new ObjectParameter("VouchType", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("PROC_GongDiCode", vouchTypeParameter);
+        }
+    
+        public virtual ObjectResult<PROC_OrderSumCount_Result> PROC_OrderSumCount(string cGongDiMingCheng, string cTuWeiMingCheng, string cXZDWMingCheng, string cXingMing, string cChePaiHao, string begindDanJuRiQi, string enddDanJuRiQi, string cGuanLiYuanBianMa)
+        {
+            var cGongDiMingChengParameter = cGongDiMingCheng != null ?
+                new ObjectParameter("cGongDiMingCheng", cGongDiMingCheng) :
+                new ObjectParameter("cGongDiMingCheng", typeof(string));
+    
+            var cTuWeiMingChengParameter = cTuWeiMingCheng != null ?
+                new ObjectParameter("cTuWeiMingCheng", cTuWeiMingCheng) :
+                new ObjectParameter("cTuWeiMingCheng", typeof(string));
+    
+            var cXZDWMingChengParameter = cXZDWMingCheng != null ?
+                new ObjectParameter("cXZDWMingCheng", cXZDWMingCheng) :
+                new ObjectParameter("cXZDWMingCheng", typeof(string));
+    
+            var cXingMingParameter = cXingMing != null ?
+                new ObjectParameter("cXingMing", cXingMing) :
+                new ObjectParameter("cXingMing", typeof(string));
+    
+            var cChePaiHaoParameter = cChePaiHao != null ?
+                new ObjectParameter("cChePaiHao", cChePaiHao) :
+                new ObjectParameter("cChePaiHao", typeof(string));
+    
+            var begindDanJuRiQiParameter = begindDanJuRiQi != null ?
+                new ObjectParameter("BegindDanJuRiQi", begindDanJuRiQi) :
+                new ObjectParameter("BegindDanJuRiQi", typeof(string));
+    
+            var enddDanJuRiQiParameter = enddDanJuRiQi != null ?
+                new ObjectParameter("EnddDanJuRiQi", enddDanJuRiQi) :
+                new ObjectParameter("EnddDanJuRiQi", typeof(string));
+    
+            var cGuanLiYuanBianMaParameter = cGuanLiYuanBianMa != null ?
+                new ObjectParameter("cGuanLiYuanBianMa", cGuanLiYuanBianMa) :
+                new ObjectParameter("cGuanLiYuanBianMa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PROC_OrderSumCount_Result>("PROC_OrderSumCount", cGongDiMingChengParameter, cTuWeiMingChengParameter, cXZDWMingChengParameter, cXingMingParameter, cChePaiHaoParameter, begindDanJuRiQiParameter, enddDanJuRiQiParameter, cGuanLiYuanBianMaParameter);
         }
     }
 }

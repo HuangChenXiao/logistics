@@ -74,6 +74,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ContextDB.cs" />
+    <Compile Include="CurrentStore.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="GongChengCheDingDan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -119,14 +122,14 @@
     <Compile Include="NianJianJiLu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PROC_OrderSumCount_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShangBanLeiBie.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ShangPinChuKu.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShangPinChuKuS.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ShangPinDaLei.cs">
@@ -142,6 +145,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ShiGuJiLu.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StoreRecord.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemSet.cs">
