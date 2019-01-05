@@ -8,14 +8,8 @@
         </a>
 
       </div>
-      <h1 class="nav-header">
-        <div class="title-btn-list clearfix" v-if="is_order">
-          <div class="title-btn" :class="{'sed-btn':type==1}" @click="orderBuyType(1)">卖单</div>
-          <div class="title-btn" :class="{'sed-btn':type==2}" @click="orderBuyType(2)">买单</div>
-        </div>
-        <div v-else>
+      <h1 class="nav-header" :class="{'i-button':iButton}">
           {{title}}
-        </div>
       </h1>
       <div class="nav-wrap-right">
         <slot></slot>
@@ -32,9 +26,9 @@ export default {
     },
     title: {
       // 标题
-      default: '标题'
+      default: "标题"
     },
-    is_order: {
+    iButton: {
       default: false
     },
     route: {
@@ -43,36 +37,40 @@ export default {
   },
   data() {
     return {
-      type: '1'
-    }
+      type: "1"
+    };
   },
   created() {
-    this.type = this.tradetype
+    this.type = this.tradetype;
   },
   methods: {
     orderBuyType(type) {
-      this.type = type
-      this.$emit('orderBuyType', type)
+      this.type = type;
+      this.$emit("orderBuyType", type);
     },
     back() {
       if (this.route) {
         this.$router.push({
           name: this.route
-        })
+        });
       } else {
-        window.history.go(-1)
+        window.history.go(-1);
       }
     }
   },
   watch: {
     tradetype(val, oldVal) {
-      this.type = val
+      this.type = val;
     }
   }
-}
+};
 </script>
 
 <style scoped>
+.i-button {
+  text-align: left !important;
+  margin-left: 1.33rem !important;
+}
 .navbar {
   position: fixed;
   top: 0;
@@ -130,7 +128,7 @@ div.nav-wrap-right a {
   text-align: center;
   width: 0.94rem;
   color: #5a5a5a;
-  font-size: .43rem;
+  font-size: 0.5rem;
 }
 .nav-wrap-right a {
   height: 100%;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-header title="工地列表" route="boss-user">
+    <u-header title="工地列表" route="boss-user" :iButton="true">
       <div class="s-where">
         <span class="op-btn" @click="getAddForm">新增</span>
         <span class="op-btn" @click="showWhere=true">查询</span>
@@ -198,13 +198,13 @@ export default {
 </script>
 <style>
 .group-content .weui-cells {
-  font-size: .43rem;
+  font-size: .5rem;
 }
 </style>
 <style scoped lang="scss">
 .item-list {
   background: #fff;
-  font-size: .43rem;
+  font-size: .5rem;
   .item {
     position: relative;
     border-bottom: 1px solid #ededed;
@@ -242,14 +242,38 @@ export default {
 .s-where {
   color: #f00;
   font-size: .37rem;
-  .op-btn {
-    display: inline-block;
-    padding-left: 0.27rem;
+  .op-btn:nth-child(1) {
+    position: absolute;
+    right: 2rem;
+    top: .08rem;
+    display: block;
+    // padding: 0 0.27rem;
+    background: #fff;
+    border:1px solid #f00;
+    height: 1.07rem;
+    line-height: 1.07rem;
+    width: 1.6rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .op-btn:nth-child(2) {
+    position: absolute;
+    right: 0;
+    top: .08rem;
+    display: block;
+    // padding: 0 0.27rem;
+    background: #fff;
+    border:1px solid #f00;
+    height: 1.07rem;
+    line-height: 1.07rem;
+    width: 1.6rem;
+    border-radius: 5px;
+    text-align: center;
   }
 }
 .mask-content {
   padding-bottom: 0.333333rem;
-  font-size: .43rem;
+  font-size: .5rem;
   .title {
     text-align: center;
     height: 1.226667rem;
@@ -264,7 +288,7 @@ export default {
   border-top: 1px solid #ededed;
   padding-top: 0.266667rem;
   margin-bottom: 0.266667rem;
-  font-size: .43rem;
+  font-size: .5rem;
   .reset-btn {
     color: #f00;
     border: 1px solid #f00;

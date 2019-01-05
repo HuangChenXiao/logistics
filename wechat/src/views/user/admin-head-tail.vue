@@ -225,7 +225,7 @@ export default {
 <style scoped lang="scss">
 .od-tb {
   margin-top: 0.266667rem;
-  font-size: 0.43rem;
+  font-size: 0.5rem;
   .head {
     background: #fff;
     .th {
@@ -282,7 +282,7 @@ export default {
   height: 1.066667rem;
   line-height: 1.066667rem;
   padding-left: 2.3rem;
-  font-size: 0.43rem;
+  font-size: 0.5rem;
   .lbl {
     position: absolute;
     width: 1.5rem;

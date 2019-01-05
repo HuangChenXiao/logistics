@@ -645,12 +645,12 @@ export default {
 
 <style>
 .group-content .weui-cells {
-  font-size: .43rem;
+  font-size: .5rem;
 }
 </style>
 <style scoped lang="scss">
 .home {
-  font-size: .43rem;
+  font-size: .5rem;
 }
 
 .work {
@@ -699,7 +699,7 @@ export default {
 .address {
   position: relative;
   background: #fff;
-  font-size: .43rem;
+  font-size: .5rem;
   padding: 0.266667rem;
   border-bottom: 1px solid #efefef;
   padding-right: 1.2rem;
@@ -774,7 +774,7 @@ export default {
     width: 3rem;
     height: 0.8rem;
     line-height: 0.8rem;
-    font-size: .43rem;
+    font-size: .5rem;
   }
 }
 .group-item {
@@ -827,7 +827,7 @@ export default {
   position: absolute;
   right: 0.27rem;
   top: 0;
-  font-size: .43rem;
+  font-size: .5rem;
   color: #42a0ff;
   display: block;
   padding-left: .5rem;

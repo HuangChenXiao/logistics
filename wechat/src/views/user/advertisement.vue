@@ -129,8 +129,8 @@ export default {
   .item {
     position: relative;
     border-bottom: 1px solid #ededed;
-    font-size: .43rem;
-    padding: .43rem 0;
+    font-size: .5rem;
+    padding: .5rem 0;
     .type {
       background: rgb(240, 123, 20);
       padding: 0.08rem 0.213333rem;

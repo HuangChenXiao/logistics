@@ -83,7 +83,7 @@ export default {
 //     background-size: 100%;
 // }
 .title {
-  font-size: .43rem;
+  font-size: .5rem;
   height: 1.066667rem;
   line-height: 1.066667rem;
   padding: 0 0.266667rem;
@@ -92,7 +92,7 @@ export default {
 }
 .item-list {
   position: relative;
-  font-size: .43rem;
+  font-size: .5rem;
   max-height: 10rem;
   overflow: auto;
   .item {
@@ -123,7 +123,7 @@ export default {
   background: #fff;
   text-align: center;
   padding: 0.266667rem 0.8rem;
-  font-size: .43rem;
+  font-size: .5rem;
 }
 .search {
   position: relative;
@@ -151,7 +151,7 @@ export default {
       padding: 0.053333rem 0;
       border: 0;
       padding-left: 0.266667rem;
-      font-size: .43rem;
+      font-size: .5rem;
     }
   }
 }
@@ -179,7 +179,7 @@ export default {
   }
 }
 .c-l{
-      width: 1.8rem;
+      width: 2rem;
       display: inline-block;
       text-align: right;
 }

@@ -126,7 +126,7 @@ export default {
   border-radius: 1.173333rem;
   text-align: center;
   color: #fff !important;
-  font-size: .43rem;
+  font-size: .5rem;
 }
 .pruchase-btn:disabled {
   background: #faaf6b;

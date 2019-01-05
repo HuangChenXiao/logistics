@@ -35,7 +35,7 @@ export default {
     position: absolute;
     left: 5%;
     bottom: .4rem;
-    font-size: .43rem;
+    font-size: .5rem;
     height: 1.066667rem;
     line-height: 1.066667rem;
     width: 90%;

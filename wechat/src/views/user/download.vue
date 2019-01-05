@@ -65,7 +65,7 @@ export default {
 
 <style scoped lang="scss">
 .doc-list {
-  font-size: .43rem;
+  font-size: .5rem;
   background: #fff;
   padding: 0.266667rem;
   .doc-title {

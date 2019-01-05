@@ -70,4 +70,6 @@ html,body{
   i {
     font-style: normal;
   }
-  
+  .vux-tab .vux-tab-item{
+    font-size: .5rem !important;
+  }

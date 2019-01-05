@@ -31,10 +31,10 @@ export default {
 .footer-menu {
   position: fixed;
   bottom: 0;
-  height: 1.4rem;
+  height: 1.8rem;
   border-top: 1px solid #ededed;
   background: #fff;
-  font-size: 0.43rem;
+  font-size: 0.5rem;
   width: 100%;
   text-align: center;
   .item {
@@ -42,8 +42,8 @@ export default {
     width: 50%;
     margin-top: 0.12rem;
     .bg-img {
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 0.8rem;
+      height: 0.8rem;
       margin: 0 auto;
     }
     .od-img {

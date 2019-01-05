@@ -47,8 +47,8 @@ export default {
   background: #fff;
   .item {
     position: relative;
-    font-size: .43rem;
-    padding: .43rem 0.266667rem;
+    font-size: .5rem;
+    padding: .5rem 0.266667rem;
     border-bottom: 1px solid #ededed;
     .next {
       position: absolute;

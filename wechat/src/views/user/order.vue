@@ -458,16 +458,16 @@ export default {
 </script>
 <style>
 .vux-tab .vux-tab-item{
-  font-size: .43rem !important;
+  font-size: .5rem !important;
 }
 .group-content .weui-cells {
-  font-size: 0.43rem;
+  font-size: 0.5rem;
 }
 </style>
 <style scoped lang="scss">
 .item-list {
   background: #fff;
-  font-size: 0.43rem;
+  font-size: 0.5rem;
   .item {
     position: relative;
     border-bottom: 1px solid #ededed;
@@ -508,7 +508,7 @@ export default {
 }
 .mask-content {
   padding-bottom: 0.333333rem;
-  font-size: 0.43rem;
+  font-size: 0.5rem;
   .title {
     text-align: center;
     height: 1.226667rem;
@@ -522,7 +522,7 @@ export default {
     border-top: 1px solid #ededed;
     padding-top: 0.266667rem;
     margin-bottom: 0.266667rem;
-    font-size: 0.43rem;
+    font-size: 0.5rem;
     .reset-btn {
       color: #f00;
       border: 1px solid #f00;
