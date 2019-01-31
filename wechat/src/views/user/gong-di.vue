@@ -241,7 +241,7 @@ export default {
 }
 .s-where {
   color: #f00;
-  font-size: .37rem;
+  font-size: .5rem;
   .op-btn:nth-child(1) {
     position: absolute;
     right: 2rem;

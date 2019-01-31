@@ -504,7 +504,7 @@ export default {
 }
 .s-where {
   color: #f00;
-  font-size: .37rem;
+  font-size: .5rem;
 }
 .mask-content {
   padding-bottom: 0.333333rem;

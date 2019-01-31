@@ -670,16 +670,16 @@ export default {
   .work-item {
     position: relative;
     display: inline-block;
-    height: 1.6rem;
-    width: 1.6rem;
-    border-radius: 1.6rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
     font-weight: 600;
     .ico {
       position: absolute;
       left: 0.5rem;
       top: 0.1rem;
-      width: 0.8rem;
-      height: 0.8rem;
+      width: 1rem;
+      height: 1rem;
     }
     span {
       position: absolute;
