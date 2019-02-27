@@ -20,9 +20,16 @@ namespace ModelDb
         public Nullable<System.DateTime> dBaoYangRiQi { get; set; }
         public Nullable<decimal> iBaoYangGongShi { get; set; }
         public string cBaoYangJiLu { get; set; }
-        public string cWeiXiuChang { get; set; }
         public Nullable<decimal> iBaoYangJinE { get; set; }
         public Nullable<decimal> iDanQiangLiCheng { get; set; }
         public string cBeiZhu { get; set; }
+        public Nullable<int> iState { get; set; }
+        public string cState { get; set; }
+        public string cCreate { get; set; }
+        public Nullable<System.DateTime> dCreate { get; set; }
+        public string cModify { get; set; }
+        public Nullable<System.DateTime> dModify { get; set; }
+        public string cAuditor { get; set; }
+        public Nullable<System.DateTime> dAuditor { get; set; }
     }
 }

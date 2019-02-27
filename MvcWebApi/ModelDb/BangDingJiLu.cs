@@ -16,6 +16,7 @@ namespace ModelDb
     {
         public long AutoID { get; set; }
         public string cChePaiHao { get; set; }
+        public string cGongDiBianMa { get; set; }
         public string openid { get; set; }
         public Nullable<System.DateTime> dShiJian { get; set; }
         public Nullable<int> iBangDingLeiXing { get; set; }

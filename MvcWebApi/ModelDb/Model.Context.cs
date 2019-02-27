@@ -181,5 +181,22 @@ namespace ModelDb
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PROC_OrderSumCount_Result>("PROC_OrderSumCount", cGongDiMingChengParameter, cTuWeiMingChengParameter, cXZDWMingChengParameter, cXingMingParameter, cChePaiHaoParameter, begindDanJuRiQiParameter, enddDanJuRiQiParameter, cGuanLiYuanBianMaParameter);
         }
+    
+        public virtual ObjectResult<PROC_OrderSumDriverCount_Result> PROC_OrderSumDriverCount(string openid, string begindDanJuRiQi, string enddDanJuRiQi)
+        {
+            var openidParameter = openid != null ?
+                new ObjectParameter("openid", openid) :
+                new ObjectParameter("openid", typeof(string));
+    
+            var begindDanJuRiQiParameter = begindDanJuRiQi != null ?
+                new ObjectParameter("BegindDanJuRiQi", begindDanJuRiQi) :
+                new ObjectParameter("BegindDanJuRiQi", typeof(string));
+    
+            var enddDanJuRiQiParameter = enddDanJuRiQi != null ?
+                new ObjectParameter("EnddDanJuRiQi", enddDanJuRiQi) :
+                new ObjectParameter("EnddDanJuRiQi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PROC_OrderSumDriverCount_Result>("PROC_OrderSumDriverCount", openidParameter, begindDanJuRiQiParameter, enddDanJuRiQiParameter);
+        }
     }
 }

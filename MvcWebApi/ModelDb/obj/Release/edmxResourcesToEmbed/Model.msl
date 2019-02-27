@@ -25,6 +25,7 @@
           <ScalarProperty Name="iBangDingLeiXing" ColumnName="iBangDingLeiXing" />
           <ScalarProperty Name="dShiJian" ColumnName="dShiJian" />
           <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
           <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
@@ -33,6 +34,14 @@
     <EntitySetMapping Name="BaoXianJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BaoXianJiLu">
         <MappingFragment StoreEntitySet="BaoXianJiLu">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
           <ScalarProperty Name="dTouBaoRiQi" ColumnName="dTouBaoRiQi" />
@@ -48,10 +57,17 @@
     <EntitySetMapping Name="BaoYangJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BaoYangJiLu">
         <MappingFragment StoreEntitySet="BaoYangJiLu">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
           <ScalarProperty Name="iBaoYangJinE" ColumnName="iBaoYangJinE" />
-          <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
           <ScalarProperty Name="cBaoYangJiLu" ColumnName="cBaoYangJiLu" />
           <ScalarProperty Name="iBaoYangGongShi" ColumnName="iBaoYangGongShi" />
           <ScalarProperty Name="dBaoYangRiQi" ColumnName="dBaoYangRiQi" />
@@ -442,6 +458,9 @@
     <EntitySetMapping Name="TuWeiInfo">
       <EntityTypeMapping TypeName="EBMSystemModel.TuWeiInfo">
         <MappingFragment StoreEntitySet="TuWeiInfo">
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
           <ScalarProperty Name="dDate" ColumnName="dDate" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="cTuWeiDiZhi" ColumnName="cTuWeiDiZhi" />
@@ -550,11 +569,18 @@
     <EntitySetMapping Name="WeiXiuJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.WeiXiuJiLu">
         <MappingFragment StoreEntitySet="WeiXiuJiLu">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
           <ScalarProperty Name="iWeiXiuJinE" ColumnName="iWeiXiuJinE" />
           <ScalarProperty Name="cWeiXiuJiLu" ColumnName="cWeiXiuJiLu" />
-          <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
           <ScalarProperty Name="iWeiXiuGongShi" ColumnName="iWeiXiuGongShi" />
           <ScalarProperty Name="cWeiXiuLeiXing" ColumnName="cWeiXiuLeiXing" />
           <ScalarProperty Name="dWeiXiuRiQi" ColumnName="dWeiXiuRiQi" />
@@ -566,12 +592,20 @@
     <EntitySetMapping Name="WeiZhangJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.WeiZhangJiLu">
         <MappingFragment StoreEntitySet="WeiZhangJiLu">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="dChuLiRiQi" ColumnName="dChuLiRiQi" />
-          <ScalarProperty Name="bShiFouChuLi" ColumnName="bShiFouChuLi" />
           <ScalarProperty Name="iZiFuJinE" ColumnName="iZiFuJinE" />
           <ScalarProperty Name="iFaKuanJinE" ColumnName="iFaKuanJinE" />
           <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="cWeiZhangMiaoShu" ColumnName="cWeiZhangMiaoShu" />
           <ScalarProperty Name="cWeiZhangDiZhi" ColumnName="cWeiZhangDiZhi" />
           <ScalarProperty Name="cWeiZhangLeiXing" ColumnName="cWeiZhangLeiXing" />
           <ScalarProperty Name="dWeiZhangRiQi" ColumnName="dWeiZhangRiQi" />
@@ -721,5 +755,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PROC_OrderSumDriverCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumDriverCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumDriverCount_Result">
+          <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+          <ScalarProperty Name="iNumber" ColumnName="iNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

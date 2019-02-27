@@ -201,6 +201,7 @@
     <Compile Include="Controllers\Home\CheLiangInfoController.cs" />
     <Compile Include="Controllers\Home\ConfirmOrderController.cs" />
     <Compile Include="Controllers\Home\DesEndOrderController.cs" />
+    <Compile Include="Controllers\Home\EditBangDingJiLuGongDiController.cs" />
     <Compile Include="Controllers\Home\EndAllOrderController.cs" />
     <Compile Include="Controllers\Home\EndWaJueJiDingDanController.cs" />
     <Compile Include="Controllers\Home\getChePaiTuWeiController.cs" />
@@ -250,7 +251,9 @@
     <Content Include="Global.asax" />
     <Content Include="Export\OrderExport.ashx" />
     <None Include="Properties\PublishProfiles\NiuAPI.pubxml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

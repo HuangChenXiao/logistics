@@ -11,10 +11,11 @@
           </Key>
           <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+          <Property Name="cGongDiBianMa" Type="varchar" MaxLength="20" />
           <Property Name="openid" Type="varchar" MaxLength="50" />
           <Property Name="dShiJian" Type="datetime" />
           <Property Name="iBangDingLeiXing" Type="int" />
-          <Property Name="cDiZhi" Type="varchar" MaxLength="100" />
+          <Property Name="cDiZhi" Type="varchar" MaxLength="200" />
           <Property Name="iDelete" Type="int" />
           <Property Name="iFangShi" Type="int" />
           <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
@@ -32,21 +33,36 @@
           <Property Name="dTouBaoRiQi" Type="datetime" />
           <Property Name="dDaoQiRiQi" Type="datetime" />
           <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+          <Property Name="iState" Type="int" />
+          <Property Name="cState" Type="varchar" MaxLength="20" />
+          <Property Name="cCreate" Type="varchar" MaxLength="30" />
+          <Property Name="dCreate" Type="datetime" />
+          <Property Name="cModify" Type="varchar" MaxLength="30" />
+          <Property Name="dModify" Type="datetime" />
+          <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+          <Property Name="dAuditor" Type="datetime" />
         </EntityType>
         <EntityType Name="BaoYangJiLu">
           <Key>
             <PropertyRef Name="AutoID" />
           </Key>
           <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
           <Property Name="cBaoYangLeiXing" Type="varchar" MaxLength="50" />
           <Property Name="dBaoYangRiQi" Type="datetime" />
           <Property Name="iBaoYangGongShi" Type="money" />
-          <Property Name="cBaoYangJiLu" Type="varchar" MaxLength="300" />
-          <Property Name="cWeiXiuChang" Type="varchar" MaxLength="100" />
+          <Property Name="cBaoYangJiLu" Type="varchar" MaxLength="3000" />
           <Property Name="iBaoYangJinE" Type="money" />
           <Property Name="iDanQiangLiCheng" Type="money" />
-          <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+          <Property Name="cBeiZhu" Type="varchar" MaxLength="1500" />
+          <Property Name="iState" Type="int" />
+          <Property Name="cState" Type="varchar" MaxLength="20" />
+          <Property Name="cCreate" Type="varchar" MaxLength="30" />
+          <Property Name="dCreate" Type="datetime" />
+          <Property Name="cModify" Type="varchar" MaxLength="30" />
+          <Property Name="dModify" Type="datetime" />
+          <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+          <Property Name="dAuditor" Type="datetime" />
         </EntityType>
         <EntityType Name="BaseCode">
           <Key>
@@ -425,6 +441,9 @@
           <Property Name="cTuWeiDiZhi" Type="varchar" MaxLength="100" />
           <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
           <Property Name="dDate" Type="datetime" />
+          <Property Name="longitude" Type="varchar" MaxLength="100" />
+          <Property Name="latitude" Type="varchar" MaxLength="100" />
+          <Property Name="position" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="VouchCode">
           <Key>
@@ -519,31 +538,46 @@
             <PropertyRef Name="AutoID" />
           </Key>
           <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
           <Property Name="dWeiXiuRiQi" Type="datetime" />
           <Property Name="cWeiXiuLeiXing" Type="varchar" MaxLength="50" />
           <Property Name="iWeiXiuGongShi" Type="money" />
-          <Property Name="cWeiXiuChang" Type="varchar" MaxLength="60" />
-          <Property Name="cWeiXiuJiLu" Type="varchar" MaxLength="300" />
+          <Property Name="cWeiXiuJiLu" Type="varchar" MaxLength="3000" />
           <Property Name="iWeiXiuJinE" Type="money" />
           <Property Name="iDanQiangLiCheng" Type="money" />
-          <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+          <Property Name="cBeiZhu" Type="varchar" MaxLength="1500" />
+          <Property Name="iState" Type="int" />
+          <Property Name="cState" Type="varchar" MaxLength="20" />
+          <Property Name="cCreate" Type="varchar" MaxLength="30" />
+          <Property Name="dCreate" Type="datetime" />
+          <Property Name="cModify" Type="varchar" MaxLength="30" />
+          <Property Name="dModify" Type="datetime" />
+          <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+          <Property Name="dAuditor" Type="datetime" />
         </EntityType>
         <EntityType Name="WeiZhangJiLu">
           <Key>
             <PropertyRef Name="AutoID" />
           </Key>
           <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
           <Property Name="dWeiZhangRiQi" Type="datetime" />
           <Property Name="cWeiZhangLeiXing" Type="varchar" MaxLength="30" />
-          <Property Name="cWeiZhangDiZhi" Type="varchar" MaxLength="100" />
+          <Property Name="cWeiZhangDiZhi" Type="varchar" MaxLength="200" />
+          <Property Name="cWeiZhangMiaoShu" Type="varchar" MaxLength="1000" />
           <Property Name="openid" Type="varchar" MaxLength="50" />
           <Property Name="iFaKuanJinE" Type="money" />
           <Property Name="iZiFuJinE" Type="money" />
-          <Property Name="bShiFouChuLi" Type="bit" />
           <Property Name="dChuLiRiQi" Type="datetime" />
-          <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+          <Property Name="cBeiZhu" Type="varchar" MaxLength="1000" />
+          <Property Name="iState" Type="int" />
+          <Property Name="cState" Type="varchar" MaxLength="20" />
+          <Property Name="cCreate" Type="varchar" MaxLength="30" />
+          <Property Name="dCreate" Type="datetime" />
+          <Property Name="cModify" Type="varchar" MaxLength="30" />
+          <Property Name="dModify" Type="datetime" />
+          <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+          <Property Name="dAuditor" Type="datetime" />
         </EntityType>
         <EntityType Name="XianLuInfo">
           <Key>
@@ -714,6 +748,11 @@
           <Parameter Name="BegindDanJuRiQi" Type="nvarchar" Mode="In" />
           <Parameter Name="EnddDanJuRiQi" Type="nvarchar" Mode="In" />
           <Parameter Name="cGuanLiYuanBianMa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_OrderSumDriverCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="openid" Type="nvarchar" Mode="In" />
+          <Parameter Name="BegindDanJuRiQi" Type="nvarchar" Mode="In" />
+          <Parameter Name="EnddDanJuRiQi" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="EBMSystemModelStoreContainer">
           <EntitySet Name="BangDingJiLu" EntityType="Self.BangDingJiLu" Schema="dbo" store:Type="Tables" />
@@ -887,6 +926,11 @@
           <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
           <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
           <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
+          <FunctionImport Name="PROC_OrderSumDriverCount" ReturnType="Collection(EBMSystemModel.PROC_OrderSumDriverCount_Result)">
+            <Parameter Name="openid" Mode="In" Type="String" />
+            <Parameter Name="BegindDanJuRiQi" Mode="In" Type="String" />
+            <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PROC_OrderSumCount_Result">
           <Property Type="Int64" Name="RowNo" Nullable="true" />
@@ -900,10 +944,11 @@
           </Key>
           <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cChePaiHao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cGongDiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dShiJian" Type="DateTime" Precision="3" />
           <Property Name="iBangDingLeiXing" Type="Int32" />
-          <Property Name="cDiZhi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cDiZhi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="iDelete" Type="Int32" />
           <Property Name="iFangShi" Type="Int32" />
           <Property Name="cShangBanBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -921,21 +966,36 @@
           <Property Name="dTouBaoRiQi" Type="DateTime" Precision="3" />
           <Property Name="dDaoQiRiQi" Type="DateTime" Precision="3" />
           <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="iState" Type="Int32" />
+          <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dCreate" Type="DateTime" Precision="3" />
+          <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dModify" Type="DateTime" Precision="3" />
+          <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dAuditor" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BaoYangJiLu">
           <Key>
             <PropertyRef Name="AutoID" />
           </Key>
           <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="cBaoYangLeiXing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dBaoYangRiQi" Type="DateTime" Precision="3" />
           <Property Name="iBaoYangGongShi" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cBaoYangJiLu" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="cWeiXiuChang" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cBaoYangJiLu" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="iBaoYangJinE" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="iDanQiangLiCheng" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cBeiZhu" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="iState" Type="Int32" />
+          <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dCreate" Type="DateTime" Precision="3" />
+          <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dModify" Type="DateTime" Precision="3" />
+          <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dAuditor" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BaseCode">
           <Key>
@@ -1303,6 +1363,9 @@
           <Property Name="cTuWeiDiZhi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="dDate" Type="DateTime" Precision="3" />
+          <Property Name="longitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VouchCode">
           <Key>
@@ -1397,31 +1460,46 @@
             <PropertyRef Name="AutoID" />
           </Key>
           <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="dWeiXiuRiQi" Type="DateTime" Precision="3" />
           <Property Name="cWeiXiuLeiXing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="iWeiXiuGongShi" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cWeiXiuChang" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="cWeiXiuJiLu" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="cWeiXiuJiLu" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="iWeiXiuJinE" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="iDanQiangLiCheng" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cBeiZhu" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="iState" Type="Int32" />
+          <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dCreate" Type="DateTime" Precision="3" />
+          <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dModify" Type="DateTime" Precision="3" />
+          <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dAuditor" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="WeiZhangJiLu">
           <Key>
             <PropertyRef Name="AutoID" />
           </Key>
           <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="dWeiZhangRiQi" Type="DateTime" Precision="3" />
           <Property Name="cWeiZhangLeiXing" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="cWeiZhangDiZhi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cWeiZhangDiZhi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cWeiZhangMiaoShu" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="openid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="iFaKuanJinE" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="iZiFuJinE" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="bShiFouChuLi" Type="Boolean" />
           <Property Name="dChuLiRiQi" Type="DateTime" Precision="3" />
-          <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cBeiZhu" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="iState" Type="Int32" />
+          <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dCreate" Type="DateTime" Precision="3" />
+          <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dModify" Type="DateTime" Precision="3" />
+          <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dAuditor" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="XianLuInfo">
           <Key>
@@ -1557,6 +1635,12 @@
           <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="PROC_OrderSumDriverCount_Result">
+          <Property Type="Int64" Name="RowNo" Nullable="true" />
+          <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="iNumber" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1587,6 +1671,7 @@
                 <ScalarProperty Name="iBangDingLeiXing" ColumnName="iBangDingLeiXing" />
                 <ScalarProperty Name="dShiJian" ColumnName="dShiJian" />
                 <ScalarProperty Name="openid" ColumnName="openid" />
+                <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
                 <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
                 <ScalarProperty Name="AutoID" ColumnName="AutoID" />
               </MappingFragment>
@@ -1595,6 +1680,14 @@
           <EntitySetMapping Name="BaoXianJiLu">
             <EntityTypeMapping TypeName="EBMSystemModel.BaoXianJiLu">
               <MappingFragment StoreEntitySet="BaoXianJiLu">
+                <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+                <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+                <ScalarProperty Name="dModify" ColumnName="dModify" />
+                <ScalarProperty Name="cModify" ColumnName="cModify" />
+                <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+                <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+                <ScalarProperty Name="cState" ColumnName="cState" />
+                <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
                 <ScalarProperty Name="dTouBaoRiQi" ColumnName="dTouBaoRiQi" />
@@ -1610,10 +1703,17 @@
           <EntitySetMapping Name="BaoYangJiLu">
             <EntityTypeMapping TypeName="EBMSystemModel.BaoYangJiLu">
               <MappingFragment StoreEntitySet="BaoYangJiLu">
+                <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+                <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+                <ScalarProperty Name="dModify" ColumnName="dModify" />
+                <ScalarProperty Name="cModify" ColumnName="cModify" />
+                <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+                <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+                <ScalarProperty Name="cState" ColumnName="cState" />
+                <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
                 <ScalarProperty Name="iBaoYangJinE" ColumnName="iBaoYangJinE" />
-                <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
                 <ScalarProperty Name="cBaoYangJiLu" ColumnName="cBaoYangJiLu" />
                 <ScalarProperty Name="iBaoYangGongShi" ColumnName="iBaoYangGongShi" />
                 <ScalarProperty Name="dBaoYangRiQi" ColumnName="dBaoYangRiQi" />
@@ -2004,6 +2104,9 @@
           <EntitySetMapping Name="TuWeiInfo">
             <EntityTypeMapping TypeName="EBMSystemModel.TuWeiInfo">
               <MappingFragment StoreEntitySet="TuWeiInfo">
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="dDate" ColumnName="dDate" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="cTuWeiDiZhi" ColumnName="cTuWeiDiZhi" />
@@ -2112,11 +2215,18 @@
           <EntitySetMapping Name="WeiXiuJiLu">
             <EntityTypeMapping TypeName="EBMSystemModel.WeiXiuJiLu">
               <MappingFragment StoreEntitySet="WeiXiuJiLu">
+                <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+                <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+                <ScalarProperty Name="dModify" ColumnName="dModify" />
+                <ScalarProperty Name="cModify" ColumnName="cModify" />
+                <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+                <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+                <ScalarProperty Name="cState" ColumnName="cState" />
+                <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="iDanQiangLiCheng" ColumnName="iDanQiangLiCheng" />
                 <ScalarProperty Name="iWeiXiuJinE" ColumnName="iWeiXiuJinE" />
                 <ScalarProperty Name="cWeiXiuJiLu" ColumnName="cWeiXiuJiLu" />
-                <ScalarProperty Name="cWeiXiuChang" ColumnName="cWeiXiuChang" />
                 <ScalarProperty Name="iWeiXiuGongShi" ColumnName="iWeiXiuGongShi" />
                 <ScalarProperty Name="cWeiXiuLeiXing" ColumnName="cWeiXiuLeiXing" />
                 <ScalarProperty Name="dWeiXiuRiQi" ColumnName="dWeiXiuRiQi" />
@@ -2128,12 +2238,20 @@
           <EntitySetMapping Name="WeiZhangJiLu">
             <EntityTypeMapping TypeName="EBMSystemModel.WeiZhangJiLu">
               <MappingFragment StoreEntitySet="WeiZhangJiLu">
+                <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+                <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+                <ScalarProperty Name="dModify" ColumnName="dModify" />
+                <ScalarProperty Name="cModify" ColumnName="cModify" />
+                <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+                <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+                <ScalarProperty Name="cState" ColumnName="cState" />
+                <ScalarProperty Name="iState" ColumnName="iState" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="dChuLiRiQi" ColumnName="dChuLiRiQi" />
-                <ScalarProperty Name="bShiFouChuLi" ColumnName="bShiFouChuLi" />
                 <ScalarProperty Name="iZiFuJinE" ColumnName="iZiFuJinE" />
                 <ScalarProperty Name="iFaKuanJinE" ColumnName="iFaKuanJinE" />
                 <ScalarProperty Name="openid" ColumnName="openid" />
+                <ScalarProperty Name="cWeiZhangMiaoShu" ColumnName="cWeiZhangMiaoShu" />
                 <ScalarProperty Name="cWeiZhangDiZhi" ColumnName="cWeiZhangDiZhi" />
                 <ScalarProperty Name="cWeiZhangLeiXing" ColumnName="cWeiZhangLeiXing" />
                 <ScalarProperty Name="dWeiZhangRiQi" ColumnName="dWeiZhangRiQi" />
@@ -2283,6 +2401,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PROC_OrderSumDriverCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumDriverCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumDriverCount_Result">
+                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+                <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+                <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+                <ScalarProperty Name="iNumber" ColumnName="iNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

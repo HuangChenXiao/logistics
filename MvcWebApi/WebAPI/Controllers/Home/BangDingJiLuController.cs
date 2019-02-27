@@ -49,7 +49,7 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
-        public ResponseMessageResult Get(int iBangDingLeiXing, string cChePaiHao = null, string cDiZhi = null, string cShangBanBianMa = null)
+        public ResponseMessageResult Get(int iBangDingLeiXing, string cChePaiHao = null, string cDiZhi = null, string cShangBanBianMa = null, string cGongDiBianMa=null)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
@@ -60,6 +60,7 @@ namespace WebAPI.Controllers.Home
                 jilu.iFangShi = 0;
                 jilu.cChePaiHao = cChePaiHao;
                 jilu.cDiZhi = cDiZhi;
+                jilu.cGongDiBianMa = cGongDiBianMa;
                 jilu.cShangBanBianMa = iBangDingLeiXing == 1 ? cShangBanBianMa : null;
                 jilu.dShiJian = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 db.BangDingJiLu.Add(jilu);

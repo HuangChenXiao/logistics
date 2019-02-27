@@ -6,10 +6,11 @@
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+    <Property Name="cGongDiBianMa" Type="varchar" MaxLength="20" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="dShiJian" Type="datetime" />
     <Property Name="iBangDingLeiXing" Type="int" />
-    <Property Name="cDiZhi" Type="varchar" MaxLength="100" />
+    <Property Name="cDiZhi" Type="varchar" MaxLength="200" />
     <Property Name="iDelete" Type="int" />
     <Property Name="iFangShi" Type="int" />
     <Property Name="cShangBanBianMa" Type="varchar" MaxLength="20" />
@@ -27,21 +28,36 @@
     <Property Name="dTouBaoRiQi" Type="datetime" />
     <Property Name="dDaoQiRiQi" Type="datetime" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="BaoYangJiLu">
     <Key>
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
     <Property Name="cBaoYangLeiXing" Type="varchar" MaxLength="50" />
     <Property Name="dBaoYangRiQi" Type="datetime" />
     <Property Name="iBaoYangGongShi" Type="money" />
-    <Property Name="cBaoYangJiLu" Type="varchar" MaxLength="300" />
-    <Property Name="cWeiXiuChang" Type="varchar" MaxLength="100" />
+    <Property Name="cBaoYangJiLu" Type="varchar" MaxLength="3000" />
     <Property Name="iBaoYangJinE" Type="money" />
     <Property Name="iDanQiangLiCheng" Type="money" />
-    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="1500" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="BaseCode">
     <Key>
@@ -420,6 +436,9 @@
     <Property Name="cTuWeiDiZhi" Type="varchar" MaxLength="100" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
     <Property Name="dDate" Type="datetime" />
+    <Property Name="longitude" Type="varchar" MaxLength="100" />
+    <Property Name="latitude" Type="varchar" MaxLength="100" />
+    <Property Name="position" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="VouchCode">
     <Key>
@@ -514,31 +533,46 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
     <Property Name="dWeiXiuRiQi" Type="datetime" />
     <Property Name="cWeiXiuLeiXing" Type="varchar" MaxLength="50" />
     <Property Name="iWeiXiuGongShi" Type="money" />
-    <Property Name="cWeiXiuChang" Type="varchar" MaxLength="60" />
-    <Property Name="cWeiXiuJiLu" Type="varchar" MaxLength="300" />
+    <Property Name="cWeiXiuJiLu" Type="varchar" MaxLength="3000" />
     <Property Name="iWeiXiuJinE" Type="money" />
     <Property Name="iDanQiangLiCheng" Type="money" />
-    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="1500" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="WeiZhangJiLu">
     <Key>
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
     <Property Name="dWeiZhangRiQi" Type="datetime" />
     <Property Name="cWeiZhangLeiXing" Type="varchar" MaxLength="30" />
-    <Property Name="cWeiZhangDiZhi" Type="varchar" MaxLength="100" />
+    <Property Name="cWeiZhangDiZhi" Type="varchar" MaxLength="200" />
+    <Property Name="cWeiZhangMiaoShu" Type="varchar" MaxLength="1000" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
     <Property Name="iFaKuanJinE" Type="money" />
     <Property Name="iZiFuJinE" Type="money" />
-    <Property Name="bShiFouChuLi" Type="bit" />
     <Property Name="dChuLiRiQi" Type="datetime" />
-    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="1000" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="XianLuInfo">
     <Key>
@@ -709,6 +743,11 @@
     <Parameter Name="BegindDanJuRiQi" Type="nvarchar" Mode="In" />
     <Parameter Name="EnddDanJuRiQi" Type="nvarchar" Mode="In" />
     <Parameter Name="cGuanLiYuanBianMa" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_OrderSumDriverCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="openid" Type="nvarchar" Mode="In" />
+    <Parameter Name="BegindDanJuRiQi" Type="nvarchar" Mode="In" />
+    <Parameter Name="EnddDanJuRiQi" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="EBMSystemModelStoreContainer">
     <EntitySet Name="BangDingJiLu" EntityType="Self.BangDingJiLu" Schema="dbo" store:Type="Tables" />

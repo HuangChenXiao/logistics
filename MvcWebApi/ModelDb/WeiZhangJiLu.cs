@@ -19,11 +19,19 @@ namespace ModelDb
         public Nullable<System.DateTime> dWeiZhangRiQi { get; set; }
         public string cWeiZhangLeiXing { get; set; }
         public string cWeiZhangDiZhi { get; set; }
+        public string cWeiZhangMiaoShu { get; set; }
         public string openid { get; set; }
         public Nullable<decimal> iFaKuanJinE { get; set; }
         public Nullable<decimal> iZiFuJinE { get; set; }
-        public Nullable<bool> bShiFouChuLi { get; set; }
         public Nullable<System.DateTime> dChuLiRiQi { get; set; }
         public string cBeiZhu { get; set; }
+        public Nullable<int> iState { get; set; }
+        public string cState { get; set; }
+        public string cCreate { get; set; }
+        public Nullable<System.DateTime> dCreate { get; set; }
+        public string cModify { get; set; }
+        public Nullable<System.DateTime> dModify { get; set; }
+        public string cAuditor { get; set; }
+        public Nullable<System.DateTime> dAuditor { get; set; }
     }
 }

@@ -22,5 +22,8 @@ namespace ModelDb
         public string cTuWeiDiZhi { get; set; }
         public string cBeiZhu { get; set; }
         public Nullable<System.DateTime> dDate { get; set; }
+        public string longitude { get; set; }
+        public string latitude { get; set; }
+        public string position { get; set; }
     }
 }
