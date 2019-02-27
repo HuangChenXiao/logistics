@@ -13,7 +13,7 @@
       <check-icon :value.sync="xianding_chelaing" type="plain"> </check-icon>
       </div> -->
       <div class="address">
-        当前位置：{{bItem.start_position}}
+        当前位置：{{bItem.cDiZhi}}
         <i class="ico ico-ad" onclick="location.reload()"></i>
       </div>
 
@@ -148,7 +148,7 @@
     <!-- <div style="margin:0">
       <group label-width="4.5em" label-margin-right="2em" label-align="right">
 
-        <x-input title="当前位置" placeholder="定位中..." v-model="bItem.start_position"></x-input>
+        <x-input title="当前位置" placeholder="定位中..." v-model="bItem.cDiZhi"></x-input>
       </group>
     </div> -->
     <admin-bottom route_name="admin-index"></admin-bottom>
@@ -209,7 +209,8 @@ import {
   wechatUser,
   TuWeiInfo,
   getChePaiTuWei,
-  UpdateTuWeriSortDate
+  UpdateTuWeriSortDate,
+  EditBangDingJiLuGongDi
 } from "@/api/home.js";
 import { TemplateMsg } from "@/api/wechat.js";
 export default {
@@ -240,7 +241,7 @@ export default {
       index: 0,
       showWorkSite: false,
       bItem: {
-        start_position: "厦门市",
+        cDiZhi: "",
         cGongDiBianMa: null, //工地编码
         cGongDiMingCheng:null,//工地名称
         cChePaiHao: null, //车牌号
@@ -335,11 +336,11 @@ export default {
       //未选择工地时弹出
       this.showWorkSite = true;
     }
-    // if (_this.store_query.start_position) {
-    //   _this.bItem.start_position = _this.store_query.start_position
-    // } else {
-    //   _this.get_address()
-    // }
+    if (_this.store_query.cDiZhi) {
+      _this.bItem.cDiZhi = _this.store_query.cDiZhi
+    } else {
+      _this.get_address()
+    }
     this.set_time();
     // setTimeout(() => {
     //   _this.$vux.alert.show({
@@ -404,7 +405,8 @@ export default {
       } else {
         BangDingJiLu({
           iBangDingLeiXing: work_status,
-          cShangBanBianMa: _this.$store.getters.user_info.role_code
+          cShangBanBianMa: _this.$store.getters.user_info.role_code,
+          cGongDiBianMa:_this.cGongDiBianMa
         }).then(res => {
           _this.work_status = work_status;
         });
@@ -445,6 +447,9 @@ export default {
     selectWork(val) {
       this.$store.dispatch("SGongDiMingCheng", val).then(res => {
         localStorage.setItem("cGongDiMingCheng", JSON.stringify(val));
+        EditBangDingJiLuGongDi({cGongDiBianMa:val.cGongDiBianMa}).then(res=>{
+          console.log('修改成功')
+        })
       });
       this.showWorkSite = false;
     },
@@ -582,10 +587,10 @@ export default {
     },
     get_address() {
       let _this = this;
-      _this.bItem.start_position = "正在定位。。。";
+      _this.bItem.cDiZhi = "正在定位。。。";
       _this.$store.dispatch("setisLoading", true);
       getformattedAddress.then(res => {
-        _this.bItem.start_position = res.regeocode.formattedAddress;
+        _this.bItem.cDiZhi = res.regeocode.formattedAddress;
         // console.log(res.regeocode.formattedAddress)
         _this.$store.dispatch("setisLoading", false);
       });

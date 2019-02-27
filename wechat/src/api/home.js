@@ -166,4 +166,10 @@ export function UpdateTuWeriSortDate(data) {
         params: data
     })
 }
-
+export function EditBangDingJiLuGongDi(data) {
+    return request({
+        url: 'EditBangDingJiLuGongDi',
+        method: "get",
+        params: data
+    })
+}
