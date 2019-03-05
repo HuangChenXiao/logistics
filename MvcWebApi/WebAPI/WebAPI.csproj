@@ -133,6 +133,10 @@
       <HintPath>..\..\..\..\Nuoda\trunk\PC\Nuodj Special\Nuodj_Web_Special\bin\WebMatrix.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WeChatSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WeChatSDK\bin\Debug\WeChatSDK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -279,10 +283,6 @@
     <ProjectReference Include="..\ModelDb\ModelDb.csproj">
       <Project>{e5a23736-8ad5-48a7-abae-ce40ac051e14}</Project>
       <Name>ModelDb</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WeChatSDK\WeChatSDK.csproj">
-      <Project>{73a6c720-fcf2-4240-8c76-ff403e279fd8}</Project>
-      <Name>WeChatSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
