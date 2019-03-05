@@ -83,4 +83,3 @@ F:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramewo
 F:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 F:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
 F:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb
-F:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache

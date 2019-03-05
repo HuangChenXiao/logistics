@@ -116,5 +116,41 @@ namespace WebAPI.Controllers.Home
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
+        [ResponseType(typeof(TuWeiInfo))]
+        public ResponseMessageResult Put(TuWeiInfo TuWeiInfo)
+        {
+            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+            if (!string.IsNullOrEmpty(openid))
+            {
+                var count = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == TuWeiInfo.cTuWeiBianMa).Count();;
+                if (count>1)
+                {
+                    model.message = "土尾编码不能重复";
+                    model.status_code = 401;
+                    return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                }
+                var info = db.TuWeiInfo.Find(TuWeiInfo.cTuWeiBianMa);
+                info.longitude = TuWeiInfo.longitude;
+                info.latitude = TuWeiInfo.latitude;
+                info.cTuWeiDiZhi = TuWeiInfo.cTuWeiDiZhi;
+                try
+                {
+                    db.SaveChanges();
+                    model.message = "新增成功";
+                    model.status_code = 200;
+                }
+                catch (Exception ex)
+                {
+                    model.message = ex.Message;
+                    model.status_code = 401;
+                }
+            }
+            else
+            {
+                model.message = "微信授权失败";
+                model.status_code = 401;
+            }
+            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+        }
     }
 }
