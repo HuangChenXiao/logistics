@@ -2,7 +2,7 @@
   <div>
     <u-header title="土尾列表" route="admin-user" :route="route" :iButton="true">
       <div class="s-where">
-        <span class="op-btn" @click="getAddForm">新增</span>
+        <span class="op-btn" @click="getAddForm('create')">新增</span>
         <span class="op-btn" @click="showWhere=true">查询</span>
       </div>
     </u-header>
@@ -17,6 +17,9 @@
               <div class="n1" v-if="item.cTuWeiDiZhi">土尾地址：{{item.cTuWeiDiZhi}}</div>
               <div class="n1">收费方式：{{item.cShouFeiFangShi}}</div>
             </section>
+            <div class="item-opt">
+              <div class="edit-btn" @click="getAddForm('update',item)">编辑</div>
+            </div>
           </div>
           <load-more tip="加载中" v-if="!onFetching"></load-more>
           <div class="no-more-data" v-if="noData">
@@ -46,8 +49,8 @@
                 <span>新增土尾信息</span> 
             </div>
             <!-- <x-input title="土尾编码" placeholder="请输入土尾编码" v-model="ruleForm.cTuWeiBianMa"></x-input> -->
-            <x-input title="土尾名称" placeholder="请输入土尾名称" v-model="ruleForm.cTuWeiMingCheng"></x-input>
-            <selector title="收费方式" placeholder="请选择收费方式" :options="['免费', '付费']" v-model="ruleForm.cShouFeiFangShi"></selector>
+            <x-input v-show="TuWeiStatus=='create'" title="土尾名称" placeholder="请输入土尾名称" v-model="ruleForm.cTuWeiMingCheng"></x-input>
+            <selector v-show="TuWeiStatus=='create'" title="收费方式" placeholder="请选择收费方式" :options="['免费', '付费']" v-model="ruleForm.cShouFeiFangShi"></selector>
             <x-input title="地址选择" readonly>
                 <x-button slot="right" type="primary" @click.native="getMapCenter()"  mini style="background-color: #fff;;color:#f00;border:1px solid #f00">{{select_map}}</x-button>
             </x-input>
@@ -80,7 +83,7 @@
 import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
-import { TuWeiInfo, EditTuWeiInfo } from "@/api/home.js";
+import { TuWeiInfo, EditTuWeiInfo, PutTuWeiInfo } from "@/api/home.js";
 import getformattedAddress from "@/map/index.js";
 const list = () => [
   { key: 0, value: "工程车订单" },
@@ -110,6 +113,7 @@ export default {
         pagesize: 10,
         keyword: null //模糊搜索
       },
+      TuWeiStatus: null,
       role_code: localStorage.getItem("role_code"),
       wj_order_list: [],
       order_list: [],
@@ -209,22 +213,27 @@ export default {
           _this.map.add(marker);
 
           var geocoder = new AMap.Geocoder({
-              radius: 1000,
-              extensions: 'all'
-          })
-          geocoder.getAddress([lng, lat], function (status, result) {
-              // alert(JSON.stringify(result))
-              if (status === 'complete' && result.info === 'OK') {
-                  _this.ruleForm.cTuWeiDiZhi = result.regeocode.formattedAddress;
-              }
-          })
+            radius: 1000,
+            extensions: "all"
+          });
+          geocoder.getAddress([lng, lat], function(status, result) {
+            // alert(JSON.stringify(result))
+            if (status === "complete" && result.info === "OK") {
+              _this.ruleForm.cTuWeiDiZhi = result.regeocode.formattedAddress;
+            }
+          });
         });
 
         _this.showTuWeiMap = true;
       });
     },
-    getAddForm() {
-      this.resetForm();
+    getAddForm(status, item) {
+      if (status == "create") {
+        this.resetForm();
+      } else {
+        this.ruleForm = Object.assign({}, item);
+      }
+      this.TuWeiStatus = status;
       this.showTuWei = true;
     },
     resetForm() {
@@ -250,19 +259,35 @@ export default {
       //   return;
       // }
       this.loading_tuwei = true;
-      EditTuWeiInfo(this.ruleForm)
-        .then(res => {
-          this.loading_tuwei = false;
-          this.showTuWei = false;
-          this.search_order();
-          this.$vux.alert.show({
-            title: "提示",
-            content: "土尾新增成功"
+      if (this.PutTuWeiInfo == "create") {
+        EditTuWeiInfo(this.ruleForm)
+          .then(res => {
+            this.loading_tuwei = false;
+            this.showTuWei = false;
+            this.search_order();
+            this.$vux.alert.show({
+              title: "提示",
+              content: "土尾新增成功"
+            });
+          })
+          .catch(res => {
+            this.loading_tuwei = false;
           });
-        })
-        .catch(res => {
-          this.loading_tuwei = false;
-        });
+      } else {
+        PutTuWeiInfo(this.ruleForm)
+          .then(res => {
+            this.loading_tuwei = false;
+            this.showTuWei = false;
+            this.search_order();
+            this.$vux.alert.show({
+              title: "提示",
+              content: "土尾修改成功"
+            });
+          })
+          .catch(res => {
+            this.loading_tuwei = false;
+          });
+      }
     },
     search_order() {
       this.init_query();
@@ -506,6 +531,24 @@ export default {
     line-height: 1.07rem;
     font-size: 0.43rem;
     border-bottom: 1px solid #ddd;
+  }
+}
+.item-opt {
+  height: 1.33rem;
+  line-height: 1.33rem;
+  border-top: 1px solid #ededed;
+  text-align: right;
+  padding-right: 0.4rem;
+  .edit-btn {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #f00;
+    color: #f00;
+    height: 1.07rem;
+    line-height: 1.07rem;
+    width: 1.6rem;
+    border-radius: 5px;
+    text-align: center;
   }
 }
 </style>

@@ -152,6 +152,13 @@ export function EditTuWeiInfo(data) {
         data
     })
 }
+export function PutTuWeiInfo(data) {
+    return request({
+        url: 'TuWeiInfo',
+        method: "put",
+        data
+    })
+}
 export function getChePaiTuWei(data) {
     return request({
         url: 'getChePaiTuWei',
