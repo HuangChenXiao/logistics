@@ -41,13 +41,8 @@ const user = {
     //工地名称
     SGongDiMingCheng({ commit }, val) {
       return new Promise((resolve, reject) => {
-        if (val) {
-          commit('SET_gongdi_info', val)
-          resolve(val)
-        }
-        else {
-          reject('工地不能为空')
-        }
+        commit('SET_gongdi_info', val)
+        resolve(val)
       })
     },
     // 登录

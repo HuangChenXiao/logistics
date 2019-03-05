@@ -406,7 +406,8 @@ export default {
         BangDingJiLu({
           iBangDingLeiXing: work_status,
           cShangBanBianMa: _this.$store.getters.user_info.role_code,
-          cGongDiBianMa:_this.cGongDiBianMa
+          cGongDiBianMa:_this.cGongDiBianMa,
+          cDiZhi:_this.bItem.cDiZhi
         }).then(res => {
           _this.work_status = work_status;
         });
