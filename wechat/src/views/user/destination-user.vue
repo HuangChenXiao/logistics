@@ -19,10 +19,10 @@
         <span>我的订单</span>
         <i class="next"></i>
       </router-link>
-      <!-- <router-link :to="{name:'route-line', query:{title:'路线'}}"class="item">
-                <span>路线</span>
-                <i class="next"></i>
-            </router-link> -->
+      <router-link :to="{name:'tu-mudi-wei', query:{title:'土尾列表'}}"class="item">
+          <span>土尾列表</span>
+          <i class="next"></i>
+      </router-link>
     </div>
     <!-- <div style="height:1.5rem"></div> -->
     <!-- <destination-bottom route_name="admin-user"></destination-bottom> -->
@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import destinationBottom from '@/components/destinationBottom'
+import destinationBottom from "@/components/destinationBottom";
 export default {
   components: {
     destinationBottom
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -43,7 +43,7 @@ export default {
   position: relative;
   background: #f00;
   padding: 0.533333rem 1.04rem;
-  font-size: .5rem;
+  font-size: 0.5rem;
   color: #fff;
   .name {
     height: 0.586667rem;
@@ -64,8 +64,8 @@ export default {
   background: #fff;
   .item {
     position: relative;
-    font-size: .5rem;
-    padding: .5rem 0.266667rem;
+    font-size: 0.5rem;
+    padding: 0.5rem 0.266667rem;
     border-bottom: 1px solid #ededed;
     .next {
       position: absolute;

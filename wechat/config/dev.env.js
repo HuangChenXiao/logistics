@@ -6,7 +6,7 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   BASE_API: '"http://localhost:59358/api/"',
   WECHAT_API: '"http://localhost:59358/"',
-  // BASE_API: '"http://test.chaomafu.com/api/API/"',
-  // WECHAT_API: '"http://test.chaomafu.com/API/"',
+  // BASE_API: '"https://mobile.xmxtm.cn/api/API/"',
+  // WECHAT_API: '"https://mobile.xmxtm.cn/API/"',
   IMG_URL: '""',
 })

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-header title="土尾列表" route="admin-user" :iButton="true">
+    <u-header title="土尾列表" route="admin-user" :route="route" :iButton="true">
       <div class="s-where">
         <span class="op-btn" @click="getAddForm">新增</span>
         <span class="op-btn" @click="showWhere=true">查询</span>
@@ -14,6 +14,7 @@
             <section>
               <div class="n1">土尾编码：{{item.cTuWeiBianMa}}</div>
               <div class="n1">土尾名称：{{item.cTuWeiMingCheng}}</div>
+              <div class="n1" v-if="item.cTuWeiDiZhi">土尾地址：{{item.cTuWeiDiZhi}}</div>
               <div class="n1">收费方式：{{item.cShouFeiFangShi}}</div>
             </section>
           </div>
@@ -39,7 +40,7 @@
         </group>
       </div>
     </div>
-    <x-dialog v-model="showTuWei" :hide-on-blur="true" class="dialog-demo">
+    <x-dialog v-model="showTuWei" :hide-on-blur="true" class="dialog-demo" mask-z-index="1">
         <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
             <div class="title">
                 <span>新增土尾信息</span> 
@@ -47,12 +48,29 @@
             <!-- <x-input title="土尾编码" placeholder="请输入土尾编码" v-model="ruleForm.cTuWeiBianMa"></x-input> -->
             <x-input title="土尾名称" placeholder="请输入土尾名称" v-model="ruleForm.cTuWeiMingCheng"></x-input>
             <selector title="收费方式" placeholder="请选择收费方式" :options="['免费', '付费']" v-model="ruleForm.cShouFeiFangShi"></selector>
+            <x-input title="地址选择" readonly>
+                <x-button slot="right" type="primary" @click.native="getMapCenter()"  mini style="background-color: #fff;;color:#f00;border:1px solid #f00">{{select_map}}</x-button>
+            </x-input>
+            <x-input title="土尾地址" v-model="ruleForm.cTuWeiDiZhi"></x-input>
             <div class="wk-btn">
                 <div class="reset-btn" @click="showTuWei=false">取消</div>
                 <div class="ok-btn" @click="add_tuwei()">确定</div>
                 <!-- <div class="ok-btn" @click="end_all_order()">批量结束订单</div> -->
             </div>
         </group>
+    </x-dialog>
+    <x-dialog v-model="showTuWeiMap" class="dialog-demo" mask-z-index="2">
+        <div class="map-content">
+            <div class="search-title">土尾地址选择</div>
+            <!-- <div class="map-search">
+              <div class="lbl">搜索</div> <input type="text">
+            </div> -->
+            <div id="container"></div>
+            <div class="wk-btn">
+                <div class="ok-btn" @click="showTuWeiMap=false" style="padding: .05rem .8rem;">确定</div>
+                <!-- <div class="ok-btn" @click="end_all_order()">批量结束订单</div> -->
+            </div>
+        </div>
     </x-dialog>
   </div>
 </template>
@@ -63,6 +81,7 @@ import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
 import { TuWeiInfo, EditTuWeiInfo } from "@/api/home.js";
+import getformattedAddress from "@/map/index.js";
 const list = () => [
   { key: 0, value: "工程车订单" },
   { key: 1, value: "挖掘机订单" }
@@ -78,6 +97,7 @@ export default {
   },
   data() {
     return {
+      showTuWeiMap: false,
       loading_tuwei: false,
       showTuWei: false,
       showScrollBox: false,
@@ -101,9 +121,30 @@ export default {
       work_keyword: null,
       ruleForm: {
         cTuWeiMingCheng: null,
-        cShouFeiFangShi: "免费"
-      }
+        cShouFeiFangShi: "免费",
+        cTuWeiDiZhi: null,
+        longitude: null,
+        latitude: null
+      },
+      map: null
     };
+  },
+  computed: {
+    route() {
+      var role_code = localStorage.getItem("role_code");
+      if (role_code == "001") {
+        return "admin-user";
+      } else {
+        return "destination-user";
+      }
+    },
+    select_map() {
+      if (this.ruleForm.cTuWeiDiZhi) {
+        return "删除地址";
+      } else {
+        return "选择地址";
+      }
+    }
   },
   filters: {
     status_filters(val) {
@@ -120,12 +161,75 @@ export default {
   },
   mounted() {},
   methods: {
+    getMapCenter() {
+      var _this = this;
+      if (this.ruleForm.cTuWeiDiZhi) {
+        _this.ruleForm.cTuWeiDiZhi = null;
+        _this.ruleForm.longitude = null;
+        _this.ruleForm.latitude = null;
+        return;
+      }
+
+      this.$vux.loading.show({
+        text: "Loading"
+      });
+      getformattedAddress.then(res => {
+        var lat = res.regeocode.crosses[0].location.lat;
+        var lng = res.regeocode.crosses[0].location.lng;
+        //土尾赋值
+        _this.ruleForm.cTuWeiDiZhi = res.regeocode.formattedAddress;
+        _this.ruleForm.longitude = lng;
+        _this.ruleForm.latitude = lat;
+        // 隐藏
+        _this.$vux.loading.hide();
+        // 创建地图实例
+        _this.map = new AMap.Map("container", {
+          zoom: 13,
+          center: [lng, lat],
+          resizeEnable: true
+        });
+
+        // 创建点覆盖物
+        var marker = new AMap.Marker({
+          position: new AMap.LngLat(lng, lat),
+          icon:
+            "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png"
+        });
+        _this.map.add(marker);
+
+        _this.map.on("click", function(e) {
+          lat = e.lnglat.lat;
+          lng = e.lnglat.lng;
+          _this.map.remove(marker);
+          marker = new AMap.Marker({
+            position: new AMap.LngLat(lng, lat),
+            icon:
+              "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png"
+          });
+          _this.map.add(marker);
+
+          var geocoder = new AMap.Geocoder({
+              radius: 1000,
+              extensions: 'all'
+          })
+          geocoder.getAddress([lng, lat], function (status, result) {
+              // alert(JSON.stringify(result))
+              if (status === 'complete' && result.info === 'OK') {
+                  _this.ruleForm.cTuWeiDiZhi = result.regeocode.formattedAddress;
+              }
+          })
+        });
+
+        _this.showTuWeiMap = true;
+      });
+    },
     getAddForm() {
       this.resetForm();
       this.showTuWei = true;
     },
     resetForm() {
       this.ruleForm.cTuWeiMingCheng = null;
+      this.ruleForm.cTuWeiDiZhi = null;
     },
     add_tuwei() {
       if (this.loading_tuwei) {
@@ -138,6 +242,13 @@ export default {
         });
         return;
       }
+      // if (!this.ruleForm.cTuWeiDiZhi) {
+      //   this.$vux.alert.show({
+      //     title: "提示",
+      //     content: "请选择土尾地址"
+      //   });
+      //   return;
+      // }
       this.loading_tuwei = true;
       EditTuWeiInfo(this.ruleForm)
         .then(res => {
@@ -203,6 +314,10 @@ export default {
 .group-content .weui-cells {
   font-size: 0.5rem;
 }
+.amap-icon img {
+  width: 0.67rem;
+  height: 0.91rem;
+}
 </style>
 <style scoped lang="scss">
 .item-list {
@@ -249,11 +364,11 @@ export default {
   .op-btn:nth-child(1) {
     position: absolute;
     right: 2rem;
-    top: .08rem;
+    top: 0.08rem;
     display: block;
     // padding: 0 0.27rem;
     background: #fff;
-    border:1px solid #f00;
+    border: 1px solid #f00;
     height: 1.07rem;
     line-height: 1.07rem;
     width: 1.6rem;
@@ -263,11 +378,11 @@ export default {
   .op-btn:nth-child(2) {
     position: absolute;
     right: 0;
-    top: .08rem;
+    top: 0.08rem;
     display: block;
     // padding: 0 0.27rem;
     background: #fff;
-    border:1px solid #f00;
+    border: 1px solid #f00;
     height: 1.07rem;
     line-height: 1.07rem;
     width: 1.6rem;
@@ -305,6 +420,15 @@ export default {
     background: #f00;
     color: #fff;
     border: 1px solid #f00;
+    display: inline-block;
+    padding: 0.053333rem 0.2rem;
+    border-radius: 3px;
+    margin: 0 0.266667rem;
+  }
+  .del-btn {
+    background: #fff;
+    color: #999;
+    border: 1px solid #999;
     display: inline-block;
     padding: 0.053333rem 0.2rem;
     border-radius: 3px;
@@ -355,6 +479,33 @@ export default {
     height: 0.6rem;
     width: 1px;
     background: #efefef;
+  }
+}
+.map-content {
+  height: 400px;
+  .map-search {
+    height: 1.07rem;
+    line-height: 1.07rem;
+    .lbl {
+      display: inline-block;
+      width: 20%;
+    }
+    input {
+      display: inline-block;
+      width: 70%;
+      height: 0.6rem;
+      line-height: 0.6rem;
+    }
+  }
+  #container {
+    width: 100%;
+    height: 300px;
+  }
+  .search-title {
+    height: 1.07rem;
+    line-height: 1.07rem;
+    font-size: 0.43rem;
+    border-bottom: 1px solid #ddd;
   }
 }
 </style>

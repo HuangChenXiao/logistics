@@ -1,0 +1,5 @@
+/MvcWebApi/WebAPI/Web.config
+/MvcWebApi/WebAPI/Web.Debug.config
+/MvcWebApi/WebAPI/Web.Release.config
+/MvcWebApi/WebAPI/*.config
+/MvcWebApi/ModelDb/App.Config

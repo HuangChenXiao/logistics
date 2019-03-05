@@ -1,0 +1,24 @@
+openid:o34Yw1ZR5UO4hJjjbzno278zcz9U;车牌号：
+2019/3/5 13:40:20
+
+openid:o34Yw1ZR5UO4hJjjbzno278zcz9U;车牌号：闽DD7072
+2019/3/5 13:40:36
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 27.154.170.160, not in whitelist hint: [PE5PlA08593064]"}
+2019/3/5 13:48:33
+
+消息推送返回码：41001
+2019/3/5 13:48:34
+
+消息推送返回码：41001
+2019/3/5 15:02:04
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 27.154.170.160, not in whitelist hint: [AtJzHa08031512]"}
+2019/3/5 15:28:40
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 27.154.170.160, not in whitelist hint: [2VGGrA0883hb92]"}
+2019/3/5 15:28:57
+
+ToKen：{"access_token":"19_Ep206lWVvXdViGFD8aHm9pjMmXwq4Y56NZKHZDEt2QqOFWwZkS9KUWlV5YnjJRwHZgNW47Y0eYVjCOz1REi-NlwJfrk1eCI644_KUt-ZbHiITUeFHEsZdzT6hs9XGzuy8HG7ssA2Xj0zjco_RZPhAFAAIY","expires_in":7200}
+2019/3/5 15:34:50
+

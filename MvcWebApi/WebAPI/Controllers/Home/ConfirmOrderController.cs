@@ -18,13 +18,26 @@ namespace WebAPI.Controllers.Home
     {
         private EBMSystemEntities db = new EBMSystemEntities();
         JsonModel model = new JsonModel();
-        public ResponseMessageResult Get(string cDingDanHao)
+        public ResponseMessageResult Get(string cDingDanHao, string cTuWeiBianMa, string lng, string lat)
         {
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
                 try
                 {
+                    var tuwei = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == cTuWeiBianMa).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(tuwei.longitude))//土尾经纬度不为空时判断距离
+                    {
+                        var db_web = ContextDB.Context();
+                        var item_val = Convert.ToInt32(db_web.QueryValue("select cItemValue from SystemSet where cItemCode='002'"));
+                        var lng_lat_val = Convert.ToInt32(db_web.QueryValue("select dbo.fnGetDistance(@0,@1,@2,@3)", lat, lng,tuwei.latitude,tuwei.longitude));
+                        if (lng_lat_val > item_val)
+                        {
+                            model.message = "距离目的地较远，请稍后重试！";
+                            model.status_code = 401;
+                            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                        }
+                    }
                     var order = db.GongChengCheDingDan.Where(o => o.cDingDanHao == cDingDanHao).FirstOrDefault();
                     if (order.iState == 0)
                     {

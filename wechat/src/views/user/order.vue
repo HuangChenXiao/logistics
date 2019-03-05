@@ -121,6 +121,7 @@
 import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
+import getformattedAddress from "@/map/index.js";
 import {
   CheLiang,
   GongDiInfo,
@@ -286,17 +287,23 @@ export default {
         title: "提示",
         content: "确认后订单完结，是否继续？",
         onConfirm() {
-          console.log(_this.sed_index);
           if (_this.sed_index == 0) {
-            ConfirmOrder({
-              cDingDanHao: item.cDingDanHao
-            }).then(res => {
-              item.iState = 100;
-              item.cState = "确认";
-              item.dQueRenShiJian = res.data;
-              _this.$vux.alert.show({
-                title: "提示",
-                content: "操作成功！"
+            getformattedAddress.then(res => {
+              var lat = res.regeocode.crosses[0].location.lat;
+              var lng = res.regeocode.crosses[0].location.lng;
+              ConfirmOrder({
+                cDingDanHao: item.cDingDanHao,
+                cTuWeiBianMa:item.cTuWeiBianMa,
+                lng:lng,
+                lat:lat
+              }).then(res => {
+                item.iState = 100;
+                item.cState = "确认";
+                item.dQueRenShiJian = res.data;
+                _this.$vux.alert.show({
+                  title: "提示",
+                  content: "操作成功！"
+                });
               });
             });
           }
@@ -457,8 +464,8 @@ export default {
 };
 </script>
 <style>
-.vux-tab .vux-tab-item{
-  font-size: .5rem !important;
+.vux-tab .vux-tab-item {
+  font-size: 0.5rem !important;
 }
 .group-content .weui-cells {
   font-size: 0.5rem;
@@ -504,7 +511,7 @@ export default {
 }
 .s-where {
   color: #f00;
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
 .mask-content {
   padding-bottom: 0.333333rem;
