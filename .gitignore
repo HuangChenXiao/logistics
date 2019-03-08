@@ -4,3 +4,4 @@
 /MvcWebApi/WebAPI/*.config
 /MvcWebApi/ModelDb/App.Config
 /WeChatAPI
+/MvcWebApi/WeChatSDK
