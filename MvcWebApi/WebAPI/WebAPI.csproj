@@ -133,10 +133,6 @@
       <HintPath>..\..\..\..\Nuoda\trunk\PC\Nuodj Special\Nuodj_Web_Special\bin\WebMatrix.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WeChatSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\WeChatSDK\bin\Debug\WeChatSDK.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -237,6 +233,10 @@
     <Compile Include="WeChat\API\WeChatToken.ashx.cs">
       <DependentUpon>WeChatToken.ashx</DependentUpon>
     </Compile>
+    <Compile Include="WeChat\JS-SDK\GetJS_SDK_Config.ashx.cs">
+      <DependentUpon>GetJS_SDK_Config.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="WeChat\JS-SDK\JS_SDKModel.cs" />
     <Compile Include="WeChat\Menu\WeChatMenu.ashx.cs">
       <DependentUpon>WeChatMenu.ashx</DependentUpon>
     </Compile>
@@ -265,11 +265,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
+    <Content Include="WeChat\JS-SDK\js_sdktpl.html" />
     <Content Include="WeChat\Menu\menu.json" />
     <Content Include="WeChat\Menu\WeChatMenu.ashx" />
     <Content Include="WeChat\API\WeChatToken.ashx" />
     <Content Include="WeChat\oauth\WeChatAccredit.ashx" />
     <Content Include="WeChat\TemplateAlert\TemplateMsg.ashx" />
+    <Content Include="WeChat\JS-SDK\GetJS_SDK_Config.ashx" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -283,6 +285,10 @@
     <ProjectReference Include="..\ModelDb\ModelDb.csproj">
       <Project>{e5a23736-8ad5-48a7-abae-ce40ac051e14}</Project>
       <Name>ModelDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeChatSDK\WeChatSDK.csproj">
+      <Project>{73a6c720-fcf2-4240-8c76-ff403e279fd8}</Project>
+      <Name>WeChatSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

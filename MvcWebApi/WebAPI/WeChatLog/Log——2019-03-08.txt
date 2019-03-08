@@ -1,0 +1,41 @@
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:33:48
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.133.60, not in whitelist hint: [1TfegA07842974]"}
+2019/3/8 14:33:58
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:35:27
+
+ToKen：{"errcode":40164,"errmsg":"invalid ip 121.207.133.60, not in whitelist hint: [k9IndA0882hb10]"}
+2019/3/8 14:35:36
+
+System.Exception: Fail to get weixin access token. ERROR Code:41001  errMsg:access_token missing hint: [ZScoma0885vr64!]
+   在 WxPayAPI.WxPayApi.initJSAPITicket() 位置 f:\gitCode\logistics\logistics\MvcWebApi\WeChatSDK\WxPayAPI\lib\WxPayApi.cs:行号 639
+   在 WeChatAPI.JS_SDK.GetJS_SDK_Config.SDK_Config(HttpContext context) 位置 f:\gitCode\logistics\logistics\MvcWebApi\WebAPI\WeChat\JS-SDK\GetJS_SDK_Config.ashx.cs:行号 96
+2019/3/8 14:35:39
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:39:45
+
+ToKen：{"access_token":"19_hUJ0_8INqMhCNLXUxapOht4fqLlfgS3CRqexQeheuaAZjnFMEHCPeJ4Gbv8Ws5usgp1oJNYChaD_pODH2d9oqHHGdJLcqTCFN7DYStQWR6GVyJo92U1K_4ShcrB80IuXdRT6yrhPEpsDa-QXRPFdABAAYO","expires_in":7200}
+2019/3/8 14:39:52
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:43:37
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:43:39
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:44:51
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:45:57
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:46:53
+
+action:SDK_Config windowurl:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.htmlpost:http://localhost:59358/WeChat/JS-SDK/js_sdktpl.html
+2019/3/8 14:49:44
+
