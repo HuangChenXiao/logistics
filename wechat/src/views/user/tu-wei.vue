@@ -225,6 +225,9 @@ export default {
         });
 
         _this.showTuWeiMap = true;
+      }).catch(res=>{
+        // 隐藏
+        _this.$vux.loading.hide();
       });
     },
     getAddForm(status, item) {
