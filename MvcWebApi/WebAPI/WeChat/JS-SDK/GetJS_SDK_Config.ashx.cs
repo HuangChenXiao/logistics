@@ -82,7 +82,7 @@ namespace WeChatAPI.JS_SDK
             JS_SDKModel model = new JS_SDKModel();
             try
             {
-                var windowurl = HttpUtility.UrlDecode(context.Request["windowurl"]);
+                var windowurl = context.Request["windowurl"];
                 var action = context.Request["action"];
                 LogTextHelper.Log("action:" + action + " windowurl_1:" + windowurl);
                 WxPayData jsApiParam = new WxPayData();
@@ -100,7 +100,6 @@ namespace WeChatAPI.JS_SDK
                 {
                     model.ticket = WxPayApi.initJSAPITicket();
                 }
-                LogTextHelper.Log("2");
                 //构造需要用SHA1算法加密的数据
                 WxPayData signData = new WxPayData();
                 signData.SetValue("noncestr", model.nonceStr);
