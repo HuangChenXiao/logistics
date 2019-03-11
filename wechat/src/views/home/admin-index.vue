@@ -590,8 +590,9 @@ export default {
       let _this = this;
       _this.bItem.cDiZhi = "正在定位。。。";
       _this.$store.dispatch("setisLoading", true);
-      getformattedAddress.then(res => {
-        _this.bItem.cDiZhi = res.regeocode.formattedAddress;
+      
+      getformattedAddress({windowurl:window.location.href}).then(res => {
+        _this.bItem.cDiZhi = res.detail.address;
         // console.log(res.regeocode.formattedAddress)
         _this.$store.dispatch("setisLoading", false);
       });

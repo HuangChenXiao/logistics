@@ -177,58 +177,60 @@ export default {
       this.$vux.loading.show({
         text: "Loading"
       });
-      getformattedAddress.then(res => {
-        var lat = res.regeocode.crosses[0].location.lat;
-        var lng = res.regeocode.crosses[0].location.lng;
-        //土尾赋值
-        _this.ruleForm.cTuWeiDiZhi = res.regeocode.formattedAddress;
-        _this.ruleForm.longitude = lng;
-        _this.ruleForm.latitude = lat;
-        // 隐藏
-        _this.$vux.loading.hide();
-        // 创建地图实例
-        _this.map = new AMap.Map("container", {
-          zoom: 13,
-          center: [lng, lat],
-          resizeEnable: true
-        });
+      getformattedAddress({ windowurl: window.location.href })
+        .then(res => {
+          var lat = res.detail.location.lat;
+          var lng = res.detail.location.lng;
+          //土尾赋值
+          _this.ruleForm.cTuWeiDiZhi = res.detail.address;
+          _this.ruleForm.longitude = lng;
+          _this.ruleForm.latitude = lat;
+          // 隐藏
+          _this.$vux.loading.hide();
 
-        // 创建点覆盖物
-        var marker = new AMap.Marker({
-          position: new AMap.LngLat(lng, lat),
-          icon:
-            "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png"
-        });
-        _this.map.add(marker);
-
-        _this.map.on("click", function(e) {
-          lat = e.lnglat.lat;
-          lng = e.lnglat.lng;
-          _this.map.remove(marker);
-          marker = new AMap.Marker({
-            position: new AMap.LngLat(lng, lat),
-            icon:
-              "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png"
+          var center = new qq.maps.LatLng(lat, lng);
+          var map = new qq.maps.Map(document.getElementById("container"), {
+            center: center,
+            zoom: 13
           });
-          _this.map.add(marker);
+          //创建marker
+          var marker = new qq.maps.Marker({
+            position: center,
+            map: map
+          });
+          //添加监听事件
+          qq.maps.event.addListener(map, "click", function(result) {
+            var center = new qq.maps.LatLng(
+              result.latLng.lat,
+              result.latLng.lng
+            );
+            marker.setMap(null);
+            marker = new qq.maps.Marker({
+              position: center,
+              map: map
+            });
+            //调用获取位置方法
+            var geocoder = new qq.maps.Geocoder({
+              complete: function(result) {
+                _this.ruleForm.cTuWeiDiZhi = result.detail.address;
+                _this.ruleForm.longitude = result.detail.location.lat;
+                _this.ruleForm.latitude = result.detail.location.lng;
+              }
+            });
+            geocoder.getAddress(center);
+            //若服务请求失败，则运行以下函数
+            geocoder.setError(function() {
+              alert("出错了，请输入正确的经纬度！！！");
+            });
+          });
 
-          var geocoder = new AMap.Geocoder({
-            radius: 1000,
-            extensions: "all"
-          });
-          geocoder.getAddress([lng, lat], function(status, result) {
-            // alert(JSON.stringify(result))
-            if (status === "complete" && result.info === "OK") {
-              _this.ruleForm.cTuWeiDiZhi = result.regeocode.formattedAddress;
-            }
-          });
+          _this.showTuWeiMap = true;
+        })
+        .catch(res => {
+          // 隐藏
+          // _this.$vux.loading.hide();
+          // alert('')
         });
-
-        _this.showTuWeiMap = true;
-      }).catch(res=>{
-        // 隐藏
-        _this.$vux.loading.hide();
-      });
     },
     getAddForm(status, item) {
       if (status == "create") {

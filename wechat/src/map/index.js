@@ -1,62 +1,49 @@
 
 import store from '@/store'
-const getformattedAddress = new Promise(function (resolve, reject) {
-    var map, geolocation
-    //加载地图，调用浏览器定位服务
-    map = new AMap.Map('container', {
-        resizeEnable: true
-    })
-    map.plugin('AMap.Geolocation', function () {
-        geolocation = new AMap.Geolocation({
-            enableHighAccuracy: true, //是否使用高精度定位，默认:true
-            timeout: 10000, //超过10秒后停止定位，默认：无穷大
-            buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-            zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-            buttonPosition: 'RB'
-        })
-        map.addControl(geolocation)
-        geolocation.getCurrentPosition()
-        AMap.event.addListener(geolocation, 'complete', onComplete) //返回定位信息
-        AMap.event.addListener(geolocation, 'error', onError) //返回定位出错信息
-    })
-    //解析定位结果
-    function onComplete(data) {
-        let lng = data.position.getLng()
-        let lat = data.position.getLat()
-        var geocoder = new AMap.Geocoder({
-            radius: 1000,
-            extensions: 'all'
-        })
-        geocoder.getAddress([lng, lat], function (status, result) {
-            // alert(JSON.stringify(result))
-            if (status === 'complete' && result.info === 'OK') {
-                store.dispatch("setformattedAddress", result.regeocode.formattedAddress)
-                store.dispatch("setlongitude", lng)
-                store.dispatch("setlatitude", lat)
-                var lnglat = {}
-                lnglat.longitude = lng;
-                lnglat.latitude = lat
-                var lnglatXY = [lng, lat]; //已知点坐标
-                var geocoder = new AMap.Geocoder({
-                    radius: 1000,
-                    extensions: "all"
-                });
-                geocoder.getAddress(lnglatXY, function (status, result) {
-                    if (status === 'complete' && result.info === 'OK') {
-                        resolve(result)
-                    }
-                    else {
-                        resolve(result)
-                    }
-                });
 
-            }
+const getformattedAddress = resData => {
+    return new Promise(function (resolve, reject) {
+        $.post("https://mobile.xmxtm.cn/API/WeChat/JS-SDK/GetJS_SDK_Config.ashx", { "action": "SDK_Config", "windowurl": resData.windowurl }, function (data) {
+            data = JSON.parse(data);
+            // alert(JSON.stringify(data))
+            wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.appId, // 必填，公众号的唯一标识
+                timestamp: data.timeStamp, // 必填，生成签名的时间戳
+                nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                signature: data.signature,// 必填，签名，见附录1
+                jsApiList: ["getLocation"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            });
+            wx.ready(function () {
+                //获取地理位置接口
+                wx.getLocation({
+                    type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                    success: function (res) {
+                        var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                        var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                        var speed = res.speed; // 速度，以米/每秒计
+                        var accuracy = res.accuracy; // 位置精度
+                        var latLng = new qq.maps.LatLng(latitude, longitude);
+                        //调用获取位置方法
+                        var geocoder = new qq.maps.Geocoder({
+                            complete: function (result) {
+                                resolve(result)
+                            }
+                        });
+                        geocoder.getAddress(latLng);
+                        //若服务请求失败，则运行以下函数
+                        geocoder.setError(function () {
+                            alert("出错了，请输入正确的经纬度！！！");
+                        });
+                    },
+                    fail: function (res) {
+                        reject(res)
+                        // location.reload()
+                        alert("定位错误，请检查手机GPS功能是否开启！"+JSON.stringify(res));
+                    }
+                });
+            })
         })
-    }
-    //解析定位错误信息
-    function onError(data) {
-        console.log('定位失败')
-        reject(JSON.stringify(data))
-    }
-})
+    })
+}
 export default getformattedAddress

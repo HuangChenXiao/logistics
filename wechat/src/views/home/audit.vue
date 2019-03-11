@@ -29,6 +29,7 @@
 import { validatePhone,validateidentitycard } from '@/utils/validate.js'
 import { PostWechatUser } from '@/api/home.js'
 import {WeChatAccredit } from '@/api/wechat.js'
+import getformattedAddress from "@/map/index.js";
 export default {
   data() {
     return {

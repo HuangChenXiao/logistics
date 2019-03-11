@@ -287,25 +287,31 @@ export default {
         title: "提示",
         content: "确认后订单完结，是否继续？",
         onConfirm() {
+          _this.$store.dispatch("setisLoading", true);
           if (_this.sed_index == 0) {
-            getformattedAddress.then(res => {
-              var lat = res.regeocode.crosses[0].location.lat;
-              var lng = res.regeocode.crosses[0].location.lng;
-              ConfirmOrder({
-                cDingDanHao: item.cDingDanHao,
-                cTuWeiBianMa:item.cTuWeiBianMa,
-                lng:lng,
-                lat:lat
-              }).then(res => {
-                item.iState = 100;
-                item.cState = "确认";
-                item.dQueRenShiJian = res.data;
-                _this.$vux.alert.show({
-                  title: "提示",
-                  content: "操作成功！"
+            getformattedAddress({ windowurl: window.location.href })
+              .then(res => {
+                var lat = res.detail.location.lat;
+                var lng = res.detail.location.lng;
+                ConfirmOrder({
+                  cDingDanHao: item.cDingDanHao,
+                  cTuWeiBianMa: item.cTuWeiBianMa,
+                  lng: lng,
+                  lat: lat
+                }).then(res => {
+                  item.iState = 100;
+                  item.cState = "确认";
+                  item.dQueRenShiJian = res.data;
+                  _this.$vux.alert.show({
+                    title: "提示",
+                    content: "操作成功！"
+                  });
+                  _this.$store.dispatch("setisLoading", false);
                 });
+              })
+              .catch(res => {
+                _this.$store.dispatch("setisLoading", false);
               });
-            });
           }
         }
       });
