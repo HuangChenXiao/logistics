@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-header :title="title" :route="menu_route">
+    <u-header title="我的订单" :route="menu_route">
       <div class="s-where" @click="showWhere=true">
         查询
       </div>
@@ -289,7 +289,7 @@ export default {
         onConfirm() {
           _this.$store.dispatch("setisLoading", true);
           if (_this.sed_index == 0) {
-            getformattedAddress({ windowurl: window.location.href })
+            getformattedAddress({ windowurl: decodeURIComponent(window.location.href) })
               .then(res => {
                 var lat = res.detail.location.lat;
                 var lng = res.detail.location.lng;
@@ -306,6 +306,8 @@ export default {
                     title: "提示",
                     content: "操作成功！"
                   });
+                  _this.$store.dispatch("setisLoading", false);
+                }).catch(res=>{
                   _this.$store.dispatch("setisLoading", false);
                 });
               })
