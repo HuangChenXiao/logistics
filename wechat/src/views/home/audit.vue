@@ -59,6 +59,7 @@ export default {
       this.user.city = res.city
       this.user.country = res.country
       this.user.headimgurl = res.headimgurl
+      this.goToHome()
     } else {
       WeChatAccredit({ code: Request.code }).then(res => {
         if (res.openid) {
@@ -71,11 +72,17 @@ export default {
           this.user.city = res.city
           this.user.country = res.country
           this.user.headimgurl = res.headimgurl
+          this.goToHome()
         }
       })
     }
   },
   methods: {
+    goToHome(){
+      this.$router({
+        path:'/'
+      })
+    },
     GetRequest() {
       var url = location.search //获取url中"?"符后的字串
       var theRequest = new Object()

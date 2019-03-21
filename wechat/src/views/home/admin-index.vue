@@ -31,7 +31,7 @@
         <tab :line-width=2 active-color='#f00' v-model="index">
           <tab-item class="vux-center"  v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
         </tab>
-        <swiper v-model="index" height="150px" :show-dots="false">
+        <swiper v-model="index" height="180px" :show-dots="false">
           <swiper-item v-for="(item, index) in list2" :key="index">
             <div class="tab-swiper vux-center" v-if="index==0">
               <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
@@ -243,7 +243,7 @@ export default {
       bItem: {
         cDiZhi: "",
         cGongDiBianMa: null, //工地编码
-        cGongDiMingCheng:null,//工地名称
+        cGongDiMingCheng: null, //工地名称
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
         cTuWeiBianMa: null, //土尾编码
@@ -251,7 +251,7 @@ export default {
         cXZDWMingCheng: null, //协作单位名称
         cTuWeiMingCheng: null, //土尾名称
         cGuanLiYuanBianMa: localStorage.getItem("openid"), //现场管理员编码
-        cXingMing:null,//驾驶员姓名
+        cXingMing: null //驾驶员姓名
       },
       store_query: {
         longitude: this.$store.getters.longitude,
@@ -337,9 +337,9 @@ export default {
       this.showWorkSite = true;
     }
     if (_this.store_query.cDiZhi) {
-      _this.bItem.cDiZhi = _this.store_query.cDiZhi
+      _this.bItem.cDiZhi = _this.store_query.cDiZhi;
     } else {
-      _this.get_address()
+      _this.get_address();
     }
     this.set_time();
     // setTimeout(() => {
@@ -371,8 +371,8 @@ export default {
       this.showScrollBox = true;
     },
     //选择时重新查询土尾
-    setshowWorkRoute(){
-      this.get_route();//土尾信息
+    setshowWorkRoute() {
+      this.get_route(); //土尾信息
       this.showWorkRoute = true;
     },
     //切换时清空数据
@@ -406,8 +406,8 @@ export default {
         BangDingJiLu({
           iBangDingLeiXing: work_status,
           cShangBanBianMa: _this.$store.getters.user_info.role_code,
-          cGongDiBianMa:_this.cGongDiBianMa,
-          cDiZhi:_this.bItem.cDiZhi
+          cGongDiBianMa: _this.cGongDiBianMa,
+          cDiZhi: _this.bItem.cDiZhi
         }).then(res => {
           _this.work_status = work_status;
         });
@@ -448,9 +448,11 @@ export default {
     selectWork(val) {
       this.$store.dispatch("SGongDiMingCheng", val).then(res => {
         localStorage.setItem("cGongDiMingCheng", JSON.stringify(val));
-        EditBangDingJiLuGongDi({cGongDiBianMa:val.cGongDiBianMa}).then(res=>{
-          console.log('修改成功')
-        })
+        EditBangDingJiLuGongDi({ cGongDiBianMa: val.cGongDiBianMa }).then(
+          res => {
+            console.log("修改成功");
+          }
+        );
       });
       this.showWorkSite = false;
     },
@@ -472,7 +474,7 @@ export default {
       this.showScrollBox = false;
       this.bItem.cChePaiHao = item.cChePaiHao;
       this.bItem.openid = item.openid;
-      this.bItem.cXingMing=item.cXingMing;
+      this.bItem.cXingMing = item.cXingMing;
       // getChePaiTuWei({ cChePaiHao: item.cChePaiHao }).then(res => {
       //   if (res.data) {
       //     this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
@@ -513,7 +515,7 @@ export default {
       this.showWorkRoute = false;
       this.bItem.cTuWeiBianMa = item.cTuWeiBianMa;
       this.bItem.cTuWeiMingCheng = item.cTuWeiMingCheng;
-      UpdateTuWeriSortDate({cTuWeiBianMa:item.cTuWeiBianMa})
+      UpdateTuWeriSortDate({ cTuWeiBianMa: item.cTuWeiBianMa });
     },
     sendTplMsg(item) {
       TemplateMsg(item).then(res => {
@@ -524,7 +526,7 @@ export default {
     submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
-      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng
+      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng;
       this.bItem.cDingDanHao = this.cfg.formatOrderNo();
       GongChengCheDingDan(this.bItem)
         .then(res => {
@@ -546,7 +548,7 @@ export default {
     wj_submit_order() {
       this.isavailable = false;
       this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
-      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng
+      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng;
       this.bItem.cDingDanHao = this.cfg.formatOrderNo();
       WaJueJiDingDan(this.bItem)
         .then(res => {
@@ -570,8 +572,8 @@ export default {
         cChePaiHao: null, //车牌号
         openid: null, //驾驶员编码
         cTuWeiBianMa: this.bItem.cTuWeiBianMa, //线路编码
-        cTuWeiBianMa:this.bItem.cTuWeiBianMa,//土尾编码
-        cTuWeiMingCheng:this.bItem.cTuWeiMingCheng,//土尾名称
+        cTuWeiBianMa: this.bItem.cTuWeiBianMa, //土尾编码
+        cTuWeiMingCheng: this.bItem.cTuWeiMingCheng, //土尾名称
         cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
         cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
@@ -590,12 +592,15 @@ export default {
       let _this = this;
       _this.bItem.cDiZhi = "正在定位。。。";
       _this.$store.dispatch("setisLoading", true);
-      
-      getformattedAddress({windowurl:window.location.href}).then(res => {
-        _this.bItem.cDiZhi = res.detail.address;
-        // console.log(res.regeocode.formattedAddress)
-        _this.$store.dispatch("setisLoading", false);
-      });
+
+      getformattedAddress({ windowurl: window.location.href })
+        .then(res => {
+          _this.bItem.cDiZhi = res.address;
+          _this.$store.dispatch("setisLoading", false);
+        })
+        .catch(res => {
+          _this.$store.dispatch("setisLoading", false);
+        });
     },
     set_time() {
       var _this = this;
@@ -652,12 +657,12 @@ export default {
 
 <style>
 .group-content .weui-cells {
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
 </style>
 <style scoped lang="scss">
 .home {
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
 
 .work {
@@ -706,7 +711,7 @@ export default {
 .address {
   position: relative;
   background: #fff;
-  font-size: .5rem;
+  font-size: 0.5rem;
   padding: 0.266667rem;
   border-bottom: 1px solid #efefef;
   padding-right: 1.2rem;
@@ -737,7 +742,7 @@ export default {
 }
 .task {
   background: #fff;
-  margin-top: 0.3rem;
+  // margin-top: 0.3rem;
   .title {
     height: 1.066667rem;
     line-height: 1.066667rem;
@@ -781,7 +786,7 @@ export default {
     width: 3rem;
     height: 0.8rem;
     line-height: 0.8rem;
-    font-size: .5rem;
+    font-size: 0.5rem;
   }
 }
 .group-item {
@@ -834,9 +839,9 @@ export default {
   position: absolute;
   right: 0.27rem;
   top: 0;
-  font-size: .5rem;
+  font-size: 0.5rem;
   color: #42a0ff;
   display: block;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 </style>

@@ -72,17 +72,25 @@ Vue.prototype.wechaturl = process.env.WECHAT_API;
 
 import { AlertModule } from 'vux'
 router.beforeEach((to, from, next) => {
-  var openid = localStorage.getItem("openid");
-  if (!openid) {
-    if (to.name != 'audit') {
-      location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=https%3a%2f%2fmobile.xmxtm.cn%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+  var u = navigator.userAgent;
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  // XXX: 修复iOS版微信HTML5 History兼容性问题
+  if (isiOS && to.path !== location.pathname) {
+    // 此处不可使用location.replace
+    location.assign(to.fullPath)
+  } else {
+    var openid = localStorage.getItem("openid");
+    if (!openid) {
+      if (to.name != 'audit') {
+        location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=https%3a%2f%2fmobile.xmxtm.cn%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+      }
+      else {
+        next()
+      }
     }
     else {
-      next()
+      getUserInfo(to, from, next);
     }
-  }
-  else {
-    getUserInfo(to, from, next);
   }
   // next()
 })
@@ -100,18 +108,18 @@ function getUserInfo(to, from, next) {
   //   })
   // }
   store.dispatch('GetInfo').then(res => { // 拉取user_info
-    route_from(to, from, next,res.data)
+    route_from(to, from, next, res.data)
   }).catch((res) => {
     next()
   })
 }
 //审核后跳转地址
-function route_from(to, from, next,user) {
+function route_from(to, from, next, user) {
   if (user.audit == 0) {
     if (to.name != 'means') {
       next({ name: 'means' })
     }
-    else{
+    else {
       next()
     }
   }

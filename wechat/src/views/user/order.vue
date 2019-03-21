@@ -291,8 +291,8 @@ export default {
           if (_this.sed_index == 0) {
             getformattedAddress({ windowurl: decodeURIComponent(window.location.href) })
               .then(res => {
-                var lat = res.detail.location.lat;
-                var lng = res.detail.location.lng;
+                var lat = res.lat;
+                var lng = res.lng;
                 ConfirmOrder({
                   cDingDanHao: item.cDingDanHao,
                   cTuWeiBianMa: item.cTuWeiBianMa,

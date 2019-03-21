@@ -179,7 +179,7 @@ export default {
   }
 }
 .c-l{
-      width: 2rem;
+      width: 2.3rem;
       display: inline-block;
       text-align: right;
 }

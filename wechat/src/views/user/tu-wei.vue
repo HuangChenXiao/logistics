@@ -62,7 +62,7 @@
             </div>
         </group>
     </x-dialog>
-    <x-dialog v-model="showTuWeiMap" class="dialog-demo" mask-z-index="2">
+    <x-dialog v-model="showTuWeiMap" class="dialog-demo tuwei-demo" mask-z-index="2">
         <div class="map-content">
             <div class="search-title">土尾地址选择</div>
             <!-- <div class="map-search">
@@ -179,10 +179,10 @@ export default {
       });
       getformattedAddress({ windowurl: window.location.href })
         .then(res => {
-          var lat = res.detail.location.lat;
-          var lng = res.detail.location.lng;
+          var lat = res.lat;
+          var lng = res.lng;
           //土尾赋值
-          _this.ruleForm.cTuWeiDiZhi = res.detail.address;
+          _this.ruleForm.cTuWeiDiZhi = res.address;
           _this.ruleForm.longitude = lng;
           _this.ruleForm.latitude = lat;
           // 隐藏
@@ -191,7 +191,7 @@ export default {
           var center = new qq.maps.LatLng(lat, lng);
           var map = new qq.maps.Map(document.getElementById("container"), {
             center: center,
-            zoom: 13
+            zoom: 20
           });
           //创建marker
           var marker = new qq.maps.Marker({
@@ -347,6 +347,11 @@ export default {
 .amap-icon img {
   width: 0.67rem;
   height: 0.91rem;
+}
+.tuwei-demo .weui-dialog{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
 }
 </style>
 <style scoped lang="scss">
@@ -512,7 +517,7 @@ export default {
   }
 }
 .map-content {
-  height: 400px;
+  height: 12.33rem;
   .map-search {
     height: 1.07rem;
     line-height: 1.07rem;
@@ -529,7 +534,7 @@ export default {
   }
   #container {
     width: 100%;
-    height: 300px;
+    height: 100%;
   }
   .search-title {
     height: 1.07rem;
@@ -541,7 +546,7 @@ export default {
 .item-opt {
   height: 1.33rem;
   line-height: 1.33rem;
-  border-top: 1px solid #ededed;
+  // border-top: 1px solid #ededed;
   text-align: right;
   padding-right: 0.4rem;
   .edit-btn {
