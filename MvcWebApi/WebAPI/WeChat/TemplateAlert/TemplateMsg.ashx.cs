@@ -42,7 +42,7 @@ namespace WeChatAPI.TemplateAlert
             p.touser = openid;
             //模板ID
             p.template_id = "PKLyFsY0gkoqJYA_fc-as6O_zw_aolaaqJsn3W8imxg";
-            //p.url = "http://test.chaomafu.com/user/order?title=我的订单&menu_route=user";
+            p.url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=https%3a%2f%2fmobile.xmxtm.cn%2fuser%2forder%3ftitle%3d%e6%88%91%e7%9a%84%e8%ae%a2%e5%8d%95%26menu_route%3duser&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
             p.data = new TemplateOrderMsg
             {
                 first = new FirstMsg { value = "接收到新订单", color = "#173177" },
