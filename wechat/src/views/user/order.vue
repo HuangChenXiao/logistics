@@ -191,7 +191,6 @@ export default {
     }
   },
   created() {
-    // console.log(this.$store.getters.user_info)
     //管理员
     if (this.role_code == "001") {
       this.w_qeury.cGuanLiYuanBianMa = localStorage.getItem("openid");
@@ -211,7 +210,8 @@ export default {
         title: "提示",
         content: "网络异常，请重新登录！"
       });
-      window.history.go(-1);
+      document.write("")
+      return
     }
     this.get_worksite();
     this.get_driver();
