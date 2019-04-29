@@ -201,6 +201,7 @@
     <Compile Include="Controllers\Home\CheLiangInfoController.cs" />
     <Compile Include="Controllers\Home\ConfirmOrderController.cs" />
     <Compile Include="Controllers\Home\DesEndOrderController.cs" />
+    <Compile Include="Controllers\Home\DuiDuiJiController.cs" />
     <Compile Include="Controllers\Home\EditBangDingJiLuGongDiController.cs" />
     <Compile Include="Controllers\Home\EndAllOrderController.cs" />
     <Compile Include="Controllers\Home\EndWaJueJiDingDanController.cs" />
@@ -218,6 +219,10 @@
     <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\User\wechatUserController.cs" />
+    <Compile Include="DuiDui.Open\HttpHelper.cs" />
+    <Compile Include="DuiDui.Open\PrintConfig.cs" />
+    <Compile Include="DuiDui.Open\PrintHelper.cs" />
+    <Compile Include="DuiDui.Open\Utils.cs" />
     <Compile Include="Export\OrderExport.ashx.cs">
       <DependentUpon>OrderExport.ashx</DependentUpon>
     </Compile>
@@ -273,7 +278,9 @@
     <Content Include="WeChat\TemplateAlert\TemplateMsg.ashx" />
     <Content Include="WeChat\JS-SDK\GetJS_SDK_Config.ashx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\DuiDuiJi\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
