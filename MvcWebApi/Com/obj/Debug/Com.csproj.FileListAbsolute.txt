@@ -59,3 +59,12 @@ F:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Newtonsoft.Json.xml
 F:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.dll
 F:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.pdb
 F:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.csprojResolveAssemblyReference.cache
+E:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Com.dll.config
+E:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Com.dll
+E:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Com.pdb
+E:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\JWT.dll
+E:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Newtonsoft.Json.dll
+E:\gitCode\logistics\logistics\MvcWebApi\Com\bin\Debug\Newtonsoft.Json.xml
+E:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.csprojResolveAssemblyReference.cache
+E:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.dll
+E:\gitCode\logistics\logistics\MvcWebApi\Com\obj\Debug\Com.pdb
