@@ -1,20 +1,34 @@
 <template>
   <div>
     <u-header title="我的订单" :route="menu_route">
-      <div class="s-where" @click="showWhere=true">
-        查询
-      </div>
+      <div class="s-where" @click="showWhere=true">查询</div>
     </u-header>
     <div style="height:46px"></div>
     <div>
       <div v-if="role_code!='003'">
-        <tab :line-width=2 v-model="sed_index" active-color="#f00" bar-active-color="#f00">
-          <tab-item class="vux-center" :selected="sed_index === 0" @on-item-click="change_tab_index(0)" :key="0">工程车订单</tab-item>
-          <tab-item class="vux-center" :selected="sed_index === 1" @on-item-click="change_tab_index(1)" :key="1">挖掘机订单</tab-item>
+        <tab :line-width="2" v-model="sed_index" active-color="#f00" bar-active-color="#f00">
+          <tab-item
+            class="vux-center"
+            :selected="sed_index === 0"
+            @on-item-click="change_tab_index(0)"
+            :key="0"
+          >工程车订单</tab-item>
+          <tab-item
+            class="vux-center"
+            :selected="sed_index === 1"
+            @on-item-click="change_tab_index(1)"
+            :key="1"
+          >挖掘机订单</tab-item>
         </tab>
       </div>
       <!-- <div style="height:2rem">{{sed_index==1}}</div> -->
-      <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" height="-90" :scroll-bottom-offst="200">
+      <scroller
+        lock-x
+        @on-scroll-bottom="onScrollBottom"
+        ref="scrollerBottom"
+        height="-90"
+        :scroll-bottom-offst="200"
+      >
         <div class="item-list">
           <div class="item" v-if="sed_index==0" v-for="item in order_list">
             <section>
@@ -30,18 +44,25 @@
               <div class="n1">土尾状态：{{item.cTWState}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" @click="edit_order(item)" v-if="role_code=='001' && item.iState!=110">
-                作废
-              </div>
-              <div class="confirm-btn" @click="ok_order(item)" v-if="role_code=='002' && item.iState==0">
-                确认订单
-              </div>
-              <div class="confirm-btn" @click="desend_order(item)" v-if="role_code=='003' && item.iTWState==0">
-                结束订单
-              </div>
+              <div
+                class="reset-btn"
+                @click="edit_order(item)"
+                v-if="role_code=='001' && item.iState!=110"
+              >作废</div>
+              <div class="confirm-btn" @click="sendDuiDuiJi(item)" v-if="role_code=='001'">补打印</div>
+              <div
+                class="confirm-btn"
+                @click="ok_order(item)"
+                v-if="role_code=='002' && item.iState==0"
+              >确认订单</div>
+              <div
+                class="confirm-btn"
+                @click="desend_order(item)"
+                v-if="role_code=='003' && item.iTWState==0"
+              >结束订单</div>
               <!-- <div class="confirm-btn" v-else>
                 确认订单
-              </div> -->
+              </div>-->
             </div>
           </div>
           <div class="item" v-if="sed_index==1" v-for="item in wj_order_list">
@@ -56,47 +77,60 @@
               <div class="n1">状态：{{item.cState}}</div>
             </section>
             <div class="op-btn">
-              <div class="reset-btn" @click="edit_order(item)" v-if="role_code=='001' && item.iState!=110">
-                作废
-              </div>
-              <div class="confirm-btn" @click="end_order(item)" v-if="role_code=='001' && item.iState==0">
-                结束订单
-              </div>
+              <div
+                class="reset-btn"
+                @click="edit_order(item)"
+                v-if="role_code=='001' && item.iState!=110"
+              >作废</div>
+              <div
+                class="confirm-btn"
+                @click="end_order(item)"
+                v-if="role_code=='001' && item.iState==0"
+              >结束订单</div>
             </div>
           </div>
           <load-more tip="加载中" v-if="!onFetching"></load-more>
           <div class="no-more-data" v-if="noData">
-            <span> 我是有底线的~
-            </span>
+            <span>我是有底线的~</span>
           </div>
         </div>
-
       </scroller>
     </div>
     <c-bottom v-if="menu_order" route_name="order"></c-bottom>
     <div class="mask" v-show="showWhere">
       <div class="mask-content">
         <div class="title">查询条件</div>
-        <group label-width="4.5em" label-margin-right="2em" label-align="right" class="group-content">
+        <group
+          label-width="4.5em"
+          label-margin-right="2em"
+          label-align="right"
+          class="group-content"
+        >
           <x-input title="订单号" placeholder="请输入订单号" v-model="w_qeury.cDingDanHao"></x-input>
           <div class="cus-item">
             <div class="lbl">工地</div>
-            <div class="set-btn" @click="showWorkSite=true">
-              选择
-            </div>
+            <div class="set-btn" @click="showWorkSite=true">选择</div>
             <span>{{w_qeury.cGongDiMingCheng}}</span>
             <div class="ico-clear" v-if="w_qeury.cGongDiMingCheng" @click="gongdi_change()"></div>
           </div>
           <div class="cus-item">
             <div class="lbl">车辆</div>
-            <div class="set-btn" @click="showScrollBox=true">
-              选择
-            </div>
+            <div class="set-btn" @click="showScrollBox=true">选择</div>
             <span>{{w_qeury.cChePaiHao}}</span>
             <div class="ico-clear" v-if="w_qeury.cChePaiHao" @click="cheliang_change()"></div>
           </div>
-          <datetime title="开始日期" v-model="w_qeury.begindate" format="YYYY-MM-DD" value-text-align="left"></datetime>
-          <datetime title="结束日期" v-model="w_qeury.enddate" format="YYYY-MM-DD" value-text-align="left"></datetime>
+          <datetime
+            title="开始日期"
+            v-model="w_qeury.begindate"
+            format="YYYY-MM-DD"
+            value-text-align="left"
+          ></datetime>
+          <datetime
+            title="结束日期"
+            v-model="w_qeury.enddate"
+            format="YYYY-MM-DD"
+            value-text-align="left"
+          ></datetime>
           <div class="wk-btn">
             <div class="reset-btn" @click="showWhere=false">取消</div>
             <div class="ok-btn" @click="search_order()">确定</div>
@@ -107,7 +141,12 @@
     </div>
     <!-- 车辆信息 -->
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle @selectVehicle="select_vehicle" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
+      <c-vehicle
+        @selectVehicle="select_vehicle"
+        :single_drive="true"
+        :valueData="vehicle_list"
+        v-model="driver_keyword"
+      ></c-vehicle>
     </x-dialog>
     <!-- 工地信息 -->
     <x-dialog v-model="showWorkSite" :hide-on-blur="true" class="dialog-demo">
@@ -122,6 +161,7 @@ import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
 import getformattedAddress from "@/map/index.js";
+import { DuiDuiJi } from "@/api/duidui.js";
 import {
   CheLiang,
   GongDiInfo,
@@ -210,8 +250,8 @@ export default {
         title: "提示",
         content: "网络异常，请重新登录！"
       });
-      document.write("")
-      return
+      document.write("");
+      return;
     }
     this.get_worksite();
     this.get_driver();
@@ -257,6 +297,25 @@ export default {
       this.init_query();
       this.get_order();
     },
+    sendDuiDuiJi(item) {
+      var _this=this
+      this.$vux.confirm.show({
+        title: "提示",
+        content: "继续打印订单信息，是否继续？",
+        onConfirm() {
+          var data = {};
+          data.cDingDanHao = item.cDingDanHao;
+          data.sign = _this.$md5("71f727c6a543xiamen!@#" + data.cDingDanHao);
+          DuiDuiJi(data).then(res => {
+            console.log(res);
+            _this.$vux.alert.show({
+              title: "提示",
+              content: res.message
+            });
+          });
+        }
+      });
+    },
     //目的地管理员结束订单
     desend_order(item) {
       var _this = this;
@@ -289,7 +348,9 @@ export default {
         onConfirm() {
           _this.$store.dispatch("setisLoading", true);
           if (_this.sed_index == 0) {
-            getformattedAddress({ windowurl: decodeURIComponent(window.location.href) })
+            getformattedAddress({
+              windowurl: decodeURIComponent(window.location.href)
+            })
               .then(res => {
                 var lat = res.lat;
                 var lng = res.lng;
@@ -298,18 +359,20 @@ export default {
                   cTuWeiBianMa: item.cTuWeiBianMa,
                   lng: lng,
                   lat: lat
-                }).then(res => {
-                  item.iState = 100;
-                  item.cState = "确认";
-                  item.dQueRenShiJian = res.data;
-                  _this.$vux.alert.show({
-                    title: "提示",
-                    content: "操作成功！"
+                })
+                  .then(res => {
+                    item.iState = 100;
+                    item.cState = "确认";
+                    item.dQueRenShiJian = res.data;
+                    _this.$vux.alert.show({
+                      title: "提示",
+                      content: "操作成功！"
+                    });
+                    _this.$store.dispatch("setisLoading", false);
+                  })
+                  .catch(res => {
+                    _this.$store.dispatch("setisLoading", false);
                   });
-                  _this.$store.dispatch("setisLoading", false);
-                }).catch(res=>{
-                  _this.$store.dispatch("setisLoading", false);
-                });
               })
               .catch(res => {
                 _this.$store.dispatch("setisLoading", false);

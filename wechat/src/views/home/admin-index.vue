@@ -213,6 +213,7 @@ import {
   EditBangDingJiLuGongDi
 } from "@/api/home.js";
 import { TemplateMsg } from "@/api/wechat.js";
+import { DuiDuiJi } from '@/api/duidui.js'
 export default {
   components: {
     Group,
@@ -522,6 +523,18 @@ export default {
         console.log(res);
       });
     },
+    sendDuiDuiJi(item){
+      var data={}
+      data.cDingDanHao=item.cDingDanHao
+      data.sign=this.$md5('71f727c6a543xiamen!@#'+data.cDingDanHao)
+      DuiDuiJi(data).then(res => {
+        console.log(res);
+        this.$vux.alert.show({
+            title: "提示",
+            content: res.message
+        });
+      });
+    },
     //发布订单
     submit_order() {
       this.isavailable = false;
@@ -535,6 +548,7 @@ export default {
             content: "工程车订单发布成功"
           });
           this.sendTplMsg(this.bItem);
+          this.sendDuiDuiJi(this.bItem);
           this.resetItem();
           this.get_order(); //订单列表
           this.isavailable = true;
