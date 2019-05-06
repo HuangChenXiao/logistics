@@ -240,8 +240,11 @@
     </Compile>
     <Compile Include="WeChat\JS-SDK\GetJS_SDK_Config.ashx.cs">
       <DependentUpon>GetJS_SDK_Config.ashx</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WeChat\JS-SDK\JS_SDKModel.cs" />
+    <Compile Include="WeChat\JS-SDK\JS_SDKModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WeChat\Menu\WeChatMenu.ashx.cs">
       <DependentUpon>WeChatMenu.ashx</DependentUpon>
     </Compile>
@@ -270,13 +273,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
+    <Content Include="WeChat\JS-SDK\GetJS_SDK_Config.ashx" />
     <Content Include="WeChat\JS-SDK\js_sdktpl.html" />
     <Content Include="WeChat\Menu\menu.json" />
     <Content Include="WeChat\Menu\WeChatMenu.ashx" />
     <Content Include="WeChat\API\WeChatToken.ashx" />
     <Content Include="WeChat\oauth\WeChatAccredit.ashx" />
     <Content Include="WeChat\TemplateAlert\TemplateMsg.ashx" />
-    <Content Include="WeChat\JS-SDK\GetJS_SDK_Config.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\DuiDuiJi\" />

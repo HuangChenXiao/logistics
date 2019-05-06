@@ -1,0 +1,54 @@
+消息推送返回码：0
+2019/5/6 星期一 11:01:57
+
+消息推送返回码：0
+2019/5/6 星期一 11:02:41
+
+消息推送返回码：0
+2019/5/6 星期一 11:03:56
+
+消息推送返回码：0
+2019/5/6 星期一 11:10:01
+
+消息推送返回码：0
+2019/5/6 星期一 11:10:59
+
+消息推送返回码：0
+2019/5/6 星期一 11:12:57
+
+消息推送返回码：0
+2019/5/6 星期一 11:13:56
+
+消息推送返回码：0
+2019/5/6 星期一 11:23:45
+
+消息推送返回码：0
+2019/5/6 星期一 11:25:49
+
+消息推送返回码：0
+2019/5/6 星期一 11:26:40
+
+action:SDK_Config windowurl_1:http://localhost:8081/admin-index
+2019/5/6 星期一 11:37:47
+
+System.IO.IOException: 文件“H:\gitCode\logistics\logistics\MvcWebApi\WebAPI\WeChatLog\Log——2019-05-06.txt”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   在 System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   在 System.IO.StreamWriter..ctor(String path, Boolean append)
+   在 System.IO.File.AppendText(String path)
+   在 WeChatSDK.WeChatLog.LogTextHelper.Log(String msg) 位置 h:\gitCode\logistics\logistics\MvcWebApi\WeChatSDK\WeChatLog\LogTextHelper.cs:行号 22
+   在 WeChatAPI.JS_SDK.GetJS_SDK_Config.SDK_Config(HttpContext context) 位置 h:\gitCode\logistics\logistics\MvcWebApi\WebAPI\WeChat\JS-SDK\GetJS_SDK_Config.ashx.cs:行号 87
+2019/5/6 星期一 11:37:48
+
+action:SDK_Config windowurl_1:http://localhost:8081/admin-index
+2019/5/6 星期一 11:37:54
+
+消息推送返回码：0
+2019/5/6 星期一 11:49:36
+
+消息推送返回码：0
+2019/5/6 星期一 11:51:11
+

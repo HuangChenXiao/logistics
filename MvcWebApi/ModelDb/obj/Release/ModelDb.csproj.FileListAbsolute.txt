@@ -10,3 +10,15 @@ E:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\zh-Hans\EntityFrame
 E:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.csprojResolveAssemblyReference.cache
 E:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.dll
 E:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.pdb
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\ModelDb.dll.config
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\ModelDb.dll
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\ModelDb.pdb
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.dll
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.SqlServer.dll
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.xml
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\EntityFramework.SqlServer.xml
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\zh-Hans\EntityFramework.resources.dll
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Release\zh-Hans\EntityFramework.SqlServer.resources.dll
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.csprojResolveAssemblyReference.cache
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.dll
+H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Release\ModelDb.pdb

@@ -242,6 +242,26 @@
           <Property Name="cNaShuiRenShiBieHao" Type="varchar" MaxLength="60" />
           <Property Name="cBeiZhu" Type="varchar" MaxLength="300" />
         </EntityType>
+        <EntityType Name="mstching">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uuid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+          <Property Name="OpenUserId" Type="varchar" MaxLength="50" />
+          <Property Name="deviceName" Type="varchar" MaxLength="50" />
+          <Property Name="openid" Type="varchar" MaxLength="100" />
+          <Property Name="memo" Type="varchar" MaxLength="150" />
+          <Property Name="iState" Type="int" />
+          <Property Name="cState" Type="varchar" MaxLength="20" />
+          <Property Name="cCreate" Type="varchar" MaxLength="30" />
+          <Property Name="dCreate" Type="datetime" />
+          <Property Name="cModify" Type="varchar" MaxLength="30" />
+          <Property Name="dModify" Type="datetime" />
+          <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+          <Property Name="dAuditor" Type="datetime" />
+        </EntityType>
         <EntityType Name="NianJianJiLu">
           <Key>
             <PropertyRef Name="AutoID" />
@@ -717,6 +737,12 @@
           <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
           <Property Name="cGuanLiYuanMingChen" Type="nvarchar" MaxLength="30" />
         </EntityType>
+        <Function Name="fnGetDistance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="LatBegin" Type="real" Mode="In" />
+          <Parameter Name="LngBegin" Type="real" Mode="In" />
+          <Parameter Name="LatEnd" Type="real" Mode="In" />
+          <Parameter Name="LngEnd" Type="real" Mode="In" />
+        </Function>
         <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
           <Parameter Name="VouchType" Type="varchar" Mode="In" />
@@ -770,6 +796,7 @@
           <EntitySet Name="JiaYouJiLu" EntityType="Self.JiaYouJiLu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KeHuDaLei" EntityType="Self.KeHuDaLei" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KeHuInfo" EntityType="Self.KeHuInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mstching" EntityType="Self.mstching" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NianJianJiLu" EntityType="Self.NianJianJiLu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShangBanLeiBie" EntityType="Self.ShangBanLeiBie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShangPinChuKu" EntityType="Self.ShangPinChuKu" Schema="dbo" store:Type="Tables" />
@@ -882,6 +909,11 @@
             <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
             <Parameter Name="cGuanLiYuanBianMa" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="PROC_OrderSumDriverCount" ReturnType="Collection(EBMSystemModel.PROC_OrderSumDriverCount_Result)">
+            <Parameter Name="openid" Mode="In" Type="String" />
+            <Parameter Name="BegindDanJuRiQi" Mode="In" Type="String" />
+            <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="BangDingJiLu" EntityType="EBMSystemModel.BangDingJiLu" />
           <EntitySet Name="BaoXianJiLu" EntityType="EBMSystemModel.BaoXianJiLu" />
           <EntitySet Name="BaoYangJiLu" EntityType="EBMSystemModel.BaoYangJiLu" />
@@ -897,6 +929,7 @@
           <EntitySet Name="JiaYouJiLu" EntityType="EBMSystemModel.JiaYouJiLu" />
           <EntitySet Name="KeHuDaLei" EntityType="EBMSystemModel.KeHuDaLei" />
           <EntitySet Name="KeHuInfo" EntityType="EBMSystemModel.KeHuInfo" />
+          <EntitySet Name="mstching" EntityType="EBMSystemModel.mstching" />
           <EntitySet Name="NianJianJiLu" EntityType="EBMSystemModel.NianJianJiLu" />
           <EntitySet Name="ShangBanLeiBie" EntityType="EBMSystemModel.ShangBanLeiBie" />
           <EntitySet Name="ShangPinChuKu" EntityType="EBMSystemModel.ShangPinChuKu" />
@@ -926,13 +959,14 @@
           <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
           <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
           <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
-          <FunctionImport Name="PROC_OrderSumDriverCount" ReturnType="Collection(EBMSystemModel.PROC_OrderSumDriverCount_Result)">
-            <Parameter Name="openid" Mode="In" Type="String" />
-            <Parameter Name="BegindDanJuRiQi" Mode="In" Type="String" />
-            <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PROC_OrderSumCount_Result">
+          <Property Type="Int64" Name="RowNo" Nullable="true" />
+          <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="iNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PROC_OrderSumDriverCount_Result">
           <Property Type="Int64" Name="RowNo" Nullable="true" />
           <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
@@ -1174,6 +1208,26 @@
           <Property Name="cYinHangZhengHao" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="cNaShuiRenShiBieHao" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="cBeiZhu" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mstching">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uuid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OpenUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="openid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="memo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="iState" Type="Int32" />
+          <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dCreate" Type="DateTime" Precision="3" />
+          <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dModify" Type="DateTime" Precision="3" />
+          <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dAuditor" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="NianJianJiLu">
           <Key>
@@ -1635,12 +1689,6 @@
           <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="PROC_OrderSumDriverCount_Result">
-          <Property Type="Int64" Name="RowNo" Nullable="true" />
-          <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="iNumber" Nullable="true" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1654,6 +1702,16 @@
           <FunctionImportMapping FunctionImportName="PROC_OrderSumCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumCount">
             <ResultMapping>
               <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumCount_Result">
+                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+                <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+                <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+                <ScalarProperty Name="iNumber" ColumnName="iNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_OrderSumDriverCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumDriverCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumDriverCount_Result">
                 <ScalarProperty Name="RowNo" ColumnName="RowNo" />
                 <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
                 <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
@@ -1910,6 +1968,27 @@
                 <ScalarProperty Name="cKeHuMingCheng" ColumnName="cKeHuMingCheng" />
                 <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
                 <ScalarProperty Name="cKeHuBianMa" ColumnName="cKeHuBianMa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mstching">
+            <EntityTypeMapping TypeName="EBMSystemModel.mstching">
+              <MappingFragment StoreEntitySet="mstching">
+                <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+                <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+                <ScalarProperty Name="dModify" ColumnName="dModify" />
+                <ScalarProperty Name="cModify" ColumnName="cModify" />
+                <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+                <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+                <ScalarProperty Name="cState" ColumnName="cState" />
+                <ScalarProperty Name="iState" ColumnName="iState" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="openid" ColumnName="openid" />
+                <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+                <ScalarProperty Name="OpenUserId" ColumnName="OpenUserId" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="uuid" ColumnName="uuid" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2401,16 +2480,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="PROC_OrderSumDriverCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumDriverCount">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumDriverCount_Result">
-                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
-                <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
-                <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
-                <ScalarProperty Name="iNumber" ColumnName="iNumber" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

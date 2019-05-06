@@ -119,6 +119,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="mstching.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="NianJianJiLu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

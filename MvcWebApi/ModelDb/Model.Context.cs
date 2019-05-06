@@ -42,6 +42,7 @@ namespace ModelDb
         public virtual DbSet<JiaYouJiLu> JiaYouJiLu { get; set; }
         public virtual DbSet<KeHuDaLei> KeHuDaLei { get; set; }
         public virtual DbSet<KeHuInfo> KeHuInfo { get; set; }
+        public virtual DbSet<mstching> mstching { get; set; }
         public virtual DbSet<NianJianJiLu> NianJianJiLu { get; set; }
         public virtual DbSet<ShangBanLeiBie> ShangBanLeiBie { get; set; }
         public virtual DbSet<ShangPinChuKu> ShangPinChuKu { get; set; }

@@ -20,35 +20,36 @@
         <EntityTypeShape EntityType="EBMSystemModel.JiaYouJiLu" Width="1.5" PointX="8.75" PointY="9.75" />
         <EntityTypeShape EntityType="EBMSystemModel.KeHuDaLei" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="EBMSystemModel.KeHuInfo" Width="1.5" PointX="10.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.NianJianJiLu" Width="1.5" PointX="10.75" PointY="9.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShangBanLeiBie" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShangPinChuKu" Width="1.5" PointX="0.75" PointY="12.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShangPinDaLei" Width="1.5" PointX="2.75" PointY="12.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShangPinInfo" Width="1.5" PointX="12.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShangPinRuKu" Width="1.5" PointX="12.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShangPinRuKuS" Width="1.5" PointX="12.75" PointY="12.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.ShiGuJiLu" Width="1.5" PointX="4.75" PointY="13.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.StoreRecord" Width="1.5" PointX="6.75" PointY="13.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.Sys_AbleHold" Width="1.5" PointX="8.75" PointY="13.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.Sys_AbleList" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.Sys_User" Width="1.5" PointX="14.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.SystemSet" Width="1.5" PointX="14.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.TuWeiInfo" Width="1.5" PointX="14.75" PointY="10.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.VouchCode" Width="1.5" PointX="14.75" PointY="14.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.WaJueJiDingDan" Width="1.5" PointX="10.75" PointY="15.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.wechatAccessToken" Width="1.5" PointX="16.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.wechatRole" Width="1.5" PointX="16.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.wechatTram" Width="1.5" PointX="16.75" PointY="6.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.wechatUser" Width="1.5" PointX="16.75" PointY="9.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.WeiXiuJiLu" Width="1.5" PointX="16.75" PointY="16.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.WeiZhangJiLu" Width="1.5" PointX="0.75" PointY="17.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.XianLuInfo" Width="1.5" PointX="6.75" PointY="17.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.XieZuoDanWeiDaLei" Width="1.5" PointX="12.75" PointY="17.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.XieZuoDanWeiInfo" Width="1.5" PointX="18.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.YeZhuHuiYiJiLu" Width="1.5" PointX="18.75" PointY="6.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.YeZhuInfo" Width="1.5" PointX="18.75" PointY="10.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.GongChengCheDingDan_View" Width="1.5" PointX="18.75" PointY="15.75" />
-        <EntityTypeShape EntityType="EBMSystemModel.WaJueJiDingDan_View" Width="1.5" PointX="2.75" PointY="19.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.mstching" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.NianJianJiLu" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShangBanLeiBie" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShangPinChuKu" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShangPinDaLei" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShangPinInfo" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShangPinRuKu" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShangPinRuKuS" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ShiGuJiLu" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.StoreRecord" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.Sys_AbleHold" Width="1.5" PointX="14.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.Sys_AbleList" Width="1.5" PointX="14.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.Sys_User" Width="1.5" PointX="8.75" PointY="14.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.SystemSet" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.TuWeiInfo" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.VouchCode" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.WaJueJiDingDan" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.wechatAccessToken" Width="1.5" PointX="16.75" PointY="9.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.wechatRole" Width="1.5" PointX="10.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.wechatTram" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.wechatUser" Width="1.5" PointX="16.75" PointY="15.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.WeiXiuJiLu" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.WeiZhangJiLu" Width="1.5" PointX="2.75" PointY="17.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.XianLuInfo" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.XieZuoDanWeiDaLei" Width="1.5" PointX="18.75" PointY="6.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.XieZuoDanWeiInfo" Width="1.5" PointX="18.75" PointY="9.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.YeZhuHuiYiJiLu" Width="1.5" PointX="12.75" PointY="18.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.YeZhuInfo" Width="1.5" PointX="18.75" PointY="15.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.GongChengCheDingDan_View" Width="1.5" PointX="4.75" PointY="19.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.WaJueJiDingDan_View" Width="1.5" PointX="6.75" PointY="19.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

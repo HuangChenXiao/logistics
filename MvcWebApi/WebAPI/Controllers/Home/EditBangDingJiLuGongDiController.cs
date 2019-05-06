@@ -23,8 +23,11 @@ namespace WebAPI.Controllers.Home
             {
                 try
                 {
-                    var info = db.BangDingJiLu.OrderByDescending(o=>o.AutoID).Where(o => o.openid == openid).FirstOrDefault();
-                    info.cGongDiBianMa = cGongDiBianMa;
+                    var info = db.BangDingJiLu.OrderByDescending(o => o.AutoID).Where(o => o.openid == openid).FirstOrDefault();
+                    if (info != null)
+                    {
+                        info.cGongDiBianMa = cGongDiBianMa;
+                    }
                     model.message = "修改成功";
                     model.status_code = 200;
                     db.SaveChanges();
