@@ -145,6 +145,7 @@
     <EntitySetMapping Name="GongChengCheDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
         <MappingFragment StoreEntitySet="GongChengCheDingDan">
+          <ScalarProperty Name="bPrint" ColumnName="bPrint" />
           <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
           <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
           <ScalarProperty Name="cCreate" ColumnName="cCreate" />
@@ -568,6 +569,8 @@
     <EntitySetMapping Name="wechatUser">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatUser">
         <MappingFragment StoreEntitySet="wechatUser">
+          <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+          <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
           <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="dStop" ColumnName="dStop" />
@@ -783,6 +786,14 @@
           <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
           <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChuanXiangPrinter">
+      <EntityTypeMapping TypeName="EBMSystemModel.ChuanXiangPrinter">
+        <MappingFragment StoreEntitySet="ChuanXiangPrinter">
+          <ScalarProperty Name="printerid" ColumnName="printerid" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

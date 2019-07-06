@@ -107,6 +107,13 @@
           <Property Name="dBaoFeiRiQi" Type="datetime" />
           <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="ChuanXiangPrinter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="printerid" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="CurrentStore">
           <Key>
             <PropertyRef Name="AutoID" />
@@ -139,6 +146,7 @@
           <Property Name="cCreate" Type="varchar" MaxLength="30" />
           <Property Name="iBiaoShi" Type="int" />
           <Property Name="cDiZhi" Type="varchar" MaxLength="150" />
+          <Property Name="bPrint" Type="bit" />
         </EntityType>
         <EntityType Name="GongDiCheLiang">
           <Key>
@@ -552,6 +560,8 @@
           <Property Name="dStop" Type="datetime" />
           <Property Name="cBeiZhu" Type="nvarchar" MaxLength="200" />
           <Property Name="cTuWeiBianMa" Type="nvarchar" MaxLength="20" />
+          <Property Name="cUserCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="cPassword" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="WeiXiuJiLu">
           <Key>
@@ -787,6 +797,7 @@
           <EntitySet Name="BaseCode" EntityType="Self.BaseCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CangKuInfo" EntityType="Self.CangKuInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheLiangInfo" EntityType="Self.CheLiangInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChuanXiangPrinter" EntityType="Self.ChuanXiangPrinter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentStore" EntityType="Self.CurrentStore" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GongChengCheDingDan" EntityType="Self.GongChengCheDingDan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GongDiCheLiang" EntityType="Self.GongDiCheLiang" Schema="dbo" store:Type="Tables" />
@@ -959,6 +970,7 @@
           <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
           <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
           <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
+          <EntitySet Name="ChuanXiangPrinter" EntityType="EBMSystemModel.ChuanXiangPrinter" />
           </EntityContainer>
         <ComplexType Name="PROC_OrderSumCount_Result">
           <Property Type="Int64" Name="RowNo" Nullable="true" />
@@ -1106,6 +1118,7 @@
           <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="iBiaoShi" Type="Int32" />
           <Property Name="cDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="bPrint" Type="Boolean" />
         </EntityType>
         <EntityType Name="GongDiCheLiang">
           <Key>
@@ -1508,6 +1521,8 @@
           <Property Name="dStop" Type="DateTime" Precision="3" />
           <Property Name="cBeiZhu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cUserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WeiXiuJiLu">
           <Key>
@@ -1689,6 +1704,13 @@
           <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ChuanXiangPrinter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="printerid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1839,6 +1861,7 @@
           <EntitySetMapping Name="GongChengCheDingDan">
             <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
               <MappingFragment StoreEntitySet="GongChengCheDingDan">
+                <ScalarProperty Name="bPrint" ColumnName="bPrint" />
                 <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
                 <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
                 <ScalarProperty Name="cCreate" ColumnName="cCreate" />
@@ -2262,6 +2285,8 @@
           <EntitySetMapping Name="wechatUser">
             <EntityTypeMapping TypeName="EBMSystemModel.wechatUser">
               <MappingFragment StoreEntitySet="wechatUser">
+                <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+                <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
                 <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
                 <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
                 <ScalarProperty Name="dStop" ColumnName="dStop" />
@@ -2477,6 +2502,14 @@
                 <ScalarProperty Name="dDanJuRiQi" ColumnName="dDanJuRiQi" />
                 <ScalarProperty Name="cGongDiBianMa" ColumnName="cGongDiBianMa" />
                 <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChuanXiangPrinter">
+            <EntityTypeMapping TypeName="EBMSystemModel.ChuanXiangPrinter">
+              <MappingFragment StoreEntitySet="ChuanXiangPrinter">
+                <ScalarProperty Name="printerid" ColumnName="printerid" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

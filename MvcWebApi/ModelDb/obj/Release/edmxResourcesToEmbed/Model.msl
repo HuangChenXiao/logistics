@@ -15,6 +15,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_OrderSumDriverCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumDriverCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumDriverCount_Result">
+          <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
+          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
+          <ScalarProperty Name="iNumber" ColumnName="iNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="BangDingJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.BangDingJiLu">
         <MappingFragment StoreEntitySet="BangDingJiLu">
@@ -135,6 +145,7 @@
     <EntitySetMapping Name="GongChengCheDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
         <MappingFragment StoreEntitySet="GongChengCheDingDan">
+          <ScalarProperty Name="bPrint" ColumnName="bPrint" />
           <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
           <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
           <ScalarProperty Name="cCreate" ColumnName="cCreate" />
@@ -264,6 +275,27 @@
           <ScalarProperty Name="cKeHuMingCheng" ColumnName="cKeHuMingCheng" />
           <ScalarProperty Name="cDaLeiBianMa" ColumnName="cDaLeiBianMa" />
           <ScalarProperty Name="cKeHuBianMa" ColumnName="cKeHuBianMa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstching">
+      <EntityTypeMapping TypeName="EBMSystemModel.mstching">
+        <MappingFragment StoreEntitySet="mstching">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="memo" ColumnName="memo" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+          <ScalarProperty Name="OpenUserId" ColumnName="OpenUserId" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -537,6 +569,8 @@
     <EntitySetMapping Name="wechatUser">
       <EntityTypeMapping TypeName="EBMSystemModel.wechatUser">
         <MappingFragment StoreEntitySet="wechatUser">
+          <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+          <ScalarProperty Name="cUserCode" ColumnName="cUserCode" />
           <ScalarProperty Name="cTuWeiBianMa" ColumnName="cTuWeiBianMa" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="dStop" ColumnName="dStop" />
@@ -755,15 +789,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="PROC_OrderSumDriverCount" FunctionName="EBMSystemModel.Store.PROC_OrderSumDriverCount">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="EBMSystemModel.PROC_OrderSumDriverCount_Result">
-          <ScalarProperty Name="RowNo" ColumnName="RowNo" />
-          <ScalarProperty Name="cGongDiMingCheng" ColumnName="cGongDiMingCheng" />
-          <ScalarProperty Name="cTuWeiMingCheng" ColumnName="cTuWeiMingCheng" />
-          <ScalarProperty Name="iNumber" ColumnName="iNumber" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <EntitySetMapping Name="ChuanXiangPrinter">
+      <EntityTypeMapping TypeName="EBMSystemModel.ChuanXiangPrinter">
+        <MappingFragment StoreEntitySet="ChuanXiangPrinter">
+          <ScalarProperty Name="printerid" ColumnName="printerid" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -102,6 +102,13 @@
     <Property Name="dBaoFeiRiQi" Type="datetime" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
   </EntityType>
+  <EntityType Name="ChuanXiangPrinter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="printerid" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="CurrentStore">
     <Key>
       <PropertyRef Name="AutoID" />
@@ -134,6 +141,7 @@
     <Property Name="cCreate" Type="varchar" MaxLength="30" />
     <Property Name="iBiaoShi" Type="int" />
     <Property Name="cDiZhi" Type="varchar" MaxLength="150" />
+    <Property Name="bPrint" Type="bit" />
   </EntityType>
   <EntityType Name="GongDiCheLiang">
     <Key>
@@ -236,6 +244,26 @@
     <Property Name="cYinHangZhengHao" Type="varchar" MaxLength="60" />
     <Property Name="cNaShuiRenShiBieHao" Type="varchar" MaxLength="60" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="mstching">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uuid" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userid" Type="varchar" MaxLength="50" />
+    <Property Name="OpenUserId" Type="varchar" MaxLength="50" />
+    <Property Name="deviceName" Type="varchar" MaxLength="50" />
+    <Property Name="openid" Type="varchar" MaxLength="100" />
+    <Property Name="memo" Type="varchar" MaxLength="150" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="NianJianJiLu">
     <Key>
@@ -527,6 +555,8 @@
     <Property Name="dStop" Type="datetime" />
     <Property Name="cBeiZhu" Type="nvarchar" MaxLength="200" />
     <Property Name="cTuWeiBianMa" Type="nvarchar" MaxLength="20" />
+    <Property Name="cUserCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="cPassword" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="WeiXiuJiLu">
     <Key>
@@ -712,6 +742,12 @@
     <Property Name="cDingDanHao" Type="varchar" MaxLength="30" />
     <Property Name="cGuanLiYuanMingChen" Type="nvarchar" MaxLength="30" />
   </EntityType>
+  <Function Name="fnGetDistance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="LatBegin" Type="real" Mode="In" />
+    <Parameter Name="LngBegin" Type="real" Mode="In" />
+    <Parameter Name="LatEnd" Type="real" Mode="In" />
+    <Parameter Name="LngEnd" Type="real" Mode="In" />
+  </Function>
   <Function Name="PD_BaseCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NewCode" Type="varchar" Mode="InOut" />
     <Parameter Name="VouchType" Type="varchar" Mode="In" />
@@ -756,6 +792,7 @@
     <EntitySet Name="BaseCode" EntityType="Self.BaseCode" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CangKuInfo" EntityType="Self.CangKuInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheLiangInfo" EntityType="Self.CheLiangInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChuanXiangPrinter" EntityType="Self.ChuanXiangPrinter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CurrentStore" EntityType="Self.CurrentStore" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GongChengCheDingDan" EntityType="Self.GongChengCheDingDan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GongDiCheLiang" EntityType="Self.GongDiCheLiang" Schema="dbo" store:Type="Tables" />
@@ -765,6 +802,7 @@
     <EntitySet Name="JiaYouJiLu" EntityType="Self.JiaYouJiLu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KeHuDaLei" EntityType="Self.KeHuDaLei" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KeHuInfo" EntityType="Self.KeHuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mstching" EntityType="Self.mstching" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NianJianJiLu" EntityType="Self.NianJianJiLu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShangBanLeiBie" EntityType="Self.ShangBanLeiBie" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShangPinChuKu" EntityType="Self.ShangPinChuKu" Schema="dbo" store:Type="Tables" />

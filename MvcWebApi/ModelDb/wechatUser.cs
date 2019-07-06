@@ -40,5 +40,7 @@ namespace ModelDb
         public Nullable<System.DateTime> dStop { get; set; }
         public string cBeiZhu { get; set; }
         public string cTuWeiBianMa { get; set; }
+        public string cUserCode { get; set; }
+        public string cPassword { get; set; }
     }
 }

@@ -50,6 +50,7 @@
         <EntityTypeShape EntityType="EBMSystemModel.YeZhuInfo" Width="1.5" PointX="18.75" PointY="15.75" />
         <EntityTypeShape EntityType="EBMSystemModel.GongChengCheDingDan_View" Width="1.5" PointX="4.75" PointY="19.75" />
         <EntityTypeShape EntityType="EBMSystemModel.WaJueJiDingDan_View" Width="1.5" PointX="6.75" PointY="19.75" />
+        <EntityTypeShape EntityType="EBMSystemModel.ChuanXiangPrinter" Width="1.5" PointX="9.375" PointY="19.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

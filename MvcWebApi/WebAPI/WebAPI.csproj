@@ -193,6 +193,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiActionDebugFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\App\CheckWechatUserController.cs" />
+    <Compile Include="Controllers\App\EditOrderbPrintController.cs" />
+    <Compile Include="Controllers\App\EditPrinterController.cs" />
+    <Compile Include="Controllers\App\GetOrderInfoController.cs" />
     <Compile Include="Controllers\Driver\DriverCheLiangController.cs" />
     <Compile Include="Controllers\Driver\OrderNumberCountController.cs" />
     <Compile Include="Controllers\Driver\ShangBanLeiBieController.cs" />

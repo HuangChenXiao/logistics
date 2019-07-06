@@ -84,6 +84,7 @@
     <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
     <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
     <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
+    <EntitySet Name="ChuanXiangPrinter" EntityType="EBMSystemModel.ChuanXiangPrinter" />
   </EntityContainer>
   <ComplexType Name="PROC_OrderSumCount_Result">
     <Property Type="Int64" Name="RowNo" Nullable="true" />
@@ -231,6 +232,7 @@
     <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="iBiaoShi" Type="Int32" />
     <Property Name="cDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="bPrint" Type="Boolean" />
   </EntityType>
   <EntityType Name="GongDiCheLiang">
     <Key>
@@ -633,6 +635,8 @@
     <Property Name="dStop" Type="DateTime" Precision="3" />
     <Property Name="cBeiZhu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cUserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="WeiXiuJiLu">
     <Key>
@@ -813,5 +817,12 @@
     <Property Name="cGongDiMingCheng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ChuanXiangPrinter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="printerid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

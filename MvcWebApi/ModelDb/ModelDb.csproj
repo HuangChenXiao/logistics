@@ -73,6 +73,9 @@
     <Compile Include="CheLiangInfo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChuanXiangPrinter.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ContextDB.cs" />
     <Compile Include="CurrentStore.cs">
       <DependentUpon>Model.tt</DependentUpon>

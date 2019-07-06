@@ -72,6 +72,7 @@ namespace ModelDb
         public virtual DbSet<YeZhuInfo> YeZhuInfo { get; set; }
         public virtual DbSet<GongChengCheDingDan_View> GongChengCheDingDan_View { get; set; }
         public virtual DbSet<WaJueJiDingDan_View> WaJueJiDingDan_View { get; set; }
+        public virtual DbSet<ChuanXiangPrinter> ChuanXiangPrinter { get; set; }
     
         public virtual int PD_BaseCode(ObjectParameter newCode, string vouchType)
         {

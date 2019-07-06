@@ -34,6 +34,11 @@
       <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
       <Parameter Name="cGuanLiYuanBianMa" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="PROC_OrderSumDriverCount" ReturnType="Collection(EBMSystemModel.PROC_OrderSumDriverCount_Result)">
+      <Parameter Name="openid" Mode="In" Type="String" />
+      <Parameter Name="BegindDanJuRiQi" Mode="In" Type="String" />
+      <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="BangDingJiLu" EntityType="EBMSystemModel.BangDingJiLu" />
     <EntitySet Name="BaoXianJiLu" EntityType="EBMSystemModel.BaoXianJiLu" />
     <EntitySet Name="BaoYangJiLu" EntityType="EBMSystemModel.BaoYangJiLu" />
@@ -49,6 +54,7 @@
     <EntitySet Name="JiaYouJiLu" EntityType="EBMSystemModel.JiaYouJiLu" />
     <EntitySet Name="KeHuDaLei" EntityType="EBMSystemModel.KeHuDaLei" />
     <EntitySet Name="KeHuInfo" EntityType="EBMSystemModel.KeHuInfo" />
+    <EntitySet Name="mstching" EntityType="EBMSystemModel.mstching" />
     <EntitySet Name="NianJianJiLu" EntityType="EBMSystemModel.NianJianJiLu" />
     <EntitySet Name="ShangBanLeiBie" EntityType="EBMSystemModel.ShangBanLeiBie" />
     <EntitySet Name="ShangPinChuKu" EntityType="EBMSystemModel.ShangPinChuKu" />
@@ -78,13 +84,15 @@
     <EntitySet Name="YeZhuInfo" EntityType="EBMSystemModel.YeZhuInfo" />
     <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
     <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
-    <FunctionImport Name="PROC_OrderSumDriverCount" ReturnType="Collection(EBMSystemModel.PROC_OrderSumDriverCount_Result)">
-      <Parameter Name="openid" Mode="In" Type="String" />
-      <Parameter Name="BegindDanJuRiQi" Mode="In" Type="String" />
-      <Parameter Name="EnddDanJuRiQi" Mode="In" Type="String" />
-    </FunctionImport>
+    <EntitySet Name="ChuanXiangPrinter" EntityType="EBMSystemModel.ChuanXiangPrinter" />
   </EntityContainer>
   <ComplexType Name="PROC_OrderSumCount_Result">
+    <Property Type="Int64" Name="RowNo" Nullable="true" />
+    <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="iNumber" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PROC_OrderSumDriverCount_Result">
     <Property Type="Int64" Name="RowNo" Nullable="true" />
     <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
@@ -224,6 +232,7 @@
     <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="iBiaoShi" Type="Int32" />
     <Property Name="cDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="bPrint" Type="Boolean" />
   </EntityType>
   <EntityType Name="GongDiCheLiang">
     <Key>
@@ -326,6 +335,26 @@
     <Property Name="cYinHangZhengHao" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
     <Property Name="cNaShuiRenShiBieHao" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
     <Property Name="cBeiZhu" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mstching">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uuid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OpenUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="deviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="openid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="memo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="iState" Type="Int32" />
+    <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dCreate" Type="DateTime" Precision="3" />
+    <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dModify" Type="DateTime" Precision="3" />
+    <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dAuditor" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="NianJianJiLu">
     <Key>
@@ -606,6 +635,8 @@
     <Property Name="dStop" Type="DateTime" Precision="3" />
     <Property Name="cBeiZhu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="cTuWeiBianMa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cUserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="WeiXiuJiLu">
     <Key>
@@ -787,10 +818,11 @@
     <Property Name="cDingDanHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="cGuanLiYuanMingChen" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
   </EntityType>
-  <ComplexType Name="PROC_OrderSumDriverCount_Result">
-    <Property Type="Int64" Name="RowNo" Nullable="true" />
-    <Property Type="String" Name="cGongDiMingCheng" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="cTuWeiMingCheng" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="iNumber" Nullable="true" />
-  </ComplexType>
+  <EntityType Name="ChuanXiangPrinter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="printerid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
