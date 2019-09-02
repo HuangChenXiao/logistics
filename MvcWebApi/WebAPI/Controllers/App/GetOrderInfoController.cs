@@ -36,8 +36,8 @@ namespace WebAPI.Controllers.App
                             b.cGongDiMingCheng,
                             c.cTuWeiMingCheng,
                             a.cChePaiHao,
-                            cGuanLiYuanMingCheng = d.nickname,
-                            cJiaShiYuanMingCheng = e.nickname,
+                            cGuanLiYuanMingCheng = d.cXingMing,
+                            cJiaShiYuanMingCheng = e.cXingMing,
                             a.dQiYunShiJian
                            };
                 var data = temp.FirstOrDefault();
