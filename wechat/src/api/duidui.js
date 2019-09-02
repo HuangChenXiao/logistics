@@ -7,3 +7,11 @@ export function DuiDuiJi(data) {
         params: data
     })
 }
+
+export function EditbPrint(data) {
+    return request({
+        url: 'EditbPrint',
+        method: "get",
+        params: data
+    })
+}

@@ -548,7 +548,7 @@ export default {
             content: "工程车订单发布成功"
           });
           this.sendTplMsg(this.bItem);
-          this.sendDuiDuiJi(this.bItem);
+          // this.sendDuiDuiJi(this.bItem);
           this.resetItem();
           this.get_order(); //订单列表
           this.isavailable = true;

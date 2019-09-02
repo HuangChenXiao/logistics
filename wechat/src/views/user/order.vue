@@ -49,7 +49,7 @@
                 @click="edit_order(item)"
                 v-if="role_code=='001' && item.iState!=110"
               >作废</div>
-              <div class="confirm-btn" @click="sendDuiDuiJi(item)" v-if="role_code=='001'">补打印</div>
+              <div class="confirm-btn" @click="sendDuiDuiJi(item)" v-if="role_code=='001'">打印</div>
               <div
                 class="confirm-btn"
                 @click="ok_order(item)"
@@ -161,7 +161,7 @@ import { Tab, TabItem, XDialog, Datetime } from "vux";
 import cVehicle from "@/components/cVehicle";
 import workSite from "@/components/workSite";
 import getformattedAddress from "@/map/index.js";
-import { DuiDuiJi } from "@/api/duidui.js";
+import { DuiDuiJi,EditbPrint } from "@/api/duidui.js";
 import {
   CheLiang,
   GongDiInfo,
@@ -303,11 +303,21 @@ export default {
         title: "提示",
         content: "继续打印订单信息，是否继续？",
         onConfirm() {
+          /*对对机打印*/
+          // var data = {};
+          // data.cDingDanHao = item.cDingDanHao;
+          // data.sign = _this.$md5("71f727c6a543xiamen!@#" + data.cDingDanHao);
+          // DuiDuiJi(data).then(res => {
+          //   console.log(res);
+          //   _this.$vux.alert.show({
+          //     title: "提示",
+          //     content: res.message
+          //   });
+          // });
+          /* APP打印 */
           var data = {};
-          data.cDingDanHao = item.cDingDanHao;
-          data.sign = _this.$md5("71f727c6a543xiamen!@#" + data.cDingDanHao);
-          DuiDuiJi(data).then(res => {
-            console.log(res);
+          data.AutoID=item.AutoID
+          EditbPrint(data).then(res => {
             _this.$vux.alert.show({
               title: "提示",
               content: res.message
