@@ -27,7 +27,7 @@ namespace WebAPI.Controllers.Home
                     var info = db.GongChengCheDingDan.Where(o => o.cGuanLiYuanBianMa == openid && o.AutoID == AutoID).FirstOrDefault();
                     if (info != null)
                     {
-                        info.bPrint = true;
+                        info.bPrint = false;
                     }
                     model.message = "打印成功";
                     model.status_code = 200;

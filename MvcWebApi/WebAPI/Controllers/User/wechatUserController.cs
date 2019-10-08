@@ -23,9 +23,10 @@ namespace WebAPI.Controllers.User
 
         public ResponseMessageResult Get()
         {
-            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
-            if (!string.IsNullOrEmpty(openid))
+            var HeaderOPENID = HttpContext.Current.Request.Headers.GetValues("openid");
+            if (HeaderOPENID != null)
             {
+                string openid = HeaderOPENID.First().ToString();
                 var temp = from a in db.wechatUser select a;
                 model.data = temp.Where(o => o.openid == openid).FirstOrDefault();
 
@@ -43,8 +44,8 @@ namespace WebAPI.Controllers.User
             }
             else
             {
-                model.message = "微信授权失败";
-                model.status_code = 401;
+                model.message = "openid为空";
+                model.status_code = 403;
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }

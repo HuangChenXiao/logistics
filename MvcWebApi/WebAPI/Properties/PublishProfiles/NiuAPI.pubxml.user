@@ -76,7 +76,7 @@
       <publishTime>12/08/2018 11:13:01</publishTime>
     </File>
     <File Include="bin/Com.dll">
-      <publishTime>09/02/2019 10:05:13</publishTime>
+      <publishTime>10/08/2019 21:34:28</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>12/08/2018 11:13:02</publishTime>
@@ -142,7 +142,7 @@
       <publishTime>12/08/2018 11:13:03</publishTime>
     </File>
     <File Include="bin/ModelDb.dll">
-      <publishTime>09/02/2019 10:05:14</publishTime>
+      <publishTime>10/08/2019 21:34:28</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/08/2018 11:13:04</publishTime>
@@ -187,7 +187,7 @@
       <publishTime>12/08/2018 11:13:03</publishTime>
     </File>
     <File Include="bin/WebAPI.dll">
-      <publishTime>09/02/2019 10:05:16</publishTime>
+      <publishTime>10/08/2019 22:13:37</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>12/08/2018 11:13:04</publishTime>
@@ -196,7 +196,7 @@
       <publishTime>07/09/2013 11:05:10</publishTime>
     </File>
     <File Include="bin/WeChatSDK.dll">
-      <publishTime>09/02/2019 10:05:14</publishTime>
+      <publishTime>10/08/2019 21:34:29</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>12/08/2018 11:13:02</publishTime>
@@ -358,7 +358,7 @@
       <publishTime>11/28/2017 10:44:13</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/02/2019 10:05:17</publishTime>
+      <publishTime>09/04/2019 07:44:37</publishTime>
     </File>
     <File Include="WeChat/API/WeChatToken.ashx">
       <publishTime>12/08/2018 11:12:59</publishTime>
