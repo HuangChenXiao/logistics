@@ -26,17 +26,17 @@
 </template>
 
 <script>
-import { validatePhone,validateidentitycard } from '@/utils/validate.js'
+import { validatePhone, validateidentitycard } from '@/utils/validate.js'
 import { PostWechatUser } from '@/api/home.js'
-import {WeChatAccredit } from '@/api/wechat.js'
-import getformattedAddress from "@/map/index.js";
+import { WeChatAccredit } from '@/api/wechat.js'
+import getformattedAddress from '@/map/index.js'
 export default {
   data() {
     return {
       user: {
         cXingMing: null,
         cLianXiDianHua: null,
-        cShenFenZhengHao:null,
+        cShenFenZhengHao: null,
         openid: null,
         nickname: null,
         sex: null,
@@ -59,7 +59,6 @@ export default {
       this.user.city = res.city
       this.user.country = res.country
       this.user.headimgurl = res.headimgurl
-      this.goToHome()
     } else {
       WeChatAccredit({ code: Request.code }).then(res => {
         if (res.openid) {
@@ -72,15 +71,17 @@ export default {
           this.user.city = res.city
           this.user.country = res.country
           this.user.headimgurl = res.headimgurl
-          this.goToHome()
         }
       })
     }
+    this.$store.dispatch('GetInfo').then(res => {
+      this.goToHome()
+    })
   },
   methods: {
-    goToHome(){
+    goToHome() {
       this.$router.push({
-        path:'/'
+        path: '/'
       })
     },
     GetRequest() {
@@ -102,7 +103,7 @@ export default {
           content: '获取微信授权失败',
           onHide() {
             location.href =
-              'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=http%3a%2f%2ftest.chaomafu.com%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
+              'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx42cd9994ca8711a5&redirect_uri=https%3a%2f%2fmobile.xmxtm.cn%2faudit&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
           }
         })
         return
@@ -128,7 +129,7 @@ export default {
         })
         return
       }
-      
+
       var _this = this
       this.$vux.confirm.show({
         title: '提示',
@@ -153,7 +154,7 @@ export default {
 
 <style scoped lang="scss">
 .audit-content {
-  font-size: .5rem;
+  font-size: 0.5rem;
   background: #fff;
 }
 .item-list {
