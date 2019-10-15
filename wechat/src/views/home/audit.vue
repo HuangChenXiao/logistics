@@ -59,6 +59,9 @@ export default {
       this.user.city = res.city
       this.user.country = res.country
       this.user.headimgurl = res.headimgurl
+      this.$store.dispatch('GetInfo').then(res => {
+        this.goToHome()
+      })
     } else {
       WeChatAccredit({ code: Request.code }).then(res => {
         if (res.openid) {
@@ -71,12 +74,12 @@ export default {
           this.user.city = res.city
           this.user.country = res.country
           this.user.headimgurl = res.headimgurl
+          this.$store.dispatch('GetInfo').then(res => {
+            this.goToHome()
+          })
         }
       })
     }
-    this.$store.dispatch('GetInfo').then(res => {
-      this.goToHome()
-    })
   },
   methods: {
     goToHome() {
