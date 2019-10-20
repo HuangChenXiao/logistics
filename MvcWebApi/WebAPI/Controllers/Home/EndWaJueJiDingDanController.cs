@@ -31,6 +31,7 @@ namespace WebAPI.Controllers.Home
                     {
                         order.iState = 100;
                         order.cState = "确认";
+                        order.dJieShuShiJian = DateTime.Now;
                         model.message = "修改成功";
                         model.status_code = 200;
                         model.data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
