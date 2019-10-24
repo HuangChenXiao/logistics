@@ -264,7 +264,7 @@ export default {
       //   return;
       // }
       this.loading_tuwei = true;
-      if (this.PutTuWeiInfo == "create") {
+      if (this.TuWeiStatus == "create") {
         EditTuWeiInfo(this.ruleForm)
           .then(res => {
             this.loading_tuwei = false;
