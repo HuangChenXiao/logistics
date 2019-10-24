@@ -29,7 +29,7 @@ namespace WebAPI.Controllers.Home
                 var temp = from a in db.TuWeiInfo
                            where (a.cTuWeiBianMa.Contains(keyword) || a.cTuWeiMingCheng.Contains(keyword) || string.IsNullOrEmpty(keyword))
                            select a;
-                model.data = temp.OrderByDescending(o=>o.dDate).ToList();
+                model.data = temp.OrderByDescending(o => o.dDate).ToList();
 
                 if (model.data != null)
                 {
@@ -83,35 +83,43 @@ namespace WebAPI.Controllers.Home
         [ResponseType(typeof(TuWeiInfo))]
         public ResponseMessageResult Post(TuWeiInfo TuWeiInfo)
         {
-            string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
-            if (!string.IsNullOrEmpty(openid))
+            try
             {
-                var info = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == TuWeiInfo.cTuWeiBianMa);
-                if (info.Count()>0)
+                string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
+                if (!string.IsNullOrEmpty(openid))
                 {
-                    model.message = "土尾编码不能重复";
+                    var info = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == TuWeiInfo.cTuWeiBianMa);
+                    if (info.Count() > 0)
+                    {
+                        model.message = "土尾编码不能重复";
+                        model.status_code = 401;
+                        return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                    }
+                    var db_web = ContextDB.Context();
+                    TuWeiInfo.cTuWeiBianMa = db_web.QueryValue("exec PROC_GongDiCode 'TW'");
+                    db.TuWeiInfo.Add(TuWeiInfo);
+                    try
+                    {
+                        db.SaveChanges();
+                        model.message = "新增成功";
+                        model.status_code = 200;
+                    }
+                    catch (Exception ex)
+                    {
+                        model.message = ex.Message;
+                        model.status_code = 401;
+                    }
+                    db_web.Dispose();
+                }
+                else
+                {
+                    model.message = "微信授权失败";
                     model.status_code = 401;
-                    return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
                 }
-                var db_web = ContextDB.Context();
-                TuWeiInfo.cTuWeiBianMa= db_web.QueryValue("exec PROC_GongDiCode 'TW'");
-                db.TuWeiInfo.Add(TuWeiInfo);
-                try
-                {
-                    db.SaveChanges();
-                    model.message = "新增成功";
-                    model.status_code = 200;
-                }
-                catch (Exception ex)
-                {
-                    model.message = ex.Message;
-                    model.status_code = 401;
-                }
-                db_web.Dispose();
             }
-            else
+            catch (Exception ex)
             {
-                model.message = "微信授权失败";
+                model.message = ex.Message;
                 model.status_code = 401;
             }
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
@@ -122,8 +130,8 @@ namespace WebAPI.Controllers.Home
             string openid = HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var count = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == TuWeiInfo.cTuWeiBianMa).Count();;
-                if (count>1)
+                var count = db.TuWeiInfo.Where(o => o.cTuWeiBianMa == TuWeiInfo.cTuWeiBianMa).Count(); ;
+                if (count > 1)
                 {
                     model.message = "土尾编码不能重复";
                     model.status_code = 401;
