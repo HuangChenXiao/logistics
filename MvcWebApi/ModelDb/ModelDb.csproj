@@ -98,6 +98,9 @@
     <Compile Include="GradeDef.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImpCheLiangInfo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="JiaYouJiLu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -169,6 +172,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Sys_User.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TmpCheLiangBangDing.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="TuWeiInfo.cs">

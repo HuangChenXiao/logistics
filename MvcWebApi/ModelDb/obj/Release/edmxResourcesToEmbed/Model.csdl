@@ -85,6 +85,8 @@
     <EntitySet Name="GongChengCheDingDan_View" EntityType="EBMSystemModel.GongChengCheDingDan_View" />
     <EntitySet Name="WaJueJiDingDan_View" EntityType="EBMSystemModel.WaJueJiDingDan_View" />
     <EntitySet Name="ChuanXiangPrinter" EntityType="EBMSystemModel.ChuanXiangPrinter" />
+    <EntitySet Name="ImpCheLiangInfo" EntityType="EBMSystemModel.ImpCheLiangInfo" />
+    <EntitySet Name="TmpCheLiangBangDing" EntityType="EBMSystemModel.TmpCheLiangBangDing" />
   </EntityContainer>
   <ComplexType Name="PROC_OrderSumCount_Result">
     <Property Type="Int64" Name="RowNo" Nullable="true" />
@@ -233,6 +235,7 @@
     <Property Name="iBiaoShi" Type="Int32" />
     <Property Name="cDiZhi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="bPrint" Type="Boolean" />
+    <Property Name="bTuWei" Type="Boolean" />
   </EntityType>
   <EntityType Name="GongDiCheLiang">
     <Key>
@@ -361,12 +364,20 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cNianJianLeiXing" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="dNianJianRiQi" Type="DateTime" Precision="3" />
     <Property Name="dDaoQiRiQi" Type="DateTime" Precision="3" />
-    <Property Name="cNianJianJiLu" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cNianJianJiLu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="cBeiZhu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="iState" Type="Int32" />
+    <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dCreate" Type="DateTime" Precision="3" />
+    <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dModify" Type="DateTime" Precision="3" />
+    <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dAuditor" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="ShangBanLeiBie">
     <Key>
@@ -453,7 +464,7 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cChePaiHao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cChePaiHao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="dShiGuRiQi" Type="DateTime" Precision="3" />
     <Property Name="cZeRenGuiShu" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
     <Property Name="cFaShengDiDian" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -469,6 +480,16 @@
     <Property Name="cChuLiQingKuan" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="bShiFouChuXian" Type="Boolean" />
     <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cBaoAnHao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cShiGuMiaoShu" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="iState" Type="Int32" />
+    <Property Name="cState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dCreate" Type="DateTime" Precision="3" />
+    <Property Name="cModify" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dModify" Type="DateTime" Precision="3" />
+    <Property Name="cAuditor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dAuditor" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="StoreRecord">
     <Key>
@@ -578,6 +599,7 @@
     <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="iBiaoShi" Type="Int32" />
     <Property Name="cCreate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="bPrint" Type="Boolean" />
   </EntityType>
   <EntityType Name="wechatAccessToken">
     <Key>
@@ -824,5 +846,35 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="printerid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ImpCheLiangInfo">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gID" Type="Guid" />
+    <Property Name="cChePaiHao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="cPinPai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cXingHao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cCheJiaHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cFaDongJiHao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dGouMaiRiQi" Type="DateTime" Precision="3" />
+    <Property Name="dNianShenRiQi" Type="DateTime" Precision="3" />
+    <Property Name="iTuFangShu" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cCheLiangSuoShu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cXZDWBianMa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cXZDWMingCheng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="cCheLiangLeiBie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cBeiZhu" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="iError" Type="Int32" />
+    <Property Name="cError" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TmpCheLiangBangDing">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gID" Type="Guid" />
+    <Property Name="cChePaiHao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

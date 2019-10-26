@@ -145,6 +145,7 @@
     <EntitySetMapping Name="GongChengCheDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.GongChengCheDingDan">
         <MappingFragment StoreEntitySet="GongChengCheDingDan">
+          <ScalarProperty Name="bTuWei" ColumnName="bTuWei" />
           <ScalarProperty Name="bPrint" ColumnName="bPrint" />
           <ScalarProperty Name="cDiZhi" ColumnName="cDiZhi" />
           <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
@@ -302,6 +303,14 @@
     <EntitySetMapping Name="NianJianJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.NianJianJiLu">
         <MappingFragment StoreEntitySet="NianJianJiLu">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="cNianJianJiLu" ColumnName="cNianJianJiLu" />
           <ScalarProperty Name="dDaoQiRiQi" ColumnName="dDaoQiRiQi" />
@@ -401,6 +410,16 @@
     <EntitySetMapping Name="ShiGuJiLu">
       <EntityTypeMapping TypeName="EBMSystemModel.ShiGuJiLu">
         <MappingFragment StoreEntitySet="ShiGuJiLu">
+          <ScalarProperty Name="dAuditor" ColumnName="dAuditor" />
+          <ScalarProperty Name="cAuditor" ColumnName="cAuditor" />
+          <ScalarProperty Name="dModify" ColumnName="dModify" />
+          <ScalarProperty Name="cModify" ColumnName="cModify" />
+          <ScalarProperty Name="dCreate" ColumnName="dCreate" />
+          <ScalarProperty Name="cCreate" ColumnName="cCreate" />
+          <ScalarProperty Name="cState" ColumnName="cState" />
+          <ScalarProperty Name="iState" ColumnName="iState" />
+          <ScalarProperty Name="cShiGuMiaoShu" ColumnName="cShiGuMiaoShu" />
+          <ScalarProperty Name="cBaoAnHao" ColumnName="cBaoAnHao" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
           <ScalarProperty Name="bShiFouChuXian" ColumnName="bShiFouChuXian" />
           <ScalarProperty Name="cChuLiQingKuan" ColumnName="cChuLiQingKuan" />
@@ -517,6 +536,7 @@
     <EntitySetMapping Name="WaJueJiDingDan">
       <EntityTypeMapping TypeName="EBMSystemModel.WaJueJiDingDan">
         <MappingFragment StoreEntitySet="WaJueJiDingDan">
+          <ScalarProperty Name="bPrint" ColumnName="bPrint" />
           <ScalarProperty Name="cCreate" ColumnName="cCreate" />
           <ScalarProperty Name="iBiaoShi" ColumnName="iBiaoShi" />
           <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
@@ -794,6 +814,38 @@
         <MappingFragment StoreEntitySet="ChuanXiangPrinter">
           <ScalarProperty Name="printerid" ColumnName="printerid" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImpCheLiangInfo">
+      <EntityTypeMapping TypeName="EBMSystemModel.ImpCheLiangInfo">
+        <MappingFragment StoreEntitySet="ImpCheLiangInfo">
+          <ScalarProperty Name="cError" ColumnName="cError" />
+          <ScalarProperty Name="iError" ColumnName="iError" />
+          <ScalarProperty Name="cBeiZhu" ColumnName="cBeiZhu" />
+          <ScalarProperty Name="cCheLiangLeiBie" ColumnName="cCheLiangLeiBie" />
+          <ScalarProperty Name="cXZDWMingCheng" ColumnName="cXZDWMingCheng" />
+          <ScalarProperty Name="cXZDWBianMa" ColumnName="cXZDWBianMa" />
+          <ScalarProperty Name="cCheLiangSuoShu" ColumnName="cCheLiangSuoShu" />
+          <ScalarProperty Name="iTuFangShu" ColumnName="iTuFangShu" />
+          <ScalarProperty Name="dNianShenRiQi" ColumnName="dNianShenRiQi" />
+          <ScalarProperty Name="dGouMaiRiQi" ColumnName="dGouMaiRiQi" />
+          <ScalarProperty Name="cFaDongJiHao" ColumnName="cFaDongJiHao" />
+          <ScalarProperty Name="cCheJiaHao" ColumnName="cCheJiaHao" />
+          <ScalarProperty Name="cXingHao" ColumnName="cXingHao" />
+          <ScalarProperty Name="cPinPai" ColumnName="cPinPai" />
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="gID" ColumnName="gID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TmpCheLiangBangDing">
+      <EntityTypeMapping TypeName="EBMSystemModel.TmpCheLiangBangDing">
+        <MappingFragment StoreEntitySet="TmpCheLiangBangDing">
+          <ScalarProperty Name="cChePaiHao" ColumnName="cChePaiHao" />
+          <ScalarProperty Name="gID" ColumnName="gID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

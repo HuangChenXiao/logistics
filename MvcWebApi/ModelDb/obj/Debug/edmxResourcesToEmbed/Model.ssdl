@@ -142,6 +142,7 @@
     <Property Name="iBiaoShi" Type="int" />
     <Property Name="cDiZhi" Type="varchar" MaxLength="150" />
     <Property Name="bPrint" Type="bit" />
+    <Property Name="bTuWei" Type="bit" />
   </EntityType>
   <EntityType Name="GongDiCheLiang">
     <Key>
@@ -198,6 +199,28 @@
     <Property Name="iValue3" Type="int" />
     <Property Name="iValue4" Type="int" />
     <Property Name="iValue5" Type="int" />
+  </EntityType>
+  <EntityType Name="ImpCheLiangInfo">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gID" Type="uniqueidentifier" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+    <Property Name="cPinPai" Type="varchar" MaxLength="50" />
+    <Property Name="cXingHao" Type="varchar" MaxLength="50" />
+    <Property Name="cCheJiaHao" Type="varchar" MaxLength="30" />
+    <Property Name="cFaDongJiHao" Type="varchar" MaxLength="30" />
+    <Property Name="dGouMaiRiQi" Type="datetime" />
+    <Property Name="dNianShenRiQi" Type="datetime" />
+    <Property Name="iTuFangShu" Type="money" />
+    <Property Name="cCheLiangSuoShu" Type="varchar" MaxLength="30" />
+    <Property Name="cXZDWBianMa" Type="varchar" MaxLength="30" />
+    <Property Name="cXZDWMingCheng" Type="varchar" MaxLength="200" />
+    <Property Name="cCheLiangLeiBie" Type="varchar" MaxLength="30" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="iError" Type="int" />
+    <Property Name="cError" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="JiaYouJiLu">
     <Key>
@@ -270,12 +293,20 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
     <Property Name="cNianJianLeiXing" Type="varchar" MaxLength="30" />
     <Property Name="dNianJianRiQi" Type="datetime" />
     <Property Name="dDaoQiRiQi" Type="datetime" />
-    <Property Name="cNianJianJiLu" Type="varchar" MaxLength="300" />
-    <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="cNianJianJiLu" Type="varchar" MaxLength="500" />
+    <Property Name="cBeiZhu" Type="varchar" MaxLength="500" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="ShangBanLeiBie">
     <Key>
@@ -373,8 +404,9 @@
       <PropertyRef Name="AutoID" />
     </Key>
     <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="20" />
     <Property Name="dShiGuRiQi" Type="datetime" />
+    <Property Name="cBaoAnHao" Type="varchar" MaxLength="50" />
     <Property Name="cZeRenGuiShu" Type="varchar" MaxLength="60" />
     <Property Name="cFaShengDiDian" Type="varchar" MaxLength="100" />
     <Property Name="openid" Type="varchar" MaxLength="50" />
@@ -388,7 +420,16 @@
     <Property Name="dChuLiRiQi" Type="datetime" />
     <Property Name="cChuLiQingKuan" Type="varchar" MaxLength="300" />
     <Property Name="bShiFouChuXian" Type="bit" />
+    <Property Name="cShiGuMiaoShu" Type="varchar" MaxLength="2000" />
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
+    <Property Name="iState" Type="int" />
+    <Property Name="cState" Type="varchar" MaxLength="20" />
+    <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="dCreate" Type="datetime" />
+    <Property Name="cModify" Type="varchar" MaxLength="30" />
+    <Property Name="dModify" Type="datetime" />
+    <Property Name="cAuditor" Type="varchar" MaxLength="30" />
+    <Property Name="dAuditor" Type="datetime" />
   </EntityType>
   <EntityType Name="StoreRecord">
     <Key>
@@ -452,6 +493,14 @@
     <Property Name="iClass" Type="tinyint" Nullable="false" />
     <Property Name="cItemClass" Type="varchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="TmpCheLiangBangDing">
+    <Key>
+      <PropertyRef Name="AutoID" />
+    </Key>
+    <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gID" Type="uniqueidentifier" />
+    <Property Name="cChePaiHao" Type="varchar" MaxLength="10" />
+  </EntityType>
   <EntityType Name="TuWeiInfo">
     <Key>
       <PropertyRef Name="cTuWeiBianMa" />
@@ -498,6 +547,7 @@
     <Property Name="cBeiZhu" Type="varchar" MaxLength="150" />
     <Property Name="iBiaoShi" Type="int" />
     <Property Name="cCreate" Type="varchar" MaxLength="30" />
+    <Property Name="bPrint" Type="bit" />
   </EntityType>
   <EntityType Name="wechatAccessToken">
     <Key>
@@ -799,6 +849,7 @@
     <EntitySet Name="GongDiInfo" EntityType="Self.GongDiInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GongDiXianLu" EntityType="Self.GongDiXianLu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GradeDef" EntityType="Self.GradeDef" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImpCheLiangInfo" EntityType="Self.ImpCheLiangInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JiaYouJiLu" EntityType="Self.JiaYouJiLu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KeHuDaLei" EntityType="Self.KeHuDaLei" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KeHuInfo" EntityType="Self.KeHuInfo" Schema="dbo" store:Type="Tables" />
@@ -817,6 +868,7 @@
     <EntitySet Name="Sys_AbleList" EntityType="Self.Sys_AbleList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sys_User" EntityType="Self.Sys_User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemSet" EntityType="Self.SystemSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TmpCheLiangBangDing" EntityType="Self.TmpCheLiangBangDing" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TuWeiInfo" EntityType="Self.TuWeiInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VouchCode" EntityType="Self.VouchCode" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WaJueJiDingDan" EntityType="Self.WaJueJiDingDan" Schema="dbo" store:Type="Tables" />

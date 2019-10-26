@@ -14,7 +14,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers.App
 {
-    public class GetOrderInfoController : ApiController
+    public class GetWaJueJiOrderInfoController : ApiController
     {
         private EBMSystemEntities db = new EBMSystemEntities();
         public HttpResponseMessage Get()
@@ -23,22 +23,24 @@ namespace WebAPI.Controllers.App
             string openid = HttpContext.Current.Request.Headers.GetValues("openid") == null ? "" : HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var temp = from a in db.GongChengCheDingDan.ToList()
+                var temp = from a in db.WaJueJiDingDan.ToList()
                            join b in db.GongDiInfo on a.cGongDiBianMa equals b.cGongDiBianMa
-                           join c in db.TuWeiInfo on a.cTuWeiBianMa equals c.cTuWeiBianMa
                            join d in db.wechatUser on a.cGuanLiYuanBianMa equals d.openid
                            join e in db.wechatUser on a.openid equals e.openid
                            where a.cGuanLiYuanBianMa == openid
                            && (a.bPrint == false || a.bPrint == null)
-                           select new { 
-                            a.AutoID,
-                            a.cDingDanHao,
-                            b.cGongDiMingCheng,
-                            c.cTuWeiMingCheng,
-                            a.cChePaiHao,
-                            cGuanLiYuanMingCheng = d.cXingMing,
-                            cJiaShiYuanMingCheng = e.cXingMing,
-                            dQiYunShiJian = Convert.ToDateTime(a.dQiYunShiJian).ToString("yyyy-MM-dd HH:mm:ss")
+                           && a.dKaiShiShiJian != null
+                           && a.dJieShuShiJian != null
+                           select new
+                           {
+                               a.AutoID,
+                               a.cDingDanHao,
+                               b.cGongDiMingCheng,
+                               a.cChePaiHao,
+                               cGuanLiYuanMingCheng = d.cXingMing,
+                               cJiaShiYuanMingCheng = e.cXingMing,
+                               dKaiShiShiJian=Convert.ToDateTime(a.dKaiShiShiJian).ToString("yyyy-MM-dd HH:mm:ss"),
+                               dJieShuShiJian = Convert.ToDateTime(a.dJieShuShiJian).ToString("yyyy-MM-dd HH:mm:ss")
                            };
                 var data = temp.FirstOrDefault();
                 if (data != null)

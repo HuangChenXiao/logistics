@@ -196,7 +196,9 @@
     <Compile Include="Controllers\App\CheckWechatUserController.cs" />
     <Compile Include="Controllers\App\EditOrderbPrintController.cs" />
     <Compile Include="Controllers\App\EditPrinterController.cs" />
+    <Compile Include="Controllers\App\EditWaJueJiOrderbPrintController.cs" />
     <Compile Include="Controllers\App\GetOrderInfoController.cs" />
+    <Compile Include="Controllers\App\GetWaJueJiOrderInfoController.cs" />
     <Compile Include="Controllers\Driver\DriverCheLiangController.cs" />
     <Compile Include="Controllers\Driver\OrderNumberCountController.cs" />
     <Compile Include="Controllers\Driver\ShangBanLeiBieController.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="Controllers\Home\DuiDuiJiController.cs" />
     <Compile Include="Controllers\Home\EditBangDingJiLuGongDiController.cs" />
     <Compile Include="Controllers\Home\EditbPrintController.cs" />
+    <Compile Include="Controllers\Home\EditbTuWeiController.cs" />
     <Compile Include="Controllers\Home\EndAllOrderController.cs" />
     <Compile Include="Controllers\Home\EndWaJueJiDingDanController.cs" />
     <Compile Include="Controllers\Home\getChePaiTuWeiController.cs" />

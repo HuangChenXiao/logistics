@@ -21,5 +21,13 @@ namespace ModelDb
         public Nullable<System.DateTime> dDaoQiRiQi { get; set; }
         public string cNianJianJiLu { get; set; }
         public string cBeiZhu { get; set; }
+        public Nullable<int> iState { get; set; }
+        public string cState { get; set; }
+        public string cCreate { get; set; }
+        public Nullable<System.DateTime> dCreate { get; set; }
+        public string cModify { get; set; }
+        public Nullable<System.DateTime> dModify { get; set; }
+        public string cAuditor { get; set; }
+        public Nullable<System.DateTime> dAuditor { get; set; }
     }
 }

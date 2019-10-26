@@ -14,43 +14,32 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers.App
 {
-    public class GetOrderInfoController : ApiController
+    public class EditWaJueJiOrderbPrintController : ApiController
     {
         private EBMSystemEntities db = new EBMSystemEntities();
-        public HttpResponseMessage Get()
+        public HttpResponseMessage Get(long AutoID)
         {
             HttpResponseMessage result = new HttpResponseMessage();
             string openid = HttpContext.Current.Request.Headers.GetValues("openid") == null ? "" : HttpContext.Current.Request.Headers.GetValues("openid").First().ToString();
             if (!string.IsNullOrEmpty(openid))
             {
-                var temp = from a in db.GongChengCheDingDan.ToList()
-                           join b in db.GongDiInfo on a.cGongDiBianMa equals b.cGongDiBianMa
-                           join c in db.TuWeiInfo on a.cTuWeiBianMa equals c.cTuWeiBianMa
-                           join d in db.wechatUser on a.cGuanLiYuanBianMa equals d.openid
-                           join e in db.wechatUser on a.openid equals e.openid
-                           where a.cGuanLiYuanBianMa == openid
-                           && (a.bPrint == false || a.bPrint == null)
-                           select new { 
-                            a.AutoID,
-                            a.cDingDanHao,
-                            b.cGongDiMingCheng,
-                            c.cTuWeiMingCheng,
-                            a.cChePaiHao,
-                            cGuanLiYuanMingCheng = d.cXingMing,
-                            cJiaShiYuanMingCheng = e.cXingMing,
-                            dQiYunShiJian = Convert.ToDateTime(a.dQiYunShiJian).ToString("yyyy-MM-dd HH:mm:ss")
-                           };
+                var temp = from a in db.WaJueJiDingDan
+                           where a.AutoID == AutoID
+                           //&& (a.bPrint == false || a.bPrint == null)
+                           select a;
                 var data = temp.FirstOrDefault();
                 if (data != null)
                 {
-                    var model = new { status_code = 1, message = "查询成功", data = data };
+                    data.bPrint = true;
+                    db.SaveChanges();
+                    var model = new { status_code = 1, message = "修改成功" };
                     result.Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.GetEncoding("UTF-8"), "application/json");
                     return result;
 
                 }
                 else
                 {
-                    var model = new { status_code = 0, message = "暂无数据" };
+                    var model = new { status_code = 0, message = "修改失败" };
                     result.Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.GetEncoding("UTF-8"), "application/json");
                     return result;
                 }

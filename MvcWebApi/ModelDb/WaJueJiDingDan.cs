@@ -31,5 +31,6 @@ namespace ModelDb
         public string cBeiZhu { get; set; }
         public Nullable<int> iBiaoShi { get; set; }
         public string cCreate { get; set; }
+        public Nullable<bool> bPrint { get; set; }
     }
 }

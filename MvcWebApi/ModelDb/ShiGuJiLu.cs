@@ -31,5 +31,15 @@ namespace ModelDb
         public string cChuLiQingKuan { get; set; }
         public Nullable<bool> bShiFouChuXian { get; set; }
         public string cBeiZhu { get; set; }
+        public string cBaoAnHao { get; set; }
+        public string cShiGuMiaoShu { get; set; }
+        public Nullable<int> iState { get; set; }
+        public string cState { get; set; }
+        public string cCreate { get; set; }
+        public Nullable<System.DateTime> dCreate { get; set; }
+        public string cModify { get; set; }
+        public Nullable<System.DateTime> dModify { get; set; }
+        public string cAuditor { get; set; }
+        public Nullable<System.DateTime> dAuditor { get; set; }
     }
 }
