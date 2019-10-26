@@ -17,7 +17,7 @@
         <i class="ico ico-ad" onclick="location.reload()"></i>
       </div>
 
-      <div class="work"  v-if="work_status==0">
+      <div class="work" v-if="work_status==0">
         <div class="work-item sb-item" @click="change_work(1)">
           <i class="ico ico-sb"></i>
           <span>上班</span>
@@ -29,7 +29,7 @@
       </div>
       <div>
         <tab :line-width=2 active-color='#f00' v-model="index">
-          <tab-item class="vux-center"  v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
+          <tab-item class="vux-center" v-for="(item, index) in list2" @on-item-click="set_tab_item(item)" :key="index">{{item}}</tab-item>
         </tab>
         <swiper v-model="index" height="180px" :show-dots="false">
           <swiper-item v-for="(item, index) in list2" :key="index">
@@ -163,9 +163,9 @@
     <!-- 线路 -->
     <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
       <work-route @selectVehicle="select_wordRoute" :valueData="route_list" v-model="route_keyword">
-          <router-link  :to="{name:'tu-wei'}" class="right-btn">
-              新增
-          </router-link>
+        <router-link :to="{name:'tu-wei'}" class="right-btn">
+          新增
+        </router-link>
       </work-route>
     </x-dialog>
     <!-- 工地信息 -->
@@ -176,25 +176,16 @@
 </template>
 
 <script>
-import {
-  Group,
-  XDialog,
-  Tab,
-  TabItem,
-  Swiper,
-  SwiperItem,
-  DatetimeRange,
-  CheckIcon
-} from "vux";
-import getformattedAddress from "@/map/index.js";
-import { setTimeout } from "timers";
-import cVehicle from "@/components/cVehicle";
-import cooperation from "@/components/cooperation";
-import workSite from "@/components/workSite";
-import workRoute from "@/components/workRoute";
-import adminBottom from "@/components/adminBottom";
-import { defaultCoreCipherList } from "constants";
-const list = () => ["工程车", "挖掘机"];
+import { Group, XDialog, Tab, TabItem, Swiper, SwiperItem, DatetimeRange, CheckIcon } from 'vux'
+import getformattedAddress from '@/map/index.js'
+import { setTimeout } from 'timers'
+import cVehicle from '@/components/cVehicle'
+import cooperation from '@/components/cooperation'
+import workSite from '@/components/workSite'
+import workRoute from '@/components/workRoute'
+import adminBottom from '@/components/adminBottom'
+import { defaultCoreCipherList } from 'constants'
+const list = () => ['工程车', '挖掘机']
 
 import {
   GongDiInfo,
@@ -211,8 +202,8 @@ import {
   getChePaiTuWei,
   UpdateTuWeriSortDate,
   EditBangDingJiLuGongDi
-} from "@/api/home.js";
-import { TemplateMsg } from "@/api/wechat.js";
+} from '@/api/home.js'
+import { TemplateMsg } from '@/api/wechat.js'
 import { DuiDuiJi } from '@/api/duidui.js'
 export default {
   components: {
@@ -242,7 +233,7 @@ export default {
       index: 0,
       showWorkSite: false,
       bItem: {
-        cDiZhi: "",
+        cDiZhi: '',
         cGongDiBianMa: null, //工地编码
         cGongDiMingCheng: null, //工地名称
         cChePaiHao: null, //车牌号
@@ -251,8 +242,9 @@ export default {
         // cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
         cTuWeiMingCheng: null, //土尾名称
-        cGuanLiYuanBianMa: localStorage.getItem("openid"), //现场管理员编码
-        cXingMing: null //驾驶员姓名
+        cGuanLiYuanBianMa: localStorage.getItem('openid'), //现场管理员编码
+        cXingMing: null, //驾驶员姓名
+        bTuWei: 0
       },
       store_query: {
         longitude: this.$store.getters.longitude,
@@ -271,38 +263,38 @@ export default {
       driver_cXZDWBianMa: null,
       cooperation_keyword: null,
       route_keyword: null
-    };
+    }
   },
   filters: {
     status_filters(val) {
       var valMap = {
-        0: "未确认",
-        100: "确认",
-        110: "作废"
-      };
-      return valMap[val];
+        0: '未确认',
+        100: '确认',
+        110: '作废'
+      }
+      return valMap[val]
     }
   },
   computed: {
     cGongDiMingCheng() {
       if (this.$store.getters.gongdi_info.cGongDiMingCheng) {
-        return this.$store.getters.gongdi_info.cGongDiMingCheng;
+        return this.$store.getters.gongdi_info.cGongDiMingCheng
       } else {
-        return "请选择";
+        return '请选择'
       }
     },
     cGongDiBianMa() {
       if (this.$store.getters.gongdi_info.cGongDiBianMa) {
-        return this.$store.getters.gongdi_info.cGongDiBianMa;
+        return this.$store.getters.gongdi_info.cGongDiBianMa
       } else {
-        return "";
+        return ''
       }
     },
     bXianZhi() {
       if (this.$store.getters.gongdi_info.bXianZhi) {
-        return this.$store.getters.gongdi_info.bXianZhi;
+        return this.$store.getters.gongdi_info.bXianZhi
       } else {
-        return false;
+        return false
       }
     },
     validate_order() {
@@ -314,9 +306,9 @@ export default {
         this.isavailable &&
         this.work_status == 1
       ) {
-        return true;
+        return true
       }
-      return false;
+      return false
     },
     wj_validate_order() {
       if (
@@ -326,23 +318,23 @@ export default {
         this.isavailable &&
         this.work_status == 1
       ) {
-        return true;
+        return true
       }
-      return false;
+      return false
     }
   },
   created() {
-    let _this = this;
+    let _this = this
     if (!this.$store.getters.gongdi_info.cGongDiMingCheng) {
       //未选择工地时弹出
-      this.showWorkSite = true;
+      this.showWorkSite = true
     }
     if (_this.store_query.cDiZhi) {
-      _this.bItem.cDiZhi = _this.store_query.cDiZhi;
+      _this.bItem.cDiZhi = _this.store_query.cDiZhi
     } else {
-      _this.get_address();
+      _this.get_address()
     }
-    this.set_time();
+    this.set_time()
     // setTimeout(() => {
     //   _this.$vux.alert.show({
     //     title: '提示',
@@ -352,57 +344,57 @@ export default {
     //     }
     //   })
     // }, 1000000)
-    this.xianding_chelaing = this.$store.getters.xianding_chelaing;
-    this.get_worksite(); //工地信息
-    this.get_driver(); //车辆信息
-    this.get_route(); //线路
+    this.xianding_chelaing = this.$store.getters.xianding_chelaing
+    this.get_worksite() //工地信息
+    this.get_driver() //车辆信息
+    this.get_route() //线路
     // this.get_cooperation() //合作单位
-    this.get_order(); //工程车订单列表
-    this.get_wj_order(); //挖掘机订单
-    this.get_bangding(); //绑定记录
+    this.get_order() //工程车订单列表
+    this.get_wj_order() //挖掘机订单
+    this.get_bangding() //绑定记录
   },
   methods: {
     clearTuiwei() {
-      this.bItem.cTuWeiBianMa = null;
-      this.bItem.cTuWeiMingCheng = null;
+      this.bItem.cTuWeiBianMa = null
+      this.bItem.cTuWeiMingCheng = null
     },
     //选择时重新查询车辆
     setshowScrollBox() {
-      this.get_driver(); //车辆信息
-      this.showScrollBox = true;
+      this.get_driver() //车辆信息
+      this.showScrollBox = true
     },
     //选择时重新查询土尾
     setshowWorkRoute() {
-      this.get_route(); //土尾信息
-      this.showWorkRoute = true;
+      this.get_route() //土尾信息
+      this.showWorkRoute = true
     },
     //切换时清空数据
     set_tab_item(item) {
-      this.demo2 = item;
-      this.bItem.cChePaiHao = null;
-      this.bItem.openid = null;
+      this.demo2 = item
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
     },
     //查询上班状态
     get_bangding() {
       wechatUser().then(res => {
-        this.work_status = res.data.status;
-      });
+        this.work_status = res.data.status
+      })
     },
     change_work(work_status) {
-      var _this = this;
+      var _this = this
       if (work_status == 0) {
         this.$vux.confirm.show({
-          title: "提示",
-          content: "下班后将不能发布订单，是否继续？",
+          title: '提示',
+          content: '下班后将不能发布订单，是否继续？',
           onConfirm() {
             BangDingJiLu({
               iBangDingLeiXing: work_status,
               cShangBanBianMa: _this.$store.getters.user_info.role_code
             }).then(res => {
-              _this.work_status = work_status;
-            });
+              _this.work_status = work_status
+            })
           }
-        });
+        })
       } else {
         BangDingJiLu({
           iBangDingLeiXing: work_status,
@@ -410,52 +402,50 @@ export default {
           cGongDiBianMa: _this.cGongDiBianMa,
           cDiZhi: _this.bItem.cDiZhi
         }).then(res => {
-          _this.work_status = work_status;
-        });
+          _this.work_status = work_status
+        })
       }
     },
     //清空车辆
     cheliang_change() {
-      this.bItem.cChePaiHao = null;
-      this.bItem.openid = null;
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
     },
     //清空合作单位
     chepai_change() {
-      this.bItem.cXZDWMingCheng = null;
-      this.driver_cXZDWBianMa = null;
-      this.bItem.cChePaiHao = null;
-      this.bItem.openid = null;
-      this.get_driver(); //车辆信息
+      this.bItem.cXZDWMingCheng = null
+      this.driver_cXZDWBianMa = null
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
+      this.get_driver() //车辆信息
     },
     //工程车订单列表
     get_order() {
       GetGongChengCheDingDan().then(res => {
-        this.order_list = res.data;
-      });
+        this.order_list = res.data
+      })
     },
     //挖掘机订单列表
     get_wj_order() {
       GetWaJueJiDingDan().then(res => {
-        this.wj_order_list = res.data;
-      });
+        this.wj_order_list = res.data
+      })
     },
     //工地列表
     get_worksite() {
       GongDiInfo({ keyword: this.work_keyword }).then(res => {
-        this.work_list = res.data;
-      });
+        this.work_list = res.data
+      })
     },
     //工地名称
     selectWork(val) {
-      this.$store.dispatch("SGongDiMingCheng", val).then(res => {
-        localStorage.setItem("cGongDiMingCheng", JSON.stringify(val));
-        EditBangDingJiLuGongDi({ cGongDiBianMa: val.cGongDiBianMa }).then(
-          res => {
-            console.log("修改成功");
-          }
-        );
-      });
-      this.showWorkSite = false;
+      this.$store.dispatch('SGongDiMingCheng', val).then(res => {
+        localStorage.setItem('cGongDiMingCheng', JSON.stringify(val))
+        EditBangDingJiLuGongDi({ cGongDiBianMa: val.cGongDiBianMa }).then(res => {
+          console.log('修改成功')
+        })
+      })
+      this.showWorkSite = false
     },
     //车辆列表
     get_driver() {
@@ -464,18 +454,18 @@ export default {
           keyword: this.driver_keyword,
           cGongDiBianMa: this.cGongDiBianMa,
           bXianZhi: this.bXianZhi,
-          cCheLiangLeiBie: this.index == 0 ? "土方车" : "挖掘机"
+          cCheLiangLeiBie: this.index == 0 ? '土方车' : '挖掘机'
         }).then(res => {
-          this.vehicle_list = res.data;
-        });
+          this.vehicle_list = res.data
+        })
       }
     },
     //车辆名称
     select_vehicle(item) {
-      this.showScrollBox = false;
-      this.bItem.cChePaiHao = item.cChePaiHao;
-      this.bItem.openid = item.openid;
-      this.bItem.cXingMing = item.cXingMing;
+      this.showScrollBox = false
+      this.bItem.cChePaiHao = item.cChePaiHao
+      this.bItem.openid = item.openid
+      this.bItem.cXingMing = item.cXingMing
       // getChePaiTuWei({ cChePaiHao: item.cChePaiHao }).then(res => {
       //   if (res.data) {
       //     this.bItem.cTuWeiBianMa = res.data.cTuWeiBianMa;
@@ -489,96 +479,113 @@ export default {
     //合作单位
     get_cooperation() {
       XieZuoDanWeiInfo({ keyword: this.cooperation_keyword }).then(res => {
-        this.cooperation_list = res.data;
-      });
+        this.cooperation_list = res.data
+      })
     },
     //合作单位名称
     select_cooperation(item) {
-      this.showCooperation = false;
-      this.bItem.cXZDWBianMa = item.cXZDWBianMa;
-      this.bItem.cXZDWMingCheng = item.cXZDWMingCheng;
+      this.showCooperation = false
+      this.bItem.cXZDWBianMa = item.cXZDWBianMa
+      this.bItem.cXZDWMingCheng = item.cXZDWMingCheng
       //选择合作单位后车辆条件加上 driver_cXZDWBianMa 清空驾驶员
-      this.driver_cXZDWBianMa = item.cXZDWBianMa;
-      this.bItem.cChePaiHao = null;
-      this.bItem.openid = null;
-      this.get_driver(); //车辆信息
+      this.driver_cXZDWBianMa = item.cXZDWBianMa
+      this.bItem.cChePaiHao = null
+      this.bItem.openid = null
+      this.get_driver() //车辆信息
     },
     //路线
     get_route() {
       TuWeiInfo({
         keyword: this.route_keyword
       }).then(res => {
-        this.route_list = res.data;
-      });
+        this.route_list = res.data
+      })
     },
     //线路名称
     select_wordRoute(item) {
-      this.showWorkRoute = false;
-      this.bItem.cTuWeiBianMa = item.cTuWeiBianMa;
-      this.bItem.cTuWeiMingCheng = item.cTuWeiMingCheng;
-      UpdateTuWeriSortDate({ cTuWeiBianMa: item.cTuWeiBianMa });
+      this.showWorkRoute = false
+      this.bItem.cTuWeiBianMa = item.cTuWeiBianMa
+      this.bItem.cTuWeiMingCheng = item.cTuWeiMingCheng
+      UpdateTuWeriSortDate({ cTuWeiBianMa: item.cTuWeiBianMa })
     },
     sendTplMsg(item) {
       TemplateMsg(item).then(res => {
-        console.log(res);
-      });
+        console.log(res)
+      })
     },
-    sendDuiDuiJi(item){
-      var data={}
-      data.cDingDanHao=item.cDingDanHao
-      data.sign=this.$md5('71f727c6a543xiamen!@#'+data.cDingDanHao)
+    sendDuiDuiJi(item) {
+      var data = {}
+      data.cDingDanHao = item.cDingDanHao
+      data.sign = this.$md5('71f727c6a543xiamen!@#' + data.cDingDanHao)
       DuiDuiJi(data).then(res => {
-        console.log(res);
+        console.log(res)
         this.$vux.alert.show({
-            title: "提示",
-            content: res.message
-        });
-      });
+          title: '提示',
+          content: res.message
+        })
+      })
     },
     //发布订单
     submit_order() {
-      this.isavailable = false;
-      this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
-      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng;
-      this.bItem.cDingDanHao = this.cfg.formatOrderNo();
-      GongChengCheDingDan(this.bItem)
+      var _this = this
+      _this.$vux.confirm.show({
+        title: '提示',
+        content: '是否打印订单？',
+        confirmText:'是',
+        cancelText:'否',
+        onConfirm() {
+          _this.bItem.bTuWei = 1
+          _this.add_order(_this)
+        },
+        onCancel() {
+          _this.bItem.bTuWei = 0
+          _this.add_order(_this)
+        }
+      })
+    },
+    add_order(_this) {
+      _this.isavailable = false
+      _this.bItem.cGongDiBianMa = _this.$store.getters.gongdi_info.cGongDiBianMa
+      _this.bItem.cGongDiMingCheng = _this.cGongDiMingCheng
+      _this.bItem.cDingDanHao = _this.cfg.formatOrderNo()
+      GongChengCheDingDan(_this.bItem)
         .then(res => {
-          this.$vux.alert.show({
-            title: "提示",
-            content: "工程车订单发布成功"
-          });
-          this.sendTplMsg(this.bItem);
-          // this.sendDuiDuiJi(this.bItem);
-          this.resetItem();
-          this.get_order(); //订单列表
-          this.isavailable = true;
-          return;
+          _this.$vux.alert.show({
+            title: '提示',
+            content: '工程车订单发布成功'
+          })
+          _this.sendTplMsg(_this.bItem)
+          // _this.sendDuiDuiJi(_this.bItem);
+          _this.resetItem()
+          _this.get_order() //订单列表
+          _this.isavailable = true
+          return
         })
         .catch(res => {
-          this.isavailable = true;
-        });
+          _this.isavailable = true
+        })
     },
     //挖掘机订单
     wj_submit_order() {
-      this.isavailable = false;
-      this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa;
-      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng;
-      this.bItem.cDingDanHao = this.cfg.formatOrderNo();
+      this.isavailable = false
+      this.bItem.cGongDiBianMa = this.$store.getters.gongdi_info.cGongDiBianMa
+      this.bItem.cGongDiMingCheng = this.cGongDiMingCheng
+      this.bItem.cDingDanHao = this.cfg.formatOrderNo()
       WaJueJiDingDan(this.bItem)
         .then(res => {
           this.$vux.alert.show({
-            title: "提示",
-            content: "挖掘机订单发布成功"
-          });
-          this.sendTplMsg(this.bItem);
-          this.resetItem();
-          this.get_wj_order(); //挖掘机订单
-          this.isavailable = true;
-          return;
+            title: '提示',
+            content: '挖掘机订单发布成功'
+          })
+          this.sendTplMsg(this.bItem)
+          this.resetItem()
+          this.get_wj_order() //挖掘机订单
+          this.isavailable = true
+          return
         })
         .catch(res => {
-          this.isavailable = true;
-        });
+          this.isavailable = true
+        })
     },
     resetItem() {
       this.bItem = {
@@ -590,83 +597,83 @@ export default {
         cTuWeiMingCheng: this.bItem.cTuWeiMingCheng, //土尾名称
         cXZDWBianMa: null, //协作单位编码
         cXZDWMingCheng: null, //协作单位名称
-        cGuanLiYuanBianMa: localStorage.getItem("openid") //现场管理员编码
-      };
+        cGuanLiYuanBianMa: localStorage.getItem('openid') //现场管理员编码
+      }
     },
     complete_order() {
       this.$vux.confirm.show({
-        title: "提示",
-        content: "只有到达目的地与管理员确认后才能操作，是否继续？",
+        title: '提示',
+        content: '只有到达目的地与管理员确认后才能操作，是否继续？',
         onConfirm() {
-          _this.work_status = work_status;
+          _this.work_status = work_status
         }
-      });
+      })
     },
     get_address() {
-      let _this = this;
-      _this.bItem.cDiZhi = "正在定位。。。";
-      _this.$store.dispatch("setisLoading", true);
+      let _this = this
+      _this.bItem.cDiZhi = '正在定位。。。'
+      _this.$store.dispatch('setisLoading', true)
 
       getformattedAddress({ windowurl: window.location.href })
         .then(res => {
-          _this.bItem.cDiZhi = res.address;
-          _this.$store.dispatch("setisLoading", false);
+          _this.bItem.cDiZhi = res.address
+          _this.$store.dispatch('setisLoading', false)
         })
         .catch(res => {
-          _this.$store.dispatch("setisLoading", false);
-        });
+          _this.$store.dispatch('setisLoading', false)
+        })
     },
     set_time() {
-      var _this = this;
-      var t = null;
-      t = setTimeout(time, 1000); //開始运行
+      var _this = this
+      var t = null
+      t = setTimeout(time, 1000) //開始运行
       function time() {
-        clearTimeout(t); //清除定时器
-        var dt = new Date();
-        var h = checkTime(dt.getHours()); //获取时
-        var m = checkTime(dt.getMinutes()); //获取分
-        var s = checkTime(dt.getSeconds()); //获取秒
-        _this.time = h + "：" + m + "：" + s;
-        t = setTimeout(time, 1000); //设定定时器，循环运行
+        clearTimeout(t) //清除定时器
+        var dt = new Date()
+        var h = checkTime(dt.getHours()) //获取时
+        var m = checkTime(dt.getMinutes()) //获取分
+        var s = checkTime(dt.getSeconds()) //获取秒
+        _this.time = h + '：' + m + '：' + s
+        t = setTimeout(time, 1000) //设定定时器，循环运行
       }
       function checkTime(i) {
         //将0-9的数字前面加上0，例1变为01
         if (i < 10) {
-          i = "0" + i;
+          i = '0' + i
         }
-        return i;
+        return i
       }
     }
   },
   watch: {
     index(val, oldVal) {
-      this.get_driver(); //车辆信息
+      this.get_driver() //车辆信息
     },
     cGongDiMingCheng(val, oldVal) {
-      this.get_driver(); //车辆信息
-      this.get_route(); //线路
+      this.get_driver() //车辆信息
+      this.get_route() //线路
     },
     work_keyword(val, oldVal) {
       //工地列表
-      this.get_worksite();
+      this.get_worksite()
     },
     driver_keyword(val, oldVal) {
       //车辆列表
-      this.get_driver();
+      this.get_driver()
     },
     cooperation_keyword(val, oldVal) {
       //合作单位列表
-      this.get_cooperation();
+      this.get_cooperation()
     },
     route_keyword(val, oldVal) {
       //线路列表
-      this.get_route();
+      this.get_route()
     },
     xianding_chelaing(val, oldVal) {
-      this.$store.dispatch("SXianding_Chelaing", val);
+      this.$store.dispatch('SXianding_Chelaing', val)
     }
   }
-};
+}
 </script>
 
 <style>
@@ -745,7 +752,7 @@ export default {
     background-size: 100%;
   }
   .ico:before {
-    content: " ";
+    content: ' ';
     position: absolute;
     left: -0.266667rem;
     display: block;
@@ -822,7 +829,7 @@ export default {
       top: 0.32rem;
       width: 0.426667rem;
       height: 0.426667rem;
-      background: url("../../assets/img/delete.png");
+      background: url('../../assets/img/delete.png');
       background-size: 100%;
     }
     .btn-select {
@@ -838,7 +845,7 @@ export default {
       margin-right: 0.266667rem;
     }
     .btn-select:after {
-      content: " ";
+      content: ' ';
       position: absolute;
       right: -0.266667rem;
       top: 0;
