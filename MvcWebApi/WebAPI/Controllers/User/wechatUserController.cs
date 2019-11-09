@@ -50,6 +50,35 @@ namespace WebAPI.Controllers.User
             return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
         }
 
+        public ResponseMessageResult Get(int type)
+        {
+            var HeaderOPENID = HttpContext.Current.Request.Headers.GetValues("openid");
+            if (HeaderOPENID != null)
+            {
+                string openid = HeaderOPENID.First().ToString();
+                var temp = from a in db.wechatUser select a;
+                model.data = temp.Where(o => o.openid == openid).FirstOrDefault();
+
+                if (model.data != null)
+                {
+                    model.message = "查询成功";
+                    model.status_code = 200;
+                    return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+                }
+                else
+                {
+                    model.message = "微信授权已过期";
+                    model.status_code = 405;
+                }
+            }
+            else
+            {
+                model.message = "openid为空";
+                model.status_code = 403;
+            }
+            return new ResponseMessageResult(Request.CreateResponse((HttpStatusCode)model.status_code, model));
+        }
+
         // PUT: api/Role/5
         [ResponseType(typeof(void))]
         public ResponseMessageResult PutwechatUser(wechatUser wechatUser)

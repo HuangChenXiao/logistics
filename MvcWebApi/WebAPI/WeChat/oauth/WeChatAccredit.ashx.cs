@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Com;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace WeChatAPI.oauth
                 WeChatoAuth oauth = new WeChatoAuth();
                 OAuth_Token Model = oauth.Get_Token(WeChatConfig.AppId, WeChatConfig.AppSecret, Code);
                 OAuthUser OAuthUser_Model = oauth.Get_UserInfo(Model.access_token, Model.openid);
+                //写入日志
+                LogHelper.Logtest(JsonConvert.SerializeObject(OAuthUser_Model));
                 context.Response.Write(JsonConvert.SerializeObject(OAuthUser_Model));
             }
         }

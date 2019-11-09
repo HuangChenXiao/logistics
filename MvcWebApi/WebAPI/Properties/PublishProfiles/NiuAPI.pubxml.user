@@ -76,7 +76,7 @@
       <publishTime>12/08/2018 11:13:01</publishTime>
     </File>
     <File Include="bin/Com.dll">
-      <publishTime>10/26/2019 10:48:17</publishTime>
+      <publishTime>11/09/2019 09:17:13</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>12/08/2018 11:13:02</publishTime>
@@ -142,7 +142,7 @@
       <publishTime>12/08/2018 11:13:03</publishTime>
     </File>
     <File Include="bin/ModelDb.dll">
-      <publishTime>10/26/2019 10:48:17</publishTime>
+      <publishTime>11/09/2019 09:17:13</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/08/2018 11:13:04</publishTime>
@@ -187,7 +187,7 @@
       <publishTime>12/08/2018 11:13:03</publishTime>
     </File>
     <File Include="bin/WebAPI.dll">
-      <publishTime>10/26/2019 10:48:19</publishTime>
+      <publishTime>11/09/2019 09:54:36</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>12/08/2018 11:13:04</publishTime>
@@ -196,7 +196,7 @@
       <publishTime>07/09/2013 11:05:10</publishTime>
     </File>
     <File Include="bin/WeChatSDK.dll">
-      <publishTime>10/26/2019 10:48:18</publishTime>
+      <publishTime>11/09/2019 09:17:14</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>12/08/2018 11:13:02</publishTime>

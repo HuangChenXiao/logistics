@@ -32,6 +32,7 @@ namespace WebAPI.Controllers.App
                            && (a.bPrint == false || a.bPrint == null)
                            select new { 
                             a.AutoID,
+                            a.bTuWei,
                             a.cDingDanHao,
                             b.cGongDiMingCheng,
                             c.cTuWeiMingCheng,

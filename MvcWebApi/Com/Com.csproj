@@ -54,6 +54,7 @@
     <Compile Include="JavaScriptSerializer.cs" />
     <Compile Include="JwtHelper.cs" />
     <Compile Include="JwtModel.cs" />
+    <Compile Include="LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
