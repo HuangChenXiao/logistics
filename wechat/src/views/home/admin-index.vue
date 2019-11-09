@@ -530,7 +530,7 @@ export default {
       var _this = this
       _this.$vux.confirm.show({
         title: '提示',
-        content: '是否打印订单？',
+        content: '是否打印土尾联？',
         confirmText:'是',
         cancelText:'否',
         onConfirm() {

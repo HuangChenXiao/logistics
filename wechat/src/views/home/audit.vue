@@ -27,9 +27,10 @@
 
 <script>
 import { validatePhone, validateidentitycard } from '@/utils/validate.js'
-import { PostWechatUser } from '@/api/home.js'
+import { PostWechatUser, wechatUser } from '@/api/home.js'
 import { WeChatAccredit } from '@/api/wechat.js'
 import getformattedAddress from '@/map/index.js'
+import { setTimeout } from 'timers'
 export default {
   data() {
     return {
@@ -47,7 +48,7 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     var Request = this.GetRequest()
     var openid = localStorage.getItem('openid')
     if (openid) {
@@ -59,9 +60,13 @@ export default {
       this.user.city = res.city
       this.user.country = res.country
       this.user.headimgurl = res.headimgurl
-      this.$store.dispatch('GetInfo').then(res => {
-        this.goToHome()
-      })
+      wechatUser({ type: 1 })
+        .then(res => {
+          this.goToHome()
+        })
+        .catch(res => {
+          console.log(res)
+        })
     } else {
       WeChatAccredit({ code: Request.code }).then(res => {
         if (res.openid) {
@@ -74,9 +79,19 @@ export default {
           this.user.city = res.city
           this.user.country = res.country
           this.user.headimgurl = res.headimgurl
-          this.$store.dispatch('GetInfo').then(res => {
-            this.goToHome()
-          })
+          wechatUser({ type: 1 })
+            .then(res => {
+              this.goToHome()
+            })
+            .catch(res => {
+              console.log(res)
+            })
+          // this.$store.dispatch('GetInfo').then(res => {
+          //   console.log(res)
+          //   // this.goToHome()
+          // }).catch(res=>{
+          //   console.log(res)
+          // })
         }
       })
     }

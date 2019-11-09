@@ -10,7 +10,8 @@ export function PostWechatUser(data) {
 export function wechatUser(data) {
     return request({
         url: 'wechatUser',
-        method: "get"
+        method: "get",
+        params: data
     })
 }
 export function GongDiInfo(data) {
