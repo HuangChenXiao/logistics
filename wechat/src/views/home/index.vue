@@ -18,6 +18,7 @@
           <span>下班</span>
         </div>
       </div>
+      <x-button @click.native="scanQRCode">扫描二维码</x-button>
       <div class="info">
         <!-- <div class="item">
           <div class="lbl">当前时间：{{time}}</div>
@@ -59,7 +60,7 @@
             <section v-for="item in order_list">
               <div class="n1">订单号：{{item.cDingDanHao}}</div>
               <div class="n1">工地：{{item.cGongDiMingCheng}}</div>
-              <div class="n1">工尾：{{item.cTuWeiMingCheng}}</div>
+              <div class="n1">土尾：{{item.cTuWeiMingCheng}}</div>
               <div class="n1">车牌：{{item.cChePaiHao}}</div>
               <div class="n1">派单员：{{item.cGuanLiYuanMingChen}}</div>
               <div class="n1">驾驶员：{{item.cXingMing}}</div>
@@ -124,11 +125,7 @@ import { defaultCoreCipherList } from 'constants'
 import { DriverCheLiang, ShangBanLeiBie } from '@/api/driver.js'
 import { wechatUser } from '@/api/home.js'
 
-import {
-  BangDingJiLu,
-  GetGongChengCheDingDan,
-  GetWaJueJiDingDan
-} from '@/api/home.js'
+import { BangDingJiLu, GetGongChengCheDingDan, GetWaJueJiDingDan } from '@/api/home.js'
 
 const list = () => ['工程车', '挖掘机']
 export default {
@@ -215,7 +212,32 @@ export default {
     this.get_order() //订单
     this.get_banbieinfo() //班别
   },
+  mounted() {
+    $.post('https://mobile.xmxtm.cn/API/WeChat/JS-SDK/GetJS_SDK_Config.ashx', {  "action": "SDK_Config", windowurl: window.location.href }, function(
+      data
+    ) {
+      data = JSON.parse(data)
+      wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: data.appId, // 必填，公众号的唯一标识
+        timestamp: data.timeStamp, // 必填，生成签名的时间戳
+        nonceStr: data.nonceStr, // 必填，生成签名的随机串
+        signature: data.signature, // 必填，签名，见附录1
+        jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      })
+    })
+  },
   methods: {
+    scanQRCode() {
+      wx.scanQRCode({
+        needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+        scanType: ['qrCode'], // 可以指定扫二维码还是一维码，默认二者都有
+        success: function(res) {
+          var result = res.resultStr // 当needResult 为 1 时，扫码返回的结果
+          alert(JSON.stringify(result))
+        }
+      })
+    },
     get_banbieinfo() {
       ShangBanLeiBie().then(res => {
         this.banbie_list = res.data.map(o => {
@@ -359,7 +381,7 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
 .work {
   position: relative;
@@ -406,7 +428,7 @@ export default {
 .address {
   position: relative;
   background: #fff;
-  font-size: .5rem;
+  font-size: 0.5rem;
   padding: 0.266667rem;
   border-bottom: 1px solid #efefef;
   padding-right: 1.2rem;
@@ -449,7 +471,7 @@ export default {
     width: 50%;
     text-align: center;
     padding: 0.533333rem 0;
-    font-size: .5rem;
+    font-size: 0.5rem;
   }
   .it_1 {
     border-right: 1px solid #efefef;
