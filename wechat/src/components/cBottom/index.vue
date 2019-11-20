@@ -31,7 +31,7 @@ export default {
 .footer-menu {
   position: fixed;
   bottom: 0;
-  height: 1.8rem;
+  height: 1.6rem;
   border-top: 1px solid #ededed;
   background: #fff;
   font-size: 0.5rem;

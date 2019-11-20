@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="title">{{title}}</div>
+    <div class="title">{{title}}
+
+      <div class="sao" v-if="is_qrcode" @click="scan_qrcode">
+        <img src="../../assets/img/sao.png" alt="">
+      </div>
+    </div>
     <div class="search">
       <div class="item">
         <div class="ico"></div>
@@ -37,7 +42,7 @@
 
 <script>
 export default {
-  props: ['title','value', 'valueData', 'single_drive'],
+  props: ['title','value', 'valueData', 'single_drive','is_qrcode'],
   data() {
     return {
       list: null,
@@ -54,6 +59,9 @@ export default {
     },
     select_many_vehicle() {
       this.$emit('selectVehicle', [])
+    },
+    scan_qrcode(){
+      this.$emit('scanQRCode')
     }
   },
   watch: {
@@ -84,8 +92,8 @@ export default {
 // }
 .title {
   font-size: .5rem;
-  height: 1.066667rem;
-  line-height: 1.066667rem;
+  height: 1.3rem;
+  line-height: 1.3rem;
   padding: 0 0.266667rem;
   border-bottom: 1px solid #efefef;
   font-weight: 600;
@@ -182,5 +190,12 @@ export default {
       width: 2.3rem;
       display: inline-block;
       text-align: right;
+}
+.sao{
+  position: absolute;
+  top: .23rem;
+  right: .3rem;
+  width: .85rem;
+  height: .85rem;
 }
 </style>

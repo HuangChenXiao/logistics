@@ -21,3 +21,11 @@ export function OrderNumberCount(data) {
     })
 }
 
+export function BangDingJiLiQrCode(data) {
+    return request({
+        url: 'BangDingJiLiQrCode',
+        method: "get",
+        params: data
+    })
+}
+
