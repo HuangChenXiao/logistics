@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\Driver\DriverCheLiangController.cs" />
     <Compile Include="Controllers\Driver\OrderNumberCountController.cs" />
     <Compile Include="Controllers\Driver\ShangBanLeiBieController.cs" />
+    <Compile Include="Controllers\Home\BangDingJiLiQrCodeController.cs" />
     <Compile Include="Controllers\Home\BangDingJiLuController.cs" />
     <Compile Include="Controllers\Home\CheLiangController.cs" />
     <Compile Include="Controllers\Home\CheLiangInfoController.cs" />

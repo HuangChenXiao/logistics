@@ -108,3 +108,17 @@ H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramewo
 H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
 H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb
 H:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.dll.config
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\ModelDb.pdb
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.SqlServer.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\WebMatrix.Data.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.xml
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\EntityFramework.SqlServer.xml
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\WebMatrix.Data.xml
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.csprojResolveAssemblyReference.cache
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.dll
+G:\gitCode\logistics\logistics\MvcWebApi\ModelDb\obj\Debug\ModelDb.pdb
