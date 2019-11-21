@@ -10,7 +10,7 @@
       <div class="item">
         <div class="ico"></div>
         <div class="ipt">
-          <input type="number" v-model="search_val" placeholder="请输入要搜索的车辆">
+          <input type="text" v-model="search_val" placeholder="请输入要搜索的车辆">
         </div>
       </div>
     </div>

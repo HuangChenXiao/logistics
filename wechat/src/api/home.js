@@ -181,3 +181,11 @@ export function EditBangDingJiLuGongDi(data) {
         params: data
     })
 }
+export function getDriverQrcodeSelect(data) {
+    return request({
+        url: 'getDriverQrcodeSelect',
+        method: "get",
+        params: data
+    })
+}
+

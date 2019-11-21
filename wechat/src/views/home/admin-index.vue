@@ -158,7 +158,7 @@
     </x-dialog>
     <!-- 车辆信息 -->
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle @selectVehicle="select_vehicle" title="车辆信息" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
+      <c-vehicle @selectVehicle="select_vehicle" @scanQRCode="scanQRCode"  :is_qrcode="true" title="车辆信息" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
     </x-dialog>
     <!-- 线路 -->
     <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
@@ -201,7 +201,8 @@ import {
   TuWeiInfo,
   getChePaiTuWei,
   UpdateTuWeriSortDate,
-  EditBangDingJiLuGongDi
+  EditBangDingJiLuGongDi,
+  getDriverQrcodeSelect
 } from '@/api/home.js'
 import { TemplateMsg } from '@/api/wechat.js'
 import { DuiDuiJi } from '@/api/duidui.js'
@@ -353,7 +354,40 @@ export default {
     this.get_wj_order() //挖掘机订单
     this.get_bangding() //绑定记录
   },
+  mounted() {
+    $.post(
+      'https://mobile.xmxtm.cn/API/WeChat/JS-SDK/GetJS_SDK_Config.ashx',
+      { action: 'SDK_Config', windowurl: window.location.href },
+      function(data) {
+        data = JSON.parse(data)
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: data.appId, // 必填，公众号的唯一标识
+          timestamp: data.timeStamp, // 必填，生成签名的时间戳
+          nonceStr: data.nonceStr, // 必填，生成签名的随机串
+          signature: data.signature, // 必填，签名，见附录1
+          jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        })
+      }
+    )
+  },
   methods: {
+    scanQRCode() {
+      var _this = this
+      wx.scanQRCode({
+        needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+        scanType: ['qrCode'], // 可以指定扫二维码还是一维码，默认二者都有
+        success: function(res) {
+          var result = res.resultStr // 当needResult 为 1 时，扫码返回的结果
+          getDriverQrcodeSelect({ cChePaiHao: result }).then(res => {
+            _this.showScrollBox = false
+            _this.bItem.cChePaiHao = res.data.cChePaiHao
+            _this.bItem.openid = res.data.openid
+            _this.bItem.cXingMing = res.data.cXingMing
+          })
+        }
+      })
+    },
     clearTuiwei() {
       this.bItem.cTuWeiBianMa = null
       this.bItem.cTuWeiMingCheng = null
@@ -531,8 +565,8 @@ export default {
       _this.$vux.confirm.show({
         title: '提示',
         content: '是否打印土尾联？',
-        confirmText:'是',
-        cancelText:'否',
+        confirmText: '是',
+        cancelText: '否',
         onConfirm() {
           _this.bItem.bTuWei = 1
           _this.add_order(_this)
