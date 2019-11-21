@@ -384,6 +384,8 @@ export default {
             _this.bItem.cChePaiHao = res.data.cChePaiHao
             _this.bItem.openid = res.data.openid
             _this.bItem.cXingMing = res.data.cXingMing
+          }).catch(res=>{
+            _this.showScrollBox = false
           })
         }
       })
