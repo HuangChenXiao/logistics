@@ -158,7 +158,7 @@
     </x-dialog>
     <!-- 车辆信息 -->
     <x-dialog v-model="showScrollBox" :hide-on-blur="true" class="dialog-demo">
-      <c-vehicle @selectVehicle="select_vehicle" @scanQRCode="scanQRCode"  :is_qrcode="true" title="车辆信息" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
+      <c-vehicle @selectVehicle="select_vehicle" @scanQRCode="scanQRCode" :is_qrcode="true" title="车辆信息" :single_drive="true" :valueData="vehicle_list" v-model="driver_keyword"></c-vehicle>
     </x-dialog>
     <!-- 线路 -->
     <x-dialog v-model="showWorkRoute" :hide-on-blur="true" class="dialog-demo">
@@ -379,14 +379,16 @@ export default {
         scanType: ['qrCode'], // 可以指定扫二维码还是一维码，默认二者都有
         success: function(res) {
           var result = res.resultStr // 当needResult 为 1 时，扫码返回的结果
-          getDriverQrcodeSelect({ cChePaiHao: result }).then(res => {
-            _this.showScrollBox = false
-            _this.bItem.cChePaiHao = res.data.cChePaiHao
-            _this.bItem.openid = res.data.openid
-            _this.bItem.cXingMing = res.data.cXingMing
-          }).catch(res=>{
-            _this.showScrollBox = false
-          })
+          getDriverQrcodeSelect({ cChePaiHao: result })
+            .then(res => {
+              _this.showScrollBox = false
+              _this.bItem.cChePaiHao = res.data.cChePaiHao
+              _this.bItem.openid = res.data.openid
+              _this.bItem.cXingMing = res.data.cXingMing
+            })
+            .catch(res => {
+              _this.showScrollBox = false
+            })
         }
       })
     },
@@ -613,6 +615,7 @@ export default {
             title: '提示',
             content: '挖掘机订单发布成功'
           })
+          this.bItem.cTuWeiMingCheng = '无'
           this.sendTplMsg(this.bItem)
           this.resetItem()
           this.get_wj_order() //挖掘机订单

@@ -32,7 +32,7 @@ namespace WeChatAPI.TemplateAlert
             context.Response.Write(Msg.errcode);
         }
         /// <summary>
-        /// 购买通知模板
+        /// 工程车订单推送模板
         /// </summary>
         /// <returns></returns>
         public string GetJsonString(string openid, string cDingDanHao, string cGongDiMingCheng, string cTuWeiMingCheng)
